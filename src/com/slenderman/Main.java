@@ -1,4 +1,4 @@
-package com.slender;
+package com.slenderman;
 
 public class Main {
 
