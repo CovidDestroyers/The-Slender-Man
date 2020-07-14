@@ -1,4 +1,4 @@
-package com.slenderman;
+package com.slenderman.game;
 
 public class Main {
 
