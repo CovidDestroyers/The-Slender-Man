@@ -10,4 +10,8 @@ package com.slenderman.game;
  *
  */
 public class Game {
+
+  public Game() {
+
+  }
 }

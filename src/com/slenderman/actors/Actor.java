@@ -11,4 +11,17 @@ package com.slenderman.actors;
  *
  */
 public interface Actor {
+
+  public void goEast();
+  public void goWest();
+  public void goNorth();
+  public void goSouth();
+
+
+  public void setPreviousScene(String previousScene);
+  public String getNextScene();
+  public void resetNextSceneField();
+  public int getCurrentPlace();
+  public String toString();
+
 }
