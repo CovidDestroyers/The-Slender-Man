@@ -41,7 +41,8 @@ public class Game {
   }
 
 
-  public void start(Scanner in) {
+  public void start(Scanner in) throws InterruptedException {
+    Introduction.playIntro();
 
     String userText = "go";
 
