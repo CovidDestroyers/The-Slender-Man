@@ -12,20 +12,30 @@ import java.util.ArrayList;
  *  class that implements Scene.
  */
 public abstract class Scene {
-  protected String sceneToTheNorth;
-  protected String sceneToTheSouth;
-  protected String sceneToTheEast;
-  protected String sceneToTheWest;
-  protected String description;
   public static final String ANSI_BLUE = "\u001B[34m";
   public static final String ANSI_WHITE = "\u001B[37m";
   public static final String ANSI_RED = "\u001B[31m";
   public static final String ANSI_BLACK = "\u001B[30m";
   public static final String ANSI_GREEN = "\u001B[32m";
 
+  protected Scene northScene;
+  protected Scene eastScene;
+  protected Scene southScene;
+  protected Scene westScene;
+
+  protected String sceneToTheNorth;
+  protected String sceneToTheSouth;
+  protected String sceneToTheEast;
+  protected String sceneToTheWest;
+  protected String description;
 
   protected ArrayList<String> itemsInScene;
 
+  /*
+   * =============================================
+   * ============= Constructors ==================
+   * =============================================
+   */
   public Scene(
     String sceneToTheNorth, String sceneToTheSouth,
     String sceneToTheEast, String sceneToTheWest) {
@@ -41,7 +51,17 @@ public abstract class Scene {
    * =============================================
    */
 
-  //TODO: write a method that adds only 1 item to itemsInScene
+  // TODO: write a method that adds only 1 item to itemsInScene
+
+  public void connectEast(Scene otherScene){
+    eastScene = otherScene;
+    otherScene.westScene = this;
+  };
+
+  public void connectSouth(Scene otherScene){
+    southScene = otherScene;
+    otherScene.northScene = this;
+  };
 
   /*
    * =============================================
