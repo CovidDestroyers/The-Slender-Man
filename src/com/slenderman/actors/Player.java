@@ -61,7 +61,8 @@ public class Player {
 
   /**
    * Changes the currentScene field for all items in inventory to sceneName
-   * @param sceneName
+   * @param sceneName string representation of the scene i.e. "pond",
+   *                  "forest", etc.
    */
   public void changeInvItemsLocation(String sceneName) {
     inventory.forEach(item -> item.setCurrentScene(sceneName));
