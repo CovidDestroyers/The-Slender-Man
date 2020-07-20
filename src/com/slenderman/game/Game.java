@@ -61,7 +61,6 @@ public class Game {
 
     //after Field has used a direction-empty Tree, actually telling tree what is in the west of tree
     aTree.setSceneToTheWest(aField);
-
     aPond.setSceneToTheEast(aField);
     aPond.setSceneToTheWest(aCave);
     aPond.setSceneToTheNorth(aOutHouse);
@@ -86,7 +85,7 @@ public class Game {
   }
 
 
-
+  /**
   public void start(Scanner in) throws InterruptedException {
     Introduction.playIntro();
 
@@ -105,6 +104,6 @@ public class Game {
     }
 
   }
-
+   */
 
 }

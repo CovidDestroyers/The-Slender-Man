@@ -5,22 +5,26 @@ import java.util.*;
 public class Field extends Scene {
 
   //private Map<String, String> scenesAround = new HashMap<>();
-  private List<String> localItems = new ArrayList<>();
+  private List<String> grabbedItems = new ArrayList<>();
+  private List<String> itemsInScene = new ArrayList<>();
 
-//  public Field(Map<String, String> ScenesAround){
-//
-//    this.scenesAroundField = ScenesAround;
-//
-//
-//
-//    enter();
-//  }
+
+
+
 
   public Field(Scene sceneToTheNorth, Scene sceneToTheSouth,
                Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth,
       sceneToTheEast, sceneToTheWest);
+
+    //Add the pre existing items to the List
+    itemsInScene.add("blade");
   }
+
+//  public void setItemsInScene(List<String> itemsInScene){};
+//  public <String> List<String> getGrabbedItems(List<String> grabbedItems){
+//    List<String> grabbedItems
+//  };
 
   public void enter() {
     String choice;
@@ -114,11 +118,22 @@ public class Field extends Scene {
   private void findBlade() {
     String choice = playerChoice();
     System.out.println(
-      "You have found a blade. \n Would you like to grab it? " +
-        "\nYou look up and see a fork. \nOne is a broad way and another is narrow." +
+      "You have found a blade. \n Would you like to grab it? "
+      " Type \"0\" : \"Yes\" " +
+        "\n Type \"1\" : \"No\"");
+    choice = playerChoice();
+    if (choice.equals("0")) {
+      grabbedItems.add(itemsInScene.get(0));
+      itemsInScene.remove(0);
+    }
+
+    System.out.println("\nYou look up and see a fork. " +
+      "\nOne is a broad way and another is narrow." +
         "\nWhich road would you like to take?");
     System.out.println(" Type \"0\" : \"Broad Way\" " +
       "\n Type \"1\" : \"Narrow Way\"");
+    choice = playerChoice();
+
     if (choice.equals("0")) {
       sneeze();
     } else if (choice.equals("1")) {
