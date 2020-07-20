@@ -29,13 +29,13 @@ public class House extends Scene {
    * ============= Constructors ==================
    * =============================================
    */
-  public House(String sceneToTheNorth, String sceneToTheSouth,
-               String sceneToTheEast, String sceneToTheWest) {
+  public House(Scene sceneToTheNorth, Scene sceneToTheSouth,
+               Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
   }
 
-  public House(String sceneToTheNorth, String sceneToTheSouth,
-               String sceneToTheEast, String sceneToTheWest,
+  public House(Scene sceneToTheNorth, Scene sceneToTheSouth,
+               Scene sceneToTheEast, Scene sceneToTheWest,
                boolean useDefaultItems) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
@@ -85,23 +85,21 @@ public class House extends Scene {
    */
 
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return "House{" + "ANSI_BLUE='" + ANSI_BLUE + '\'' + ", ANSI_WHITE='" +
            ANSI_WHITE + '\'' + ", ANSI_RED='" + ANSI_RED + '\'' +
            ", ANSI_BLACK='" + ANSI_BLACK + '\'' + ", ANSI_GREEN='" +
-           ANSI_GREEN + '\'' + ", northScene=" + northScene + ", eastScene=" +
-           eastScene + ", southScene=" + southScene + ", westScene=" +
-           westScene + ", sceneToTheNorth='" + sceneToTheNorth + '\'' +
-           ", sceneToTheSouth='" + sceneToTheSouth + '\'' +
-           ", sceneToTheEast='" + sceneToTheEast + '\'' + ", sceneToTheWest='" +
-           sceneToTheWest + '\'' + ", description='" + description + '\'' +
-           ", itemsInScene=" + itemsInScene + ", introduction='" +
-           introduction + '\'' + ", defaultItems=" + defaultItems +
+           ANSI_GREEN + '\'' + ", sceneToTheNorth=" + sceneToTheNorth +
+           ", sceneToTheSouth=" + sceneToTheSouth + ", sceneToTheEast=" +
+           sceneToTheEast + ", sceneToTheWest=" + sceneToTheWest +
+           ", description='" + description + '\'' + ", itemsInScene=" +
+           itemsInScene + ", introduction='" + introduction + '\'' +
+           ", defaultItems=" + defaultItems + ", lighter=" + lighter +
            ", itemsInScene=" + getItemsInScene() + ", description='" +
-           getDescription() + '\'' + ", sceneToTheNorth='" +
-           getSceneToTheNorth() + '\'' + ", sceneToTheWest='" +
-           getSceneToTheWest() + '\'' + ", sceneToTheEast='" +
-           getSceneToTheEast() + '\'' + ", sceneToTheSouth='" +
-           getSceneToTheSouth() + '\'' + '}';
+           getDescription() + '\'' + ", sceneToTheNorth=" +
+           getSceneToTheNorth() + ", sceneToTheWest=" + getSceneToTheWest() +
+           ", sceneToTheEast=" + getSceneToTheEast() + ", sceneToTheSouth=" +
+           getSceneToTheSouth() + '}';
   }
 }

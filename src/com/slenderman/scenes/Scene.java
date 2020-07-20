@@ -18,15 +18,11 @@ public abstract class Scene {
   public static final String ANSI_BLACK = "\u001B[30m";
   public static final String ANSI_GREEN = "\u001B[32m";
 
-  protected Scene northScene;
-  protected Scene eastScene;
-  protected Scene southScene;
-  protected Scene westScene;
+  protected Scene sceneToTheNorth;
+  protected Scene sceneToTheSouth;
+  protected Scene sceneToTheEast;
+  protected Scene sceneToTheWest;
 
-  protected String sceneToTheNorth;
-  protected String sceneToTheSouth;
-  protected String sceneToTheEast;
-  protected String sceneToTheWest;
   protected String description;
 
   protected ArrayList<String> itemsInScene;
@@ -37,8 +33,8 @@ public abstract class Scene {
    * =============================================
    */
   public Scene(
-    String sceneToTheNorth, String sceneToTheSouth,
-    String sceneToTheEast, String sceneToTheWest) {
+    Scene sceneToTheNorth, Scene sceneToTheSouth,
+    Scene sceneToTheEast, Scene sceneToTheWest) {
     this.sceneToTheNorth = sceneToTheNorth;
     this.sceneToTheSouth = sceneToTheSouth;
     this.sceneToTheEast = sceneToTheEast;
@@ -53,14 +49,14 @@ public abstract class Scene {
 
   // TODO: write a method that adds only 1 item to itemsInScene
 
-  public void connectEast(Scene otherScene){
-    eastScene = otherScene;
-    otherScene.westScene = this;
+  protected void connectEast(Scene otherScene){
+    sceneToTheEast = otherScene;
+    otherScene.sceneToTheWest = this;
   };
 
-  public void connectSouth(Scene otherScene){
-    southScene = otherScene;
-    otherScene.northScene = this;
+  protected void connectSouth(Scene otherScene){
+    sceneToTheSouth = otherScene;
+    otherScene.sceneToTheNorth = this;
   };
 
   /*
@@ -78,19 +74,19 @@ public abstract class Scene {
     this.description = description;
   }
 
-  public void setSceneToTheNorth(String sceneToTheNorth) {
+  public void setSceneToTheNorth(Scene sceneToTheNorth) {
     this.sceneToTheNorth = sceneToTheNorth;
   }
 
-  public void setSceneToTheSouth(String sceneToTheSouth) {
+  public void setSceneToTheSouth(Scene sceneToTheSouth) {
     this.sceneToTheSouth = sceneToTheSouth;
   }
 
-  public void setSceneToTheEast(String sceneToTheEast) {
+  public void setSceneToTheEast(Scene sceneToTheEast) {
     this.sceneToTheEast = sceneToTheEast;
   }
 
-  public void setSceneToTheWest(String sceneToTheWest) {
+  public void setSceneToTheWest(Scene sceneToTheWest) {
     this.sceneToTheWest = sceneToTheWest;
   }
 
@@ -105,30 +101,33 @@ public abstract class Scene {
     return description;
   }
 
-  public String getSceneToTheNorth() {
+  public Scene getSceneToTheNorth() {
     return sceneToTheNorth;
   }
 
-  public String getSceneToTheWest() {
+  public Scene getSceneToTheWest() {
     return sceneToTheWest;
   }
 
-  public String getSceneToTheEast() {
+  public Scene getSceneToTheEast() {
     return sceneToTheEast;
   }
 
-  public String getSceneToTheSouth() {
+  public Scene getSceneToTheSouth() {
     return sceneToTheSouth;
   }
 
 
-  @Override public String toString() {
-    return "Scene{" +
-           "sceneToTheNorth='" + sceneToTheNorth + '\'' +
-           ", sceneToTheSouth='" + sceneToTheSouth + '\'' +
-           ", sceneToTheEast='" + sceneToTheEast + '\'' +
-           ", sceneToTheWest='" + sceneToTheWest + '\'' +
-           '}';
+  @Override
+  public String toString() {
+    return "Scene{" + "ANSI_BLUE='" + ANSI_BLUE + '\'' + ", ANSI_WHITE='" +
+           ANSI_WHITE + '\'' + ", ANSI_RED='" + ANSI_RED + '\'' +
+           ", ANSI_BLACK='" + ANSI_BLACK + '\'' + ", ANSI_GREEN='" +
+           ANSI_GREEN + '\'' + ", sceneToTheNorth=" + sceneToTheNorth +
+           ", sceneToTheSouth=" + sceneToTheSouth + ", sceneToTheEast=" +
+           sceneToTheEast + ", sceneToTheWest=" + sceneToTheWest +
+           ", description='" + description + '\'' + ", itemsInScene=" +
+           itemsInScene + '}';
   }
 }
 
