@@ -12,6 +12,7 @@ import java.util.ArrayList;
  *  class that implements Scene.
  */
 public abstract class Scene {
+
   public static final String ANSI_BLUE = "\u001B[34m";
   public static final String ANSI_WHITE = "\u001B[37m";
   public static final String ANSI_RED = "\u001B[31m";
@@ -40,6 +41,8 @@ public abstract class Scene {
     this.sceneToTheEast = sceneToTheEast;
     this.sceneToTheWest = sceneToTheWest;
   }
+
+  public Scene(){};
 
   /*
    * =============================================
@@ -88,6 +91,14 @@ public abstract class Scene {
    */
 
   // SET METHODS
+
+  /**
+   * method enter that is used in every class and overwritten
+   */
+  public void enter(){
+
+  }
+
   public void setItemsInScene(ArrayList<String> itemsInScene) {
     this.itemsInScene = itemsInScene;
   }
@@ -128,6 +139,7 @@ public abstract class Scene {
   }
 
   public Scene getSceneToTheWest() {
+
     return sceneToTheWest;
   }
 

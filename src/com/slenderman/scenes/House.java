@@ -29,15 +29,17 @@ public class House extends Scene {
    * ============= Constructors ==================
    * =============================================
    */
+
   public House(Scene sceneToTheNorth, Scene sceneToTheSouth,
                Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
+
   }
 
   public House(Scene sceneToTheNorth, Scene sceneToTheSouth,
                Scene sceneToTheEast, Scene sceneToTheWest,
                boolean useDefaultItems) {
-    super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
+    //super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
     if (useDefaultItems) {
       setItemsInScene(defaultItems);

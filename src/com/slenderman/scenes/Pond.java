@@ -2,6 +2,7 @@ package com.slenderman.scenes;
 
 import java.util.*;
 
+
 public class Pond {
 
     private int countCheckBackPack = 0;
@@ -11,8 +12,10 @@ public class Pond {
     private boolean islandTreeLookDown = false;
     private boolean isFogClear = false;
 
+
     private Map<String, String> scenesAround = new HashMap<>();
     private List<String> localItems = new ArrayList<>();
+
 
     public Pond(Map<String, String> ScenesAround){
         this.scenesAround = ScenesAround;
@@ -273,10 +276,12 @@ public class Pond {
                 inFrontOfPondChoice();
             }
         }
+
     }
 
     /************** Island **************/
     private void inFontOfIsland() {
+
         System.out.println("\nYou rowed the boat for a while. Thanks to the special glasses, " +
                 "you know the direction and the distance to the island. The fog is so thick that without the glasses, " +
                 "you cannot even see your feet");
@@ -354,9 +359,11 @@ public class Pond {
                 onIsland_lookUpDown();
             }
         }
+
     }
 
     private String goToDifferentScene(){
+
 
         boolean askAgain = true;
         String result = null;
@@ -390,5 +397,6 @@ public class Pond {
 
         return result;
     }
+
 
 }
