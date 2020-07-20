@@ -1,6 +1,10 @@
 package com.slenderman.scenes;
 
+import com.slenderman.actors.Item;
+import com.slenderman.actors.Player;
+
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *  The Scene Interface is used to ensure classes such as Hut and
@@ -83,6 +87,19 @@ public abstract class Scene {
     sceneToTheSouth = otherScene;
     otherScene.sceneToTheNorth = this;
   };
+
+  /**
+   *  Searches Player's inventory for an Item based on the Item's name
+   * @param player -> Player object
+   * @param itemName -> string representation of the Item's name
+   * @return boolean
+   */
+  public Boolean playerHasItem(Player player, String itemName) {
+    Collection<Item> playerInventory = player.getInventory();
+
+    return playerInventory.stream()
+             .anyMatch(item -> item.getItemName().equals(itemName));
+  }
 
   /*
    * =============================================
