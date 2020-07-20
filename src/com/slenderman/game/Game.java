@@ -20,9 +20,12 @@ public class Game {
   private Scene AbandonedCar;
   private Scene House;
   private Scene OutHouse;
-  private Forest Forest;
+  private Scene Forest;
+  private Shed Shed;
+  private Scene Tree;
 
   private Player Player;
+
 
   public Game() {
     Player = new Player();
@@ -31,22 +34,39 @@ public class Game {
 
   public void start(Scanner in) throws InterruptedException {
     Introduction.playIntro();
+    currentScene = Forest;
+    Forest.setSceneToTheEast(House);
+    currentScene.getDescription();
+
 
     String userText = "go";
 
     while (!userText.equals("quit")) {
-    // while (Player.state.equals("alive")) {
+      // while (Player.state.equals("alive")) {
       System.out.println("Give me something good:");
       userText = in.nextLine().toLowerCase().trim();
-
       if (userText.equals("quit")) {
         System.out.println("Goodbye!");
+        break;
+      } else if (userText.startsWith("go ")) {
+        currentScene = currentScene.changeScene(userText.substring(3));
+        currentScene.getDescription();
+      } else {
+        System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
       }
 
       System.out.printf("Hey you pressed on some keys!\n%s\n", userText);
     }
+    if (currentScene == Tree) {
+      Thread.sleep(2000);
+      System.out.println("You have killed SlenderMan\n");
+      Thread.sleep(5000);
+      System.out.println("You Win!");
+      System.out.println("Thanks for playing!");
+      Thread.sleep(5000);
+      System.exit(0);
 
+    }
   }
-
 
 }

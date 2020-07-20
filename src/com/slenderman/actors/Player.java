@@ -1,5 +1,7 @@
 package com.slenderman.actors;
 
+import com.slenderman.scenes.Scene;
+
 import java.util.*;
 
 public class Player {
@@ -70,6 +72,8 @@ public class Player {
   public void changeInvItemsLocation(String sceneName) {
     inventory.forEach(item -> item.setCurrentScene(sceneName));
   }
+
+
 
   /*
    * =============================================

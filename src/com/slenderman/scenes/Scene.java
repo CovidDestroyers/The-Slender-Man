@@ -49,6 +49,28 @@ public abstract class Scene {
 
   // TODO: write a method that adds only 1 item to itemsInScene
 
+  public Scene changeScene(String direction) {
+    Scene nextScene = null;
+    if(direction.equals("north")) {
+      nextScene = sceneToTheNorth;
+    } else if (direction.equals("east")) {
+      nextScene = sceneToTheEast;
+    } else if (direction.equals("south")) {
+      nextScene = sceneToTheSouth;
+    } else if (direction.equals("west")) {
+      nextScene = sceneToTheWest;
+    } else {
+      System.out.println("Error: unknown direction " + direction);
+    }
+    if (nextScene == null) {
+      System.out.println("You cannot go " + direction + " from here.");
+      nextScene = this;
+    } else {
+
+    }
+    return nextScene;
+  }
+
   protected void connectEast(Scene otherScene){
     sceneToTheEast = otherScene;
     otherScene.sceneToTheWest = this;
