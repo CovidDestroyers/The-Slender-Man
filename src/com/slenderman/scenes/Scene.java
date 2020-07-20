@@ -12,20 +12,27 @@ import java.util.ArrayList;
  *  class that implements Scene.
  */
 public abstract class Scene {
-  protected Scene sceneToTheNorth;
-  protected Scene sceneToTheSouth;
-  protected Scene sceneToTheEast;
-  protected Scene sceneToTheWest;
-  protected String description;
+
   public static final String ANSI_BLUE = "\u001B[34m";
   public static final String ANSI_WHITE = "\u001B[37m";
   public static final String ANSI_RED = "\u001B[31m";
   public static final String ANSI_BLACK = "\u001B[30m";
   public static final String ANSI_GREEN = "\u001B[32m";
 
+  protected Scene sceneToTheNorth;
+  protected Scene sceneToTheSouth;
+  protected Scene sceneToTheEast;
+  protected Scene sceneToTheWest;
+
+  protected String description;
 
   protected ArrayList<String> itemsInScene;
 
+  /*
+   * =============================================
+   * ============= Constructors ==================
+   * =============================================
+   */
   public Scene(
     Scene sceneToTheNorth, Scene sceneToTheSouth,
     Scene sceneToTheEast, Scene sceneToTheWest) {
@@ -43,7 +50,39 @@ public abstract class Scene {
    * =============================================
    */
 
-  //TODO: write a method that adds only 1 item to itemsInScene
+  // TODO: write a method that adds only 1 item to itemsInScene
+
+  public Scene changeScene(String direction) {
+    Scene nextScene = null;
+    if(direction.equals("north")) {
+      nextScene = sceneToTheNorth;
+    } else if (direction.equals("east")) {
+      nextScene = sceneToTheEast;
+    } else if (direction.equals("south")) {
+      nextScene = sceneToTheSouth;
+    } else if (direction.equals("west")) {
+      nextScene = sceneToTheWest;
+    } else {
+      System.out.println("Error: unknown direction " + direction);
+    }
+    if (nextScene == null) {
+      System.out.println("You cannot go " + direction + " from here.");
+      nextScene = this;
+    } else {
+
+    }
+    return nextScene;
+  }
+
+  protected void connectEast(Scene otherScene){
+    sceneToTheEast = otherScene;
+    otherScene.sceneToTheWest = this;
+  };
+
+  protected void connectSouth(Scene otherScene){
+    sceneToTheSouth = otherScene;
+    otherScene.sceneToTheNorth = this;
+  };
 
   /*
    * =============================================
@@ -101,7 +140,6 @@ public abstract class Scene {
 
   public Scene getSceneToTheWest() {
 
-    System.out.println("returning west");
     return sceneToTheWest;
   }
 
@@ -114,13 +152,16 @@ public abstract class Scene {
   }
 
 
-  @Override public String toString() {
-    return "Scene{" +
-           "sceneToTheNorth='" + sceneToTheNorth + '\'' +
-           ", sceneToTheSouth='" + sceneToTheSouth + '\'' +
-           ", sceneToTheEast='" + sceneToTheEast + '\'' +
-           ", sceneToTheWest='" + sceneToTheWest + '\'' +
-           '}';
+  @Override
+  public String toString() {
+    return "Scene{" + "ANSI_BLUE='" + ANSI_BLUE + '\'' + ", ANSI_WHITE='" +
+           ANSI_WHITE + '\'' + ", ANSI_RED='" + ANSI_RED + '\'' +
+           ", ANSI_BLACK='" + ANSI_BLACK + '\'' + ", ANSI_GREEN='" +
+           ANSI_GREEN + '\'' + ", sceneToTheNorth=" + sceneToTheNorth +
+           ", sceneToTheSouth=" + sceneToTheSouth + ", sceneToTheEast=" +
+           sceneToTheEast + ", sceneToTheWest=" + sceneToTheWest +
+           ", description='" + description + '\'' + ", itemsInScene=" +
+           itemsInScene + '}';
   }
 }
 

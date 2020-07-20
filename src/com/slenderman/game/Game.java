@@ -22,65 +22,16 @@ public class Game {
   private Scene AbandonedCar;
   private Scene House;
   private Scene OutHouse;
-  private Forest Forest;
+  private Scene Forest;
+  private Shed Shed;
+  private Scene Tree;
 
   private Player Player;
+
 
   public Game() {
     Player = new Player();
 
-    Forest = new Forest();
-
-    AbandonedCar = new AbandonedCar("none", "none", "outhouse", "house");
-
-    House = new House("none", "cave", "outhouse", "forest", true);
-
-    OutHouse = new OutHouse("none", "pond", "none", "abandoned car");
-
-    /**
-    * Navigation from Field
-
-    Map<String, String> scenesAroundField = new HashMap<>();
-    scenesAroundField.put("WEST", "Pond");
-    scenesAroundField.put("EAST", "Tree");
-    scenesAroundField.put("NORTH", null);
-    scenesAroundField.put("SOUTH", null);
-     */
-    //Field aField = new Field(scenesAroundField);
-
-
-    //using default constructor to set directions of tree to (null, null, null, null)
-    Tree aTree = new Tree();
-    Pond aPond = new Pond();
-    Cave aCave = new Cave();
-    OutHouse aOutHouse = new OutHouse();
-
-
-    Field aField = new Field(null, null,
-      aTree, aPond);
-
-    //after Field has used a direction-empty Tree, actually telling tree what is in the west of tree
-    aTree.setSceneToTheWest(aField);
-    aPond.setSceneToTheEast(aField);
-    aPond.setSceneToTheWest(aCave);
-    aPond.setSceneToTheNorth(aOutHouse);
-
-    aField.enter();
-
-
-
-    /**
-     * Navigation from Field
-
-    Map<String, String> scenesAroundTree = new HashMap<>();
-    scenesAroundTree.put("WEST", "Field");
-    scenesAroundTree.put("EAST", "null");
-    scenesAroundTree.put("NORTH", null);
-    scenesAroundTree.put("SOUTH", null);
-    */
-
-    // TODO: Change to Forest
-    currentScene = House;
 
   }
 
@@ -88,22 +39,39 @@ public class Game {
 
   public void start(Scanner in) throws InterruptedException {
     Introduction.playIntro();
+    currentScene = Forest;
+    Forest.setSceneToTheEast(House);
+    currentScene.getDescription();
+
 
     String userText = "go";
 
     while (!userText.equals("quit")) {
-    // while (Player.state.equals("alive")) {
+      // while (Player.state.equals("alive")) {
       System.out.println("Give me something good:");
       userText = in.nextLine().toLowerCase().trim();
-
       if (userText.equals("quit")) {
         System.out.println("Goodbye!");
+        break;
+      } else if (userText.startsWith("go ")) {
+        currentScene = currentScene.changeScene(userText.substring(3));
+        currentScene.getDescription();
+      } else {
+        System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
       }
 
       System.out.printf("Hey you pressed on some keys!\n%s\n", userText);
     }
+    if (currentScene == Tree) {
+      Thread.sleep(2000);
+      System.out.println("You have killed SlenderMan\n");
+      Thread.sleep(5000);
+      System.out.println("You Win!");
+      System.out.println("Thanks for playing!");
+      Thread.sleep(5000);
+      System.exit(0);
 
+    }
   }
-
 
 }

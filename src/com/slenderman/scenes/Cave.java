@@ -60,22 +60,19 @@ public class Cave extends Scene{
     }
 
     private void walkAroundInFrontOfCave(){
-      System.out.println("\nYou are walking in front of the cave");
-      System.out.println("You heard noises from the bushes");
-      System.out.println("- Type \"0\" : \"investigate\""
-        +"\n- Type \"1\" : \"go back to the front of the cave\""
-        +"\n- Type \"2\" : \"go to a different scene\"");
-      String choice = playerChoice();
-      if (choice.equals("0")){
-        investigateTheBushes();
-      }
-      else if(choice.equals("1")){
-        inFrontOfCave();
-      }
-      else if(choice.equals("2")){
-        if (goToDifferentScene().equals(scenesAround.get("EAST"))){
-          System.out.println("You cannot go");
-          walkAroundInFrontOfCave();
+
+        System.out.println("\nYou are walking in front of the cave");
+        System.out.println("You heard noises from the bushes");
+        System.out.println("- Type \"0\" : \"investigate\""
+                +"\n- Type \"1\" : \"go back to the front of the cave\""
+                +"\n- Type \"2\" : \"go to a different scene\"");
+        String choice = playerChoice();
+        if (choice.equals("0")){
+            investigateTheBushes();
+        }
+        else if(choice.equals("1")){
+            inFrontOfCave();
+
         }
         else{
           // To go to different scenes
@@ -89,24 +86,27 @@ public class Cave extends Scene{
       }
     }
     private void investigateTheBushes(){
-      if (localItems.contains("NOTEBOOK")){
-        System.out.println("You did not find anything in the bushes");
-      }
-      else {
-        System.out.println("\nYou found a notebook. It must belong to somebody who was exploring this area.");
-        System.out.println("When you are flipping though the notebook, you caught something about the cave");
-        System.out.println("\n\"Cave.... you must have \"a lighter\" and \"a torch\".");
-        System.out.println("\nOk... a lighter and a torch.");
-        System.out.println("You are not sure why you need \"a lighter\" and \"a torch\".");
-        System.out.println("\nWould you like to keep this notebook?");
-        System.out.println("- Type \"Y\" : \"Yes\"");
-        System.out.println("- Type \"N\" : \"No\"");
-        String choice = playerChoice();
-        if (choice.equalsIgnoreCase("y")) {
-          System.out.println("Now, you got a notebook");
-          localItems.add("NOTEBOOK");
-        } else {
-          System.out.println("You put it back where you found it");
+
+        if (localItems.contains("NOTEBOOK")){
+            System.out.println("You did not find anything in the bushes");
+        }
+        else {
+            System.out.println("\nYou found a notebook. It must belong to somebody who was exploring this area.");
+            System.out.println("When you are flipping though the notebook, you caught something about the cave");
+            System.out.println("\n\"Cave.... you must have \"a lighter\" and \"a torch\".");
+            System.out.println("\nOk... a lighter and a torch.");
+            System.out.println("You are not sure why you need \"a lighter\" and \"a torch\".");
+            System.out.println("\nWould you like to keep this notebook?");
+            System.out.println("- Type \"Y\" : \"Yes\"");
+            System.out.println("- Type \"N\" : \"No\"");
+            String choice = playerChoice();
+            if (choice.equalsIgnoreCase("y")) {
+                System.out.println("Now, you got a notebook");
+                localItems.add("NOTEBOOK");
+            } else {
+                System.out.println("You put it back where you found it");
+            }
+
         }
       }
       System.out.println("\nYou are going back to the front of the cave");
@@ -114,12 +114,14 @@ public class Cave extends Scene{
     }
 
     private void exploreCave() {
-      System.out.println("You have the torch in one hand and the lighter in the other.");
-      System.out.println("Surprisingly, bats did not come and attack this time.");
-      System.out.println("You caught the smell of something burning.");
-      System.out.println("You found the leftover of bonfire. You suspect that somebody was here not too long ago.");
-      System.out.println("\nYou are looking around the cave.");
-      exploreCaveChoice();
+
+        System.out.println("You have the torch in one hand and the lighter in the other.");
+        System.out.println("Surprisingly, bats did not come and attack this time.");
+        System.out.println("You caught the smell of something burning.");
+        System.out.println("You found the leftover of bonfire. You suspect that somebody was here not too long ago.");
+        System.out.println("\nYou are looking around the cave.");
+        exploreCaveChoice();
+
     }
     private void exploreCaveChoice(){
       System.out.println("- Type \"R\": to look right");
@@ -137,58 +139,61 @@ public class Cave extends Scene{
       }
     }
     private void exploreCave_LookLeft(){
-      System.out.println("When you look up, you see water dripping down from the ceiling");
-      System.out.println("The ceiling is so high that you cannot see the ceiling itself");
-      System.out.println("When you look down, you notice there is a puddle");
-      System.out.println("It looks like it is connected to the outside of the cave");
-      System.out.println("//////// TEMPORARY ////////");
-      // Check if the player has a boat, if he has, following option will be shown
-      System.out.println("Would you like to explore the POND connected to this puddle");
-      System.out.println("- Type \"Y\" : \"Yes\"");
-      System.out.println("- Type \"N\" : \"No\"");
-      String choice = playerChoice().toUpperCase();
-      if (choice.equals("Y")){
-        //System.out.println("You take a boat out and explore the POND");
-        //DONE change to scene POND
-        getSceneToTheEast().enter();
-      }
-      else{
-        exploreCaveChoice();
-      }
+
+        System.out.println("When you look up, you see water dripping down from the ceiling");
+        System.out.println("The ceiling is so high that you cannot see the ceiling itself");
+        System.out.println("When you look down, you notice there is a puddle");
+        System.out.println("It looks like it is connected to the outside of the cave");
+        System.out.println("//////// TEMPORARY ////////");
+        // Check if the player has a boat, if he has, following option will be shown
+        System.out.println("Would you like to explore the POND connected to this puddle");
+        System.out.println("- Type \"Y\" : \"Yes\"");
+        System.out.println("- Type \"N\" : \"No\"");
+        String choice = playerChoice().toUpperCase();
+        if (choice.equals("Y")){
+            //System.out.println("You take a boat out and explore the POND");
+            //TODO change to scene POND
+        }
+        else{
+            exploreCaveChoice();
+        }
+
     }
 
     private void exploreCave_LookRight(){
 
       //TODO code needs to be added here
 
-      // Story below is when the player do not have combination or boat -> only executed one time
-      System.out.println("You see the colony of bats.");
-      System.out.println("They are unbelievably quiet and they do not move at all as if they were stones.");
-      System.out.println("You noticed something. Even though the cave is so big, thousands of bats are hanging at one particular place.");
-      System.out.println("You feel suspicious.");
-      System.out.println("Would you like to investigate?");
-      System.out.println("- Type \"Y\": \"Yes\"");
-      System.out.println("- Type \"N\": \"No\"");
-      String choice = playerChoice().toUpperCase();
-      if (choice.equals("Y")){
-        exploreCave_UnlockCode();
-      }
-      else{
-        exploreCaveChoice();
-      }
+
+        // Story below is when the player do not have combination or boat -> only executed one time
+        System.out.println("You see the colony of bats.");
+        System.out.println("They are unbelievably quiet and they do not move at all as if they were stones.");
+        System.out.println("You noticed something. Even though the cave is so big, thousands of bats are hanging at one particular place.");
+        System.out.println("You feel suspicious.");
+        System.out.println("Would you like to investigate?");
+        System.out.println("- Type \"Y\": \"Yes\"");
+        System.out.println("- Type \"N\": \"No\"");
+        String choice = playerChoice().toUpperCase();
+        if (choice.equals("Y")){
+            exploreCave_UnlockCode();
+        }
+        else{
+            exploreCaveChoice();
+        }
     }
     private void exploreCave_UnlockCode(){
-      System.out.println("\nWhen you approached the colony of bats, the bats flew away with high-pitch screams you had never heard before.");
-      System.out.println("You were so scared that you closed your eyes.");
-      System.out.println("When you opened your eyes, the bats were gone, but the screams were lingering in your ears.");
-      System.out.println("You see a small door on the wall of the cave where bats were");
-      System.out.println("You tried to open the door, but there is a lock. You need to know the combination.");
-      if (localItems.contains("NOTEBOOK")){
-        System.out.println("\nYou opened the notebook you found outside the cave.");
-        System.out.println("When you were flipping the pages, you remembered you saw some combinations of numbers");
-        exploreCave_UnlockCodeByBook();
-      }
-      exploreCave_TryCombination();
+        System.out.println("\nWhen you approached the colony of bats, the bats flew away with high-pitch screams you had never heard before.");
+        System.out.println("You were so scared that you closed your eyes.");
+        System.out.println("When you opened your eyes, the bats were gone, but the screams were lingering in your ears.");
+        System.out.println("You see a small door on the wall of the cave where bats were");
+        System.out.println("You tried to open the door, but there is a lock. You need to know the combination.");
+        if (localItems.contains("NOTEBOOK")){
+            System.out.println("\nYou opened the notebook you found outside the cave.");
+            System.out.println("When you were flipping the pages, you remembered you saw some combinations of numbers");
+            exploreCave_UnlockCodeByBook();
+        }
+        exploreCave_TryCombination();
+
     }
 
     private void exploreCave_TryCombination(){
@@ -206,16 +211,25 @@ public class Cave extends Scene{
           exploreCave_TryCombination();
         }
         else{
-          System.out.println("Would you like to go back to the entrance of the cave and look for a clue?");
-          System.out.println("- Type \"Y\": \"Yes\"");
-          System.out.println("- Type \"N\": \"No\"");
-          String choice = playerChoice().toUpperCase();
-          if (choice.equals("Y")){
-            inFrontOfCave();
-          }
-          else{
-            exploreCave_TryCombination();
-          }
+
+            System.out.println("\nThe combination you entered was incorrect. The lock was not unlocked.");
+            if (localItems.contains("NOTEBOOK")) {
+                exploreCave_UnlockCodeByBook();
+                exploreCave_TryCombination();
+            }
+            else{
+                System.out.println("Would you like to go back to the entrance of the cave and look for a clue?");
+                System.out.println("- Type \"Y\": \"Yes\"");
+                System.out.println("- Type \"N\": \"No\"");
+                String choice = playerChoice().toUpperCase();
+                if (choice.equals("Y")){
+                    inFrontOfCave();
+                }
+                else{
+                    exploreCave_TryCombination();
+                }
+            }
+
         }
       }
     }
@@ -233,18 +247,20 @@ public class Cave extends Scene{
       }
     }
     private void exploreCave_UnlockCodeByBookFlip(){
-      System.out.println("\nWhich page would you like to open\n");
-      System.out.println("- Type \"12\": \"Page 12\"");
-      System.out.println("- Type \"23\": \"Page 23\"");
-      System.out.println("- Type \"35\": \"Page 35\"");
-      String pageChoice = playerChoice();
-      switch (pageChoice){
-        case "12": System.out.println("You found a code \"143\""); break;
-        case "23": System.out.println("You found a code \"354\""); break;
-        case "35": System.out.println("You found a code \"624\""); break;
-        default:
-          System.out.println("The page you typed does not have a combination");
-      }
+
+        System.out.println("\nWhich page would you like to open\n");
+        System.out.println("- Type \"12\": \"Page 12\"");
+        System.out.println("- Type \"23\": \"Page 23\"");
+        System.out.println("- Type \"35\": \"Page 35\"");
+        String pageChoice = playerChoice();
+        switch (pageChoice){
+            case "12": System.out.println("You found a code \"143\""); break;
+            case "23": System.out.println("You found a code \"354\""); break;
+            case "35": System.out.println("You found a code \"624\""); break;
+            default:
+                System.out.println("The page you typed does not have a combination");
+        }
+
     }
 
     private void exploreCave_TryCombination_Successful(){
@@ -308,5 +324,6 @@ public class Cave extends Scene{
     public Map<String, String> getScenesAround() {
       return scenesAround;
     }
+
 
 }
