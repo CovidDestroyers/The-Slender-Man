@@ -29,6 +29,13 @@ public class Item {
     setPurpose(purpose);
   }
 
+  public Item(String itemName, String homeScene, String purpose, String currentScene) {
+    setItemName(itemName);
+    setHomeScene(homeScene);
+    setPurpose(purpose);
+    setCurrentScene(currentScene);
+  }
+
   public Item(String itemName, String homeScene, String purpose,
     Boolean otherItemNeeded, String otherItem, String whatDoesOtherItemDo,
     String itemRevealed) {

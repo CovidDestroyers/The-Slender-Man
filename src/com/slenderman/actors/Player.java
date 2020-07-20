@@ -7,6 +7,7 @@ public class Player {
   private String currentSceneName = "forest";
 
   private List<Item> inventory = new ArrayList<>();
+  private Item Watch = new Item("watch", "forest", "timer");
 
 
   /*
@@ -15,6 +16,7 @@ public class Player {
    * =============================================
    */
   public Player() {
+    addItemToInventory(Watch);
   }
 
   /*
@@ -23,13 +25,13 @@ public class Player {
    * =============================================
    */
 
+  // TODO: this needs to be tested
   public void addItemToInventory(Item... items) {
     inventory.addAll(Arrays.asList(items));
     for (Item item : items) {
       item.setCurrentScene(this.currentSceneName);
-      inventory.add(item);
 
-      System.out.printf("What a prize! You have added %s to your inventory.\n",
+      System.out.printf("What a prize! You have added a %s to your inventory.\n",
         item.getItemName());
     }
   }
@@ -44,7 +46,8 @@ public class Player {
 
       inventory.remove(indexOfItem);
 
-      System.out.printf("You dropped %s from your inventory.\n", returnableItem.getItemName());
+      System.out.printf("You dropped a %s from your inventory.\n",
+        returnableItem.getItemName());
     } else {
       System.out.println("It doesn't look like you have that item in your " +
                          "inventory.\n");

@@ -33,6 +33,8 @@ public class Game {
 
     House = new House("none", "cave", "outhouse", "forest", true);
 
+    ((com.slenderman.scenes.House) House).playerHasKey(Player);
+
     OutHouse = new OutHouse("none", "pond", "none", "abandoned car");
 
     // TODO: Change to Forest
