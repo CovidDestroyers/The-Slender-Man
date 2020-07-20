@@ -46,8 +46,10 @@ public class Forest extends Scene{
     return result;
   }
 
+  @Override
+  public void enter() {
 
-
+  }
 
 
 }

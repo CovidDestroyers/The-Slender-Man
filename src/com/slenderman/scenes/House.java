@@ -9,18 +9,16 @@ import java.util.Collection;
 import java.util.List;
 
 public class House extends Scene {
-  // String sceneToTheNorth = "none";
-  // String sceneToTheSouth = "cave";
-  // String sceneToTheEast = "outhouse";
-  // String sceneToTheWest = "forest";
+  private String introduction;
 
-  public String introduction;
+  private Item Lockbox = new Item("lockbox", "house", "hold lighter", "house"
+    , true, "key", "unlocks lockbox", "lighter");
 
-  private ArrayList<String> defaultItems = new ArrayList<>(Arrays.asList(
-    "lockbox", "lighter"));
+  private Item Lighter = new Item("lighter", "house", "light torch", "house",
+    true, "lockbox", "holds lighter", "none");
 
-  // TODO: instantiate the lighter and lockbox here
-  private Item lighter;
+  private ArrayList<Item> defaultItems = new ArrayList<>(Arrays.asList(
+    Lockbox, Lighter));
 
 
 
@@ -39,10 +37,10 @@ public class House extends Scene {
   public House(Scene sceneToTheNorth, Scene sceneToTheSouth,
                Scene sceneToTheEast, Scene sceneToTheWest,
                boolean useDefaultItems) {
-    //super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
+    this(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
     if (useDefaultItems) {
-      setItemsInScene(defaultItems);
+      setDefaultItems(defaultItems);
     }
   }
 
@@ -81,27 +79,54 @@ public class House extends Scene {
    * =============================================
    */
 
+  // SET METHODS
+
+  public String getIntroduction() {
+    return introduction;
+  }
+
+  public void setIntroduction(String introduction) {
+    this.introduction = introduction;
+  }
+
+  public Item getLockbox() {
+    return Lockbox;
+  }
+
+  public void setLockbox(Item lockbox) {
+    Lockbox = lockbox;
+  }
+
+  public Item getLighter() {
+    return Lighter;
+  }
+
+  public void setLighter(Item lighter) {
+    Lighter = lighter;
+  }
+
+  public ArrayList<Item> getDefaultItems() {
+    return defaultItems;
+  }
+
+  public void setDefaultItems(ArrayList<Item> defaultItems) {
+    this.defaultItems = defaultItems;
+  }
+
   /**
    * Overloaded method from the abstract base class Scene
    *
    */
+  @Override
+  public void enter() {
+
+  }
 
 
   @Override
   public String toString() {
-    return "House{" + "ANSI_BLUE='" + ANSI_BLUE + '\'' + ", ANSI_WHITE='" +
-           ANSI_WHITE + '\'' + ", ANSI_RED='" + ANSI_RED + '\'' +
-           ", ANSI_BLACK='" + ANSI_BLACK + '\'' + ", ANSI_GREEN='" +
-           ANSI_GREEN + '\'' + ", sceneToTheNorth=" + sceneToTheNorth +
-           ", sceneToTheSouth=" + sceneToTheSouth + ", sceneToTheEast=" +
-           sceneToTheEast + ", sceneToTheWest=" + sceneToTheWest +
-           ", description='" + description + '\'' + ", itemsInScene=" +
-           itemsInScene + ", introduction='" + introduction + '\'' +
-           ", defaultItems=" + defaultItems + ", lighter=" + lighter +
-           ", itemsInScene=" + getItemsInScene() + ", description='" +
-           getDescription() + '\'' + ", sceneToTheNorth=" +
-           getSceneToTheNorth() + ", sceneToTheWest=" + getSceneToTheWest() +
-           ", sceneToTheEast=" + getSceneToTheEast() + ", sceneToTheSouth=" +
-           getSceneToTheSouth() + '}';
+    return "House{" + "introduction='" + introduction + '\'' +
+           ", defaultItems=" + defaultItems + ", Lockbox=" + Lockbox +
+           ", Lighter=" + Lighter + "} " + super.toString();
   }
 }

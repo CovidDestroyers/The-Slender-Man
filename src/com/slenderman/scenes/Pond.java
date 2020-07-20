@@ -32,6 +32,7 @@ public class Pond extends Scene{
       this.scenesAround.put("NORTH", "OUT_HOUSE");
     }
 
+    @Override
     public void enter(){
       //System.out.println("Pond is working");
       inFrontOfPond();

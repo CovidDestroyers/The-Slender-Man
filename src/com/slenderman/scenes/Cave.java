@@ -26,6 +26,7 @@ public class Cave extends Scene {
       this.scenesAround.put("NORTH", "HUT_CAR");
     }
 
+    @Override
     public void enter(){
       inFrontOfCave();
     }

@@ -26,6 +26,7 @@ public class Field extends Scene {
 //    List<String> grabbedItems
 //  };
 
+  @Override
   public void enter() {
     String choice;
     System.out.println("\nThere is a field in front of you. You see a flower.");

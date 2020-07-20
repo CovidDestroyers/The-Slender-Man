@@ -32,6 +32,7 @@ public abstract class Scene {
 
   protected ArrayList<String> itemsInScene;
 
+
   /*
    * =============================================
    * ============= Constructors ==================
@@ -94,6 +95,7 @@ public abstract class Scene {
    * @param itemName -> string representation of the Item's name
    * @return boolean
    */
+  // TODO: Needs to be tested
   public Boolean playerHasItem(Player player, String itemName) {
     Collection<Item> playerInventory = player.getInventory();
 
@@ -112,9 +114,7 @@ public abstract class Scene {
   /**
    * method enter that is used in every class and overwritten
    */
-  public void enter(){
-
-  }
+  public abstract void enter();
 
   public void setItemsInScene(ArrayList<String> itemsInScene) {
     this.itemsInScene = itemsInScene;

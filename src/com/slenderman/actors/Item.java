@@ -23,6 +23,15 @@ public class Item {
 
   }
 
+  public Item(String itemName) {
+    setItemName(itemName);
+  }
+
+  public Item(String itemName, String homeScene) {
+    this(itemName);
+    setHomeScene(homeScene);
+  }
+
   public Item(String itemName, String homeScene, String purpose) {
     setItemName(itemName);
     setHomeScene(homeScene);
@@ -30,21 +39,27 @@ public class Item {
   }
 
   public Item(String itemName, String homeScene, String purpose, String currentScene) {
-    setItemName(itemName);
-    setHomeScene(homeScene);
-    setPurpose(purpose);
+    this(itemName, homeScene, purpose);
     setCurrentScene(currentScene);
   }
 
   public Item(String itemName, String homeScene, String purpose,
-    Boolean otherItemNeeded, String otherItem, String whatDoesOtherItemDo,
-    String itemRevealed) {
-    this(itemName, homeScene, purpose);
+    String currentScene, Boolean otherItemNeeded, String otherItem,
+    String whatDoesOtherItemDo) {
+
+    this(itemName, homeScene, purpose, currentScene);
     setOtherItemNeeded(otherItemNeeded);
     setOtherItem(otherItem);
     setWhatDoesOtherItemDo(whatDoesOtherItemDo);
-    setItemRevealed(itemRevealed);
+  }
 
+  public Item(String itemName, String homeScene, String purpose,
+    String currentScene, Boolean otherItemNeeded, String otherItem,
+    String whatDoesOtherItemDo, String itemRevealed) {
+
+    this(itemName, homeScene, purpose, currentScene, otherItemNeeded,
+      otherItem, whatDoesOtherItemDo);
+    setItemRevealed(itemRevealed);
   }
 
   /*

@@ -10,4 +10,9 @@ public class OutHouse extends Scene {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
   }
 
+  @Override
+  public void enter() {
+
+  }
+
 }
