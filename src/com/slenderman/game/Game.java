@@ -26,20 +26,6 @@ public class Game {
 
   public Game() {
     Player = new Player();
-
-    Forest = new Forest();
-
-    AbandonedCar = new AbandonedCar("none", "none", "outhouse", "house");
-
-    House = new House("none", "cave", "outhouse", "forest", true);
-
-    ((com.slenderman.scenes.House) House).playerHasKey(Player);
-
-    OutHouse = new OutHouse("none", "pond", "none", "abandoned car");
-
-    // TODO: Change to Forest
-    currentScene = House;
-
   }
 
 
