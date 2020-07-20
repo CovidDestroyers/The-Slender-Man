@@ -18,7 +18,7 @@ public class Pond extends Scene{
     private boolean wearingFogGlasses = false; // If the player is wearing wog glasses
     private boolean crossVisited = false; // On island, if the player visited the cross
     private boolean islandTreeLookDown = false; // On island, if the player looked down the tree
-    private boolean isFogClear = true; // On island, if the fog is cleared
+    private boolean isFogClear = false; // On island, if the fog is cleared
 
     private Map<String, String> scenesAround = new HashMap<>();
     private List<String> localItems = new ArrayList<>();
@@ -37,14 +37,14 @@ public class Pond extends Scene{
       inFrontOfPond();
     }
 
-    public void inFrontOfPond() {
+    private void inFrontOfPond() {
       System.out.println("\nYou are standing in front of the pond.");
       System.out.println("It is so foggy that you can barely see what's on the other side of the pond");
       System.out.println("You see a cave in the west side and an outhouse in the north direction");
       inFrontOfPondChoice();
     }
 
-    public void inFrontOfPondChoice(){
+    private void inFrontOfPondChoice(){
 
       System.out.println("\nWhat would you like to do?");
 
@@ -433,4 +433,14 @@ public class Pond extends Scene{
       return result;
     }
 
+    
+    /*** Testing purpose ***/
+    // Controlling "isFogClear"
+    public void setIsFogClear(boolean isFogClear){
+      this.isFogClear = isFogClear;
+    }
+    // Getting the status of "isFogClear"
+    public boolean getIsFogClear() {
+      return isFogClear;
+    }
 }
