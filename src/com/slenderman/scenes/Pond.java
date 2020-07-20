@@ -14,7 +14,7 @@ public class Pond {
     private Map<String, String> scenesAround = new HashMap<>();
     private List<String> localItems = new ArrayList<>();
 
-    public ScenePond(Map<String, String> ScenesAround){
+    public Pond(Map<String, String> ScenesAround){
         this.scenesAround = ScenesAround;
         inFrontOfPond();
     }

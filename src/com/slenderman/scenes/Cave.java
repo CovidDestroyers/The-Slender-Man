@@ -20,7 +20,7 @@ public class Cave {
     private Map<String, String> scenesAround = new HashMap<>();
     private List<String> localItems = new ArrayList<>();
 
-    public SceneCave(Map<String, String> ScenesAround){
+    public Cave(Map<String, String> ScenesAround){
         this.scenesAround = ScenesAround;
         inFrontOfCave();
     }
