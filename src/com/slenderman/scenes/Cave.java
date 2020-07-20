@@ -12,7 +12,7 @@ import java.util.*;
  *
  **/
 
-public class Cave extends Scene{
+public class Cave extends Scene {
 
     private HashMap<String, String> scenesAround = new HashMap<>();
     private List<String> localItems = new ArrayList<>();
@@ -84,7 +84,7 @@ public class Cave extends Scene{
           }
         }
       }
-    }
+
     private void investigateTheBushes(){
 
         if (localItems.contains("NOTEBOOK")){
@@ -108,7 +108,6 @@ public class Cave extends Scene{
             }
 
         }
-      }
       System.out.println("\nYou are going back to the front of the cave");
       inFrontOfCave();
     }
