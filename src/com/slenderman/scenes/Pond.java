@@ -2,7 +2,6 @@ package com.slenderman.scenes;
 
 import java.util.*;
 
-
 /**
  * Things need in this scene : boat
  *
@@ -12,8 +11,7 @@ import java.util.*;
  *
  * */
 
-
-public class Pond {
+public class Pond extends Scene{
 
     private int countCheckBackPack = 0; // Count how many times the player check the backpack
     private boolean memoOnStones = false; // If memo between stones are read
@@ -22,10 +20,8 @@ public class Pond {
     private boolean islandTreeLookDown = false; // On island, if the player looked down the tree
     private boolean isFogClear = false; // On island, if the fog is cleared
 
-
     private Map<String, String> scenesAround = new HashMap<>();
     private List<String> localItems = new ArrayList<>();
-
 
     public Pond(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
       super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
@@ -34,7 +30,6 @@ public class Pond {
       this.scenesAround.put("WEST", "FIELD");
       this.scenesAround.put("EAST", "CAVE");
       this.scenesAround.put("NORTH", "OUT_HOUSE");
-
     }
 
     public void enter(){
@@ -302,7 +297,6 @@ public class Pond {
             inFrontOfPondChoice_WalkAround_Right();
           }
         }
-
         else if (!memoOnStones){
           memoOnStones = true;
           System.out.println("\nYou found a sheet of paper between stones");
@@ -323,13 +317,11 @@ public class Pond {
 
     /************** Island **************/
     private void inFontOfIsland() {
-
       System.out.println("\nYou rowed the boat for a while. Thanks to the special glasses, " +
         "\nyou know the direction and the distance to the island. The fog is so thick that without the glasses, " +
         "\nyou cannot even see your feet");
       System.out.println("You reached the island");
       inFrontOfIsland_Question();
-
     }
     private void inFrontOfIsland_Question(){
       System.out.println("\nWhat would you like to do?" +
@@ -388,7 +380,6 @@ public class Pond {
           //DONE write a code for change scene
           getSceneToTheEast().enter();
         }
-
       }
       else{
         if (!isFogClear) {
@@ -405,11 +396,9 @@ public class Pond {
           onIsland_lookUpDown();
         }
       }
-
     }
 
     private String goToDifferentScene(){
-
 
       boolean askAgain = true;
       String result = null;
@@ -433,7 +422,6 @@ public class Pond {
         }
       }while(askAgain);
       return result;
-
     }
 
     private String playerChoice(){
@@ -445,6 +433,7 @@ public class Pond {
       return result;
     }
 
+
     /*** Testing purpose ***/
     // Controlling "isFogClear"
     public void setIsFogClear(boolean isFogClear){
@@ -455,4 +444,3 @@ public class Pond {
       return isFogClear;
     }
 }
-
