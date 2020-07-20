@@ -85,7 +85,7 @@ public class Game {
   }
 
 
-  /**
+
   public void start(Scanner in) throws InterruptedException {
     Introduction.playIntro();
 
@@ -104,6 +104,6 @@ public class Game {
     }
 
   }
-   */
+
 
 }

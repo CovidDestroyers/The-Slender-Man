@@ -45,9 +45,9 @@ public class Field extends Scene {
 
   private void smellIt() {
     System.out.println("Do you want to go ahead and smell the flower?");
-    String choice = playerChoice();
     System.out.println(" Type \"0\" : \"Yes\" " +
       "\n Type \"1\" : \"No\"");
+    String choice = playerChoice();
 
     if (choice.equals("0")) {
       sneeze();
@@ -56,6 +56,7 @@ public class Field extends Scene {
       //go to the next Tree class
 
       System.out.println("Which direction would you like to go?");
+      System.out.println("Type \"EAST\", \"WEST\", \"NORTH \" or \"SOUTH\"");
       choice = playerChoice();
       if (choice.equals("WEST")) {
         System.out.println("West chosen");
@@ -75,10 +76,9 @@ public class Field extends Scene {
     System.out.println("You sneeze loudly and that blew away a piece of paper in the bushes");
     System.out.println("You see a note. Do you want to pick it up?");
 
-    String choice = playerChoice();
-
     System.out.println(" Type \"0\" : \"Yes\" " +
       "\n Type \"1\" : \"No\"");
+    String choice = playerChoice();
 
     if (choice.equals("0")) {
       findBlade();
@@ -103,7 +103,8 @@ public class Field extends Scene {
   }
 
   private void footCut(){
-    System.out.println("Do you want to look at what cut you?");
+    System.out.println("Ouch! You just got cut on your foot." +
+      "Do you want to look at what cut you?");
     System.out.println(" Type \"0\" : \"Yes\" " +
       "\n Type \"1\" : \"No\"");
     String choice = playerChoice();
@@ -116,15 +117,17 @@ public class Field extends Scene {
   }
 
   private void findBlade() {
-    String choice = playerChoice();
     System.out.println(
-      "You have found a blade. \n Would you like to grab it? "
+      "You have found a blade. \n Would you like to grab it? "+
       " Type \"0\" : \"Yes\" " +
         "\n Type \"1\" : \"No\"");
-    choice = playerChoice();
+    String choice = playerChoice();
+
     if (choice.equals("0")) {
       grabbedItems.add(itemsInScene.get(0));
+      System.out.println("You have put "+ itemsInScene.get(0) +" in your pocket.");
       itemsInScene.remove(0);
+      System.out.println("itemsInScene: " + itemsInScene);
     }
 
     System.out.println("\nYou look up and see a fork. " +
