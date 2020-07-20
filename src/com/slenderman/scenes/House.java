@@ -22,13 +22,13 @@ public class House extends Scene {
    */
   public House(String sceneToTheNorth, String sceneToTheSouth,
                String sceneToTheEast, String sceneToTheWest) {
-    super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
+    //super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
   }
 
   public House(String sceneToTheNorth, String sceneToTheSouth,
                String sceneToTheEast, String sceneToTheWest,
                boolean useDefaultItems) {
-    super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
+    //super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
     if (useDefaultItems == true) {
       setItemsInScene(defaultItems);

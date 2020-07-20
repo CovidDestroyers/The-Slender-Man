@@ -9,21 +9,30 @@ import java.util.*;
  * When instantiate this class, create a Map registering scenes around
  * Map<direction, name of the scene>
  * e.g.
- *         Map<String, String> sceneAround = new HashMap<>();
- *         sceneAround.put("WEST", "SHED");
- *         sceneAround.put("EAST", "POND");
- *         sceneAround.put("NORTH", "HUT_CAR");
- */
+ **/
 
-public class Cave {
 
-    private Map<String, String> scenesAround = new HashMap<>();
+
+public class Cave extends Scene{
+
+    private HashMap<String, String> scenesAround = new HashMap<>();
+
+
+
     private List<String> localItems = new ArrayList<>();
 
-    public Cave(Map<String, String> ScenesAround){
+    public Cave(HashMap<String, String> ScenesAround){
+
+
         this.scenesAround = ScenesAround;
+
+        scenesAround.put("WEST", "SHED");
+        scenesAround.put("EAST", "TREE");
+        scenesAround.put("NORTH", "HUT_CAR");
+        //scenesAround = {"WEST", "SHED", "EAST", "POND", "NORTH", "HUT_CAR");
         inFrontOfCave();
     }
+    public Cave(){}
 
     public void inFrontOfCave(){
         String choice;

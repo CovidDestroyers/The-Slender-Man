@@ -1,4 +1,10 @@
 package com.slenderman.scenes;
 
-public class Tree {
+public class Tree extends Scene {
+  public Tree(){
+
+  }
+  public void enter() {
+    System.out.println("tree class working");
+  }
 }

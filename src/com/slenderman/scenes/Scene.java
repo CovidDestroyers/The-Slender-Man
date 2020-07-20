@@ -12,10 +12,10 @@ import java.util.ArrayList;
  *  class that implements Scene.
  */
 public abstract class Scene {
-  protected String sceneToTheNorth;
-  protected String sceneToTheSouth;
-  protected String sceneToTheEast;
-  protected String sceneToTheWest;
+  protected Scene sceneToTheNorth;
+  protected Scene sceneToTheSouth;
+  protected Scene sceneToTheEast;
+  protected Scene sceneToTheWest;
   protected String description;
   public static final String ANSI_BLUE = "\u001B[34m";
   public static final String ANSI_WHITE = "\u001B[37m";
@@ -27,13 +27,15 @@ public abstract class Scene {
   protected ArrayList<String> itemsInScene;
 
   public Scene(
-    String sceneToTheNorth, String sceneToTheSouth,
-    String sceneToTheEast, String sceneToTheWest) {
+    Scene sceneToTheNorth, Scene sceneToTheSouth,
+    Scene sceneToTheEast, Scene sceneToTheWest) {
     this.sceneToTheNorth = sceneToTheNorth;
     this.sceneToTheSouth = sceneToTheSouth;
     this.sceneToTheEast = sceneToTheEast;
     this.sceneToTheWest = sceneToTheWest;
   }
+
+  public Scene(){};
 
   /*
    * =============================================
@@ -50,6 +52,14 @@ public abstract class Scene {
    */
 
   // SET METHODS
+
+  /**
+   * method enter that is used in every class and overwritten
+   */
+  public void enter(){
+
+  }
+
   public void setItemsInScene(ArrayList<String> itemsInScene) {
     this.itemsInScene = itemsInScene;
   }
@@ -58,19 +68,19 @@ public abstract class Scene {
     this.description = description;
   }
 
-  public void setSceneToTheNorth(String sceneToTheNorth) {
+  public void setSceneToTheNorth(Scene sceneToTheNorth) {
     this.sceneToTheNorth = sceneToTheNorth;
   }
 
-  public void setSceneToTheSouth(String sceneToTheSouth) {
+  public void setSceneToTheSouth(Scene sceneToTheSouth) {
     this.sceneToTheSouth = sceneToTheSouth;
   }
 
-  public void setSceneToTheEast(String sceneToTheEast) {
+  public void setSceneToTheEast(Scene sceneToTheEast) {
     this.sceneToTheEast = sceneToTheEast;
   }
 
-  public void setSceneToTheWest(String sceneToTheWest) {
+  public void setSceneToTheWest(Scene sceneToTheWest) {
     this.sceneToTheWest = sceneToTheWest;
   }
 
@@ -85,19 +95,21 @@ public abstract class Scene {
     return description;
   }
 
-  public String getSceneToTheNorth() {
+  public Scene getSceneToTheNorth() {
     return sceneToTheNorth;
   }
 
-  public String getSceneToTheWest() {
+  public Scene getSceneToTheWest() {
+
+    System.out.println("returning west");
     return sceneToTheWest;
   }
 
-  public String getSceneToTheEast() {
+  public Scene getSceneToTheEast() {
     return sceneToTheEast;
   }
 
-  public String getSceneToTheSouth() {
+  public Scene getSceneToTheSouth() {
     return sceneToTheSouth;
   }
 
