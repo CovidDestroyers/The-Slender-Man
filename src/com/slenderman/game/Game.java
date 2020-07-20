@@ -3,6 +3,8 @@ package com.slenderman.game;
 import com.slenderman.scenes.*;
 import com.slenderman.actors.Player;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -29,7 +31,10 @@ public class Game {
 
   public Game() {
     Player = new Player();
+
+
   }
+
 
 
   public void start(Scanner in) throws InterruptedException {
