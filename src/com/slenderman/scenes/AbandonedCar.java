@@ -4,8 +4,8 @@ public class AbandonedCar extends Scene {
 
 
   public AbandonedCar(
-    String sceneToTheNorth, String sceneToTheSouth,
-    String sceneToTheEast, String sceneToTheWest) {
+    Scene sceneToTheNorth, Scene sceneToTheSouth,
+    Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
   }
 }
