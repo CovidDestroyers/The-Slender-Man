@@ -64,7 +64,7 @@ public abstract class Scene {
 
   public Scene changeScene(String direction) {
     Scene nextScene = null;
-    if(direction.equals("north")) {
+    if(direction.equals("north")) { // if("north".equals(direction))   'way to deal with null pointer', 'mitigate completely by using enum'
       nextScene = sceneToTheNorth;
     } else if (direction.equals("east")) {
       nextScene = sceneToTheEast;

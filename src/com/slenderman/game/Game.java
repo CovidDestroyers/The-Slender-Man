@@ -1,12 +1,9 @@
 package com.slenderman.game;
 
-import com.slenderman.actors.SlenderMan;
 import com.slenderman.scenes.*;
 import com.slenderman.actors.Player;
-import com.slenderman.tools.GameTimer;
+import com.slenderman.tools.LoseGameTimer;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -72,7 +69,7 @@ public class Game {
 
   public void start(Scanner in) throws InterruptedException {
     //Introduction.playIntro();
-    new GameTimer(1);
+    new LoseGameTimer(1);
 
     currentScene = aForest;
 

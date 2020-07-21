@@ -5,16 +5,18 @@ import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameTimer {
+public class LoseGameTimer {
   Toolkit toolkit;
-  Timer timer;
-  public GameTimer(int minutes) {
+  Timer loseGameTimer;
+
+  public LoseGameTimer(int minutes) {
     toolkit = Toolkit.getDefaultToolkit();
-    timer = new Timer();
-    timer.schedule(new RemindTask(), minutes * 60000);
+    loseGameTimer = new Timer();
+    loseGameTimer.schedule(new KillPlayerTask(), minutes * 60000);
   }
 
-  class RemindTask extends TimerTask {
+
+  class KillPlayerTask extends TimerTask {
     public void run() {
       toolkit.beep();
       SlenderMan.killPlayer();
