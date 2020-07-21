@@ -23,7 +23,7 @@ public abstract class Scene {
   public static final String ANSI_BLACK = "\u001B[30m";
   public static final String ANSI_GREEN = "\u001B[32m";
 
-  protected Scene sceneToTheNorth;
+  protected Scene sceneToTheNorth; // turn into array possibly
   protected Scene sceneToTheSouth;
   protected Scene sceneToTheEast;
   protected Scene sceneToTheWest;
