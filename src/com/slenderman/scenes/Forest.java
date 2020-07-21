@@ -18,8 +18,20 @@ public class Forest extends Scene{
 
   @Override
   public void enter() {
-    System.out.println("You are in a dark Forest. You see an Abandoned Car to the EAST and a Shed to the SOUTH.");
-    System.out.println("You see a sign that reads 'go south' to go to the Shed, and 'go east' to go to the Abandoned Car.");
+    System.out.println("               ,@@@@@@@,\n" +
+      "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n" +
+      "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n" +
+      "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n" +
+      "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n" +
+      "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n" +
+      "   `&%\\ ` /%&'    |.|        \\ '|8'\n" +
+      "       |o|        | |         | |\n" +
+      "       |.|        | |         | |\n" +
+      "jgs \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_\n" +
+      "\n" +
+      "------------------------------------------------\n");
+    System.out.println(Scene.ANSI_WHITE + "You are in a dark Forest. You see an Abandoned Car to the EAST and a Shed to the SOUTH.");
+    System.out.println(Scene.ANSI_WHITE + "You see a sign that reads: " + Scene.ANSI_GREEN + "'go south' " + Scene.ANSI_WHITE + "to go to the Shed, and " + Scene.ANSI_GREEN + "'go east' " + Scene.ANSI_WHITE + "to go to the Abandoned Car.");
 
   }
 

@@ -71,7 +71,7 @@ public class Shed extends Scene{
     System.out.println("You found a KEY!");
     System.out.println("Behind the KEY is a note that reads:");
     Thread.sleep(2000);
-    System.out.println("“Hello again, I heard the screams of one of its victims as I came upon this shed in the distance.\n" +
+    System.out.println(Scene.ANSI_BLUE + "“Hello again, I heard the screams of one of its victims as I came upon this shed in the distance.\n" +
       "I watched in horror as some tall, lanky and shady creature devoured the poor soul trapped inside this old shed.\n" +
       "I felt helpless as I saw it move like the branches of a tree in the wind, swaying and cracking as it progressed back into the forest.\n" +
       "If only there was something I could do to help… I didn’t even know there was anyone else here… \n" +
@@ -82,9 +82,9 @@ public class Shed extends Scene{
 
   private void exitShed() throws InterruptedException {
     Thread.sleep(10000);
-    System.out.println("You added the KEY to your inventory.");
+    System.out.println(Scene.ANSI_GREEN + "You added the KEY to your inventory.");
     Thread.sleep(2000);
-    System.out.println("You exit the Shed and continue your journey.");
+    System.out.println(Scene.ANSI_WHITE + "You exit the Shed and continue your journey.");
     goSomewhereElse();
 
   }
