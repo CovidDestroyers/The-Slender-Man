@@ -3,6 +3,7 @@ package com.slenderman.actors;
 import com.slenderman.scenes.Scene;
 
 public class SlenderMan {
+
   public static void killPlayer() {
     System.out.println("---------------------------------------------------------------------------------------------------\n" +
       Scene.ANSI_RED + "The screeching overpowers all of your senses, you become paralyzed... \n" +
@@ -20,6 +21,11 @@ public class SlenderMan {
       "      ▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀ \n" +
       "                                                                                                   ");
     System.exit(0);
+  }
+
+  public static void moveCloserToPlayer() {
+    System.out.println("---------------------------------------------------------------------------------------------------\n" +
+      Scene.ANSI_RED + "You hear a screeching sound in the distance. Something is watching you and it is moving closer... \n" + Scene.ANSI_WHITE);
   }
 
 }
