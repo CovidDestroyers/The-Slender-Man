@@ -2,7 +2,7 @@ package com.slenderman.scenes;
 
 public class Introduction {
   public static void playIntro() throws InterruptedException {
-    /**
+
     System.out.println();
     Thread.sleep(3000);
     System.out.println(Scene.ANSI_GREEN + "\n" +
@@ -47,7 +47,7 @@ public class Introduction {
     Thread.sleep(5000);
     System.out.println("You look once more into the vast forest as you plan your next move…\n");
     Thread.sleep(5000);
-     */
+
      }
 
 }
