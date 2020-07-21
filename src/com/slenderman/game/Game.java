@@ -72,21 +72,21 @@ public class Game {
     Introduction.playIntro();
     currentScene = aForest;
 
-    currentScene.getDescription();
+    currentScene.enter();
 
 
-    String userText = "go";
+    String userText = "";
 
     while (!userText.equals("quit")) {
       // while (Player.state.equals("alive")) {
-      System.out.println("Give me something good:");
+      //System.out.println("Give me something good:");
       userText = in.nextLine().toLowerCase().trim();
       if (userText.equals("quit")) {
         System.out.println("Goodbye!");
         break;
       } else if (userText.startsWith("go ")) {
         currentScene = currentScene.changeScene(userText.substring(3));
-        System.out.println(currentScene.getDescription());
+        //System.out.println(currentScene.getDescription());
         currentScene.enter();
       } else {
         System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");

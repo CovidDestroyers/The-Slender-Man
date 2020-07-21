@@ -33,6 +33,7 @@ public class Cave extends Scene {
     public void enter(){
       inFrontOfCave();
     }
+
     private void inFrontOfCave(){
       String choice;
       System.out.println("\nThere is a cave in front of you.");
