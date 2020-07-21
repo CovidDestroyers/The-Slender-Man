@@ -79,12 +79,12 @@ public abstract class Scene {
     return nextScene;
   }
 
-  protected void connectEast(Scene otherScene){
+  public void connectEast(Scene otherScene){
     sceneToTheEast = otherScene;
     otherScene.sceneToTheWest = this;
   };
 
-  protected void connectSouth(Scene otherScene){
+  public void connectSouth(Scene otherScene){
     sceneToTheSouth = otherScene;
     otherScene.sceneToTheNorth = this;
   };

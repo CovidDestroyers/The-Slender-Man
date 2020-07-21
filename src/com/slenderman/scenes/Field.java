@@ -9,7 +9,10 @@ public class Field extends Scene {
   private List<String> itemsInScene = new ArrayList<>();
 
 
-
+  //default constructor
+  public Field(){
+    setDescription("You have reached am empty field.");
+  }
 
 
   public Field(Scene sceneToTheNorth, Scene sceneToTheSouth,
@@ -19,6 +22,7 @@ public class Field extends Scene {
 
     //Add the pre existing items to the List
     itemsInScene.add("blade");
+    setDescription("You have reached am empty field.");
   }
 
 //  public void setItemsInScene(List<String> itemsInScene){};
@@ -26,8 +30,11 @@ public class Field extends Scene {
 //    List<String> grabbedItems
 //  };
 
-  @Override
+
+
   public void enter() {
+
+
     String choice;
     System.out.println("\nThere is a field in front of you. You see a flower.");
     System.out.println("What would you like to do?");
@@ -88,17 +95,9 @@ public class Field extends Scene {
       //go to the next Tree class
 
       System.out.println("Which direction would you like to go?");
+      System.out.println("Type \"east\", \"west\", \"north \" or \"south\"");
       choice = playerChoice();
-      if (choice.equals("WEST")) {
-        System.out.println("West chosen");
-        getSceneToTheWest().enter();
-      } else if (choice.equals("EAST")) {
-        getSceneToTheEast().enter();
-      } else if (choice.equals("NORTH")) {
-        getSceneToTheNorth().enter();
-      } else if (choice.equals("SOUTH")) {
-        getSceneToTheSouth().enter();
-      }
+      changeScene(choice);
 
     }
   }

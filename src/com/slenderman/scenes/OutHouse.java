@@ -2,6 +2,8 @@ package com.slenderman.scenes;
 
 public class OutHouse extends Scene {
 
+  //default constructor
+  public OutHouse(){}
 
   public OutHouse(
 

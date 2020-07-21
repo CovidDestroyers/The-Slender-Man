@@ -17,6 +17,9 @@ public class Cave extends Scene {
     private HashMap<String, String> scenesAround = new HashMap<>();
     private List<String> localItems = new ArrayList<>();
 
+    //default constructor
+    public Cave(){}
+
     public Cave(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest){
       super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 

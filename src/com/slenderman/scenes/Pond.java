@@ -23,6 +23,9 @@ public class Pond extends Scene{
     private Map<String, String> scenesAround = new HashMap<>();
     private List<String> localItems = new ArrayList<>();
 
+    //default constructor
+    public Pond(){}
+
     public Pond(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
       super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 

@@ -3,10 +3,16 @@ package com.slenderman.scenes;
 import java.util.*;
 
 public class Forest extends Scene{
-
+  //default constructor
+  public Forest(){
+    setDescription("Welcome to the forest");
+  }
 
   public Forest(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
+
+    setDescription("Welcome to the forest");
+
   }
 
   public Scene goToDifferentScene(){

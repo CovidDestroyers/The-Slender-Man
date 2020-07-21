@@ -19,18 +19,49 @@ import java.util.Scanner;
 public class Game {
 
   private Scene currentScene;
-  private Scene AbandonedCar;
-  private Scene House;
-  private Scene OutHouse;
-  private Scene Forest;
-  private Shed Shed;
-  private Scene Tree;
+  private Scene aAbandonedCar;
+  private Scene aHouse;
+  private Scene aOutHouse;
+  private Scene aForest;
+  private Shed aShed;
+  private Scene aTree;
+  private Scene aPond;
+  private Scene aCave;
+  private Scene aField;
+
 
   private Player Player;
 
 
   public Game() {
     Player = new Player();
+
+    aForest = new Forest();
+    aShed = new Shed();
+    aAbandonedCar = new AbandonedCar();
+    aField = new Field();
+    aTree = new Tree();
+    aPond = new Pond();
+    aCave = new Cave();
+    aOutHouse = new OutHouse();
+
+    aForest.connectSouth(aShed);
+    aForest.connectEast(aAbandonedCar);
+
+    aAbandonedCar.connectEast(aOutHouse);
+    aAbandonedCar.connectSouth(aCave);
+
+    aShed.connectEast(aCave);
+
+    aOutHouse.connectSouth(aPond);
+
+    aCave.connectEast(aPond);
+
+    aPond.connectEast(aField);
+
+
+
+    aField.connectEast(aTree);
 
 
   }
@@ -39,8 +70,8 @@ public class Game {
 
   public void start(Scanner in) throws InterruptedException {
     Introduction.playIntro();
-    currentScene = Forest;
-    Forest.setSceneToTheEast(House);
+    currentScene = aForest;
+
     currentScene.getDescription();
 
 
@@ -55,23 +86,25 @@ public class Game {
         break;
       } else if (userText.startsWith("go ")) {
         currentScene = currentScene.changeScene(userText.substring(3));
-        currentScene.getDescription();
+        System.out.println(currentScene.getDescription());
+        currentScene.enter();
       } else {
         System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
       }
 
-      System.out.printf("Hey you pressed on some keys!\n%s\n", userText);
-    }
-    if (currentScene == Tree) {
-      Thread.sleep(2000);
-      System.out.println("You have killed SlenderMan\n");
-      Thread.sleep(5000);
-      System.out.println("You Win!");
-      System.out.println("Thanks for playing!");
-      Thread.sleep(5000);
-      System.exit(0);
+      if (currentScene == aTree) {
+        Thread.sleep(2000);
+        System.out.println("You have killed SlenderMan\n");
+        Thread.sleep(5000);
+        System.out.println("You Win!");
+        System.out.println("Thanks for playing!");
+        Thread.sleep(5000);
+        System.exit(0);
+
+      }
 
     }
+
   }
 
 }
