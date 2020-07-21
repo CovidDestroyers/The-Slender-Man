@@ -114,7 +114,7 @@ public abstract class Scene {
   /**
    * method enter that is used in every class and overwritten
    */
-  public abstract void enter();
+  public abstract void enter() throws InterruptedException;
 
   public void setItemsInScene(ArrayList<String> itemsInScene) {
     this.itemsInScene = itemsInScene;

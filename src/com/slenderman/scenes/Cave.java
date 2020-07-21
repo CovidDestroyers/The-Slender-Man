@@ -30,11 +30,11 @@ public class Cave extends Scene {
     }
 
     @Override
-    public void enter(){
+    public void enter() throws InterruptedException {
       inFrontOfCave();
     }
 
-    private void inFrontOfCave(){
+    private void inFrontOfCave() throws InterruptedException {
       String choice;
       System.out.println("\nThere is a cave in front of you.");
       System.out.println("What would you like to do?");
@@ -50,7 +50,7 @@ public class Cave extends Scene {
       }
     }
 
-    private void stepIntoTheCave(){
+    private void stepIntoTheCave() throws InterruptedException {
       System.out.println("\nYou are stepping into the dark and chilly cave");
       System.out.println("\"RUN RUN RUN!\" Something is attacking you!");
       System.out.println("There are many bats suddenly coming out from the darkness");
@@ -64,7 +64,7 @@ public class Cave extends Scene {
       exploreCave();
     }
 
-    private void walkAroundInFrontOfCave(){
+    private void walkAroundInFrontOfCave() throws InterruptedException {
 
         System.out.println("\nYou are walking in front of the cave");
         System.out.println("You heard noises from the bushes");
@@ -90,7 +90,7 @@ public class Cave extends Scene {
         }
       }
 
-    private void investigateTheBushes(){
+    private void investigateTheBushes() throws InterruptedException {
 
         if (localItems.contains("NOTEBOOK")){
             System.out.println("You did not find anything in the bushes");
@@ -117,7 +117,7 @@ public class Cave extends Scene {
       inFrontOfCave();
     }
 
-    private void exploreCave() {
+    private void exploreCave() throws InterruptedException {
 
         System.out.println("You have the torch in one hand and the lighter in the other.");
         System.out.println("Surprisingly, bats did not come and attack this time.");
@@ -127,7 +127,7 @@ public class Cave extends Scene {
         exploreCaveChoice();
 
     }
-    private void exploreCaveChoice(){
+    private void exploreCaveChoice() throws InterruptedException {
       System.out.println("- Type \"R\": to look right");
       System.out.println("- Type \"L\": to look left");
       System.out.println("- Type \"X\": to go back to the entrance of the cave.");
@@ -142,7 +142,7 @@ public class Cave extends Scene {
         inFrontOfCave();
       }
     }
-    private void exploreCave_LookLeft(){
+    private void exploreCave_LookLeft() throws InterruptedException {
 
         System.out.println("When you look up, you see water dripping down from the ceiling");
         System.out.println("The ceiling is so high that you cannot see the ceiling itself");
@@ -164,7 +164,7 @@ public class Cave extends Scene {
 
     }
 
-    private void exploreCave_LookRight(){
+    private void exploreCave_LookRight() throws InterruptedException {
 
       //TODO code needs to be added here
 
@@ -185,7 +185,7 @@ public class Cave extends Scene {
             exploreCaveChoice();
         }
     }
-    private void exploreCave_UnlockCode(){
+    private void exploreCave_UnlockCode() throws InterruptedException {
         System.out.println("\nWhen you approached the colony of bats, the bats flew away with high-pitch screams you had never heard before.");
         System.out.println("You were so scared that you closed your eyes.");
         System.out.println("When you opened your eyes, the bats were gone, but the screams were lingering in your ears.");
@@ -200,7 +200,7 @@ public class Cave extends Scene {
 
     }
 
-    private void exploreCave_TryCombination(){
+    private void exploreCave_TryCombination() throws InterruptedException {
       System.out.println("\nYou decided to try the combination.");
       System.out.println("Type the combination.");
       String result = playerChoice();
@@ -238,7 +238,7 @@ public class Cave extends Scene {
       }
     }
 
-    private void exploreCave_UnlockCodeByBook(){
+    private void exploreCave_UnlockCodeByBook() throws InterruptedException {
       System.out.println("\nWould you like to flip the page?");
       System.out.println("- Type \"Y\": \"Yes\"");
       System.out.println("- Type \"N\": \"No\"");
@@ -267,7 +267,7 @@ public class Cave extends Scene {
 
     }
 
-    private void exploreCave_TryCombination_Successful(){
+    private void exploreCave_TryCombination_Successful() throws InterruptedException {
       System.out.println("\nYou were able to unlock the door.");
       System.out.println("It looks like a storage.");
       System.out.println("You found a boat inside.");

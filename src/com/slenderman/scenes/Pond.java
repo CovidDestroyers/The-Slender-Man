@@ -36,19 +36,19 @@ public class Pond extends Scene{
     }
 
     @Override
-    public void enter(){
+    public void enter() throws InterruptedException {
       //System.out.println("Pond is working");
       inFrontOfPond();
     }
 
-    private void inFrontOfPond() {
+    private void inFrontOfPond() throws InterruptedException {
       System.out.println("\nYou are standing in front of the pond.");
       System.out.println("It is so foggy that you can barely see what's on the other side of the pond");
       System.out.println("You see a cave in the west side and an outhouse in the north direction");
       inFrontOfPondChoice();
     }
 
-    private void inFrontOfPondChoice(){
+    private void inFrontOfPondChoice() throws InterruptedException {
 
       System.out.println("\nWhat would you like to do?");
 
@@ -113,7 +113,7 @@ public class Pond extends Scene{
       }
     }
 
-    private void inFrontOfPondChoice_UseItems(){
+    private void inFrontOfPondChoice_UseItems() throws InterruptedException {
 
       System.out.println("\nYou decided to use items");
       System.out.println("Would you like to list what you have?"+
@@ -201,7 +201,7 @@ public class Pond extends Scene{
       }
     }
 
-    public void inFrontOfPondChoice_WalkAround(){
+    public void inFrontOfPondChoice_WalkAround() throws InterruptedException {
       // Try to find a special glass which you can see though the the fog
       System.out.println("\nYou decided to walk around");
       System.out.println("Which direction would you like to go to?" +
@@ -259,7 +259,7 @@ public class Pond extends Scene{
       }
     }
 
-    private void inFrontOfPondChoice_WalkAround_Right(){
+    private void inFrontOfPondChoice_WalkAround_Right() throws InterruptedException {
       System.out.println("\nWould you like to look up or down?" +
         "\n- Type \"0\" : Look up" +
         "\n- Type \"1\" : Look down");
@@ -320,14 +320,14 @@ public class Pond extends Scene{
     }
 
     /************** Island **************/
-    private void inFontOfIsland() {
+    private void inFontOfIsland() throws InterruptedException {
       System.out.println("\nYou rowed the boat for a while. Thanks to the special glasses, " +
         "\nyou know the direction and the distance to the island. The fog is so thick that without the glasses, " +
         "\nyou cannot even see your feet");
       System.out.println("You reached the island");
       inFrontOfIsland_Question();
     }
-    private void inFrontOfIsland_Question(){
+    private void inFrontOfIsland_Question() throws InterruptedException {
       System.out.println("\nWhat would you like to do?" +
         "\n- Type \"0\" : stay in the boat." +
         "\n- Type \"1\" : go ashore");
@@ -343,7 +343,7 @@ public class Pond extends Scene{
         onIsland();
       }
     }
-    private void onIsland(){
+    private void onIsland() throws InterruptedException {
       System.out.println("\nWhich one would you like to visit?" +
         "\n- Type \"0\" : Cross." +
         "\n- Type \"1\" : Tree");
@@ -364,7 +364,7 @@ public class Pond extends Scene{
         }
       }
     }
-    private void onIsland_lookUpDown(){
+    private void onIsland_lookUpDown() throws InterruptedException {
       System.out.println("\nWould you like to look up or down?"+
         "\n- Type \"0\" : look up." +
         "\n- Type \"1\" : look down");

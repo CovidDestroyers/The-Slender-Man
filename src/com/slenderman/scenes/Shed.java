@@ -12,11 +12,11 @@ public class Shed extends Scene{
   }
 
   @Override
-  public void enter() {
+  public void enter() throws InterruptedException {
     inFrontOfShed();
   }
 
-  private void inFrontOfShed(){
+  private void inFrontOfShed() throws InterruptedException {
     String choice;
     System.out.println("\nThere is an old Shed in front of you.");
     System.out.println("What would you like to do?");
@@ -40,7 +40,7 @@ public class Shed extends Scene{
     System.out.println("Which direction would you like to go?");
   }
 
-  private void stepIntoTheShed(){
+  private void stepIntoTheShed() throws InterruptedException {
     System.out.println("\nYou are walking towards the old shed");
     System.out.println("You notice a bloody hand print on the door..");
     System.out.println("You pull the door open to discover a decaying corpse with the stains of blood all over the interior of the Shed.");
@@ -50,7 +50,7 @@ public class Shed extends Scene{
     takeShinyThingChoice();
   }
 
-  private void takeShinyThingChoice(){
+  private void takeShinyThingChoice() throws InterruptedException {
     System.out.println("- Type \"Y\": to reach and grab the item");
     System.out.println("- Type \"N\": to walk out of the Shed");
     String choice = playerChoice().toUpperCase();
@@ -65,10 +65,12 @@ public class Shed extends Scene{
     }
   }
 
-  private void grabShinyThingYes(){
+  private void grabShinyThingYes() throws InterruptedException {
     System.out.println("You reach into the coat pocket of the decaying corpse...");
+    Thread.sleep(3000);
     System.out.println("You found a KEY!");
     System.out.println("Behind the KEY is a note that reads:");
+    Thread.sleep(2000);
     System.out.println("“Hello again, I heard the screams of one of its victims as I came upon this shed in the distance.\n" +
       "I watched in horror as some tall, lanky and shady creature devoured the poor soul trapped inside this old shed.\n" +
       "I felt helpless as I saw it move like the branches of a tree in the wind, swaying and cracking as it progressed back into the forest.\n" +
@@ -78,9 +80,10 @@ public class Shed extends Scene{
     exitShed();
   }
 
-  private void exitShed(){
-
+  private void exitShed() throws InterruptedException {
+    Thread.sleep(10000);
     System.out.println("You added the KEY to your inventory.");
+    Thread.sleep(2000);
     System.out.println("You exit the Shed and continue your journey.");
     goSomewhereElse();
 

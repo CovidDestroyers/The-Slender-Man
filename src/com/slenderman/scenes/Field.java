@@ -32,7 +32,7 @@ public class Field extends Scene {
 
 
 
-  public void enter() {
+  public void enter() throws InterruptedException {
 
 
     String choice;
@@ -51,7 +51,7 @@ public class Field extends Scene {
     }
   }
 
-  private void smellIt() {
+  private void smellIt() throws InterruptedException {
     System.out.println("Do you want to go ahead and smell the flower?");
     System.out.println(" Type \"0\" : \"Yes\" " +
       "\n Type \"1\" : \"No\"");
@@ -80,7 +80,7 @@ public class Field extends Scene {
 
   }
 
-  private void sneeze() {
+  private void sneeze() throws InterruptedException {
     System.out.println("You sneeze loudly and that blew away a piece of paper in the bushes");
     System.out.println("You see a note. Do you want to pick it up?");
 
@@ -102,7 +102,7 @@ public class Field extends Scene {
     }
   }
 
-  private void footCut(){
+  private void footCut() throws InterruptedException {
     System.out.println("Ouch! You just got cut on your foot." +
       "Do you want to look at what cut you?");
     System.out.println(" Type \"0\" : \"Yes\" " +
@@ -116,7 +116,7 @@ public class Field extends Scene {
     }
   }
 
-  private void findBlade() {
+  private void findBlade() throws InterruptedException {
     System.out.println(
       "You have found a blade. \n Would you like to grab it? "+
       " Type \"0\" : \"Yes\" " +
