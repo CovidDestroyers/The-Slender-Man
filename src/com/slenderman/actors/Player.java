@@ -33,8 +33,9 @@ public class Player {
     for (Item item : items) {
       item.setCurrentScene(this.currentSceneName);
 
-      System.out.printf("What a prize! You have added a %s to your inventory.\n",
-        item.getItemName());
+      // System.out.printf("What a prize! You have added a %s to your
+      // inventory.\n",
+        // item.getItemName());
     }
   }
 

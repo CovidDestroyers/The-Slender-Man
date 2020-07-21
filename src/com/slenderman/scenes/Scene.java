@@ -54,6 +54,11 @@ public abstract class Scene {
    * =========== Business Methods ================
    * =============================================
    */
+  /**
+   * method enter that is used in every class and overwritten
+   * Entry point
+   */
+  public abstract void enter() throws InterruptedException;
 
   // TODO: write a method that adds only 1 item to itemsInScene
 
@@ -73,8 +78,6 @@ public abstract class Scene {
     if (nextScene == null) {
       System.out.println("You cannot go " + direction + " from here.");
       nextScene = this;
-    } else {
-
     }
     return nextScene;
   }
@@ -110,11 +113,6 @@ public abstract class Scene {
    */
 
   // SET METHODS
-
-  /**
-   * method enter that is used in every class and overwritten
-   */
-  public abstract void enter() throws InterruptedException;
 
   public void setItemsInScene(ArrayList<String> itemsInScene) {
     this.itemsInScene = itemsInScene;
@@ -156,7 +154,6 @@ public abstract class Scene {
   }
 
   public Scene getSceneToTheWest() {
-
     return sceneToTheWest;
   }
 
