@@ -63,6 +63,13 @@ public abstract class Scene {
 
   public abstract void enter(Scanner in, Player player) throws InterruptedException;
 
+  public String playerChoice(Scanner in) {
+    String result = "";
+
+    result = in.nextLine();
+    return result;
+  }
+
 
   // TODO: write a method that adds only 1 item to itemsInScene
 

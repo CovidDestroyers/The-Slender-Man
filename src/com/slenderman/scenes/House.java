@@ -275,7 +275,6 @@ public class House extends Scene {
 
 
 
-
   public void unlockLockBox(Player player) {
     if (playerHasKey(player)) {
       System.out.println("You have opened the lockbox! You are awarded a " +
