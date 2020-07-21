@@ -18,7 +18,8 @@ public class Forest extends Scene{
 
   @Override
   public void enter() {
-    System.out.println("               ,@@@@@@@,\n" +
+    System.out.println(Scene.ANSI_GREEN +
+      "               ,@@@@@@@,\n" +
       "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n" +
       "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n" +
       "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n" +
