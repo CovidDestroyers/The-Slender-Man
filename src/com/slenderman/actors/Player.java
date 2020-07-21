@@ -32,10 +32,6 @@ public class Player {
     inventory.addAll(Arrays.asList(items));
     for (Item item : items) {
       item.setCurrentScene(this.currentSceneName);
-
-      // System.out.printf("What a prize! You have added a %s to your
-      // inventory.\n",
-        // item.getItemName());
     }
   }
 
