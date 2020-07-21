@@ -1,5 +1,7 @@
 package com.slenderman.scenes;
 
+import com.slenderman.actors.Player;
+
 import java.util.*;
 
 /**
@@ -36,7 +38,7 @@ public class Pond extends Scene{
     }
 
     @Override
-    public void enter() throws InterruptedException {
+    public void enter(Scanner in, Player player) throws InterruptedException {
       //System.out.println("Pond is working");
       inFrontOfPond();
     }

@@ -1,5 +1,7 @@
 package com.slenderman.scenes;
 
+import com.slenderman.actors.Player;
+
 import java.util.*;
 
 /**
@@ -30,7 +32,7 @@ public class Cave extends Scene {
     }
 
     @Override
-    public void enter() throws InterruptedException {
+    public void enter(Scanner in, Player player) throws InterruptedException {
       inFrontOfCave();
     }
 

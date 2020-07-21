@@ -76,7 +76,7 @@ public class Game {
 
     currentScene = aForest;
 
-    currentScene.enter();
+    currentScene.enter(in, Player);
 
 
     String userText = "";
@@ -91,7 +91,7 @@ public class Game {
       } else if (userText.startsWith("go ")) {
         currentScene = currentScene.changeScene(userText.substring(3));
         //System.out.println(currentScene.getDescription());
-        currentScene.enter();
+        currentScene.enter(in, Player);
       } else {
         System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
       }

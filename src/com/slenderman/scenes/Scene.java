@@ -5,6 +5,7 @@ import com.slenderman.actors.Player;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Scanner;
 
 /**
  *  The Scene Interface is used to ensure classes such as Hut and
@@ -58,23 +59,32 @@ public abstract class Scene {
    * method enter that is used in every class and overwritten
    * Entry point
    */
-  public abstract void enter() throws InterruptedException;
+  // public abstract void enter() throws InterruptedException;
+
+  public abstract void enter(Scanner in, Player player) throws InterruptedException;
+
 
   // TODO: write a method that adds only 1 item to itemsInScene
 
   public Scene changeScene(String direction) {
     Scene nextScene = null;
+
     if(direction.equals("north")) {
       nextScene = sceneToTheNorth;
+
     } else if (direction.equals("east")) {
       nextScene = sceneToTheEast;
+
     } else if (direction.equals("south")) {
       nextScene = sceneToTheSouth;
+
     } else if (direction.equals("west")) {
       nextScene = sceneToTheWest;
+
     } else {
       System.out.println("Error: unknown direction " + direction);
     }
+
     if (nextScene == null) {
       System.out.println("You cannot go " + direction + " from here.");
       nextScene = this;

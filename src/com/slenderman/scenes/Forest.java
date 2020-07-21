@@ -1,5 +1,7 @@
 package com.slenderman.scenes;
 
+import com.slenderman.actors.Player;
+
 import java.util.*;
 
 public class Forest extends Scene{
@@ -17,7 +19,7 @@ public class Forest extends Scene{
 
 
   @Override
-  public void enter() {
+  public void enter(Scanner in, Player player) {
     System.out.println(Scene.ANSI_GREEN +
       "               ,@@@@@@@,\n" +
       "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n" +

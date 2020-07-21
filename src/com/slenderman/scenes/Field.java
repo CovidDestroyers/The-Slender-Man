@@ -1,5 +1,7 @@
 package com.slenderman.scenes;
 
+import com.slenderman.actors.Player;
+
 import java.util.*;
 
 public class Field extends Scene {
@@ -32,7 +34,7 @@ public class Field extends Scene {
 
 
 
-  public void enter() throws InterruptedException {
+  public void enter(Scanner in, Player player) throws InterruptedException {
 
 
     String choice;
@@ -44,21 +46,21 @@ public class Field extends Scene {
     choice = playerChoice();
 
     if (choice.equals("0")) {
-      smellIt();
+      smellIt(in, player);
     }
     if (choice.equals("1")) {
-      footCut();
+      footCut(in, player);
     }
   }
 
-  private void smellIt() throws InterruptedException {
+  private void smellIt(Scanner in, Player player) throws InterruptedException {
     System.out.println("Do you want to go ahead and smell the flower?");
     System.out.println(" Type \"0\" : \"Yes\" " +
       "\n Type \"1\" : \"No\"");
     String choice = playerChoice();
 
     if (choice.equals("0")) {
-      sneeze();
+      sneeze(in, player);
     }
     if (choice.equals("1")) {
       //go to the next Tree class
@@ -68,19 +70,19 @@ public class Field extends Scene {
       choice = playerChoice();
       if (choice.equals("WEST")) {
         System.out.println("West chosen");
-        getSceneToTheWest().enter();
+        getSceneToTheWest().enter(in, player);
       } else if (choice.equals("EAST")) {
-        getSceneToTheEast().enter();
+        getSceneToTheEast().enter(in, player);
       } else if (choice.equals("NORTH")) {
-        getSceneToTheNorth().enter();
+        getSceneToTheNorth().enter(in, player);
       } else if (choice.equals("SOUTH")) {
-        getSceneToTheSouth().enter();
+        getSceneToTheSouth().enter(in, player);
       }
     }
 
   }
 
-  private void sneeze() throws InterruptedException {
+  private void sneeze(Scanner in, Player player) throws InterruptedException {
     System.out.println("You sneeze loudly and that blew away a piece of paper in the bushes");
     System.out.println("You see a note. Do you want to pick it up?");
 
@@ -89,7 +91,7 @@ public class Field extends Scene {
     String choice = playerChoice();
 
     if (choice.equals("0")) {
-      findBlade();
+      findBlade(in, player);
     }
     if (choice.equals("1")) {
       //go to the next Tree class
@@ -102,21 +104,21 @@ public class Field extends Scene {
     }
   }
 
-  private void footCut() throws InterruptedException {
+  private void footCut(Scanner in, Player player) throws InterruptedException {
     System.out.println("Ouch! You just got cut on your foot." +
       "Do you want to look at what cut you?");
     System.out.println(" Type \"0\" : \"Yes\" " +
       "\n Type \"1\" : \"No\"");
     String choice = playerChoice();
     if (choice.equals("0")){
-      findBlade();
+      findBlade(in, player);
       }
     else if (choice.equals("1")){
-      sneeze();
+      sneeze(in, player);
     }
   }
 
-  private void findBlade() throws InterruptedException {
+  private void findBlade(Scanner in, Player player) throws InterruptedException {
     System.out.println(
       "You have found a blade. \n Would you like to grab it? "+
       " Type \"0\" : \"Yes\" " +
@@ -138,19 +140,19 @@ public class Field extends Scene {
     choice = playerChoice();
 
     if (choice.equals("0")) {
-      sneeze();
+      sneeze(in, player);
     } else if (choice.equals("1")) {
       System.out.println("Which direction would you like to go?");
       choice = playerChoice();
       if (choice.equals("WEST")) {
         System.out.println("West chosen");
-        getSceneToTheWest().enter();
+        getSceneToTheWest().enter(in, player);
       } else if (choice.equals("EAST")) {
-        getSceneToTheEast().enter();
+        getSceneToTheEast().enter(in, player);
       } else if (choice.equals("NORTH")) {
-        getSceneToTheNorth().enter();
+        getSceneToTheNorth().enter(in, player);
       } else if (choice.equals("SOUTH")) {
-        getSceneToTheSouth().enter();
+        getSceneToTheSouth().enter(in, player);
       }
     }
   }

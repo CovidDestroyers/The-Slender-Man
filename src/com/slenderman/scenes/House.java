@@ -31,9 +31,9 @@ public class House extends Scene {
 
   }
 
-  public House(Scene sceneToTheNorth, Scene sceneToTheSouth,
-               Scene sceneToTheEast, Scene sceneToTheWest,
-               boolean useDefaultItems) {
+
+  public House(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast,
+    Scene sceneToTheWest, boolean useDefaultItems) {
     this(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
     if (useDefaultItems) {
@@ -48,7 +48,21 @@ public class House extends Scene {
    */
 
   @Override
-  public void enter() {
+  public void enter(Scanner in, Player player) throws InterruptedException {
+    try {
+      introToHouse();
+      Thread.sleep(1000);
+
+      houseInView();
+      Thread.sleep(1000);
+      inHouse();
+      Thread.sleep(1000);
+      atTable();
+      openingLockbox(in, player);
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
   public void introToHouse() throws InterruptedException {
@@ -75,14 +89,6 @@ public class House extends Scene {
 
       Thread.sleep(1000);
       System.out.println("Panic sets in.");
-      Thread.sleep(1000);
-
-      houseInView();
-      Thread.sleep(1000);
-      inHouse();
-      Thread.sleep(1000);
-      atTable();
-      Thread.sleep(1000);
 
 
     }
@@ -116,14 +122,19 @@ public class House extends Scene {
               + "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
       Thread.sleep(500);
       System.out.println("There’s a light in the window!");
+
       Thread.sleep(500);
       System.out.println("Legs launch you forward towards the grim house");
+
       Thread.sleep(400);
       System.out.println("You are in the yeard");
+
       Thread.sleep(300);
       System.out.println("Door is within reach.");
+
       Thread.sleep(200);
       System.out.println("You drive your left shoulder hard into the door");
+
       Thread.sleep(100);
       System.out.println("It gives too easily.");
     }
@@ -224,11 +235,36 @@ public class House extends Scene {
     }
   }
 
-  public void openingLockbox(Scanner in) throws InterruptedException {
-    String userChoice;
+  public void openingLockbox(Scanner in, Player player) throws InterruptedException {
+    String playerChoice = "";
+
     try {
       System.out.println("You notice the box is locked.");
-      System.out.println("What do you do?");
+
+      while (!playerChoice.equals("4")) {
+        lockBoxChoices();
+
+        playerChoice = in.nextLine().toLowerCase().trim();
+
+        if (playerChoice.equals("1")) {
+          System.out.println("Hmmmm... that did nothing.");
+          System.out.println("Try again...");
+          break;
+        }
+
+        if (playerChoice.equals("2")) {
+          System.out.println("Did that make you feel big?");
+          Thread.sleep(300);
+          System.out.println("Cause nothing happened...");
+          System.out.println("Try again.");
+          break;
+        }
+
+        if (playerChoice.equals("3")) {
+          unlockLockBox(player);
+          break;
+        }
+      }
 
     }
     catch (Exception e) {
@@ -245,9 +281,12 @@ public class House extends Scene {
       System.out.println("You have opened the lockbox! You are awarded a " +
                          "lighter. May it light your path in times of " +
                          "darkness.\n");
+    } else {
+      System.out.println("You need a key to open this box");
     }
-
   }
+
+
   // TODO: search through player's inventory and see if they have the correct
   //  item
   public Boolean playerHasKey(Player player) {
@@ -262,6 +301,14 @@ public class House extends Scene {
     }
 
     return hasItem;
+  }
+
+  public void lockBoxChoices() {
+    System.out.println("What do you do?");
+    System.out.println(" -Type \"1\" : Shake it." +
+                       "\n -Type \"2\" : Kick it." +
+                       "\n -Type \"3\" : Try to open it." +
+                       "\n -Type \"4\" : Leave the table.");
   }
 
   /*
