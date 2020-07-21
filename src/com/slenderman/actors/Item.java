@@ -10,7 +10,6 @@ public class Item {
   private String itemRevealed = "none";
 
   private String asciiArt = "none";
-  private Boolean inPlayerInventory = false;
   private String currentScene;
 
 
@@ -81,10 +80,6 @@ public class Item {
 
   // SET METHODS
 
-  public void setInPlayerInventory(Boolean inPlayerInventory) {
-    this.inPlayerInventory = inPlayerInventory;
-  }
-
   public void setHomeScene(String homeScene) {
     this.homeScene = homeScene;
   }
@@ -151,10 +146,6 @@ public class Item {
     return otherItemNeeded;
   }
 
-  public Boolean isInPlayerInventory() {
-    return inPlayerInventory;
-  }
-
   public String getAsciiArt() {
     return asciiArt;
   }
@@ -171,6 +162,6 @@ public class Item {
            ", otherItemNeeded=" + otherItemNeeded + ", otherItem='" +
            otherItem + '\'' + ", whatDoesOtherItemDo='" + whatDoesOtherItemDo +
            '\'' + ", itemRevealed='" + itemRevealed + '\'' + ", asciiArt='" +
-           asciiArt + '\'' + ", inPlayerInventory=" + inPlayerInventory + '}';
+           asciiArt + " }";
   }
 }
