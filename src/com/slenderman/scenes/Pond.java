@@ -79,34 +79,39 @@ public class Pond extends Scene{
         inFrontOfPondChoice_UseItems();
       }
       else if(choice.equals("3")){
+        // Hand over to Game start
+        System.out.println("\nWhich direction would you like to go?");
+        System.out.println("You see a Cave to your WEST, a Outhouse to your NORTH");
+
+
         // Go to different Scenes
-        if (!isFogClear) {
-          System.out.println("\nWhich direction would you like to go to? " +
-            "\n- Type \"N\": North" +
-            "\n- Type \"W\": West");
-        }
-        else{
-          System.out.println("\nWhich direction would you like to go to? " +
-            "\n- Type \"N\": North" +
-            "\n- Type \"W\": West" +
-            "\n- Type \"E\": East");
-        }
-        String choiceDirection = goToDifferentScene();
-        if (choiceDirection.equals("E")){
-          if (!isFogClear){
-              System.out.println("You cannot go to the direction");
-              inFrontOfPondChoice();
-          }
-          else{
-              getSceneToTheEast().enter();
-          }
-        }
-        else if (choiceDirection.equals("W")){
-            getSceneToTheWest().enter();
-        }
-        else if (choiceDirection.equals("N")){
-            getSceneToTheNorth().enter();
-        }
+//        if (!isFogClear) {
+//          System.out.println("\nWhich direction would you like to go to? " +
+//            "\n- Type \"N\": North" +
+//            "\n- Type \"W\": West");
+//        }
+//        else{
+//          System.out.println("\nWhich direction would you like to go to? " +
+//            "\n- Type \"N\": North" +
+//            "\n- Type \"W\": West" +
+//            "\n- Type \"E\": East");
+//        }
+//        String choiceDirection = goToDifferentScene();
+//        if (choiceDirection.equals("E")){
+//          if (!isFogClear){
+//              System.out.println("You cannot go to the direction");
+//              inFrontOfPondChoice();
+//          }
+//          else{
+//              getSceneToTheEast().enter();
+//          }
+//        }
+//        else if (choiceDirection.equals("W")){
+//            getSceneToTheWest().enter();
+//        }
+//        else if (choiceDirection.equals("N")){
+//            getSceneToTheNorth().enter();
+//        }
       }
       else{
         inFrontOfPondChoice();
@@ -380,9 +385,11 @@ public class Pond extends Scene{
           System.out.println("You stepped backward. The lights seem to be crawling along the trunk.");
           System.out.println("You started running, and the millions of lights also started chasing after you.");
           System.out.println("You got to the boat");
-          System.out.println("\nYou decided to visit the field across the pond");
+          //System.out.println("\nYou decided to visit the field across the pond");
           //DONE write a code for change scene
-          getSceneToTheEast().enter();
+          //getSceneToTheEast().enter();
+          System.out.println("\nWhich direction would you like to go?");
+          System.out.println("You see a Cave to your WEST, a Outhouse to your NORTH and a Field to your EAST");
         }
       }
       else{

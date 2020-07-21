@@ -48,6 +48,9 @@ public class Cave extends Scene {
       else if(choice.equals("1")) {
         walkAroundInFrontOfCave();
       }
+      else{
+        inFrontOfCave();
+      }
     }
 
     private void stepIntoTheCave() throws InterruptedException {
@@ -77,16 +80,11 @@ public class Cave extends Scene {
         }
         else if(choice.equals("1")){
             inFrontOfCave();
-
         }
         else{
-          // To go to different scenes
-          if (goToDifferentScene().equals(scenesAround.get("WEST"))){
-            getSceneToTheWest().enter();
-          }
-          else if (goToDifferentScene().equals(scenesAround.get("NORTH"))) {
-            getSceneToTheNorth().enter();
-          }
+          // handover to Game start
+          System.out.println("Which direction would you like to go?");
+          System.out.println("You see a Shed to your WEST and a Hut/Car to your NORTH");
         }
       }
 
@@ -157,6 +155,8 @@ public class Cave extends Scene {
         if (choice.equals("Y")){
             //System.out.println("You take a boat out and explore the POND");
             //TODO change to scene POND
+          System.out.println("Which direction would you like to go?");
+          System.out.println("You see a Pond to your EAST");
         }
         else{
             exploreCaveChoice();
@@ -262,7 +262,8 @@ public class Cave extends Scene {
             case "23": System.out.println("You found a code \"354\""); break;
             case "35": System.out.println("You found a code \"624\""); break;
             default:
-                System.out.println("The page you typed does not have a combination");
+              System.out.println("The page you typed does not have a combination");
+              exploreCave_UnlockCodeByBookFlip();
         }
 
     }
