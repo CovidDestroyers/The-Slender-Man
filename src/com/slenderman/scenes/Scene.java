@@ -30,8 +30,9 @@ public abstract class Scene {
   protected Scene sceneToTheWest;
 
   protected String description;
+  protected String sceneName;
 
-  protected ArrayList<String> itemsInScene;
+  protected ArrayList<Item> itemsInScene;
 
 
   /*
@@ -39,6 +40,8 @@ public abstract class Scene {
    * ============= Constructors ==================
    * =============================================
    */
+  public Scene(){};
+
   public Scene(
     Scene sceneToTheNorth, Scene sceneToTheSouth,
     Scene sceneToTheEast, Scene sceneToTheWest) {
@@ -48,21 +51,28 @@ public abstract class Scene {
     this.sceneToTheWest = sceneToTheWest;
   }
 
-  public Scene(){};
-
   /*
    * =============================================
    * =========== Business Methods ================
    * =============================================
    */
-  /**
-   * method enter that is used in every class and overwritten
-   * Entry point
-   */
-  // public abstract void enter() throws InterruptedException;
 
+  /**
+   *  The entry point into all scene classes.
+   *  The Game class will call `Scene.enter(in, player);` to start each
+   *  Scene's story
+   *
+   * @param in
+   * @param player
+   * @throws InterruptedException
+   */
   public abstract void enter(Scanner in, Player player) throws InterruptedException;
 
+  /**
+   *
+   * @param in
+   * @return
+   */
   public String playerChoice(Scanner in) {
     String result = "";
 
@@ -71,14 +81,16 @@ public abstract class Scene {
   }
 
 
-  // TODO: write a method that adds only 1 item to itemsInScene
-
+  /**
+   *
+   * @param direction
+   * @return
+   */
   public Scene changeScene(String direction) {
     Scene nextScene = null;
 
     // if(direction.equals("north")) {
     if("north".equals(direction)) {   // 'way to deal with null pointer', 'mitigate completely by using enum'
-
       nextScene = sceneToTheNorth;
 
     } else if ("east".equals(direction)) {
@@ -101,15 +113,26 @@ public abstract class Scene {
     return nextScene;
   }
 
+
+  /**
+   *
+   * @param otherScene
+   */
   public void connectEast(Scene otherScene){
     sceneToTheEast = otherScene;
     otherScene.sceneToTheWest = this;
   };
 
+
+  /**
+   *
+   * @param otherScene
+   */
   public void connectSouth(Scene otherScene){
     sceneToTheSouth = otherScene;
     otherScene.sceneToTheNorth = this;
   };
+
 
   /**
    *  Searches Player's inventory for an Item based on the Item's name
@@ -117,13 +140,13 @@ public abstract class Scene {
    * @param itemName -> string representation of the Item's name
    * @return boolean
    */
-  // TODO: Needs to be tested
   public Boolean playerHasItem(Player player, String itemName) {
     Collection<Item> playerInventory = player.getInventory();
 
     return playerInventory.stream()
              .anyMatch(item -> item.getItemName().equals(itemName));
   }
+
 
   /*
    * =============================================
@@ -133,7 +156,11 @@ public abstract class Scene {
 
   // SET METHODS
 
-  public void setItemsInScene(ArrayList<String> itemsInScene) {
+  public void setSceneName(String sceneName) {
+    this.sceneName = sceneName;
+  }
+
+  public void setItemsInScene(ArrayList<Item> itemsInScene) {
     this.itemsInScene = itemsInScene;
   }
 
@@ -160,7 +187,12 @@ public abstract class Scene {
 
   // GET METHODS
 
-  public ArrayList<String> getItemsInScene() {
+  public String getSceneName() {
+    return sceneName;
+  }
+
+
+  public ArrayList<Item> getItemsInScene() {
     return itemsInScene;
   }
 

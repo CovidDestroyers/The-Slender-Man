@@ -43,33 +43,26 @@ public class Game {
     aPond = new Pond();
     aCave = new Cave();
     aOutHouse = new OutHouse();
+    aHouse = new House();
 
     aForest.connectSouth(aShed);
-    aForest.connectEast(aAbandonedCar);
+    aForest.connectEast(aHouse);
 
     aAbandonedCar.connectEast(aOutHouse);
-    aAbandonedCar.connectSouth(aCave);
+    aOutHouse.connectSouth(aPond);
+    aHouse.connectEast(aAbandonedCar);
+    aHouse.connectSouth(aCave);
 
     aShed.connectEast(aCave);
-
-    aOutHouse.connectSouth(aPond);
-
     aCave.connectEast(aPond);
-
     aPond.connectEast(aField);
-
-
-
     aField.connectEast(aTree);
-
-
   }
 
 
 
   public void start(Scanner in) throws InterruptedException {
-    //Introduction.playIntro();
-    new LoseGameTimer(1);
+    new LoseGameTimer(10);
 
     currentScene = aForest;
 
@@ -79,17 +72,18 @@ public class Game {
     String userText = "";
 
     while (!userText.equals("quit")) {
-      // while (Player.state.equals("alive")) {
-      //System.out.println("Give me something good:");
       userText = in.nextLine().toLowerCase().trim();
+
       if (userText.equals("quit")) {
         System.out.println("Goodbye!");
         break;
-      } else if (userText.startsWith("go ")) {
+      }
+      else if (userText.startsWith("go ")) {
         currentScene = currentScene.changeScene(userText.substring(3));
-        //System.out.println(currentScene.getDescription());
+
         currentScene.enter(in, Player);
-      } else {
+      }
+      else {
         System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
       }
 

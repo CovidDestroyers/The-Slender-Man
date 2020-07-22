@@ -14,6 +14,7 @@ public class Field extends Scene {
   //default constructor
   public Field(){
     setDescription("You have reached am empty field.");
+    setSceneName("field");
   }
 
 
@@ -25,6 +26,7 @@ public class Field extends Scene {
     //Add the pre existing items to the List
     itemsInScene.add("blade");
     setDescription("You have reached am empty field.");
+    setSceneName("field");
   }
 
 //  public void setItemsInScene(List<String> itemsInScene){};
@@ -35,7 +37,7 @@ public class Field extends Scene {
 
 
   public void enter(Scanner in, Player player) throws InterruptedException {
-
+    player.setCurrentSceneName(this.getSceneName());
 
     String choice;
     System.out.println("\nThere is a field in front of you. You see a flower.");

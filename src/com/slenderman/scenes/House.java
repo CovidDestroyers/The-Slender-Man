@@ -14,8 +14,8 @@ public class House extends Scene {
   private Item Lighter = new Item("lighter", "house", "light torch", "house",
     true, "lockbox", "holds lighter", "none");
 
-  private ArrayList<Item> defaultItems = new ArrayList<>(Arrays.asList(
-    Lockbox, Lighter));
+  // private ArrayList<Item> itemsInScene = new ArrayList<>(Arrays.asList(
+  //   Lockbox, Lighter));
 
 
 
@@ -25,20 +25,19 @@ public class House extends Scene {
    * =============================================
    */
 
+  public House() {
+    setItemsInScene(new ArrayList<Item>(Arrays.asList(
+      Lockbox, Lighter)));
+    setSceneName("house");
+  };
+
   public House(Scene sceneToTheNorth, Scene sceneToTheSouth,
-               Scene sceneToTheEast, Scene sceneToTheWest) {
+    Scene sceneToTheEast, Scene sceneToTheWest) {
+
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
-  }
-
-
-  public House(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast,
-    Scene sceneToTheWest, boolean useDefaultItems) {
-    this(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
-
-    if (useDefaultItems) {
-      setDefaultItems(defaultItems);
-    }
+    setItemsInScene(new ArrayList<Item>(Arrays.asList(
+      Lockbox, Lighter)));
   }
 
   /*
@@ -50,6 +49,7 @@ public class House extends Scene {
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
     try {
+      player.setCurrentSceneName(this.getSceneName());
       introToHouse();
       Thread.sleep(1000);
 
@@ -70,24 +70,24 @@ public class House extends Scene {
       System.out.println("You are walking towards the house, when your " +
                          "flashlight begins to flicker.\n");
       System.out.println("You hit it against your hand as all rational people do.");
-      Thread.sleep(3000);
+      Thread.sleep(2500);
       System.out.println("It goes black.");
-      Thread.sleep(1000);
+      Thread.sleep(2500);
       System.out.println("You see nothing.");
-      Thread.sleep(500);
+      Thread.sleep(2000);
       System.out.println("Your heart quickens.");
-      Thread.sleep(350);
+      Thread.sleep(1500);
       System.out.println("Sweat forms on your brow.");
-      Thread.sleep(250);
+      Thread.sleep(1250);
       System.out.println("Hands tremor.");
-      Thread.sleep(150);
-      System.out.println("What's that sound?!?!");
-      Thread.sleep(75);
-      System.out.println("Who's behind you?");
-      Thread.sleep(25);
-      System.out.println("ITS COMING");
-
       Thread.sleep(1000);
+      System.out.println("What's that sound?!?!");
+      Thread.sleep(1000);
+      System.out.println("Who's behind you?");
+      Thread.sleep(2000);
+      System.out.println(ANSI_RED+ "ITS COMING");
+
+      Thread.sleep(2000);
       System.out.println("Panic sets in.");
 
 
@@ -102,6 +102,7 @@ public class House extends Scene {
   public void houseInView() throws InterruptedException {
     try {
       System.out.println("House in full view: ");
+      Thread.sleep(1000);
       System.out.println(
           Scene.ANSI_GREEN
               + "\n"
@@ -120,22 +121,23 @@ public class House extends Scene {
               + " / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |\n"
               + "/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo\n"
               + "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
-      Thread.sleep(500);
+
+      Thread.sleep(1000);
       System.out.println("There’s a light in the window!");
 
-      Thread.sleep(500);
-      System.out.println("Legs launch you forward towards the grim house");
+      Thread.sleep(900);
+      System.out.println("Legs launch you towards the grim house");
 
-      Thread.sleep(400);
+      Thread.sleep(900);
       System.out.println("You are in the yeard");
 
-      Thread.sleep(300);
+      Thread.sleep(750);
       System.out.println("Door is within reach.");
 
-      Thread.sleep(200);
+      Thread.sleep(750);
       System.out.println("You drive your left shoulder hard into the door");
 
-      Thread.sleep(100);
+      Thread.sleep(900);
       System.out.println("It gives too easily.");
     }
     catch (InterruptedException e) {
@@ -148,12 +150,13 @@ public class House extends Scene {
   public void inHouse() throws InterruptedException {
     try {
       System.out.println("You’re in the house.");
-      Thread.sleep(500);
+      Thread.sleep(1000);
       System.out.println("Nothing greets you, but spiders and dust");
-      Thread.sleep(500);
+      Thread.sleep(1000);
       System.out.println(
           "You stand to brush the dust off your clothes, and notice a " +
           "bookshelf near the window to your left.");
+      Thread.sleep(1000);
       System.out.println(
           Scene.ANSI_GREEN
               + " _________________________________________________________\n"
@@ -195,6 +198,7 @@ public class House extends Scene {
   public void atTable() throws InterruptedException {
     try {
       System.out.println("You approach the table:");
+      Thread.sleep(750);
       System.out.println(
           Scene.ANSI_GREEN
               + "          _________________________________________________\n"
@@ -213,9 +217,10 @@ public class House extends Scene {
               + "  |  ||____________________________________|  | |'\n"
               + "  |  | |                                   |  | |\n"
               + "  |__|.'                                   |__|.'");
-            Thread.sleep(800);
+      Thread.sleep(800);
       System.out.println("You find a note underneath a locked box: ");
       System.out.println("");
+      Thread.sleep(800);
       System.out.println(
           ANSI_WHITE
               + "Will any one read these warnings? I’ve been here long " +
@@ -249,7 +254,6 @@ public class House extends Scene {
         if (playerChoice.equals("1")) {
           System.out.println("Hmmmm... that did nothing.");
           System.out.println("Try again...");
-          break;
         }
 
         if (playerChoice.equals("2")) {
@@ -257,12 +261,10 @@ public class House extends Scene {
           Thread.sleep(300);
           System.out.println("Cause nothing happened...");
           System.out.println("Try again.");
-          break;
         }
 
         if (playerChoice.equals("3")) {
           unlockLockBox(player);
-          break;
         }
       }
 
@@ -276,18 +278,29 @@ public class House extends Scene {
 
 
   public void unlockLockBox(Player player) {
-    if (playerHasKey(player)) {
+    if (playerHasItem(player, "key")) {
       System.out.println("You have opened the lockbox! You are awarded a " +
                          "lighter. May it light your path in times of " +
                          "darkness.\n");
-    } else {
+
+      player.addItemToInventory(Lighter);
+      System.out.println(player.getInventory());
+
+      // getItemsInScene.remove(Lighter);
+      getItemsInScene().remove(Lighter);
+      System.out.println(getItemsInScene());
+    }
+    else {
       System.out.println("You need a key to open this box");
     }
   }
 
 
-  // TODO: search through player's inventory and see if they have the correct
-  //  item
+  /**
+   *
+   * @param player
+   * @return
+   */
   public Boolean playerHasKey(Player player) {
     Collection<Item> playerInventory = player.getInventory();
 
@@ -301,6 +314,7 @@ public class House extends Scene {
 
     return hasItem;
   }
+
 
   public void lockBoxChoices() {
     System.out.println("What do you do?");
@@ -318,46 +332,40 @@ public class House extends Scene {
 
   // SET METHODS
 
-  public String getIntroduction() {
-    return introduction;
-  }
-
   public void setIntroduction(String introduction) {
     this.introduction = introduction;
-  }
-
-  public Item getLockbox() {
-    return Lockbox;
   }
 
   public void setLockbox(Item lockbox) {
     Lockbox = lockbox;
   }
 
-  public Item getLighter() {
-    return Lighter;
-  }
-
   public void setLighter(Item lighter) {
     Lighter = lighter;
   }
 
-  public ArrayList<Item> getDefaultItems() {
-    return defaultItems;
+  // GET METHODS
+  public Item getLighter() {
+    return Lighter;
   }
 
-  public void setDefaultItems(ArrayList<Item> defaultItems) {
-    this.defaultItems = defaultItems;
+  public Item getLockbox() {
+    return Lockbox;
   }
 
-
-
-  @Override
-  public String toString() {
-    return "House{" + "introduction='" + introduction + '\'' +
-           ", defaultItems=" + defaultItems + ", Lockbox=" + Lockbox +
-           ", Lighter=" + Lighter + "} " + super.toString();
+  public String getIntroduction() {
+    return introduction;
   }
 
 
+  @Override public String toString() {
+    return "House{" +
+           "introduction='" + introduction + '\'' +
+           ", Lockbox=" + Lockbox +
+           ", Lighter=" + Lighter +
+           ", itemsInScene=" + itemsInScene +
+           ", lockbox=" + getLockbox() +
+           ", lighter=" + getLighter() +
+           "} " + super.toString();
+  }
 }

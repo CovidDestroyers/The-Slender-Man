@@ -11,6 +11,8 @@ public class Player {
   private List<Item> inventory = new ArrayList<>();
   private Item Watch = new Item("watch", "forest", "timer");
 
+  private Item Key = new Item("key", "forest", "unlock lockbox");
+
 
   /*
    * =============================================
@@ -18,7 +20,7 @@ public class Player {
    * =============================================
    */
   public Player() {
-    addItemToInventory(Watch);
+    addItemToInventory(Watch, Key);
   }
 
   /*
