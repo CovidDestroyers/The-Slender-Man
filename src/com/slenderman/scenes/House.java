@@ -59,6 +59,7 @@ public class House extends Scene {
       Thread.sleep(1000);
       atTable();
       openingLockbox(in, player);
+      leaveHouse();
     }
     catch (InterruptedException e) {
       e.printStackTrace();
@@ -67,29 +68,38 @@ public class House extends Scene {
 
   public void introToHouse() throws InterruptedException {
     try {
-      System.out.println("You are walking towards the house, when your " +
-                         "flashlight begins to flicker.\n");
-      System.out.println("You hit it against your hand as all rational people do.");
-      Thread.sleep(2500);
+      System.out.println(ANSI_WHITE + "You are walking towards the house, " +
+                         "when your flashlight begins to flicker.\n");
+      Thread.sleep(1000);
+      System.out.println("You hit it hard against your hand as all rational " + "people do.");
+      Thread.sleep(2000);
+      System.out.println("");
       System.out.println("It goes black.");
-      Thread.sleep(2500);
+      Thread.sleep(2000);
+      System.out.println("");
       System.out.println("You see nothing.");
       Thread.sleep(2000);
-      System.out.println("Your heart quickens.");
+      System.out.println("");
+      System.out.println("Your heart beat quickens.");
       Thread.sleep(1500);
+      System.out.println("");
       System.out.println("Sweat forms on your brow.");
       Thread.sleep(1250);
+      System.out.println("");
       System.out.println("Hands tremor.");
       Thread.sleep(1000);
-      System.out.println("What's that sound?!?!");
+      System.out.println("");
+      System.out.println("WHAT'S THAT SOUND?!?!");
       Thread.sleep(1000);
-      System.out.println("Who's behind you?");
+      System.out.println("");
+      System.out.println("WHO'S BEHIND YOU?!?!");
+      Thread.sleep(1500);
+      System.out.println("");
+      System.out.println(ANSI_RED+ "HE'S WATCHING!");
+      System.out.println("");
       Thread.sleep(2000);
-      System.out.println(ANSI_RED+ "ITS COMING");
-
-      Thread.sleep(2000);
-      System.out.println("Panic sets in.");
-
+      System.out.println(ANSI_WHITE + "Panic sets in.");
+      System.out.println("");
 
     }
     catch (InterruptedException e) {
@@ -101,10 +111,10 @@ public class House extends Scene {
 
   public void houseInView() throws InterruptedException {
     try {
-      System.out.println("House in full view: ");
+      System.out.println(ANSI_WHITE + "House in full view: ");
       Thread.sleep(1000);
       System.out.println(
-          Scene.ANSI_GREEN
+          ANSI_GREEN
               + "\n"
               + "                                   /\\\n"
               + "                              /\\  //\\\\\n"
@@ -123,22 +133,23 @@ public class House extends Scene {
               + "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
 
       Thread.sleep(1000);
-      System.out.println("There’s a light in the window!");
+      System.out.println(ANSI_WHITE + "There’s a light in the window!\n");
 
-      Thread.sleep(900);
-      System.out.println("Legs launch you towards the grim house");
+      Thread.sleep(1000);
+      System.out.println("Legs launch you towards the grim house!\n");
 
-      Thread.sleep(900);
-      System.out.println("You are in the yeard");
+      Thread.sleep(1000);
+      System.out.println("You are in the yard!\n");
 
-      Thread.sleep(750);
-      System.out.println("Door is within reach.");
+      Thread.sleep(1000);
+      System.out.println("Almost there!\n");
 
-      Thread.sleep(750);
-      System.out.println("You drive your left shoulder hard into the door");
+      Thread.sleep(1500);
+      System.out.println("You drive your left shoulder hard into the door.\n");
 
-      Thread.sleep(900);
-      System.out.println("It gives too easily.");
+      Thread.sleep(1000);
+      System.out.println("It gives easily as you tumble into the now " +
+                         "dark house.\n");
     }
     catch (InterruptedException e) {
       System.out.println("Awe you broke it :(");
@@ -149,16 +160,15 @@ public class House extends Scene {
 
   public void inHouse() throws InterruptedException {
     try {
-      System.out.println("You’re in the house.");
       Thread.sleep(1000);
-      System.out.println("Nothing greets you, but spiders and dust");
+      System.out.println("Nothing greets you, but spiders and dust\n");
       Thread.sleep(1000);
       System.out.println(
           "You stand to brush the dust off your clothes, and notice a " +
-          "bookshelf near the window to your left.");
+          "bookshelf near the window to your left.\n");
       Thread.sleep(1000);
       System.out.println(
-          Scene.ANSI_GREEN
+          ANSI_GREEN
               + " _________________________________________________________\n"
               + "||-------------------------------------------------------||\n"
               + "||.--.    .-._                        .----.             ||\n"
@@ -184,9 +194,10 @@ public class House extends Scene {
               + "\n");
 
       Thread.sleep(1000);
-      System.out.println("There is a small kitchen, a small dining " +
-                         "table, and one chair to your right.");
-      System.out.println("No human has lived here for a long time. ");
+      System.out.println(ANSI_WHITE + "There is a small kitchen, a small " +
+                         "dining table, and one chair to your right.\n");
+      Thread.sleep(1000);
+      System.out.println("No human lives here.\n");
       Thread.sleep(1000);
 
     }
@@ -197,7 +208,7 @@ public class House extends Scene {
 
   public void atTable() throws InterruptedException {
     try {
-      System.out.println("You approach the table:");
+      System.out.println("You approach the table:\n");
       Thread.sleep(750);
       System.out.println(
           Scene.ANSI_GREEN
@@ -217,21 +228,29 @@ public class House extends Scene {
               + "  |  ||____________________________________|  | |'\n"
               + "  |  | |                                   |  | |\n"
               + "  |__|.'                                   |__|.'");
-      Thread.sleep(800);
-      System.out.println("You find a note underneath a locked box: ");
-      System.out.println("");
-      Thread.sleep(800);
+      Thread.sleep(1500);
+      System.out.println("You find a note underneath a locked box:\n");
+      Thread.sleep(1000);
       System.out.println(
           ANSI_WHITE
               + "Will any one read these warnings? I’ve been here long " +
-          "enough—alone, except for him—to lose all semblance of sanity. " +
+          "enough—alone, except for him—to lose all semblance of sanity.\n" +
           "Alas, these are the ramblings of a madman! But I must continue " +
           "lest others finds themselves trapped in this dreadful place—long " +
           "after I’ve gone I’m sure. Very well then, let us carry on. \n" +
           "To all unfortunate souls who finds themselves here, take heed to " +
-          "my words and read carefully. For this box guards an item that may " +
-          "be the key to your freedom: \n" + ANSI_GREEN
-              + "‘Give me a stroke and I just might come alive. The element I emit needs oxygen to survive. I have many uses. Forms. Even sizes too. With me fun and entertainment can ensue. I am often stolen and sometimes lost. Although this comes at almost no cost. Disposable I am. Dangerous I can be. I burn just as hot as your cup of tea. In darkness I can be a source of light. Wrongfully take me and there might be a fight.’");
+          "my words and read carefully.\n For this box guards an item that " +
+          "may be the key to your freedom:\n" + ANSI_GREEN +
+          "     ‘Give me a stroke and I just might come alive.\n" +
+          "      The element I emit needs oxygen to survive.\n" +
+          "      I have many uses. Forms. Even sizes too.\n" +
+          "      With me fun and entertainment can ensue.\n" +
+          "      I am often stolen and sometimes lost.\n" +
+          "      Although this comes at almost no cost.\n" +
+          "      Disposable I am. Dangerous I can be.\n" +
+          "      I burn just as hot as your cup of tea.\n" +
+          "      In darkness I can be a source of light.\n" +
+          "      Wrongfully take me and there might be a fight.’\n");
 
       Thread.sleep(1000);
     }
@@ -244,30 +263,32 @@ public class House extends Scene {
     String playerChoice = "";
 
     try {
-      System.out.println("You notice the box is locked.");
+      System.out.println(ANSI_WHITE + "You notice the box is locked.");
+      lockBoxChoices();
 
       while (!playerChoice.equals("4")) {
-        lockBoxChoices();
-
         playerChoice = in.nextLine().toLowerCase().trim();
 
         if (playerChoice.equals("1")) {
           System.out.println("Hmmmm... that did nothing.");
-          System.out.println("Try again...");
+          System.out.println("Try again.\n");
+          lockBoxChoices();
         }
 
         if (playerChoice.equals("2")) {
           System.out.println("Did that make you feel big?");
-          Thread.sleep(300);
+          Thread.sleep(1000);
           System.out.println("Cause nothing happened...");
-          System.out.println("Try again.");
+          System.out.println("Try again.\n");
+
+          lockBoxChoices();
         }
 
         if (playerChoice.equals("3")) {
           unlockLockBox(player);
+          break;
         }
       }
-
     }
     catch (Exception e) {
       e.printStackTrace();
@@ -275,13 +296,22 @@ public class House extends Scene {
 
   }
 
+  public void leaveHouse() {
+    System.out.println(ANSI_WHITE + "You turn around and step out of the " + "House.");
+    System.out.println("");
+    System.out.println("You see an Abandoned Car to the East and a Cave to " + "the South.");
+    System.out.println("Which direction would you like to go?");
+
+    System.out.println(ANSI_WHITE + "-Type \"go east\" or \"go south\".");
+  }
+
 
 
   public void unlockLockBox(Player player) {
     if (playerHasItem(player, "key")) {
-      System.out.println("You have opened the lockbox! You are awarded a " +
-                         "lighter. May it light your path in times of " +
-                         "darkness.\n");
+      System.out.println(ANSI_BLUE + "You have opened the lockbox! You are " +
+                         "awarded a lighter.\nMay it light your path" +
+                         " in times of darkness.\n");
 
       player.addItemToInventory(Lighter);
       System.out.println(player.getInventory());
@@ -291,7 +321,7 @@ public class House extends Scene {
       System.out.println(getItemsInScene());
     }
     else {
-      System.out.println("You need a key to open this box");
+      System.out.println(ANSI_RED + "You need a key to open this box");
     }
   }
 
@@ -317,7 +347,7 @@ public class House extends Scene {
 
 
   public void lockBoxChoices() {
-    System.out.println("What do you do?");
+    System.out.println(ANSI_WHITE + "What do you do?");
     System.out.println(" -Type \"1\" : Shake it." +
                        "\n -Type \"2\" : Kick it." +
                        "\n -Type \"3\" : Try to open it." +
