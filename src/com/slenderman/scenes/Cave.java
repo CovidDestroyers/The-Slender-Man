@@ -18,6 +18,7 @@ public class Cave extends Scene {
 
     private HashMap<String, String> scenesAround = new HashMap<>();
     private List<String> localItems = new ArrayList<>();
+    private Scanner choice; // Added this variable to store
 
     //default constructor
     public Cave(){}
@@ -33,6 +34,7 @@ public class Cave extends Scene {
 
     @Override
     public void enter(Scanner in, Player player) throws InterruptedException {
+      choice = in;
       inFrontOfCave();
     }
 
@@ -322,7 +324,7 @@ public class Cave extends Scene {
     private String playerChoice(){
       String result = null;
 
-      Scanner choice = new Scanner(System.in);
+      //Scanner choice = new Scanner(System.in);
       result = choice.nextLine();
 
       return result;
