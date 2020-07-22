@@ -76,17 +76,18 @@ public abstract class Scene {
   public Scene changeScene(String direction) {
     Scene nextScene = null;
 
-    if(direction.equals("north")) { // if("north".equals(direction))   'way to deal with null pointer', 'mitigate completely by using enum'
+    // if(direction.equals("north")) {
+    if("north".equals(direction)) {   // 'way to deal with null pointer', 'mitigate completely by using enum'
 
       nextScene = sceneToTheNorth;
 
-    } else if (direction.equals("east")) {
+    } else if ("east".equals(direction)) {
       nextScene = sceneToTheEast;
 
-    } else if (direction.equals("south")) {
+    } else if ("south".equals(direction)) {
       nextScene = sceneToTheSouth;
 
-    } else if (direction.equals("west")) {
+    } else if ("west".equals(direction)) {
       nextScene = sceneToTheWest;
 
     } else {
