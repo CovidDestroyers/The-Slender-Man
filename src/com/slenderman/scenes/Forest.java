@@ -8,6 +8,7 @@ public class Forest extends Scene{
   //default constructor
   public Forest(){
     //setDescription("You are in a dark forest, you see an Abandoned Car to the EAST and a Shed to the SOUTH");
+    setSceneName("forest");
   }
 
   public Forest(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
@@ -20,6 +21,8 @@ public class Forest extends Scene{
 
   @Override
   public void enter(Scanner in, Player player) {
+    player.setCurrentSceneName(this.getSceneName());
+
     System.out.println(Scene.ANSI_GREEN +
       "               ,@@@@@@@,\n" +
       "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n" +
@@ -34,7 +37,7 @@ public class Forest extends Scene{
       "\n" +
       "------------------------------------------------\n");
     System.out.println(Scene.ANSI_WHITE + "You are in a dark Forest. You see an Abandoned Car to the EAST and a Shed to the SOUTH.");
-    System.out.println(Scene.ANSI_WHITE + "You see a sign that reads: " + Scene.ANSI_GREEN + "'go south' " + Scene.ANSI_WHITE + "to go to the Shed, and " + Scene.ANSI_GREEN + "'go east' " + Scene.ANSI_WHITE + "to go to the Abandoned Car.");
+    System.out.println(Scene.ANSI_WHITE + "You see a sign that reads: " + Scene.ANSI_GREEN + "'go south' " + Scene.ANSI_WHITE + "to go to the Shed, and " + Scene.ANSI_GREEN + "'go east' " + Scene.ANSI_WHITE + "to go to the House.");
 
   }
 

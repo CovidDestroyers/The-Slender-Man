@@ -7,13 +7,17 @@ import java.util.Scanner;
 
 public class Shed extends Scene{
   //default constructor
-  public Shed(){}
+  public Shed(){
+    setSceneName("shed");
+  }
   public Shed(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
+    setSceneName("shed");
   }
 
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
+    player.setCurrentSceneName(this.getSceneName());
     inFrontOfShed();
   }
 

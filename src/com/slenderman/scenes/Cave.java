@@ -21,7 +21,9 @@ public class Cave extends Scene {
     private Scanner choice; // Added this variable to store
 
     //default constructor
-    public Cave(){}
+    public Cave(){
+      setSceneName("cave");
+    }
 
     public Cave(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest){
       super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
@@ -30,10 +32,13 @@ public class Cave extends Scene {
       this.scenesAround.put("WEST", "SHED");
       this.scenesAround.put("EAST", "POND");
       this.scenesAround.put("NORTH", "HUT_CAR");
+
+      setSceneName("cave");
     }
 
     @Override
     public void enter(Scanner in, Player player) throws InterruptedException {
+      player.setCurrentSceneName(this.getSceneName());
       choice = in;
       inFrontOfCave();
     }

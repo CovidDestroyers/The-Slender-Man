@@ -157,11 +157,16 @@ public class Item {
 
   @Override
   public String toString() {
-    return "Item{" + "itemName='" + itemName + '\'' + ", homeScene='" +
-           homeScene + '\'' + ", purpose='" + purpose + '\'' +
-           ", otherItemNeeded=" + otherItemNeeded + ", otherItem='" +
-           otherItem + '\'' + ", whatDoesOtherItemDo='" + whatDoesOtherItemDo +
-           '\'' + ", itemRevealed='" + itemRevealed + '\'' + ", asciiArt='" +
-           asciiArt + " }";
+    return "Item{" +
+           "itemName='" + itemName + '\'' +
+           ", homeScene='" + homeScene + '\'' +
+           ", purpose='" + purpose + '\'' +
+           ", otherItemNeeded=" + otherItemNeeded +
+           ", otherItem='" + otherItem + '\'' +
+           ", whatDoesOtherItemDo='" + whatDoesOtherItemDo + '\'' +
+           ", itemRevealed='" + itemRevealed + '\'' +
+           ", asciiArt='" + asciiArt + '\'' +
+           ", currentScene='" + currentScene + '\'' +
+           '}';
   }
 }

@@ -26,7 +26,9 @@ public class Pond extends Scene{
     private List<String> localItems = new ArrayList<>();
 
     //default constructor
-    public Pond(){}
+    public Pond(){
+      setSceneName("pond");
+    }
 
     public Pond(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
       super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
@@ -35,11 +37,13 @@ public class Pond extends Scene{
       this.scenesAround.put("WEST", "FIELD");
       this.scenesAround.put("EAST", "CAVE");
       this.scenesAround.put("NORTH", "OUT_HOUSE");
+      setSceneName("pond");
     }
 
     @Override
     public void enter(Scanner in, Player player) throws InterruptedException {
       //System.out.println("Pond is working");
+      player.setCurrentSceneName(this.getSceneName());
       inFrontOfPond();
     }
 
