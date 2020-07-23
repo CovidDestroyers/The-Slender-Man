@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
-//from   ww  w .jav  a2  s . c  o m
+
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 

@@ -22,14 +22,14 @@ import javax.swing.JTextArea;
 public class Starter extends JFrame {
     // We can use give args a filename and read a file in to replace the
     // console input with a text file for testing.
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException { // change input to come from a file
       Console console = new Console();
       console.init();
       Starter launcher = new Starter();
       launcher.setVisible(true);
       console.getFrame().setLocation(
         launcher.getX() + launcher.getWidth() + launcher.getInsets().right,
-        launcher.getY());// change input to come from a file
+        launcher.getY());
 
       Game game = new Game();
       Scanner scanMe = new Scanner(System.in);
