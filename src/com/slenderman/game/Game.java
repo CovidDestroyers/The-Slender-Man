@@ -3,8 +3,9 @@ package com.slenderman.game;
 import com.slenderman.scenes.*;
 import com.slenderman.actors.Player;
 import com.slenderman.tools.LoseGameTimer;
-
 import java.util.Scanner;
+
+
 
 /**
  * Game is the class where we will build out the logic for the actual game.
@@ -15,7 +16,8 @@ import java.util.Scanner;
  * actually start the game
  *
  */
-public class Game {
+public final class Game {
+
 
   private Scene currentScene;
   private Scene aAbandonedCar;
