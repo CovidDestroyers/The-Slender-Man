@@ -1,10 +1,11 @@
 package com.slenderman.actors;
 
 import com.slenderman.scenes.Scene;
+import com.slenderman.scenes.Shed;
 
 import java.util.*;
 
-public class Player {
+public class Player extends Shed {
   private String state = "alive";
   private String currentSceneName = "forest";
 
