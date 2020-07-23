@@ -22,7 +22,7 @@ public class Pond extends Scene{
     private boolean islandTreeLookDown = false; // On island, if the player looked down the tree
     private boolean isFogClear = false; // On island, if the fog is cleared
 
-    private Map<String, String> scenesAround = new HashMap<>();
+    // private Map<String, String> scenesAround = new HashMap<>();
     private List<String> localItems = new ArrayList<>();
 
     //default constructor
@@ -33,10 +33,6 @@ public class Pond extends Scene{
     public Pond(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
       super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
-      // Temporary
-      this.scenesAround.put("WEST", "FIELD");
-      this.scenesAround.put("EAST", "CAVE");
-      this.scenesAround.put("NORTH", "OUT_HOUSE");
       setSceneName("pond");
     }
 
@@ -44,17 +40,17 @@ public class Pond extends Scene{
     public void enter(Scanner in, Player player) throws InterruptedException {
       //System.out.println("Pond is working");
       player.setCurrentSceneName(this.getSceneName());
-      inFrontOfPond();
+      inFrontOfPond(in);
     }
 
-    private void inFrontOfPond() throws InterruptedException {
+    private void inFrontOfPond(Scanner in) throws InterruptedException {
       System.out.println("\nYou are standing in front of the pond.");
       System.out.println("It is so foggy that you can barely see what's on the other side of the pond");
       System.out.println("You see a cave in the west side and an outhouse in the north direction");
-      inFrontOfPondChoice();
+      inFrontOfPondChoice(in);
     }
 
-    private void inFrontOfPondChoice() throws InterruptedException {
+    private void inFrontOfPondChoice(Scanner in) throws InterruptedException {
 
       System.out.println("\nWhat would you like to do?");
 
@@ -69,20 +65,20 @@ public class Pond extends Scene{
           "\n -Type \"2\" : Use items" +
           "\n -Type \"3\" : Go to a different scene");
       }
-      String choice = playerChoice();
+      String choice = playerChoice(in);
       if (choice.equals("0")){
         //Walk around
-        inFrontOfPondChoice_WalkAround();
+        inFrontOfPondChoice_WalkAround(in);
       }
       else if(choice.equals("1")){
         // Swim
         System.out.println("\nYou touched the water. It is freezing.");
         System.out.println("Also, you see ripples and something moving below the surface of the pond");
         System.out.println("You got scared. Decided not to swim");
-        inFrontOfPondChoice();
+        inFrontOfPondChoice(in);
       }
       else if(choice.equals("2") && (!isFogClear)){
-        inFrontOfPondChoice_UseItems();
+        inFrontOfPondChoice_UseItems(in);
       }
       else if(choice.equals("3")){
         // Hand over to Game start
@@ -120,17 +116,17 @@ public class Pond extends Scene{
 //        }
       }
       else{
-        inFrontOfPondChoice();
+        inFrontOfPondChoice(in);
       }
     }
 
-    private void inFrontOfPondChoice_UseItems() throws InterruptedException {
+    private void inFrontOfPondChoice_UseItems(Scanner in) throws InterruptedException {
 
       System.out.println("\nYou decided to use items");
       System.out.println("Would you like to list what you have?"+
         "\n- Type \"Y\" : Yes" +
         "\n- Type \"N\" : No");
-      String choice = playerChoice().toUpperCase();
+      String choice = playerChoice(in).toUpperCase();
       if (choice.equals("Y")){
 
         // Create choices
@@ -154,7 +150,7 @@ public class Pond extends Scene{
           buildChoices.toString();
           do {
             System.out.println("\nWould you like to use any of the items?" + buildChoices);
-            choice = playerChoice().toUpperCase();
+            choice = playerChoice(in).toUpperCase();
             if ((choice.equals("K")) && localItems.contains("RING_BOX_KEY")) {
               System.out.println("\nYou chose the key, but you are not sure how to use it");
             } else if ((choice.equals("G")) && localItems.contains("FOG_GLASSES")) {
@@ -163,7 +159,7 @@ public class Pond extends Scene{
                 "\n- Type \"0\" : wear the glasses and look up" +
                 "\n- Type \"1\" : wear the glasses and look down" +
                 "\n- Type \"2\" : wear the glasses and look straight");
-              choice = playerChoice().toUpperCase();
+              choice = playerChoice(in).toUpperCase();
               if (choice.equals("0")) {
                 System.out.println("\nYou do not see anything special through the glasses. You see stars in the sky");
               } else if (choice.equals("1")) {
@@ -180,7 +176,7 @@ public class Pond extends Scene{
               System.out.println("\nWould you like to start rowing?" +
                 "\n- Type \"Y\" : Yes" +
                 "\n- Type \"N\" : No");
-              choice = playerChoice().toUpperCase();
+              choice = playerChoice(in).toUpperCase();
               if (choice.equals("Y")) {
                 if (!wearingFogGlasses) {
                   System.out.println("\nYou started rowing, but you could not see anything because of the fog.");
@@ -189,13 +185,13 @@ public class Pond extends Scene{
                   System.out.println("\nBecause of the special glasses, even the fog is dense, " +
                     "\nyou can see through the fog and navigate the boat");
                   System.out.println("You decided to visit the small island in the middle of the pond");
-                  inFontOfIsland();
+                  inFontOfIsland(in);
                   break;
                 }
               }
             }
             else{
-              inFrontOfPondChoice();
+              inFrontOfPondChoice(in);
               break;
             }
           }while(true);
@@ -203,28 +199,28 @@ public class Pond extends Scene{
         }
         else{
           System.out.println("\nYou do not have anything you can use in this scene");
-          inFrontOfPondChoice();
+          inFrontOfPondChoice(in);
         }
       }
       else{
         System.out.println("\nIt is too dark to see what you have.");
-        inFrontOfPondChoice();
+        inFrontOfPondChoice(in);
       }
     }
 
-    public void inFrontOfPondChoice_WalkAround() throws InterruptedException {
+    public void inFrontOfPondChoice_WalkAround(Scanner in) throws InterruptedException {
       // Try to find a special glass which you can see though the the fog
       System.out.println("\nYou decided to walk around");
       System.out.println("Which direction would you like to go to?" +
         "\n- Type \"L\" : Left" +
         "\n- Type \"R\" : Right");
-      String choice = playerChoice().toUpperCase();
+      String choice = playerChoice(in).toUpperCase();
       if (choice.equals("L")){
         System.out.println("\nYou found a backpack");
         System.out.println("Would you like to investigate?" +
           "\n- Type \"Y\" : Yes" +
           "\n- Type \"N\" : No");
-        choice = playerChoice().toUpperCase();
+        choice = playerChoice(in).toUpperCase();
         if (choice.equals("Y")){
           if (countCheckBackPack == 0) {
             countCheckBackPack += 1;
@@ -237,7 +233,7 @@ public class Pond extends Scene{
               System.out.println("What would you like to do?" +
                 "\n- Type \"0\" : unwrap the object" +
                 "\n- Type \"1\" : put it back");
-              choice = playerChoice().toUpperCase();
+              choice = playerChoice(in).toUpperCase();
               if (choice.equals("0")){
                 System.out.println("\nYou slowly and carefully unwrapped the object");
                 System.out.println("You found a pair of glasses.");
@@ -260,27 +256,27 @@ public class Pond extends Scene{
           System.out.println("\nYou put it back where you found it");
         }
         System.out.println("You went back to where you were");
-        inFrontOfPondChoice();
+        inFrontOfPondChoice(in);
       }
       else if (choice.equals("R")){
-        inFrontOfPondChoice_WalkAround_Right();
+        inFrontOfPondChoice_WalkAround_Right(in);
       }
       else{
-        inFrontOfPondChoice_WalkAround();
+        inFrontOfPondChoice_WalkAround(in);
       }
     }
 
-    private void inFrontOfPondChoice_WalkAround_Right() throws InterruptedException {
+    private void inFrontOfPondChoice_WalkAround_Right(Scanner in) throws InterruptedException {
       System.out.println("\nWould you like to look up or down?" +
         "\n- Type \"0\" : Look up" +
         "\n- Type \"1\" : Look down");
-      String choice = playerChoice().toUpperCase();
+      String choice = playerChoice(in).toUpperCase();
       if (choice.equals("0")){
         System.out.println("\nYou see so many stars, but you are surrounded by darkness.");
         System.out.println("It is as if you were at the bottom of a deep cave and you see sunshine, " +
           "\nbut it is so far away that you cannot reach. Even you shout, nobody at the entrance will " +
           "\nrealize somebody is seeking for help from the bottom of the cave");
-        inFrontOfPondChoice_WalkAround_Right();
+        inFrontOfPondChoice_WalkAround_Right(in);
       }
       else{
         if (!localItems.contains("RING_BOX_KEY")){
@@ -289,27 +285,27 @@ public class Pond extends Scene{
           System.out.println("\nWould you like to investigate?" +
             "\n- Type \"Y\" : Yes" +
             "\n- Type \"N\" : No");
-          choice = playerChoice().toUpperCase();
+          choice = playerChoice(in).toUpperCase();
           if (choice.equals("Y")) {
             System.out.println("\nYou picked it up and opened the box");
             System.out.println("You found a key instead of a ring");
             System.out.println("\nWould you like to keep it?" +
               "\n- Type \"Y\" : Yes" +
               "\n- Type \"N\" : No");
-            choice = playerChoice().toUpperCase();
+            choice = playerChoice(in).toUpperCase();
             if(choice.equals("Y")) {
               System.out.println("\nYou now added the key to your collection");
               localItems.add("RING_BOX_KEY");
-              inFrontOfPondChoice_WalkAround_Right();
+              inFrontOfPondChoice_WalkAround_Right(in);
             }
             else{
               System.out.println("\nYou just decided to leave it as it is");
-              inFrontOfPondChoice_WalkAround_Right();
+              inFrontOfPondChoice_WalkAround_Right(in);
             }
           }
           else{
             System.out.println("\nYou just decided to leave it as it is");
-            inFrontOfPondChoice_WalkAround_Right();
+            inFrontOfPondChoice_WalkAround_Right(in);
           }
         }
         else if (!memoOnStones){
@@ -320,70 +316,76 @@ public class Pond extends Scene{
           System.out.println("\nAs soon as you read it, it burst into flames.");
           System.out.println("You were not sure what it had just happened.");
           System.out.println("You decided to go back\n");
-          inFrontOfPondChoice();
+          inFrontOfPondChoice(in);
         }
         else{
           System.out.println();
           System.out.println("\nYou just see rocks. You decided to go back");
-          inFrontOfPondChoice();
+          inFrontOfPondChoice(in);
         }
       }
     }
 
     /************** Island **************/
-    private void inFontOfIsland() throws InterruptedException {
+    private void inFontOfIsland(Scanner in) throws InterruptedException {
       System.out.println("\nYou rowed the boat for a while. Thanks to the special glasses, " +
         "\nyou know the direction and the distance to the island. The fog is so thick that without the glasses, " +
         "\nyou cannot even see your feet");
       System.out.println("You reached the island");
-      inFrontOfIsland_Question();
+      inFrontOfIsland_Question(in);
     }
-    private void inFrontOfIsland_Question() throws InterruptedException {
+
+
+    private void inFrontOfIsland_Question(Scanner in) throws InterruptedException {
       System.out.println("\nWhat would you like to do?" +
         "\n- Type \"0\" : stay in the boat." +
         "\n- Type \"1\" : go ashore");
-      String choice = playerChoice().toUpperCase();
+      String choice = playerChoice(in).toUpperCase();
       if (choice.equals("0")){
         System.out.println("\nYou decided to stay in the boat. What's next?");
         System.out.println("Time is ticking. You are not sure where you should go next.");
-        inFrontOfIsland_Question();
+        inFrontOfIsland_Question(in);
       }
       else{
         System.out.println("\nYou decided to go ashore.");
         System.out.println("You see a cross and a tree.");
-        onIsland();
+        onIsland(in);
       }
     }
-    private void onIsland() throws InterruptedException {
+
+
+    private void onIsland(Scanner in) throws InterruptedException {
       System.out.println("\nWhich one would you like to visit?" +
         "\n- Type \"0\" : Cross." +
         "\n- Type \"1\" : Tree");
-      String choice = playerChoice().toUpperCase();
+      String choice = playerChoice(in).toUpperCase();
       if (choice.equals("0")){
         System.out.println("\nYou walked around the cross");
         System.out.println("It must have been built a long time ago. Creepers grow along the cross");
         crossVisited = true;
-        onIsland();
+        onIsland(in);
       }
       else{
         if (!crossVisited) {
           System.out.println("\nYou walked around the tree. You have no clues about where you should go or what you should do");
-          onIsland();
+          onIsland(in);
         }
         else{
-          onIsland_lookUpDown();
+          onIsland_lookUpDown(in);
         }
       }
     }
-    private void onIsland_lookUpDown() throws InterruptedException {
+
+
+    private void onIsland_lookUpDown(Scanner in) throws InterruptedException {
       System.out.println("\nWould you like to look up or down?"+
         "\n- Type \"0\" : look up." +
         "\n- Type \"1\" : look down");
-      String choice = playerChoice().toUpperCase();
+      String choice = playerChoice(in).toUpperCase();
       if (choice.equals("0")){
         if (!islandTreeLookDown) {
           System.out.println("\nYou looked up. You see branches and leaves.");
-          onIsland_lookUpDown();
+          onIsland_lookUpDown(in);
         }
         else{
           System.out.println("\nYou looked up. You see small lights everywhere on the branches. You do not know what they are.");
@@ -406,49 +408,24 @@ public class Pond extends Scene{
           System.out.println("Suddenly, the dense fog over the pond started clearing out.");
           System.out.println("You see the field on the other side.");
           islandTreeLookDown = true;
-          onIsland_lookUpDown();
+          onIsland_lookUpDown(in);
         }
         else{
           System.out.println("\nYou see the keyhole with your key.");
-          onIsland_lookUpDown();
+          onIsland_lookUpDown(in);
         }
       }
     }
 
-    private String goToDifferentScene(){
 
-      boolean askAgain = true;
-      String result = null;
-      do {
-        String choice = playerChoice().toUpperCase();
-        switch (choice) {
-          case "N":
-            result = scenesAround.get("NORTH");
-            askAgain = false;
-            break;
-          case "W":
-            result = scenesAround.get("WEST");
-            askAgain = false;
-            break;
-          case "E":
-            result = scenesAround.get("EAST");
-            askAgain = false;
-            break;
-          default:
-            System.out.println(choice + " is invalid. Try again.");
-        }
-      }while(askAgain);
-      return result;
-    }
-
-    private String playerChoice(){
-      String result = null;
-
-      Scanner choice = new Scanner(System.in);
-      result = choice.nextLine();
-
-      return result;
-    }
+    // private String playerChoice(){
+    //   String result = null;
+    //
+    //   Scanner choice = new Scanner(System.in);
+    //   result = choice.nextLine();
+    //
+    //   return result;
+    // }
 
 
     /*** Testing purpose ***/
