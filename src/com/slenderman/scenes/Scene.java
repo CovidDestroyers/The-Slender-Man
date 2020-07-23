@@ -42,6 +42,7 @@ public abstract class Scene {
    */
   public Scene(){};
 
+  // TODO: See if setters will work instread of directly accessing the fields
   public Scene(
     Scene sceneToTheNorth, Scene sceneToTheSouth,
     Scene sceneToTheEast, Scene sceneToTheWest) {
@@ -68,15 +69,16 @@ public abstract class Scene {
    */
   public abstract void enter(Scanner in, Player player) throws InterruptedException;
 
+
   /**
    *
-   * @param in
-   * @return
+   * @param in -> Scanner object for console input
+   * @return String result of console input
    */
   public String playerChoice(Scanner in) {
     String result = "";
 
-    result = in.nextLine();
+    result = in.nextLine().toLowerCase().trim();
     return result;
   }
 
