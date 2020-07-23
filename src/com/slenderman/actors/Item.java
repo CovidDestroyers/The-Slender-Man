@@ -68,8 +68,7 @@ public class Item {
    */
 
   public void printAsciiArt() {
-    String asciiArt = getAsciiArt();
-    System.out.printf("%s", asciiArt);
+    System.out.printf("%s", getAsciiArt());
   }
 
   /*

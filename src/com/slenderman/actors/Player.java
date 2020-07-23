@@ -39,6 +39,7 @@ public class Player {
 
   public void dropItemFromInventory(Item item) {
     Item returnableItem;
+
     if (inventory.contains(item)) {
       item.setCurrentScene(this.currentSceneName);
 
@@ -48,7 +49,7 @@ public class Player {
       inventory.remove(indexOfItem);
 
       System.out.printf("You dropped a %s from your inventory.\n",
-        returnableItem.getItemName());
+                        returnableItem.getItemName());
     } else {
       System.out.println("It doesn't look like you have that item in your " +
                          "inventory.\n");
@@ -56,7 +57,7 @@ public class Player {
   }
 
   /**
-   * Changes the currentScene field for all items in inventory to Player's
+   * Changes the currentScene field for ALL items in inventory to Player's
    * current scene location
    */
   public void changeInvItemsLocation() {
@@ -64,7 +65,7 @@ public class Player {
   }
 
   /**
-   * Changes the currentScene field for all items in inventory to sceneName
+   * Changes the currentScene field for ALL items in inventory to sceneName
    * @param sceneName string representation of the scene i.e. "pond",
    *                  "forest", etc.
    */

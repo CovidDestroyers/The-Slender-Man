@@ -50,6 +50,8 @@ public class House extends Scene {
   public void enter(Scanner in, Player player) throws InterruptedException {
     try {
       player.setCurrentSceneName(this.getSceneName());
+      player.changeInvItemsLocation();
+
       introToHouse();
       Thread.sleep(1000);
 
@@ -71,7 +73,8 @@ public class House extends Scene {
       System.out.println(ANSI_WHITE + "You are walking towards the house, " +
                          "when your flashlight begins to flicker.\n");
       Thread.sleep(1000);
-      System.out.println("You hit it hard against your hand as all rational " + "people do.");
+      System.out.println("You hit it hard against your hand as all rational " +
+                         "people do.");
       Thread.sleep(2000);
       System.out.println("");
       System.out.println("It goes black.");
@@ -297,52 +300,33 @@ public class House extends Scene {
   }
 
   public void leaveHouse() {
-    System.out.println(ANSI_WHITE + "You turn around and step out of the " + "House.");
-    System.out.println("");
-    System.out.println("You see an Abandoned Car to the East and a Cave to " + "the South.");
+    System.out.println(ANSI_WHITE + "You turn around and step out of the " +
+                       "House.\n");
+    System.out.println("You see an Abandoned Car to the East and a Cave to " +
+                       "the South.\n");
     System.out.println("Which direction would you like to go?");
 
-    System.out.println(ANSI_WHITE + "-Type \"go east\" or \"go south\".");
+    System.out.println(ANSI_WHITE + "-Type" + ANSI_GREEN + "\"go east\"" +
+                       ANSI_WHITE + "or " + ANSI_GREEN + "\"go south\"" +
+                       ANSI_WHITE + ".");
   }
 
 
 
   public void unlockLockBox(Player player) {
     if (playerHasItem(player, "key")) {
-      System.out.println(ANSI_BLUE + "You have opened the lockbox! You are " +
-                         "awarded a lighter.\nMay it light your path" +
-                         " in times of darkness.\n");
 
       player.addItemToInventory(Lighter);
-      System.out.println(player.getInventory());
-
-      // getItemsInScene.remove(Lighter);
       getItemsInScene().remove(Lighter);
-      System.out.println(getItemsInScene());
+
+      System.out.println(ANSI_BLUE + "You have opened the lockbox! You are " +
+                         "awarded a lighter.\nMay it light your path in times" +
+                         " of darkness.\n");
     }
     else {
-      System.out.println(ANSI_RED + "You need a key to open this box");
+      System.out.println(ANSI_RED + "You need a key to open this box you half" +
+                         " wit!");
     }
-  }
-
-
-  /**
-   *
-   * @param player
-   * @return
-   */
-  public Boolean playerHasKey(Player player) {
-    Collection<Item> playerInventory = player.getInventory();
-
-    boolean hasItem = false;
-    for (Item item : playerInventory) {
-      if (item.getItemName().equals("key")) {
-        hasItem = true;
-        break;
-      }
-    }
-
-    return hasItem;
   }
 
 
