@@ -2,6 +2,7 @@ package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
 
+import java.text.MessageFormat;
 import java.util.*;
 
 /**
@@ -16,7 +17,21 @@ import java.util.*;
 
 public class Cave extends Scene {
 
-    private HashMap<String, String> scenesAround = new HashMap<>();
+    // For Resource Bundle //
+    final String PATH = "com.slenderman.scenes.files.";
+    ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+    ResourceBundle bundle = ResourceBundle.getBundle(PATH + "storyCave", Locale.US, rbc);
+    /////////////////////////
+
+    // Unit testing purpose //
+    private boolean _max_iteration_not_reached;
+    //////////////////////////
+
+    public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+    private boolean isPlayerWithTorch = false;
+    private boolean isPlayerWithLighter = false;
+    private boolean isPlayerWithBoat = false;
+
     private List<String> localItems = new ArrayList<>();
     private Scanner choice; // Added this variable to store
 
@@ -27,317 +42,271 @@ public class Cave extends Scene {
 
     public Cave(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest){
       super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
-
-      // Temporary
-      this.scenesAround.put("WEST", "SHED");
-      this.scenesAround.put("EAST", "POND");
-      this.scenesAround.put("NORTH", "HUT_CAR");
-
       setSceneName("cave");
     }
 
     @Override
     public void enter(Scanner in, Player player) throws InterruptedException {
-      player.setCurrentSceneName(this.getSceneName());
-      choice = in;
-      inFrontOfCave();
+        player.setCurrentSceneName(this.getSceneName());
+        choice = in;
+        inFrontOfCave();
     }
 
     private void inFrontOfCave() throws InterruptedException {
-      String choice;
-      System.out.println("\nThere is a cave in front of you.");
-      System.out.println("What would you like to do?");
-      System.out.println(" Type \"0\" : \"Go into the cave\" " +
-        "\n Type \"1\" : \"Walk around\"");
-
-      choice = playerChoice();
-      if (choice.equals("0")){
-        stepIntoTheCave();
-      }
-      else if(choice.equals("1")) {
-        walkAroundInFrontOfCave();
-      }
-      else{
-        inFrontOfCave();
-      }
+        displayStories("inFront");
+        String choice = playerChoice();
+        if (choice.equals("0")) {
+          stepIntoTheCave();
+        }
+        else{
+          walkAroundInFrontOfCave();
+        }
     }
 
     private void stepIntoTheCave() throws InterruptedException {
-      System.out.println("\nYou are stepping into the dark and chilly cave");
-      System.out.println("\"RUN RUN RUN!\" Something is attacking you!");
-      System.out.println("There are many bats suddenly coming out from the darkness");
-      System.out.println("You just ran out from the cave");
-      System.out.println("You look into the collection of items");
-      //TODO
-      // System accesses to the item and check if the player has "Lighter" and "Torch"
-      // System found "Lighter" and "Torch" in the player's collection, do a little quiz
-      // If the player pick "Lighter" and "Torch", the story can continue
-      System.out.println("//// Temporary ///// You can go into the cave");
-      exploreCave();
+        if (isPlayerWithBoat) {
+          System.out.println(textPainter(bundle.getString("stepIntoTheCave_withBoat")));
+          exploreCaveChoice();
+        }
+        else{
+          displayStories("stepIntoTheCave");
+
+          if (checkItems()) {
+            quizChoosingRightItems();
+          }
+          else{
+            System.out.println(textPainter(bundle.getString("stepIntoTheCave_notEnoughItem")));
+            inFrontOfCave();
+          }
+        }
+    }
+
+    //TODO access to the global item collection
+    private boolean checkItems(){
+        if (true) {
+          isPlayerWithTorch = true;
+        }
+        if (true){
+          isPlayerWithLighter = true;
+        }
+        return isPlayerWithTorch && isPlayerWithLighter;
+    }
+
+    private void quizChoosingRightItems() throws InterruptedException {
+        System.out.println(textPainter(bundle.getString("quizChoosingRightItems_intro")));
+        String input = playerChoice().toUpperCase();
+        String[] objectInput = input.split(" ");
+
+        if ((objectInput[0].equals("TORCH") && objectInput[1].equals("LIGHTER"))
+          || (objectInput[1].equals("TORCH") && objectInput[0].equals("LIGHTER"))) {
+          exploreCave();
+        }
+        else{
+          System.out.println(textPainter(bundle.getString("quizChoosingRightItems_incorrect")));
+          inFrontOfCave();
+        }
     }
 
     private void walkAroundInFrontOfCave() throws InterruptedException {
-
-        System.out.println("\nYou are walking in front of the cave");
-        System.out.println("You heard noises from the bushes");
-        System.out.println("- Type \"0\" : \"investigate\""
-                +"\n- Type \"1\" : \"go back to the front of the cave\""
-                +"\n- Type \"2\" : \"go to a different scene\"");
+        displayStories("walkAroundInFrontOfCave");
         String choice = playerChoice();
-        if (choice.equals("0")){
-            investigateTheBushes();
+        switch (choice) {
+          case "0": investigateTheBushes(); break;
+          case "1": inFrontOfCave(); break;
+          case "2": displayStories("walkAroundInFrontOfCave_option2"); break;
+          default: walkAroundInFrontOfCave();
         }
-        else if(choice.equals("1")){
-            inFrontOfCave();
-        }
-        else{
-          // handover to Game start
-          System.out.println("Which direction would you like to go?");
-          System.out.println("You see a Shed to your WEST and a Hut/Car to your NORTH");
-        }
-      }
+    }
 
     private void investigateTheBushes() throws InterruptedException {
-
         if (localItems.contains("NOTEBOOK")){
-            System.out.println("You did not find anything in the bushes");
+          System.out.println(textPainter(bundle.getString("investigateTheBushes_withNoteBook")));
         }
         else {
-            System.out.println("\nYou found a notebook. It must belong to somebody who was exploring this area.");
-            System.out.println("When you are flipping though the notebook, you caught something about the cave");
-            System.out.println("\n\"Cave.... you must have \"a lighter\" and \"a torch\".");
-            System.out.println("\nOk... a lighter and a torch.");
-            System.out.println("You are not sure why you need \"a lighter\" and \"a torch\".");
-            System.out.println("\nWould you like to keep this notebook?");
-            System.out.println("- Type \"Y\" : \"Yes\"");
-            System.out.println("- Type \"N\" : \"No\"");
-            String choice = playerChoice();
-            if (choice.equalsIgnoreCase("y")) {
-                System.out.println("Now, you got a notebook");
-                localItems.add("NOTEBOOK");
-            } else {
-                System.out.println("You put it back where you found it");
-            }
-
+          displayStories("investigateTheBushes");
+          String choice = playerChoice();
+          if (choice.equalsIgnoreCase("y")) {
+            System.out.println(textPainter(bundle.getString("investigateTheBushes_y")));
+            localItems.add("NOTEBOOK");
+          }
+          else {
+            System.out.println(textPainter(bundle.getString("investigateTheBushes_n")));
+          }
         }
-      System.out.println("\nYou are going back to the front of the cave");
-      inFrontOfCave();
-    }
-
-    private void exploreCave() throws InterruptedException {
-
-        System.out.println("You have the torch in one hand and the lighter in the other.");
-        System.out.println("Surprisingly, bats did not come and attack this time.");
-        System.out.println("You caught the smell of something burning.");
-        System.out.println("You found the leftover of bonfire. You suspect that somebody was here not too long ago.");
-        System.out.println("\nYou are looking around the cave.");
-        exploreCaveChoice();
-
-    }
-    private void exploreCaveChoice() throws InterruptedException {
-      System.out.println("- Type \"R\": to look right");
-      System.out.println("- Type \"L\": to look left");
-      System.out.println("- Type \"X\": to go back to the entrance of the cave.");
-      String choice = playerChoice().toUpperCase();
-      if (choice.equals("R")){
-        exploreCave_LookRight();
-      }
-      else if(choice.equals("L")){
-        exploreCave_LookLeft();
-      }
-      else{
+        System.out.println(textPainter(bundle.getString("investigateTheBushes_goBack")));
         inFrontOfCave();
-      }
     }
-    private void exploreCave_LookLeft() throws InterruptedException {
+    private void exploreCave() throws InterruptedException {
+        displayStories("exploreCave");
+        exploreCaveChoice();
+    }
 
-        System.out.println("When you look up, you see water dripping down from the ceiling");
-        System.out.println("The ceiling is so high that you cannot see the ceiling itself");
-        System.out.println("When you look down, you notice there is a puddle");
-        System.out.println("It looks like it is connected to the outside of the cave");
-        System.out.println("//////// TEMPORARY ////////");
-        // Check if the player has a boat, if he has, following option will be shown
-        System.out.println("Would you like to explore the POND connected to this puddle");
-        System.out.println("- Type \"Y\" : \"Yes\"");
-        System.out.println("- Type \"N\" : \"No\"");
+    private void exploreCaveChoice() throws InterruptedException {
+        displayStories("exploreCaveChoice");
         String choice = playerChoice().toUpperCase();
-        if (choice.equals("Y")){
-            //System.out.println("You take a boat out and explore the POND");
-            //TODO change to scene POND
-          System.out.println("Which direction would you like to go?");
-          System.out.println("You see a Pond to your EAST");
+        if (choice.equals("R")){
+          exploreCave_LookRight();
+        }
+        else if(choice.equals("L")){
+          exploreCave_LookLeft();
         }
         else{
-            exploreCaveChoice();
+          inFrontOfCave();
         }
+    }
 
+    /**
+     * Change Scene to Pond
+     * */
+    private void exploreCave_LookLeft() throws InterruptedException {
+        displayStories("exploreCave_LookLeft_intro");
+        if (isPlayerWithBoat){
+          displayStories("exploreCave_LookLeft_withBoat");
+          String choice = playerChoice().toUpperCase();
+          if (choice.equals("Y")) {
+            displayStories("exploreCave_LookLeft_withBoat_y");
+
+          }
+          else {
+            sendToExploreCaveChoice();
+          }
+        }
+        else{
+          sendToExploreCaveChoice();
+        }
+    }
+
+    private void sendToExploreCaveChoice() throws InterruptedException {
+        System.out.println(textPainter(bundle.getString("sendToExploreCaveChoice")));
+        exploreCaveChoice();
     }
 
     private void exploreCave_LookRight() throws InterruptedException {
-
-      //TODO code needs to be added here
-
-
-        // Story below is when the player do not have combination or boat -> only executed one time
-        System.out.println("You see the colony of bats.");
-        System.out.println("They are unbelievably quiet and they do not move at all as if they were stones.");
-        System.out.println("You noticed something. Even though the cave is so big, thousands of bats are hanging at one particular place.");
-        System.out.println("You feel suspicious.");
-        System.out.println("Would you like to investigate?");
-        System.out.println("- Type \"Y\": \"Yes\"");
-        System.out.println("- Type \"N\": \"No\"");
-        String choice = playerChoice().toUpperCase();
-        if (choice.equals("Y")){
-            exploreCave_UnlockCode();
+        if (isPlayerWithBoat){
+          System.out.println(textPainter(bundle.getString("exploreCave_LookRight_withBoat")));
+          exploreCaveChoice();
         }
-        else{
+        else {
+          displayStories("exploreCave_LookRight");
+          String choice = playerChoice().toUpperCase();
+          if (choice.equals("Y")) {
+            exploreCave_UnlockCode();
+          }
+          else {
             exploreCaveChoice();
+          }
         }
     }
     private void exploreCave_UnlockCode() throws InterruptedException {
-        System.out.println("\nWhen you approached the colony of bats, the bats flew away with high-pitch screams you had never heard before.");
-        System.out.println("You were so scared that you closed your eyes.");
-        System.out.println("When you opened your eyes, the bats were gone, but the screams were lingering in your ears.");
-        System.out.println("You see a small door on the wall of the cave where bats were");
-        System.out.println("You tried to open the door, but there is a lock. You need to know the combination.");
-        if (localItems.contains("NOTEBOOK")){
-            System.out.println("\nYou opened the notebook you found outside the cave.");
-            System.out.println("When you were flipping the pages, you remembered you saw some combinations of numbers");
-            exploreCave_UnlockCodeByBook();
+        displayStories("exploreCave_UnlockCode");
+        if (localItems.contains("NOTEBOOK")) {
+          displayStories("exploreCave_UnlockCode_withNoteBook");
         }
         exploreCave_TryCombination();
-
     }
 
     private void exploreCave_TryCombination() throws InterruptedException {
-      System.out.println("\nYou decided to try the combination.");
-      System.out.println("Type the combination.");
-      String result = playerChoice();
-      if (result.equals("624")){
-        exploreCave_TryCombination_Successful();
-        localItems.add("UNLOCK_BOAT_DOOR");
-      }
-      else{
-        System.out.println("\nThe combination you entered was incorrect. The lock was not unlocked.");
-        if (localItems.contains("NOTEBOOK")) {
-          exploreCave_UnlockCodeByBook();
-          exploreCave_TryCombination();
+        displayStories("exploreCave_TryCombination");
+        String result = playerChoice();
+        if (result.equals("624")){
+          localItems.add("UNLOCK_BOAT_DOOR");
+          exploreCave_TryCombination_Successful();
         }
         else{
+          System.out.println(textPainter(bundle.getString("exploreCave_TryCombination_incorrect")));
 
-            System.out.println("\nThe combination you entered was incorrect. The lock was not unlocked.");
-            if (localItems.contains("NOTEBOOK")) {
-                exploreCave_UnlockCodeByBook();
-                exploreCave_TryCombination();
+          if (localItems.contains("NOTEBOOK")) {
+            exploreCave_UnlockCodeByBook();
+          }
+          else{
+            displayStories("exploreCave_TryCombination_goBack");
+            String choice = playerChoice().toUpperCase();
+            if (choice.equals("Y")){
+              inFrontOfCave();
             }
             else{
-                System.out.println("Would you like to go back to the entrance of the cave and look for a clue?");
-                System.out.println("- Type \"Y\": \"Yes\"");
-                System.out.println("- Type \"N\": \"No\"");
-                String choice = playerChoice().toUpperCase();
-                if (choice.equals("Y")){
-                    inFrontOfCave();
-                }
-                else{
-                    exploreCave_TryCombination();
-                }
+              exploreCave_TryCombination();
             }
-
+          }
         }
-      }
     }
 
     private void exploreCave_UnlockCodeByBook() throws InterruptedException {
-      System.out.println("\nWould you like to flip the page?");
-      System.out.println("- Type \"Y\": \"Yes\"");
-      System.out.println("- Type \"N\": \"No\"");
-      String choice = playerChoice().toUpperCase();
-      if (choice.equals("Y")) {
-        exploreCave_UnlockCodeByBookFlip();
-      }
-      else{
+        displayStories("exploreCave_UnlockCodeByBook");
+        String choice = playerChoice().toUpperCase();
+        if (choice.equals("Y")) {
+          exploreCave_UnlockCodeByBookFlip();
+        }
         exploreCave_TryCombination();
-      }
     }
-    private void exploreCave_UnlockCodeByBookFlip(){
 
-        System.out.println("\nWhich page would you like to open\n");
-        System.out.println("- Type \"12\": \"Page 12\"");
-        System.out.println("- Type \"23\": \"Page 23\"");
-        System.out.println("- Type \"35\": \"Page 35\"");
+    private void exploreCave_UnlockCodeByBookFlip() throws InterruptedException {
+        displayStories("exploreCave_UnlockCodeByBookFlip");
         String pageChoice = playerChoice();
         switch (pageChoice){
-            case "12": System.out.println("You found a code \"143\""); break;
-            case "23": System.out.println("You found a code \"354\""); break;
-            case "35": System.out.println("You found a code \"624\""); break;
-            default:
-              System.out.println("The page you typed does not have a combination");
-              exploreCave_UnlockCodeByBookFlip();
+          case "12": System.out.println(textPainter(bundle.getString("exploreCave_UnlockCodeByBookFlip_pageOption1")));break;
+          case "23": System.out.println(textPainter(bundle.getString("exploreCave_UnlockCodeByBookFlip_pageOption2")));break;
+          case "35": System.out.println(textPainter(bundle.getString("exploreCave_UnlockCodeByBookFlip_pageOption3")));break;
+          default:
+            System.out.println(textPainter(bundle.getString("exploreCave_UnlockCodeByBookFlip_pageOptionX")));
+            break;
         }
-
     }
 
     private void exploreCave_TryCombination_Successful() throws InterruptedException {
-      System.out.println("\nYou were able to unlock the door.");
-      System.out.println("It looks like a storage.");
-      System.out.println("You found a boat inside.");
-      System.out.println("\nWould you like to add this to your collection?");
-      System.out.println("- Type \"Y\": \"Yes\"");
-      System.out.println("- Type \"N\": \"No\"");
-      String choice = playerChoice().toUpperCase();
-      if (choice.equals("Y")){
-        //TODO Program needs to be added
-        System.out.println("The boat was added to your collection");
-      }
-      exploreCaveChoice();
-    }
-
-    private String goToDifferentScene(){
-      System.out.print("\nYou see ");
-      System.out.print(scenesAround.get("NORTH") + " in North direction and ");
-      System.out.print(scenesAround.get("WEST") + " in West direction and ");
-      //System.out.println(scenesAround.get("EAST") + " in East direction.");
-      System.out.println("Which direction would you like to go to?");
-      System.out.println("- Type \"N\" : go to " + scenesAround.get("NORTH"));
-      System.out.println("- Type \"W\" : go to " + scenesAround.get("WEST"));
-      //System.out.println("- Type \"E\" : go to " + scenesAround.get("EAST"));
-
-      boolean askAgain = true;
-      String result = null;
-      do {
+        displayStories("exploreCave_TryCombination_Successful");
         String choice = playerChoice().toUpperCase();
-        switch (choice) {
-          case "N":
-            result = scenesAround.get("NORTH");
-            askAgain = false;
-            break;
-          case "W":
-            result = scenesAround.get("WEST");
-            askAgain = false;
-            break;
-          case "E":
-            result = scenesAround.get("EAST");
-            askAgain = false;
-            break;
-          default:
-            System.out.println(choice + " is invalid. Try again.");
+        if (choice.equals("Y")){
+          //DONE Program needs to be added
+          System.out.println(textPainter(bundle.getString("exploreCave_TryCombination_Successful_registerBoat")));
+          isPlayerWithBoat = true;
         }
-      }while(askAgain);
-      return result;
+        exploreCaveChoice();
     }
 
     private String playerChoice(){
-      String result = null;
-
-      //Scanner choice = new Scanner(System.in);
-      result = choice.nextLine();
-
-      return result;
+      return choice.nextLine();
     }
 
-    public Map<String, String> getScenesAround() {
-      return scenesAround;
+    /**
+     * Coloring the fonts
+     *
+     * {0} : Scene.ANSI_GREEN
+     * {1} : Scene.ANSI_BLUE
+     * {2} : Scene.ANSI_RED
+     * {3} : Scene.ANSI_BLACK
+     * {4} : Scene.ANSI_WHITE
+     * */
+    private String textPainter(String text){
+      return MessageFormat.format(text, Scene.ANSI_GREEN, Scene.ANSI_BLUE, Scene.ANSI_RED, Scene.ANSI_BLACK, Scene.ANSI_WHITE);
     }
 
+    /**
+     * For accessing and displaying stories in Resource Bundle file
+     * */
+    private void displayStories(String key){
+      _max_iteration_not_reached = false;
+      for (int i = 0; i <MAX_ITERATION_DISPLAY_STORIES; i++){
+        try {
+          System.out.println(textPainter(bundle.getString(key + "[" + Integer.toString(i) + "]")));
+        }
+        catch(MissingResourceException e){
+          _max_iteration_not_reached = true;
+          break;
+        }
+      }
+    }
+
+    public boolean is_max_iteration_not_reached(){
+      return _max_iteration_not_reached;
+    }
+
+    public List<String> getLocalItems() {
+      return localItems;
+    }
+
+    public boolean getIsPlayerWithBoat(){
+      return isPlayerWithBoat;
+    }
 
 }
