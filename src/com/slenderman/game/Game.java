@@ -101,5 +101,8 @@ public class Game {
     }
 
   }
-
+  // Unit testing purpose
+  public Scene getCurrentScene() {
+    return currentScene;
+  }
 }
