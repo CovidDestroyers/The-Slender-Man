@@ -1,5 +1,6 @@
 package com.slenderman.game;
 
+import com.slenderman.actors.Item;
 import com.slenderman.actors.SlenderMan;
 import com.slenderman.scenes.*;
 import com.slenderman.actors.Player;
@@ -20,7 +21,7 @@ import java.util.Scanner;
  */
 public class Game {
 
-  private Scene currentScene;
+  public Scene currentScene;
   private Scene aAbandonedCar;
   private Scene aHouse;
   private Scene aOutHouse;
@@ -32,36 +33,38 @@ public class Game {
   private Scene aField;
 
 
-  private Player Player;
+  private Player player;
 
 
   public Game() {
-    Player = new Player();
 
     aForest = new Forest();
+    player = new Player(aForest);
     aShed = new Shed();
     aAbandonedCar = new AbandonedCar();
-    aField = new Field();
+    aField = new Field(player);
     aTree = new Tree();
     aPond = new Pond();
     aCave = new Cave();
     aOutHouse = new OutHouse();
+    aHouse = new House();
+    aAbandonedCar = new AbandonedCar();
 
     aForest.connectSouth(aShed);
-    aForest.connectEast(aAbandonedCar);
+    aForest.connectEast(aHouse);
 
-    aAbandonedCar.connectEast(aOutHouse);
-    aAbandonedCar.connectSouth(aCave);
+    aHouse.connectEast(aAbandonedCar);
+    aHouse.connectSouth(aCave);
 
     aShed.connectEast(aCave);
+
+    aAbandonedCar.connectEast(aOutHouse);
 
     aOutHouse.connectSouth(aPond);
 
     aCave.connectEast(aPond);
 
     aPond.connectEast(aField);
-
-
 
     aField.connectEast(aTree);
 
@@ -71,11 +74,9 @@ public class Game {
 
 
   public void start(Scanner in) throws InterruptedException {
-    //Introduction.playIntro();
-    new GameTimer(1);
-
-    currentScene = aForest;
-
+      //Introduction.playIntro();
+      new GameTimer(1);
+    setCurrentScene(aForest);
     currentScene.enter();
 
 
@@ -89,7 +90,7 @@ public class Game {
         System.out.println("Goodbye!");
         break;
       } else if (userText.startsWith("go ")) {
-        currentScene = currentScene.changeScene(userText.substring(3));
+        setCurrentScene(currentScene.changeScene(userText.substring(3)));
         //System.out.println(currentScene.getDescription());
         currentScene.enter();
       } else {
@@ -110,5 +111,14 @@ public class Game {
     }
 
   }
+
+  public void setCurrentScene(Scene currentScene) {
+    this.currentScene = currentScene;
+    player.setCurrentScene(currentScene);
+  }
+  public Scene getCurrentScene() {
+    return currentScene;
+  }
+
 
 }

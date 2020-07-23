@@ -1,17 +1,30 @@
 package com.slenderman.scenes;
 
+import com.slenderman.actors.Item;
+import com.slenderman.actors.Player;
+
 import java.util.*;
 
 public class Field extends Scene {
 
+
+
   //private Map<String, String> scenesAround = new HashMap<>();
   private List<String> grabbedItems = new ArrayList<>();
-  private List<String> itemsInScene = new ArrayList<>();
+
+  private Player player = null;
+
+
 
 
   //default constructor
-  public Field(){
+  //only called when an instance is made
+  //no return values allowed
+  public Field(Player p){
     setDescription("You have reached am empty field.");
+    player = p;
+    setSceneName("Field");
+
   }
 
 
@@ -21,7 +34,7 @@ public class Field extends Scene {
       sceneToTheEast, sceneToTheWest);
 
     //Add the pre existing items to the List
-    itemsInScene.add("blade");
+    addItem(new Item("sword"));
     setDescription("You have reached am empty field.");
   }
 
@@ -124,10 +137,14 @@ public class Field extends Scene {
     String choice = playerChoice();
 
     if (choice.equals("0")) {
-      grabbedItems.add(itemsInScene.get(0));
+
       System.out.println("You have put "+ itemsInScene.get(0) +" in your pocket.");
       itemsInScene.remove(0);
       System.out.println("itemsInScene: " + itemsInScene);
+      Item blade = new Item("blade", this, "cutting");
+      Item shield = new Item("shield", this, "cutting");
+
+      player.addItemToInventory(blade, shield);
     }
 
     System.out.println("\nYou look up and see a fork. " +

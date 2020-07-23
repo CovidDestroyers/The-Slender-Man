@@ -1,8 +1,9 @@
 package com.slenderman.actors;
 
+import com.slenderman.scenes.Scene;
+
 public class Item {
   private String itemName;
-  private String homeScene;
   private String purpose;
   private Boolean otherItemNeeded = false;
   private String otherItem = "none";
@@ -11,7 +12,8 @@ public class Item {
 
   private String asciiArt = "none";
   private Boolean inPlayerInventory = false;
-  private String currentScene;
+  private Scene itemScene;
+
 
 
   /*
@@ -19,48 +21,22 @@ public class Item {
    * ============= Constructors ==================
    * =============================================
    */
-  public Item() {
-
-  }
 
   public Item(String itemName) {
-    setItemName(itemName);
+    this.itemName = itemName;
+    //setItemName(itemName);
   }
 
-  public Item(String itemName, String homeScene) {
+  public Item(String itemName, Scene itemScene) {
     this(itemName);
-    setHomeScene(homeScene);
   }
 
-  public Item(String itemName, String homeScene, String purpose) {
+  public Item(String itemName, Scene inputScene, String purpose) {
     setItemName(itemName);
-    setHomeScene(homeScene);
     setPurpose(purpose);
+    setItemScene(inputScene);
   }
 
-  public Item(String itemName, String homeScene, String purpose, String currentScene) {
-    this(itemName, homeScene, purpose);
-    setCurrentScene(currentScene);
-  }
-
-  public Item(String itemName, String homeScene, String purpose,
-    String currentScene, Boolean otherItemNeeded, String otherItem,
-    String whatDoesOtherItemDo) {
-
-    this(itemName, homeScene, purpose, currentScene);
-    setOtherItemNeeded(otherItemNeeded);
-    setOtherItem(otherItem);
-    setWhatDoesOtherItemDo(whatDoesOtherItemDo);
-  }
-
-  public Item(String itemName, String homeScene, String purpose,
-    String currentScene, Boolean otherItemNeeded, String otherItem,
-    String whatDoesOtherItemDo, String itemRevealed) {
-
-    this(itemName, homeScene, purpose, currentScene, otherItemNeeded,
-      otherItem, whatDoesOtherItemDo);
-    setItemRevealed(itemRevealed);
-  }
 
   /*
    * =============================================
@@ -83,10 +59,6 @@ public class Item {
 
   public void setInPlayerInventory(Boolean inPlayerInventory) {
     this.inPlayerInventory = inPlayerInventory;
-  }
-
-  public void setHomeScene(String homeScene) {
-    this.homeScene = homeScene;
   }
 
   public void setPurpose(String purpose) {
@@ -117,15 +89,11 @@ public class Item {
     this.asciiArt = asciiArt;
   }
 
-  public void setCurrentScene(String currentScene) {
-    this.currentScene = currentScene;
+  public void setItemScene(Scene scene) {
+    this.itemScene = scene;
   }
 
   // GET METHODS
-
-  public String getHomeScene() {
-    return homeScene;
-  }
 
   public String getItemName() {
     return itemName;
@@ -159,15 +127,15 @@ public class Item {
     return asciiArt;
   }
 
-  public String getCurrentScene() {
-    return currentScene;
+  public Scene getItemScene() {
+    return itemScene;
   }
 
 
   @Override
   public String toString() {
     return "Item{" + "itemName='" + itemName + '\'' + ", homeScene='" +
-           homeScene + '\'' + ", purpose='" + purpose + '\'' +
+           itemScene + '\'' + ", purpose='" + purpose + '\'' +
            ", otherItemNeeded=" + otherItemNeeded + ", otherItem='" +
            otherItem + '\'' + ", whatDoesOtherItemDo='" + whatDoesOtherItemDo +
            '\'' + ", itemRevealed='" + itemRevealed + '\'' + ", asciiArt='" +

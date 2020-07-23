@@ -5,6 +5,7 @@ import com.slenderman.actors.Player;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  *  The Scene Interface is used to ensure classes such as Hut and
@@ -23,6 +24,7 @@ public abstract class Scene {
   public static final String ANSI_BLACK = "\u001B[30m";
   public static final String ANSI_GREEN = "\u001B[32m";
 
+  protected String sceneName;
   protected Scene sceneToTheNorth;
   protected Scene sceneToTheSouth;
   protected Scene sceneToTheEast;
@@ -30,8 +32,7 @@ public abstract class Scene {
 
   protected String description;
 
-  protected ArrayList<String> itemsInScene;
-
+  protected List<Item> itemsInScene;
 
   /*
    * =============================================
@@ -41,10 +42,14 @@ public abstract class Scene {
   public Scene(
     Scene sceneToTheNorth, Scene sceneToTheSouth,
     Scene sceneToTheEast, Scene sceneToTheWest) {
+    itemsInScene = new ArrayList<>();
     this.sceneToTheNorth = sceneToTheNorth;
     this.sceneToTheSouth = sceneToTheSouth;
     this.sceneToTheEast = sceneToTheEast;
     this.sceneToTheWest = sceneToTheWest;
+  }
+  public Scene(String name) {
+    this.sceneName = name;
   }
 
   public Scene(){};
@@ -54,6 +59,8 @@ public abstract class Scene {
    * =========== Business Methods ================
    * =============================================
    */
+
+
   /**
    * method enter that is used in every class and overwritten
    * Entry point
@@ -114,7 +121,7 @@ public abstract class Scene {
 
   // SET METHODS
 
-  public void setItemsInScene(ArrayList<String> itemsInScene) {
+  public void setItemsInScene(ArrayList<Item> itemsInScene) {
     this.itemsInScene = itemsInScene;
   }
 
@@ -138,10 +145,13 @@ public abstract class Scene {
     this.sceneToTheWest = sceneToTheWest;
   }
 
+  public void setSceneName(String sceneName){
+    this.sceneName = sceneName;
+  }
 
   // GET METHODS
 
-  public ArrayList<String> getItemsInScene() {
+  public List<Item> getItemsInScene() {
     return itemsInScene;
   }
 
@@ -163,6 +173,12 @@ public abstract class Scene {
 
   public Scene getSceneToTheSouth() {
     return sceneToTheSouth;
+  }
+
+  public String getSceneName(){ return sceneName; }
+
+  public void addItem(Item item){
+    itemsInScene.add(item);
   }
 
 

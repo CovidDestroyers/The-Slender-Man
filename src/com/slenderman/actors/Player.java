@@ -6,10 +6,10 @@ import java.util.*;
 
 public class Player {
   private String state = "alive";
-  private String currentSceneName = "forest";
 
   private List<Item> inventory = new ArrayList<>();
-  private Item Watch = new Item("watch", "forest", "timer");
+
+  public Scene currentScene;
 
 
   /*
@@ -17,8 +17,9 @@ public class Player {
    * ============= Constructors ==================
    * =============================================
    */
-  public Player() {
-    addItemToInventory(Watch);
+
+  public Player(Scene currentScene) {
+
   }
 
   /*
@@ -31,18 +32,17 @@ public class Player {
   public void addItemToInventory(Item... items) {
     inventory.addAll(Arrays.asList(items));
     for (Item item : items) {
-      item.setCurrentScene(this.currentSceneName);
-
-      // System.out.printf("What a prize! You have added a %s to your
-      // inventory.\n",
-        // item.getItemName());
+      System.out.printf("What a prize! You have added a %s to your inventory.\n",
+        item.getItemName());
     }
   }
 
   public void dropItemFromInventory(Item item) {
     Item returnableItem;
     if (inventory.contains(item)) {
-      item.setCurrentScene(this.currentSceneName);
+
+      item.setItemScene(this.currentScene);
+      currentScene.addItem(item);
 
       int indexOfItem = inventory.indexOf(item);
       returnableItem = inventory.get(indexOfItem);
@@ -62,7 +62,7 @@ public class Player {
    * current scene location
    */
   public void changeInvItemsLocation() {
-    inventory.forEach(item -> item.setCurrentScene(this.currentSceneName));
+    inventory.forEach(item -> item.setItemScene(this.currentScene));
   }
 
   /**
@@ -70,8 +70,8 @@ public class Player {
    * @param sceneName string representation of the scene i.e. "pond",
    *                  "forest", etc.
    */
-  public void changeInvItemsLocation(String sceneName) {
-    inventory.forEach(item -> item.setCurrentScene(sceneName));
+  public void changeInvItemsLocation(Scene sceneName) {
+    inventory.forEach(item -> item.setItemScene(sceneName));
   }
 
 
@@ -91,8 +91,8 @@ public class Player {
     this.inventory = inventory;
   }
 
-  public void setCurrentSceneName(String currentSceneName) {
-    this.currentSceneName = currentSceneName;
+  public void setCurrentScene(Scene currentScene) {
+    this.currentScene = currentScene;
   }
 
   // GET METHODS
@@ -104,8 +104,8 @@ public class Player {
     return Collections.unmodifiableCollection(inventory);
   }
 
-  public String getCurrentSceneName() {
-    return currentSceneName;
+  public Scene getCurrentScene() {
+    return currentScene;
   }
 
 }

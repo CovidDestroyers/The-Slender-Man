@@ -10,7 +10,7 @@ import java.util.List;
 
 public class House extends Scene {
   private String introduction;
-
+  /**
   private Item Lockbox = new Item("lockbox", "house", "hold lighter", "house"
     , true, "key", "unlocks lockbox", "lighter");
 
@@ -19,7 +19,7 @@ public class House extends Scene {
 
   private ArrayList<Item> defaultItems = new ArrayList<>(Arrays.asList(
     Lockbox, Lighter));
-
+  */
 
 
   /*
@@ -27,6 +27,8 @@ public class House extends Scene {
    * ============= Constructors ==================
    * =============================================
    */
+  //default constructor
+  public House(){}
 
   public House(Scene sceneToTheNorth, Scene sceneToTheSouth,
                Scene sceneToTheEast, Scene sceneToTheWest) {
@@ -40,7 +42,7 @@ public class House extends Scene {
     this(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
     if (useDefaultItems) {
-      setDefaultItems(defaultItems);
+      //setDefaultItems(defaultItems);
     }
   }
 
@@ -88,7 +90,7 @@ public class House extends Scene {
   public void setIntroduction(String introduction) {
     this.introduction = introduction;
   }
-
+  /**
   public Item getLockbox() {
     return Lockbox;
   }
@@ -122,11 +124,12 @@ public class House extends Scene {
 
   }
 
-
+  /**
   @Override
   public String toString() {
     return "House{" + "introduction='" + introduction + '\'' +
            ", defaultItems=" + defaultItems + ", Lockbox=" + Lockbox +
            ", Lighter=" + Lighter + "} " + super.toString();
   }
+  */
 }

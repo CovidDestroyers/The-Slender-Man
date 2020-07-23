@@ -3,8 +3,10 @@ package com.slenderman.actors;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 class ItemTest2 {
-    Item item= new Item("itemName", "homeScene", "purpose", "house", false,
-      "otherItem", "whatDoesOtherItemDo", "itemRevealed");
+      Item item = new Item("naem");
+      //Item("itemName", "homeScene", "purpose", "house", false,
+      //"otherItem", "whatDoesOtherItemDo", "itemRevealed");
+
 
     @Test
     void testPrintAsciiArt(){

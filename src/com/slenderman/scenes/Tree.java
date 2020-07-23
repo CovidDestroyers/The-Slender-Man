@@ -2,7 +2,7 @@ package com.slenderman.scenes;
 
 public class Tree extends Scene {
   public Tree(){
-    setDescription("You have reached a Tree.");
+    setDescription("This is the last destination .");
   }
   @Override
   public void enter() {
