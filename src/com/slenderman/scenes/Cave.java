@@ -247,9 +247,7 @@ public class Cave extends Scene {
           case "12": System.out.println(textPainter(bundle.getString("exploreCave_UnlockCodeByBookFlip_pageOption1")));break;
           case "23": System.out.println(textPainter(bundle.getString("exploreCave_UnlockCodeByBookFlip_pageOption2")));break;
           case "35": System.out.println(textPainter(bundle.getString("exploreCave_UnlockCodeByBookFlip_pageOption3")));break;
-          default:
-            System.out.println(textPainter(bundle.getString("exploreCave_UnlockCodeByBookFlip_pageOptionX")));
-            break;
+          default: System.out.println(textPainter(bundle.getString("exploreCave_UnlockCodeByBookFlip_pageOptionX")));
         }
     }
 
