@@ -1,6 +1,7 @@
 package com.slenderman.game;
 
 import com.slenderman.scenes.*;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,7 +21,14 @@ public class GameTest {
     currentDirectory = System.getProperty("user.dir");
     //System.out.println(currentDirectory);
     currentDirectory = currentDirectory + "/test/com/slenderman/game/files/";
+
     game = new Game();
+    game.setDisableIntroduction(true);
+  }
+
+  @After
+  public void tear_down_process(){
+    game.setDisableIntroduction(false);
   }
 
   @Test

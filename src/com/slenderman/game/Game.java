@@ -17,6 +17,7 @@ import java.util.Scanner;
  */
 public class Game {
 
+  private boolean disableIntroduction = false;
   private Scene currentScene;
   private Scene aAbandonedCar;
   private Scene aHouse;
@@ -65,7 +66,9 @@ public class Game {
     String userText = "";
 
     new LoseGameTimer(10);
-    //Introduction.playIntro();
+    if (!disableIntroduction) {
+      Introduction.playIntro();
+    }
 
     currentScene = aForest;
     currentScene.enter(in, Player);
@@ -101,5 +104,9 @@ public class Game {
   // Unit testing purpose
   public Scene getCurrentScene() {
     return currentScene;
+  }
+
+  public void setDisableIntroduction(boolean disableIntroduction) {
+    this.disableIntroduction = disableIntroduction;
   }
 }
