@@ -107,25 +107,25 @@ public class Pond extends Scene{
       String choice = playerChoice(in).toUpperCase();
       if (choice.equals("Y")){
 
-        // Create choices
+        // Create choices based on what the player has currently
         StringBuilder buildChoices = new StringBuilder();
 
         //TODO access to global item collection and if the player has a boat, display the boat
         if ((localItems.contains("FOG_GLASSES"))||(localItems.contains("RING_BOX_KEY"))|| true /* or boat*/) {
             System.out.println(bundle.getString("itemChoice_Title"));
             System.out.println(bundle.getString("itemChoiceBoat_Print"));
-            buildChoices.append(bundle.getString("itemChoiceBoat_Register"));
+            buildChoices.append(bundle.getString("itemChoiceBoat_Register")); // For building choices
 
           if (localItems.contains("FOG_GLASSES")) {
               System.out.println(bundle.getString("itemChoiceGlasses_Print"));
-              buildChoices.append(bundle.getString("itemChoiceGlasses_Register"));
+              buildChoices.append(bundle.getString("itemChoiceGlasses_Register")); // For building choices
           }
           if (localItems.contains("RING_BOX_KEY")) {
               System.out.println(bundle.getString("itemChoiceKey_Print"));
-              buildChoices.append(bundle.getString("itemChoiceKey_Register"));
+              buildChoices.append(bundle.getString("itemChoiceKey_Register")); // For building choices
 
           }
-          buildChoices.append(bundle.getString("itemChoice_ExitToGoBack_Register"));
+          buildChoices.append(bundle.getString("itemChoice_ExitToGoBack_Register")); // For building choices
           do {
               System.out.println(bundle.getString("itemChoice_AskUseItem") + buildChoices);
             choice = playerChoice(in).toUpperCase();
@@ -334,16 +334,9 @@ public class Pond extends Scene{
       }
     }
 
-
     // private String playerChoice(){
-    //   String result = null;
-    //
-    //   Scanner choice = new Scanner(System.in);
-    //   result = choice.nextLine();
-    //
-    //   return result;
+    //   return new Scanner(System.in);
     // }
-
 
     /**
      * Coloring the fonts
