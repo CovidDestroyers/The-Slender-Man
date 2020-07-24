@@ -69,6 +69,15 @@ public class GameTest {
   }
 
   @Test
+  public void command_to_Shed_Cave_House_X() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCaveHouseCar.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    System.out.println(game.getCurrentScene().getClass());
+    assertEquals(game.getCurrentScene().getClass(), new AbandonedCar().getClass());
+  }
+
+  @Test
   public void command_to_Shed_Cave_Pond() {
     Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCavePond.txt");
     // Set Scanner -> pass the scanner into enter()
