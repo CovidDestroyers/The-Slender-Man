@@ -1,6 +1,5 @@
 package com.slenderman.actors;
 
-import com.slenderman.inventory.Item;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 class ItemTest2 {

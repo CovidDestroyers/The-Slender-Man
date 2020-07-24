@@ -25,9 +25,6 @@ public class Starter extends JFrame {
       Console console = new Console();
 
       console.init();
-      Starter launcher = new Starter();
-
-      launcher.setVisible(true);
 
 
       Game game = new Game();
@@ -36,13 +33,6 @@ public class Starter extends JFrame {
       game.start(scanMe);
     }
 
-  private Starter() {
-    super();
-    setSize(600, 600);
-    setResizable(false);
-
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
-  }
 
 
 }

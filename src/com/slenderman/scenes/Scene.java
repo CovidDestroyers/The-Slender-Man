@@ -1,6 +1,6 @@
 package com.slenderman.scenes;
 
-import com.slenderman.inventory.Item;
+import com.slenderman.actors.Item;
 import com.slenderman.actors.Player;
 
 import java.util.ArrayList;
@@ -8,13 +8,9 @@ import java.util.Collection;
 import java.util.Scanner;
 
 /**
- *  The Scene Interface is used to ensure classes such as Hut and
- *  Cave, implement common methods where the details of each
- *  implementation is only relevant to the implementing class.
+ *  The abstract class Scene is the base class to all classes in the com
+ *  .slenderman.scenes package.
  *
- *  If a method needs to have a common implementation across classes then you
- *  can either change Scene to an abstract class or create a new abstract
- *  class that implements Scene.
  */
 public abstract class Scene {
 
@@ -76,10 +72,7 @@ public abstract class Scene {
    * @return String result of console input
    */
   public String playerChoice(Scanner in) {
-    String result = "";
-
-    result = in.nextLine().toLowerCase().trim();
-    return result;
+    return in.nextLine().toLowerCase().trim();
   }
 
 
@@ -91,8 +84,8 @@ public abstract class Scene {
   public Scene changeScene(String direction) {
     Scene nextScene = null;
 
-    // if(direction.equals("north")) {
-    if("north".equals(direction)) {   // 'way to deal with null pointer', 'mitigate completely by using enum'
+    // 'way to deal with null pointer', 'mitigate completely by using enum'
+    if("north".equals(direction)) {
       nextScene = sceneToTheNorth;
 
     } else if ("east".equals(direction)) {

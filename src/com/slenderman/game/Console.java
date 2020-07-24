@@ -8,9 +8,10 @@ import java.io.PrintStream;
 import javax.swing.*;
 
 class Console {
-  final JFrame frame = new JFrame();
+  final JFrame frame = new JFrame("SlenderMan");
 
   public Console() {
+
     JTextArea textArea = new JTextArea(24, 80);
     JScrollPane scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     textArea.setBackground(Color.BLACK);
@@ -20,13 +21,13 @@ class Console {
 
       @Override
       public void write(int b) throws IOException {
-
         textArea.append(String.valueOf((char) b));
 
         textArea.setCaretPosition(textArea.getDocument().getLength());
       }
     }));
     frame.add(scroll);
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     // only a configuration to the jScrollPane...
 
