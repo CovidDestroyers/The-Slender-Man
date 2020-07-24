@@ -1,0 +1,6 @@
+0
+TORCH LIGHTER
+R
+Y
+-100
+Y
