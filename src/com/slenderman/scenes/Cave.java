@@ -99,11 +99,10 @@ public class Cave extends Scene {
         String input = playerChoice().toUpperCase();
         String[] objectInput = input.split(" ");
 
-        if ((objectInput[0].equals("TORCH") && objectInput[1].equals("LIGHTER"))
-          || (objectInput[1].equals("TORCH") && objectInput[0].equals("LIGHTER"))) {
+        if ((objectInput[0].equals("TORCH") && objectInput[1].equals("LIGHTER")) || (objectInput[1].equals("TORCH") && objectInput[0].equals("LIGHTER"))) {
           exploreCave();
         }
-        else{
+        else {
           System.out.println(textPainter(bundle.getString("quizChoosingRightItems_incorrect")));
           inFrontOfCave();
         }

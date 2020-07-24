@@ -1,6 +1,5 @@
 package com.slenderman.actors;
 
-import com.slenderman.inventory.Item;
 import com.slenderman.scenes.Shed;
 
 import java.util.*;
@@ -10,9 +9,9 @@ public class Player extends Shed {
   private String currentSceneName = "forest";
 
   private List<Item> inventory = new ArrayList<>();
-  private Item Watch = new Item("watch", "forest", "timer");
+  private Item Watch = new Item("watch", "forest", "timer", "forest");
 
-  private Item Key = new Item("key", "forest", "unlock lockbox");
+  private Item Key = new Item("key", "forest", "unlock lockbox", "forest");
 
 
   /*
@@ -30,9 +29,9 @@ public class Player extends Shed {
    * =============================================
    */
 
-  // TODO: this needs to be tested
   public void addItemToInventory(Item... items) {
     inventory.addAll(Arrays.asList(items));
+
     for (Item item : items) {
       item.setCurrentScene(this.currentSceneName);
     }

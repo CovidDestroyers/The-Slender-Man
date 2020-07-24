@@ -1,4 +1,4 @@
-package com.slenderman.inventory;
+package com.slenderman.actors;
 
 public class Item {
   private String itemName;
@@ -10,7 +10,7 @@ public class Item {
   private String itemRevealed = "none";
 
   private String asciiArt = "none";
-  private String currentScene;
+  private String currentScene = "nowhere";
 
 
   /*

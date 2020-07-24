@@ -70,14 +70,17 @@ public class Game {
     String userText = "";
 
     new LoseGameTimer(10);
-    if (!disableIntroduction) { // For Unit Testing purpose
+
+    // For Unit Testing purpose
+    if (!disableIntroduction) {
       Introduction.playIntro();
     }
 
     currentScene = aForest;
+    Player.setCurrentSceneName(currentScene.getSceneName());
     currentScene.enter(in, Player);
 
-    while (!userText.equals("quit")) {
+    while (true) {
       userText = in.nextLine().toLowerCase().trim();
 
       if (userText.equals("quit")) {
@@ -85,28 +88,28 @@ public class Game {
         break;
       }
 
-      else if (userText.startsWith("go ")) {
+      if (userText.startsWith("go ")) {
         currentScene = currentScene.changeScene(userText.substring(3));
+
+        Player.setCurrentSceneName(currentScene.getSceneName());
+
         currentScene.enter(in, Player);
       }
-
       else {
         System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
       }
 
-      if (disableIntroduction) { // For Unit Testing purpose
+      // For Unit Testing purpose
+      if (disableIntroduction) {
         if (reachedTree) {
           winMessage();
         }
         reachedTree = (currentScene == aTree);
       }
-      else {
-        if (currentScene == aTree) {
-          winMessage();
-        }
-      }
+
     }
   }
+
   private void winMessage() throws InterruptedException {
     Thread.sleep(2000);
     System.out.println("You have killed SlenderMan\n");
