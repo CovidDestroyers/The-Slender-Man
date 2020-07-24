@@ -19,6 +19,11 @@ import java.util.Scanner;
 public final class Game {
 
 
+  // For Unit Testing Purpose //
+  private boolean disableIntroduction = false;
+  private boolean reachedTree = false;
+  /////////////////////////////
+
   private Scene currentScene;
   private Scene aAbandonedCar;
   private Scene aHouse;
@@ -66,8 +71,12 @@ public final class Game {
   public void start(Scanner in) throws InterruptedException {
     String userText = "";
 
-    new LoseGameTimer(1);
-    Introduction.playIntro();
+
+    new LoseGameTimer(10);
+    if (!disableIntroduction) { // For Unit Testing purpose
+      Introduction.playIntro();
+    }
+
 
     currentScene = aForest;
     currentScene.enter(in, Player);
@@ -89,19 +98,36 @@ public final class Game {
         System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
       }
 
-      if (currentScene == aTree) {
-        Thread.sleep(2000);
-        System.out.println("You have killed SlenderMan\n");
-        Thread.sleep(5000);
-        System.out.println("You Win!");
-        System.out.println("Thanks for playing!");
-        Thread.sleep(5000);
-        System.exit(0);
+      if (disableIntroduction) { // For Unit Testing purpose
+        if (reachedTree) {
+          winMessage();
+        }
+        reachedTree = (currentScene == aTree);
+      }
+      else {
+        if (currentScene == aTree) {
+          winMessage();
+        }
       }
     }
   }
-  // Unit testing purpose
+  private void winMessage() throws InterruptedException {
+    Thread.sleep(2000);
+    System.out.println("You have killed SlenderMan\n");
+    Thread.sleep(5000);
+    System.out.println("You Win!");
+    System.out.println("Thanks for playing!");
+    Thread.sleep(5000);
+    System.exit(0);
+  }
+
+ /**
+  * For Unit Testing purpose
+  * */
   public Scene getCurrentScene() {
     return currentScene;
+  }
+  public void setDisableIntroduction(boolean disableIntroduction) {
+    this.disableIntroduction = disableIntroduction;
   }
 }

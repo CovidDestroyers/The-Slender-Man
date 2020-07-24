@@ -6,6 +6,8 @@ import java.util.*;
 
 public class Field extends Scene {
 
+  private Scanner scanner;
+
   //private Map<String, String> scenesAround = new HashMap<>();
   private List<String> grabbedItems = new ArrayList<>();
   private List<String> itemsInScene = new ArrayList<>();
@@ -38,7 +40,7 @@ public class Field extends Scene {
 
   public void enter(Scanner in, Player player) throws InterruptedException {
     player.setCurrentSceneName(this.getSceneName());
-
+    scanner = in;
     String choice;
     System.out.println("\nThere is a field in front of you. You see a flower.");
     System.out.println("What would you like to do?");
@@ -69,17 +71,17 @@ public class Field extends Scene {
 
       System.out.println("Which direction would you like to go?");
       System.out.println("Type \"EAST\", \"WEST\", \"NORTH \" or \"SOUTH\"");
-      choice = playerChoice();
-      if (choice.equals("WEST")) {
-        System.out.println("West chosen");
-        getSceneToTheWest().enter(in, player);
-      } else if (choice.equals("EAST")) {
-        getSceneToTheEast().enter(in, player);
-      } else if (choice.equals("NORTH")) {
-        getSceneToTheNorth().enter(in, player);
-      } else if (choice.equals("SOUTH")) {
-        getSceneToTheSouth().enter(in, player);
-      }
+//      choice = playerChoice();
+//      if (choice.equals("WEST")) {
+//        System.out.println("West chosen");
+//        getSceneToTheWest().enter(in, player);
+//      } else if (choice.equals("EAST")) {
+//        getSceneToTheEast().enter(in, player);
+//      } else if (choice.equals("NORTH")) {
+//        getSceneToTheNorth().enter(in, player);
+//      } else if (choice.equals("SOUTH")) {
+//        getSceneToTheSouth().enter(in, player);
+//      }
     }
 
   }
@@ -145,27 +147,22 @@ public class Field extends Scene {
       sneeze(in, player);
     } else if (choice.equals("1")) {
       System.out.println("Which direction would you like to go?");
-      choice = playerChoice();
-      if (choice.equals("WEST")) {
-        System.out.println("West chosen");
-        getSceneToTheWest().enter(in, player);
-      } else if (choice.equals("EAST")) {
-        getSceneToTheEast().enter(in, player);
-      } else if (choice.equals("NORTH")) {
-        getSceneToTheNorth().enter(in, player);
-      } else if (choice.equals("SOUTH")) {
-        getSceneToTheSouth().enter(in, player);
-      }
+//      choice = playerChoice();
+//      if (choice.equals("WEST")) {
+//        System.out.println("West chosen");
+//        getSceneToTheWest().enter(in, player);
+//      } else if (choice.equals("EAST")) {
+//        getSceneToTheEast().enter(in, player);
+//      } else if (choice.equals("NORTH")) {
+//        getSceneToTheNorth().enter(in, player);
+//      } else if (choice.equals("SOUTH")) {
+//        getSceneToTheSouth().enter(in, player);
+//      }
     }
   }
 
   private String playerChoice() {
-    String result = null;
-
-    Scanner choice = new Scanner(System.in);
-    result = choice.nextLine();
-
-    return result;
+    return scanner.nextLine();
   }
 
 }

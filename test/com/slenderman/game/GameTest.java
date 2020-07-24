@@ -1,7 +1,7 @@
 package com.slenderman.game;
 
-import com.slenderman.scenes.Forest;
-import com.slenderman.scenes.Shed;
+import com.slenderman.scenes.*;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class GameTest {
 
@@ -21,7 +22,14 @@ public class GameTest {
     currentDirectory = System.getProperty("user.dir");
     //System.out.println(currentDirectory);
     currentDirectory = currentDirectory + "/test/com/slenderman/game/files/";
+
     game = new Game();
+    game.setDisableIntroduction(true);
+  }
+
+  @After
+  public void tear_down_process(){
+    game.setDisableIntroduction(false);
   }
 
   @Test
@@ -40,6 +48,59 @@ public class GameTest {
     executeGameStart(sc);
     System.out.println(game.getCurrentScene().getClass());
     assertEquals(game.getCurrentScene().getClass(), new Shed().getClass());
+  }
+
+  @Test
+  public void command_to_Shed_Cave() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCave.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    System.out.println(game.getCurrentScene().getClass());
+    assertEquals(game.getCurrentScene().getClass(), new Cave().getClass());
+  }
+
+  @Test
+  public void command_to_Shed_Cave_House() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCaveHouse.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    System.out.println(game.getCurrentScene().getClass());
+    assertEquals(game.getCurrentScene().getClass(), new House().getClass());
+  }
+
+  @Test
+  public void command_to_Shed_Cave_House_X() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCaveHouseCar.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    System.out.println(game.getCurrentScene().getClass());
+    assertEquals(game.getCurrentScene().getClass(), new AbandonedCar().getClass());
+  }
+
+  @Test
+  public void command_to_Shed_Cave_Pond() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCavePond.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    System.out.println(game.getCurrentScene().getClass());
+    assertEquals(game.getCurrentScene().getClass(), new Pond().getClass());
+  }
+
+  @Test
+  public void command_to_Shed_Cave_Pond_Field() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCavePondField.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    System.out.println(game.getCurrentScene().getClass());
+    assertEquals(game.getCurrentScene().getClass(), new Field().getClass());
+  }
+
+  @Test
+  public void command_to_Shed_Cave_Pond_Field_Tree_FinishGame() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCavePondFieldTree.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    assertEquals(game.getCurrentScene().getClass(), new Tree().getClass());
   }
 
   private Scanner setUpScanner(String fileDirectory, String filename) {

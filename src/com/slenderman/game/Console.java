@@ -10,10 +10,6 @@ import javax.swing.*;
 class Console {
   final JFrame frame = new JFrame();
 
-
-
-
-
   public Console() {
     JTextArea textArea = new JTextArea(24, 80);
     JScrollPane scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -21,6 +17,7 @@ class Console {
     textArea.setForeground(Color.LIGHT_GRAY);
     textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
     System.setOut(new PrintStream(new OutputStream() {
+
       @Override
       public void write(int b) throws IOException {
 
