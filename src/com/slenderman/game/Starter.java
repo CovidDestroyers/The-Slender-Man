@@ -10,7 +10,6 @@ import java.awt.Font;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
-//from   ww  w .jav  a2  s . c  o m
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
@@ -24,12 +23,12 @@ public class Starter extends JFrame {
     // console input with a text file for testing.
     public static void main(String[] args) throws InterruptedException { // change input to come from a file
       Console console = new Console();
+
       console.init();
       Starter launcher = new Starter();
+
       launcher.setVisible(true);
-      console.getFrame().setLocation(
-        launcher.getX() + launcher.getWidth() + launcher.getInsets().right,
-        launcher.getY());
+
 
       Game game = new Game();
       Scanner scanMe = new Scanner(System.in);
@@ -41,8 +40,11 @@ public class Starter extends JFrame {
     super();
     setSize(600, 600);
     setResizable(false);
+
     setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
 
 
 }
+
+
