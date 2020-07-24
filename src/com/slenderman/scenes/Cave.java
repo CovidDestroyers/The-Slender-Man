@@ -18,10 +18,11 @@ import java.util.*;
 public class Cave extends Scene {
 
     // For Resource Bundle //
+    final String FILE_BASE_NAME = "storyCaveNoColor";
     final String PATH = "com.slenderman.scenes.files.";
 
     ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
-    ResourceBundle bundle = ResourceBundle.getBundle(PATH + "storyCave", Locale.US, rbc);
+    ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
     /////////////////////////
 
     // Unit testing purpose //
