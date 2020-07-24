@@ -1,7 +1,6 @@
 package com.slenderman.game;
 
-import com.slenderman.scenes.Forest;
-import com.slenderman.scenes.Shed;
+import com.slenderman.scenes.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,6 +39,42 @@ public class GameTest {
     executeGameStart(sc);
     System.out.println(game.getCurrentScene().getClass());
     assertEquals(game.getCurrentScene().getClass(), new Shed().getClass());
+  }
+
+  @Test
+  public void command_to_Shed_Cave() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCave.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    System.out.println(game.getCurrentScene().getClass());
+    assertEquals(game.getCurrentScene().getClass(), new Cave().getClass());
+  }
+
+  @Test
+  public void command_to_Shed_Cave_House() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCaveHouse.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    System.out.println(game.getCurrentScene().getClass());
+    assertEquals(game.getCurrentScene().getClass(), new House().getClass());
+  }
+
+  @Test
+  public void command_to_Shed_Cave_Pond() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCavePond.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    System.out.println(game.getCurrentScene().getClass());
+    assertEquals(game.getCurrentScene().getClass(), new Pond().getClass());
+  }
+
+  @Test
+  public void command_to_Shed_Cave_Pond_Field() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCavePondField.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    System.out.println(game.getCurrentScene().getClass());
+    assertEquals(game.getCurrentScene().getClass(), new Field().getClass());
   }
 
   private Scanner setUpScanner(String fileDirectory, String filename) {

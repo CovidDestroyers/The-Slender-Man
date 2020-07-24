@@ -65,7 +65,7 @@ public class Game {
     String userText = "";
 
     new LoseGameTimer(10);
-    Introduction.playIntro();
+    //Introduction.playIntro();
 
     currentScene = aForest;
     currentScene.enter(in, Player);
