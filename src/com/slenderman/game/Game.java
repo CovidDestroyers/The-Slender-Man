@@ -64,14 +64,13 @@ public final class Game {
 
 
   public void start(Scanner in) throws InterruptedException {
-    new LoseGameTimer(10);
+    String userText = "";
+
+    new LoseGameTimer(1);
+    Introduction.playIntro();
 
     currentScene = aForest;
-
     currentScene.enter(in, Player);
-
-
-    String userText = "";
 
     while (!userText.equals("quit")) {
       userText = in.nextLine().toLowerCase().trim();
@@ -80,11 +79,12 @@ public final class Game {
         System.out.println("Goodbye!");
         break;
       }
+
       else if (userText.startsWith("go ")) {
         currentScene = currentScene.changeScene(userText.substring(3));
-
         currentScene.enter(in, Player);
       }
+
       else {
         System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
       }
@@ -97,11 +97,11 @@ public final class Game {
         System.out.println("Thanks for playing!");
         Thread.sleep(5000);
         System.exit(0);
-
       }
-
     }
-
   }
-
+  // Unit testing purpose
+  public Scene getCurrentScene() {
+    return currentScene;
+  }
 }

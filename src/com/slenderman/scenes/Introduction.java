@@ -1,27 +1,25 @@
 package com.slenderman.scenes;
 
+import javax.swing.*;
+import java.io.Console;
+
 public class Introduction {
   public static void playIntro() throws InterruptedException {
 
     System.out.println();
     Thread.sleep(3000);
-    System.out.println(Scene.ANSI_GREEN + "\n" +
+    System.out.println("\n" +
       "\n" +
-      " ▄▄▄▄▄▄▄▄▄▄▄  ▄            ▄▄▄▄▄▄▄▄▄▄▄  ▄▄        ▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄       ▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄        ▄ \n" +
-      "▐░░░░░░░░░░░▌▐░▌          ▐░░░░░░░░░░░▌▐░░▌      ▐░▌▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░▌     ▐░░▌▐░░░░░░░░░░░▌▐░░▌      ▐░▌\n" +
-      "▐░█▀▀▀▀▀▀▀▀▀ ▐░▌          ▐░█▀▀▀▀▀▀▀▀▀ ▐░▌░▌     ▐░▌▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░▌░▌   ▐░▐░▌▐░█▀▀▀▀▀▀▀█░▌▐░▌░▌     ▐░▌\n" +
-      "▐░▌          ▐░▌          ▐░▌          ▐░▌▐░▌    ▐░▌▐░▌       ▐░▌▐░▌          ▐░▌       ▐░▌▐░▌▐░▌ ▐░▌▐░▌▐░▌       ▐░▌▐░▌▐░▌    ▐░▌\n" +
-      "▐░█▄▄▄▄▄▄▄▄▄ ▐░▌          ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌ ▐░▌   ▐░▌▐░▌       ▐░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌▐░▌ ▐░▐░▌ ▐░▌▐░█▄▄▄▄▄▄▄█░▌▐░▌ ▐░▌   ▐░▌\n" +
-      "▐░░░░░░░░░░░▌▐░▌          ▐░░░░░░░░░░░▌▐░▌  ▐░▌  ▐░▌▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌  ▐░▌  ▐░▌▐░░░░░░░░░░░▌▐░▌  ▐░▌  ▐░▌\n" +
-      " ▀▀▀▀▀▀▀▀▀█░▌▐░▌          ▐░█▀▀▀▀▀▀▀▀▀ ▐░▌   ▐░▌ ▐░▌▐░▌       ▐░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀█░█▀▀ ▐░▌   ▀   ▐░▌▐░█▀▀▀▀▀▀▀█░▌▐░▌   ▐░▌ ▐░▌\n" +
-      "          ▐░▌▐░▌          ▐░▌          ▐░▌    ▐░▌▐░▌▐░▌       ▐░▌▐░▌          ▐░▌     ▐░▌  ▐░▌       ▐░▌▐░▌       ▐░▌▐░▌    ▐░▌▐░▌\n" +
-      " ▄▄▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌     ▐░▐░▌▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░▌      ▐░▌ ▐░▌       ▐░▌▐░▌       ▐░▌▐░▌     ▐░▐░▌\n" +
-      "▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌      ▐░░▌▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░▌       ▐░▌▐░▌       ▐░▌▐░▌      ▐░░▌\n" +
-      " ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀        ▀▀  ▀▀▀▀▀▀▀▀▀▀   ▀▀▀▀▀▀▀▀▀▀▀  ▀         ▀  ▀         ▀  ▀         ▀  ▀        ▀▀ \n" +
-      "                                                                                                                                  \n");
+      " ▄▀▀▀▀▄  ▄▀▀▀▀▄     ▄▀▀█▄▄▄▄  ▄▀▀▄ ▀▄  ▄▀▀█▄▄   ▄▀▀█▄▄▄▄  ▄▀▀▄▀▀▀▄  ▄▀▀▄ ▄▀▄  ▄▀▀█▄   ▄▀▀▄ ▀▄ \n" +
+      "█ █   ▐ █    █     ▐  ▄▀   ▐ █  █ █ █ █ ▄▀   █ ▐  ▄▀   ▐ █   █   █ █  █ ▀  █ ▐ ▄▀ ▀▄ █  █ █ █ \n" +
+      "   ▀▄   ▐    █       █▄▄▄▄▄  ▐  █  ▀█ ▐ █    █   █▄▄▄▄▄  ▐  █▀▀█▀  ▐  █    █   █▄▄▄█ ▐  █  ▀█ \n" +
+      "▀▄   █      █        █    ▌    █   █    █    █   █    ▌   ▄▀    █    █    █   ▄▀   █   █   █  \n" +
+      " █▀▀▀     ▄▀▄▄▄▄▄▄▀ ▄▀▄▄▄▄   ▄▀   █    ▄▀▄▄▄▄▀  ▄▀▄▄▄▄   █     █   ▄▀   ▄▀   █   ▄▀  ▄▀   █   \n" +
+      " ▐        █         █    ▐   █    ▐   █     ▐   █    ▐   ▐     ▐   █    █    ▐   ▐   █    ▐   \n" +
+      "          ▐         ▐        ▐        ▐         ▐                  ▐    ▐            ▐        \n");
 
     Thread.sleep(5000);
-    System.out.println(Scene.ANSI_WHITE + "You feel a breeze of crisp air against your cheek, while the other, a sensation of coarse dirt and rocks.");
+    System.out.println("You feel a breeze of crisp air against your cheek, while the other, a sensation of coarse dirt and rocks.");
     Thread.sleep(5000);
     System.out.println("You open your eyes to find yourself surrounded by a forest with seemingly no end, in total darkness.");
     Thread.sleep(5000);
@@ -31,7 +29,7 @@ public class Introduction {
     Thread.sleep(5000);
     System.out.println("You pick up the items and read the note:\n");
     Thread.sleep(5000);
-    System.out.println(Scene.ANSI_BLUE + "To whoever finds this, know that there is no escape.");
+    System.out.println("To whoever finds this, know that there is no escape.");
     Thread.sleep(5000);
     System.out.println("There is something in the forest… something truly sinister.");
     Thread.sleep(5000);
@@ -43,7 +41,7 @@ public class Introduction {
     Thread.sleep(5000);
     System.out.println("If I don’t make it, follow my steps and finish what I couldn’t…\n");
     Thread.sleep(5000);
-    System.out.println(Scene.ANSI_WHITE + "You notice your watch’s timer mysteriously begins for 10 minutes of time.");
+    System.out.println("You notice your watch’s timer mysteriously begins for 10 minutes of time.");
     Thread.sleep(5000);
     System.out.println("You look once more into the vast forest as you plan your next move…\n");
     Thread.sleep(5000);

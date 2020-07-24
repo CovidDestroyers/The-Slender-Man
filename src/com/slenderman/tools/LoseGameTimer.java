@@ -19,7 +19,11 @@ public class LoseGameTimer {
   class KillPlayerTask extends TimerTask {
     public void run() {
       toolkit.beep();
-      SlenderMan.killPlayer();
+      try {
+        SlenderMan.killPlayer();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     }
   }
 

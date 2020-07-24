@@ -1,4 +1,4 @@
-package com.slenderman.actors;
+package com.slenderman.inventory;
 
 public class Item {
   private String itemName;

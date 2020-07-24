@@ -6,6 +6,9 @@ import com.slenderman.game.Game;
 import java.util.Scanner;
 
 public class Shed extends Scene{
+
+  private Scanner choice;
+
   //default constructor
   public Shed(){
     setSceneName("shed");
@@ -18,6 +21,7 @@ public class Shed extends Scene{
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
     player.setCurrentSceneName(this.getSceneName());
+    choice = in;
     inFrontOfShed();
   }
 
@@ -103,15 +107,8 @@ public class Shed extends Scene{
 
   }
 
-
-
   private String playerChoice(){
-    String result = null;
-
-    Scanner choice = new Scanner(System.in);
-    result = choice.nextLine();
-
-    return result;
+    return choice.nextLine();
   }
 
 }

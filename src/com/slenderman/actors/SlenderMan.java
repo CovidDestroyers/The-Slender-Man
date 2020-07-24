@@ -4,7 +4,7 @@ import com.slenderman.scenes.Scene;
 
 public class SlenderMan {
 
-  public static void killPlayer() {
+  public static void killPlayer() throws InterruptedException {
     System.out.println("---------------------------------------------------------------------------------------------------\n" +
       "The screeching overpowers all of your senses, you become paralyzed... \n" +
       "SlenderMan emerges from the shadows and wraps his long slimy fingers around your neck and... \n" +
