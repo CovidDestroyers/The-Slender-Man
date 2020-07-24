@@ -2,6 +2,7 @@ package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
 
+import java.text.MessageFormat;
 import java.util.*;
 
 /**
@@ -22,7 +23,19 @@ public class Pond extends Scene{
     private boolean islandTreeLookDown = false; // On island, if the player looked down the tree
     private boolean isFogClear = false; // On island, if the fog is cleared
 
-    // private Map<String, String> scenesAround = new HashMap<>();
+    // For Resource Bundle //
+    final String FILE_BASE_NAME = "storyPondNoColor";
+    final String PATH = "com.slenderman.scenes.files.";
+
+    ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+    ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
+    /////////////////////////
+
+    // Unit testing purpose //
+    private boolean _max_iteration_not_reached;
+    //////////////////////////
+    public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+
     private List<String> localItems = new ArrayList<>();
 
 
@@ -45,31 +58,21 @@ public class Pond extends Scene{
     @Override
     public void enter(Scanner in, Player player) throws InterruptedException {
       player.setCurrentSceneName(this.getSceneName());
-
       inFrontOfPond(in);
     }
 
     private void inFrontOfPond(Scanner in) throws InterruptedException {
-      System.out.println("\nYou are standing in front of the pond.");
-      System.out.println("It is so foggy that you can barely see what's on the other side of the pond");
-      System.out.println("You see a cave in the west side and an outhouse in the north direction");
+      displayStories("inFront");
       inFrontOfPondChoice(in);
     }
 
     private void inFrontOfPondChoice(Scanner in) throws InterruptedException {
 
-      System.out.println("\nWhat would you like to do?");
-
       if (isFogClear){
-        System.out.println(" -Type \"0\" : Walk around" +
-          "\n -Type \"1\" : Swim" +
-          "\n -Type \"3\" : Go to a different scene");
+          displayStories("inFrontChoice_FogClear");
       }
       else {
-        System.out.println(" -Type \"0\" : Walk around" +
-          "\n -Type \"1\" : Swim" +
-          "\n -Type \"2\" : Use items" +
-          "\n -Type \"3\" : Go to a different scene");
+          displayStories("inFrontChoice");
       }
       String choice = playerChoice(in);
       if (choice.equals("0")){
@@ -78,48 +81,20 @@ public class Pond extends Scene{
       }
       else if(choice.equals("1")){
         // Swim
-        System.out.println("\nYou touched the water. It is freezing.");
-        System.out.println("Also, you see ripples and something moving below the surface of the pond");
-        System.out.println("You got scared. Decided not to swim");
+        displayStories("inFrontChoice_ChoiceSwim");
         inFrontOfPondChoice(in);
       }
       else if(choice.equals("2") && (!isFogClear)){
         inFrontOfPondChoice_UseItems(in);
       }
       else if(choice.equals("3")){
-        // Hand over to Game start
-        System.out.println("\nWhich direction would you like to go?");
-        System.out.println("You see a Cave to your WEST, a Outhouse to your NORTH");
-
-
-        // Go to different Scenes
-//        if (!isFogClear) {
-//          System.out.println("\nWhich direction would you like to go to? " +
-//            "\n- Type \"N\": North" +
-//            "\n- Type \"W\": West");
-//        }
-//        else{
-//          System.out.println("\nWhich direction would you like to go to? " +
-//            "\n- Type \"N\": North" +
-//            "\n- Type \"W\": West" +
-//            "\n- Type \"E\": East");
-//        }
-//        String choiceDirection = goToDifferentScene();
-//        if (choiceDirection.equals("E")){
-//          if (!isFogClear){
-//              System.out.println("You cannot go to the direction");
-//              inFrontOfPondChoice();
-//          }
-//          else{
-//              getSceneToTheEast().enter();
-//          }
-//        }
-//        else if (choiceDirection.equals("W")){
-//            getSceneToTheWest().enter();
-//        }
-//        else if (choiceDirection.equals("N")){
-//            getSceneToTheNorth().enter();
-//        }
+        // Change scene
+        if (!isFogClear) {
+          displayStories("inFrontChoice_ChoiceDifferentScene");
+        }
+        else{
+          displayStories("inFrontChoice_ChoiceDifferentScene_FogClear");
+        }
       }
       else{
         inFrontOfPondChoice(in);
@@ -128,71 +103,55 @@ public class Pond extends Scene{
 
     private void inFrontOfPondChoice_UseItems(Scanner in) throws InterruptedException {
 
-      System.out.println("\nYou decided to use items");
-      System.out.println("Would you like to list what you have?"+
-        "\n- Type \"Y\" : Yes" +
-        "\n- Type \"N\" : No");
+      displayStories("inFrontChoice_ChoiceUseItems_Intro");
       String choice = playerChoice(in).toUpperCase();
       if (choice.equals("Y")){
 
         // Create choices
         StringBuilder buildChoices = new StringBuilder();
 
+        //TODO access to global item collection and if the player has a boat, display the boat
         if ((localItems.contains("FOG_GLASSES"))||(localItems.contains("RING_BOX_KEY"))|| true /* or boat*/) {
-          System.out.println("\nThis is a list of what you have:");
-          //TODO access to global item collection and if the player has a boat, display the boat
-          System.out.println("    - a boat");
-          buildChoices.append("\n- Type \"B\": \"Boat\"");
+            System.out.println(bundle.getString("itemChoice_Title"));
+            System.out.println(bundle.getString("itemChoiceBoat_Print"));
+            buildChoices.append(bundle.getString("itemChoiceBoat_Register"));
 
           if (localItems.contains("FOG_GLASSES")) {
-            System.out.println("    - a pair of glasses");
-            buildChoices.append("\n- Type \"G\": \"Glasses\"");
+              System.out.println(bundle.getString("itemChoiceGlasses_Print"));
+              buildChoices.append(bundle.getString("itemChoiceGlasses_Register"));
           }
           if (localItems.contains("RING_BOX_KEY")) {
-            System.out.println("    - a key");
-            buildChoices.append("\n- Type \"K\": \"Key\"");
+              System.out.println(bundle.getString("itemChoiceKey_Print"));
+              buildChoices.append(bundle.getString("itemChoiceKey_Register"));
+
           }
-          buildChoices.append("\nor Type \"X\": to go back");
-          buildChoices.toString();
+          buildChoices.append(bundle.getString("itemChoice_ExitToGoBack_Register"));
           do {
-            System.out.println("\nWould you like to use any of the items?" + buildChoices);
+              System.out.println(bundle.getString("itemChoice_AskUseItem") + buildChoices);
             choice = playerChoice(in).toUpperCase();
             if ((choice.equals("K")) && localItems.contains("RING_BOX_KEY")) {
-              System.out.println("\nYou chose the key, but you are not sure how to use it");
+                System.out.println(bundle.getString("itemChoice_AskUseItem_AnswerKey"));
+
             } else if ((choice.equals("G")) && localItems.contains("FOG_GLASSES")) {
-              System.out.println("\nYou chose the glasses.");
-              System.out.println("\nWhat would you like to do?" +
-                "\n- Type \"0\" : wear the glasses and look up" +
-                "\n- Type \"1\" : wear the glasses and look down" +
-                "\n- Type \"2\" : wear the glasses and look straight");
-              choice = playerChoice(in).toUpperCase();
-              if (choice.equals("0")) {
-                System.out.println("\nYou do not see anything special through the glasses. You see stars in the sky");
-              } else if (choice.equals("1")) {
-                System.out.println("\nYou do not see anything special through the glasses. You see rocks on the ground");
-              } else if (choice.equals("2")) {
-                System.out.println("\nYou slowly put the glasses on and looked straight.");
-                System.out.println("Before putting them on, you could not see anything above the pond because of the fog");
-                System.out.println("However, now you can clearly see through the fog. ");
-                System.out.println("You see an island in the middle of the pond");
-                System.out.println("You decided to keep them on");
-                wearingFogGlasses = true;
-              }
+                displayStories("itemChoice_AskUseItem_AnswerGlasses");
+                choice = playerChoice(in).toUpperCase();
+                switch (choice) {
+                  case "0": displayStories("itemChoice_AskUseItem_AnswerGlassesUp");break;
+                  case "1": displayStories("itemChoice_AskUseItem_AnswerGlassesDown");break;
+                  case "2": displayStories("itemChoice_AskUseItem_AnswerGlassesStraight");wearingFogGlasses = true;break;
+                }
             } else if (choice.equals("B") /*Boat*/) {
-              System.out.println("\nWould you like to start rowing?" +
-                "\n- Type \"Y\" : Yes" +
-                "\n- Type \"N\" : No");
+                displayStories("itemChoice_UseBoat");
               choice = playerChoice(in).toUpperCase();
               if (choice.equals("Y")) {
                 if (!wearingFogGlasses) {
-                  System.out.println("\nYou started rowing, but you could not see anything because of the fog.");
-                  System.out.println("You decided to go back");
+
+                    displayStories("itemChoice_UseBoat_GlassesOnNot");
                 } else {
-                  System.out.println("\nBecause of the special glasses, even the fog is dense, " +
-                    "\nyou can see through the fog and navigate the boat");
-                  System.out.println("You decided to visit the small island in the middle of the pond");
-                  inFontOfIsland(in);
-                  break;
+
+                    displayStories("itemChoice_UseBoat_GlassesOn");
+                    inFontOfIsland(in);
+                    break;
                 }
               }
             }
@@ -204,64 +163,54 @@ public class Pond extends Scene{
 
         }
         else{
-          System.out.println("\nYou do not have anything you can use in this scene");
+          displayStories("itemChoice_noItem");
           inFrontOfPondChoice(in);
         }
       }
       else{
-        System.out.println("\nIt is too dark to see what you have.");
+        displayStories("itemChoice_notSelectedToList");
         inFrontOfPondChoice(in);
       }
     }
 
     public void inFrontOfPondChoice_WalkAround(Scanner in) throws InterruptedException {
       // Try to find a special glass which you can see though the the fog
-      System.out.println("\nYou decided to walk around");
-      System.out.println("Which direction would you like to go to?" +
-        "\n- Type \"L\" : Left" +
-        "\n- Type \"R\" : Right");
+      displayStories("WalkAround");
       String choice = playerChoice(in).toUpperCase();
+
       if (choice.equals("L")){
-        System.out.println("\nYou found a backpack");
-        System.out.println("Would you like to investigate?" +
-          "\n- Type \"Y\" : Yes" +
-          "\n- Type \"N\" : No");
+        displayStories("WalkAround_Left");
         choice = playerChoice(in).toUpperCase();
+
         if (choice.equals("Y")){
           if (countCheckBackPack == 0) {
             countCheckBackPack += 1;
-            System.out.println("\nYou open the backpack. You could not find anything inside");
+            displayStories("CheckBackpack_FirstTime");
           }
           else if (countCheckBackPack > 0){
             if (!localItems.contains("FOG_GLASSES")){
-              System.out.println("\nYou shook the backpack. You heard something inside move");
-              System.out.println("You opened the backpack and found a tightly wrapped object");
-              System.out.println("What would you like to do?" +
-                "\n- Type \"0\" : unwrap the object" +
-                "\n- Type \"1\" : put it back");
+
+              displayStories("CheckBackpack_NotHavingGlasses");
               choice = playerChoice(in).toUpperCase();
               if (choice.equals("0")){
-                System.out.println("\nYou slowly and carefully unwrapped the object");
-                System.out.println("You found a pair of glasses.");
-                System.out.println("You decided to keep it");
+
+                displayStories("CheckBackpack_UnwrapObject");
                 localItems.add("FOG_GLASSES");
-                System.out.println("You just added the glasses to your collection");
               }
               else{
-                System.out.println("\nYou put it back in the backpack");
+                displayStories("CheckBackpack_PutItBack");
               }
             }
             else{
-              System.out.println("\nYou shook the backpack.");
-              System.out.println("You opened the backpack.");
-              System.out.println("You could not find anything inside.");
+                displayStories("CheckBackpack_HavingGlasses");
             }
           }
         }
         else{
-          System.out.println("\nYou put it back where you found it");
+            displayStories("CheckBackpack_NotInvestigate");
         }
-        System.out.println("You went back to where you were");
+
+        displayStories("CheckBackpack_WentBack");
         inFrontOfPondChoice(in);
       }
       else if (choice.equals("R")){
@@ -273,60 +222,42 @@ public class Pond extends Scene{
     }
 
     private void inFrontOfPondChoice_WalkAround_Right(Scanner in) throws InterruptedException {
-      System.out.println("\nWould you like to look up or down?" +
-        "\n- Type \"0\" : Look up" +
-        "\n- Type \"1\" : Look down");
+      displayStories("WalkAround_Right");
       String choice = playerChoice(in).toUpperCase();
+
       if (choice.equals("0")){
-        System.out.println("\nYou see so many stars, but you are surrounded by darkness.");
-        System.out.println("It is as if you were at the bottom of a deep cave and you see sunshine, " +
-          "\nbut it is so far away that you cannot reach. Even you shout, nobody at the entrance will " +
-          "\nrealize somebody is seeking for help from the bottom of the cave");
+        displayStories("WalkAround_Right_LookUp");
         inFrontOfPondChoice_WalkAround_Right(in);
       }
       else{
         if (!localItems.contains("RING_BOX_KEY")){
-          System.out.println("\nYou just realized you kicked something soft and light.");
-          System.out.println("You found a small ring box at your feet.");
-          System.out.println("\nWould you like to investigate?" +
-            "\n- Type \"Y\" : Yes" +
-            "\n- Type \"N\" : No");
-          choice = playerChoice(in).toUpperCase();
-          if (choice.equals("Y")) {
-            System.out.println("\nYou picked it up and opened the box");
-            System.out.println("You found a key instead of a ring");
-            System.out.println("\nWould you like to keep it?" +
-              "\n- Type \"Y\" : Yes" +
-              "\n- Type \"N\" : No");
+            displayStories("WalkAround_Right_LookDown_FindingRingBox");
             choice = playerChoice(in).toUpperCase();
+
+          if (choice.equals("Y")) {
+              displayStories("WalkAround_Right_LookDown_InvestigateRingBox");
+              choice = playerChoice(in).toUpperCase();
+
             if(choice.equals("Y")) {
-              System.out.println("\nYou now added the key to your collection");
+              displayStories("WalkAround_Right_LookDown_AddRingBoxKey");
               localItems.add("RING_BOX_KEY");
-              inFrontOfPondChoice_WalkAround_Right(in);
             }
             else{
-              System.out.println("\nYou just decided to leave it as it is");
-              inFrontOfPondChoice_WalkAround_Right(in);
+              displayStories("WalkAround_Right_LookDown_AddRingBoxKeyNot");
             }
           }
           else{
-            System.out.println("\nYou just decided to leave it as it is");
-            inFrontOfPondChoice_WalkAround_Right(in);
+            displayStories("WalkAround_Right_LookDown_InvestigateRingBoxNot");
           }
+          inFrontOfPondChoice_WalkAround_Right(in);
         }
         else if (!memoOnStones){
           memoOnStones = true;
-          System.out.println("\nYou found a sheet of paper between stones");
-          System.out.println("You picked it up and realized that there is some writing on the paper");
-          System.out.println("\n\"Island..... Tree.... Fog...\"");
-          System.out.println("\nAs soon as you read it, it burst into flames.");
-          System.out.println("You were not sure what it had just happened.");
-          System.out.println("You decided to go back\n");
+          displayStories("WalkAround_Right_LookDown_MemoOnStones");
           inFrontOfPondChoice(in);
         }
         else{
-          System.out.println();
-          System.out.println("\nYou just see rocks. You decided to go back");
+          displayStories("WalkAround_Right_LookDown_Nothing");
           inFrontOfPondChoice(in);
         }
       }
@@ -334,46 +265,37 @@ public class Pond extends Scene{
 
     /************** Island **************/
     private void inFontOfIsland(Scanner in) throws InterruptedException {
-      System.out.println("\nYou rowed the boat for a while. Thanks to the special glasses, " +
-        "\nyou know the direction and the distance to the island. The fog is so thick that without the glasses, " +
-        "\nyou cannot even see your feet");
-      System.out.println("You reached the island");
+      displayStories("InFront_Island");
       inFrontOfIsland_Question(in);
     }
 
 
     private void inFrontOfIsland_Question(Scanner in) throws InterruptedException {
-      System.out.println("\nWhat would you like to do?" +
-        "\n- Type \"0\" : stay in the boat." +
-        "\n- Type \"1\" : go ashore");
+      displayStories("InFront_Island_AskAction");
       String choice = playerChoice(in).toUpperCase();
       if (choice.equals("0")){
-        System.out.println("\nYou decided to stay in the boat. What's next?");
-        System.out.println("Time is ticking. You are not sure where you should go next.");
+        displayStories("IsFront_Island_StayInBoat");
         inFrontOfIsland_Question(in);
       }
       else{
-        System.out.println("\nYou decided to go ashore.");
-        System.out.println("You see a cross and a tree.");
+        displayStories("IsFront_IsLand_GoAshore");
         onIsland(in);
       }
     }
 
 
     private void onIsland(Scanner in) throws InterruptedException {
-      System.out.println("\nWhich one would you like to visit?" +
-        "\n- Type \"0\" : Cross." +
-        "\n- Type \"1\" : Tree");
+      displayStories("OnIsland");
       String choice = playerChoice(in).toUpperCase();
+
       if (choice.equals("0")){
-        System.out.println("\nYou walked around the cross");
-        System.out.println("It must have been built a long time ago. Creepers grow along the cross");
+        displayStories("OnIsland_Cross");
         crossVisited = true;
         onIsland(in);
       }
       else{
         if (!crossVisited) {
-          System.out.println("\nYou walked around the tree. You have no clues about where you should go or what you should do");
+          displayStories("OnIsland_Tree_CrossNotVisited");
           onIsland(in);
         }
         else{
@@ -382,44 +304,33 @@ public class Pond extends Scene{
       }
     }
 
-
+    /**
+     * Change scene
+     * */
     private void onIsland_lookUpDown(Scanner in) throws InterruptedException {
-      System.out.println("\nWould you like to look up or down?"+
-        "\n- Type \"0\" : look up." +
-        "\n- Type \"1\" : look down");
+      displayStories("OnIsland_Tree");
       String choice = playerChoice(in).toUpperCase();
+
       if (choice.equals("0")){
         if (!islandTreeLookDown) {
-          System.out.println("\nYou looked up. You see branches and leaves.");
+          displayStories("OnIsland_Tree_LookUp_NeverLookedDown");
           onIsland_lookUpDown(in);
         }
         else{
-          System.out.println("\nYou looked up. You see small lights everywhere on the branches. You do not know what they are.");
-          System.out.println("Looks like they are moving down slowly and silently towards you.");
-          System.out.println("You stepped backward. The lights seem to be crawling along the trunk.");
-          System.out.println("You started running, and the millions of lights also started chasing after you.");
-          System.out.println("You got to the boat");
-          //System.out.println("\nYou decided to visit the field across the pond");
-          //DONE write a code for change scene
-          //getSceneToTheEast().enter();
-          System.out.println("\nWhich direction would you like to go?");
-          System.out.println("You see a Cave to your WEST, a Outhouse to your NORTH and a Field to your EAST");
+
+            displayStories("OnIsland_Tree_LookUp");
         }
       }
       else{
         if (!isFogClear) {
           isFogClear = true;
-          System.out.println("\nYou looked down. You found a keyhole on the trunk.");
-          System.out.println("You remember you found a key in a ring box. You took it out, inserted it and rotated.");
-          System.out.println("Suddenly, the dense fog over the pond started clearing out.");
-          System.out.println("You see the field on the other side.");
+          displayStories("OnIsland_Tree_LookDown");
           islandTreeLookDown = true;
-          onIsland_lookUpDown(in);
         }
         else{
-          System.out.println("\nYou see the keyhole with your key.");
-          onIsland_lookUpDown(in);
+          displayStories("OnIsland_Tree_LookDown_FogCleared");
         }
+        onIsland_lookUpDown(in);
       }
     }
 
@@ -433,6 +344,35 @@ public class Pond extends Scene{
     //   return result;
     // }
 
+
+    /**
+     * Coloring the fonts
+     *
+     * {0} : Scene.ANSI_GREEN
+     * {1} : Scene.ANSI_BLUE
+     * {2} : Scene.ANSI_RED
+     * {3} : Scene.ANSI_BLACK
+     * {4} : Scene.ANSI_WHITE
+     * */
+    private String textPainter(String text){
+      return MessageFormat.format(text, Scene.ANSI_GREEN, Scene.ANSI_BLUE, Scene.ANSI_RED, Scene.ANSI_BLACK, Scene.ANSI_WHITE);
+    }
+
+    /**
+     * For accessing and displaying stories in Resource Bundle file
+     * */
+    private void displayStories(String key){
+      _max_iteration_not_reached = false;
+      for (int i = 0; i <MAX_ITERATION_DISPLAY_STORIES; i++){
+        try {
+          System.out.println(textPainter(bundle.getString(key + "[" + Integer.toString(i) + "]")));
+        }
+        catch(MissingResourceException e){
+          _max_iteration_not_reached = true;
+          break;
+        }
+      }
+    }
 
     /*** Testing purpose ***/
     // Controlling "isFogClear"
