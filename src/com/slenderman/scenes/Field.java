@@ -71,17 +71,17 @@ public class Field extends Scene {
 
       System.out.println("Which direction would you like to go?");
       System.out.println("Type \"EAST\", \"WEST\", \"NORTH \" or \"SOUTH\"");
-      choice = playerChoice();
-      if (choice.equals("WEST")) {
-        System.out.println("West chosen");
-        getSceneToTheWest().enter(in, player);
-      } else if (choice.equals("EAST")) {
-        getSceneToTheEast().enter(in, player);
-      } else if (choice.equals("NORTH")) {
-        getSceneToTheNorth().enter(in, player);
-      } else if (choice.equals("SOUTH")) {
-        getSceneToTheSouth().enter(in, player);
-      }
+//      choice = playerChoice();
+//      if (choice.equals("WEST")) {
+//        System.out.println("West chosen");
+//        getSceneToTheWest().enter(in, player);
+//      } else if (choice.equals("EAST")) {
+//        getSceneToTheEast().enter(in, player);
+//      } else if (choice.equals("NORTH")) {
+//        getSceneToTheNorth().enter(in, player);
+//      } else if (choice.equals("SOUTH")) {
+//        getSceneToTheSouth().enter(in, player);
+//      }
     }
 
   }
@@ -147,17 +147,17 @@ public class Field extends Scene {
       sneeze(in, player);
     } else if (choice.equals("1")) {
       System.out.println("Which direction would you like to go?");
-      choice = playerChoice();
-      if (choice.equals("WEST")) {
-        System.out.println("West chosen");
-        getSceneToTheWest().enter(in, player);
-      } else if (choice.equals("EAST")) {
-        getSceneToTheEast().enter(in, player);
-      } else if (choice.equals("NORTH")) {
-        getSceneToTheNorth().enter(in, player);
-      } else if (choice.equals("SOUTH")) {
-        getSceneToTheSouth().enter(in, player);
-      }
+//      choice = playerChoice();
+//      if (choice.equals("WEST")) {
+//        System.out.println("West chosen");
+//        getSceneToTheWest().enter(in, player);
+//      } else if (choice.equals("EAST")) {
+//        getSceneToTheEast().enter(in, player);
+//      } else if (choice.equals("NORTH")) {
+//        getSceneToTheNorth().enter(in, player);
+//      } else if (choice.equals("SOUTH")) {
+//        getSceneToTheSouth().enter(in, player);
+//      }
     }
   }
 

@@ -85,6 +85,15 @@ public class GameTest {
     assertEquals(game.getCurrentScene().getClass(), new Field().getClass());
   }
 
+  @Test
+  public void command_to_Shed_Cave_Pond_Field_Tree() {
+    Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCavePondFieldTree.txt");
+    // Set Scanner -> pass the scanner into enter()
+    executeGameStart(sc);
+    System.out.println(game.getCurrentScene().getClass());
+    assertEquals(game.getCurrentScene().getClass(), new Tree().getClass());
+  }
+
   private Scanner setUpScanner(String fileDirectory, String filename) {
     Scanner sc = null;
     try{
