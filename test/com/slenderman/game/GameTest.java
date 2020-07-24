@@ -9,6 +9,7 @@ import java.io.File;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class GameTest {
 
@@ -86,11 +87,10 @@ public class GameTest {
   }
 
   @Test
-  public void command_to_Shed_Cave_Pond_Field_Tree() {
+  public void command_to_Shed_Cave_Pond_Field_Tree_FinishGame() {
     Scanner sc = setUpScanner(currentDirectory, "userInputGameShedCavePondFieldTree.txt");
     // Set Scanner -> pass the scanner into enter()
     executeGameStart(sc);
-    System.out.println(game.getCurrentScene().getClass());
     assertEquals(game.getCurrentScene().getClass(), new Tree().getClass());
   }
 
