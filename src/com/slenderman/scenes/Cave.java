@@ -19,6 +19,7 @@ public class Cave extends Scene {
 
     // For Resource Bundle //
     final String PATH = "com.slenderman.scenes.files.";
+
     ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
     ResourceBundle bundle = ResourceBundle.getBundle(PATH + "storyCave", Locale.US, rbc);
     /////////////////////////
@@ -32,6 +33,7 @@ public class Cave extends Scene {
     private boolean isPlayerWithLighter = false;
     private boolean isPlayerWithBoat = false;
 
+    // TODO: Change this to use sceneItems
     private List<String> localItems = new ArrayList<>();
     private Scanner choice; // Added this variable to store
 

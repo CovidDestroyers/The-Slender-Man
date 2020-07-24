@@ -25,12 +25,18 @@ public class Pond extends Scene{
     // private Map<String, String> scenesAround = new HashMap<>();
     private List<String> localItems = new ArrayList<>();
 
-    //default constructor
+
+  /*
+   * =============================================
+   * ============= Constructors ==================
+   * =============================================
+   */
     public Pond(){
       setSceneName("pond");
     }
 
     public Pond(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
+
       super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
       setSceneName("pond");
@@ -38,8 +44,8 @@ public class Pond extends Scene{
 
     @Override
     public void enter(Scanner in, Player player) throws InterruptedException {
-      //System.out.println("Pond is working");
       player.setCurrentSceneName(this.getSceneName());
+
       inFrontOfPond(in);
     }
 

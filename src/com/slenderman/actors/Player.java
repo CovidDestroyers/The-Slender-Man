@@ -1,6 +1,6 @@
 package com.slenderman.actors;
 
-import com.slenderman.scenes.Scene;
+import com.slenderman.inventory.Item;
 import com.slenderman.scenes.Shed;
 
 import java.util.*;
