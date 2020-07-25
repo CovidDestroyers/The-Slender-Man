@@ -72,9 +72,9 @@ public class Game {
     new LoseGameTimer(10);
 
     // For Unit Testing purpose
-    if (!disableIntroduction) {
-      Introduction.playIntro();
-    }
+    // if (!disableIntroduction) {
+    //   Introduction.playIntro();
+    // }
 
     currentScene = aForest;
     Player.setCurrentSceneName(currentScene.getSceneName());
@@ -92,6 +92,7 @@ public class Game {
         currentScene = currentScene.changeScene(userText.substring(3));
 
         Player.setCurrentSceneName(currentScene.getSceneName());
+        Player.changeInvItemsLocation();
 
         currentScene.enter(in, Player);
       }

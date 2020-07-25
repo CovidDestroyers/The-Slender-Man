@@ -1,6 +1,7 @@
 package com.slenderman.scenes;
 
 import com.slenderman.actors.Item;
+import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 
 import java.util.*;
@@ -8,12 +9,17 @@ import java.util.*;
 public class House extends Scene {
   private String introduction;
 
-  private Item Lockbox = new Item("lockbox", "house", true, "lighter");
+  private ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene(
+    "house");
 
-  private Item Lighter = new Item("lighter", "house");
+  private Item Lockbox = (itemsInThisScene.get(0).getItemName().equals(
+    "lockbox")) ? itemsInThisScene.get(0) : itemsInThisScene.get(1);
 
-  // private ArrayList<Item> itemsInScene = new ArrayList<>(Arrays.asList(
-  //   Lockbox, Lighter));
+  private Item Lighter = (itemsInThisScene.get(0).getItemName().equals(
+    "lighter")) ? itemsInThisScene.get(0) : itemsInThisScene.get(1);
+
+
+
 
 
 
@@ -24,9 +30,9 @@ public class House extends Scene {
    */
 
   public House() {
-    setItemsInScene(new ArrayList<Item>(Arrays.asList(
-      Lockbox, Lighter)));
+    setItemsInScene(itemsInThisScene);
     setSceneName("house");
+
   };
 
   public House(Scene sceneToTheNorth, Scene sceneToTheSouth,
@@ -34,8 +40,7 @@ public class House extends Scene {
 
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
-    setItemsInScene(new ArrayList<Item>(Arrays.asList(
-      Lockbox, Lighter)));
+    setItemsInScene(itemsInThisScene);
   }
 
   /*
@@ -253,7 +258,7 @@ public class House extends Scene {
           "      In darkness I can be a source of light.\n" +
           "      Wrongfully take me and there might be a fight.’\n");
 
-      Thread.sleep(1000);
+      Thread.sleep(6000);
     }
     catch (Exception e) {
       e.printStackTrace();
@@ -370,14 +375,4 @@ public class House extends Scene {
   }
 
 
-  @Override public String toString() {
-    return "House{" +
-           "introduction='" + introduction + '\'' +
-           ", Lockbox=" + Lockbox +
-           ", Lighter=" + Lighter +
-           ", itemsInScene=" + itemsInScene +
-           ", lockbox=" + getLockbox() +
-           ", lighter=" + getLighter() +
-           "} " + super.toString();
-  }
 }

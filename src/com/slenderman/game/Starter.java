@@ -1,6 +1,7 @@
 package com.slenderman.game;
 
 import com.slenderman.game.Game;
+import com.slenderman.scenes.House;
 
 import java.util.Scanner;
 
@@ -10,8 +11,6 @@ import java.util.Scanner;
  *
  */
 public class Starter {
-    // We can use give args a filename and read a file in to replace the
-    // console input with a text file for testing.
     public static void main(String[] args) throws InterruptedException {
 
       Game game = new Game();

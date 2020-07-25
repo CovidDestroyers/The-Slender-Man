@@ -6,15 +6,15 @@ import java.util.*;
 
 public class ItemBuilder {
 
-  private static final ArrayList<String> itemsAndScenes = new ArrayList<>(
-    Arrays.asList("watch:forest","flashlight:forest", "lockbox:house",
-                  "lighter:house", "toilet_paper:abandonedcar",
-                  "torch:outhouse", "boat:cave", "blade:field", "key:shed"));
+  private final ArrayList<String> itemsAndScenes = new ArrayList<>(
+    Arrays.asList("watch:forest","flashlight:forest", "lockbox:house","lighter:house", "toilet_paper:abandonedcar","torch:outhouse", "boat:cave", "blade:field", "key:shed"));
 
 
-  private ItemBuilder() {};
+  public ItemBuilder() {
 
-  public static ArrayList<Item> buildAllItems() {
+  };
+
+  public ArrayList<Item> buildAllItems() {
     String itemName;
     String currentScene;
     boolean isAnotherItemNeeded = false;

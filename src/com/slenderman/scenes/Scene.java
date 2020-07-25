@@ -212,16 +212,16 @@ public abstract class Scene {
   }
 
 
-  @Override
-  public String toString() {
-    return "Scene{" + "ANSI_BLUE='" + ANSI_BLUE + '\'' + ", ANSI_WHITE='" +
-           ANSI_WHITE + '\'' + ", ANSI_RED='" + ANSI_RED + '\'' +
-           ", ANSI_BLACK='" + ANSI_BLACK + '\'' + ", ANSI_GREEN='" +
-           ANSI_GREEN + '\'' + ", sceneToTheNorth=" + sceneToTheNorth +
-           ", sceneToTheSouth=" + sceneToTheSouth + ", sceneToTheEast=" +
-           sceneToTheEast + ", sceneToTheWest=" + sceneToTheWest +
-           ", description='" + description + '\'' + ", itemsInScene=" +
-           itemsInScene + '}';
+  @Override public String toString() {
+    return "Scene{" +
+           "sceneToTheNorth=" + sceneToTheNorth +
+           ", sceneToTheSouth=" + sceneToTheSouth +
+           ", sceneToTheEast=" + sceneToTheEast +
+           ", sceneToTheWest=" + sceneToTheWest +
+           ", description='" + description + '\'' +
+           ", sceneName='" + sceneName + '\'' +
+           ", itemsInScene=" + itemsInScene +
+           '}';
   }
 }
 

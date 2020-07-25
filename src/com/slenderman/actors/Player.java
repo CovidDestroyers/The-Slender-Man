@@ -30,11 +30,13 @@ public class Player extends Shed {
    */
 
   public void addItemToInventory(Item... items) {
-    inventory.addAll(Arrays.asList(items));
-
-    for (Item item : items) {
-      item.setCurrentScene(this.currentSceneName);
+    try {
+      inventory.addAll(Arrays.asList(items));
     }
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+
   }
 
   public void dropItemFromInventory(Item item) {
