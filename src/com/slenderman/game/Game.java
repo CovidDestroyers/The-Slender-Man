@@ -72,9 +72,9 @@ public class Game {
     new LoseGameTimer(10);
 
     // For Unit Testing purpose
-    // if (!disableIntroduction) {
-    //   Introduction.playIntro();
-    // }
+    if (!disableIntroduction) {
+      Introduction.playIntro();
+    }
 
     currentScene = aForest;
     Player.setCurrentSceneName(currentScene.getSceneName());
