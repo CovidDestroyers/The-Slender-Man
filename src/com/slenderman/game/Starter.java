@@ -1,5 +1,6 @@
 package com.slenderman.game;
 
+import com.slenderman.actors.ItemBuilder;
 import com.slenderman.game.Game;
 
 import java.util.Scanner;

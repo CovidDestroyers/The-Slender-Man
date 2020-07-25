@@ -8,11 +8,9 @@ import java.util.*;
 public class House extends Scene {
   private String introduction;
 
-  private Item Lockbox = new Item("lockbox", "house", "hold lighter", "house"
-    , true, "key", "unlocks lockbox", "lighter");
+  private Item Lockbox = new Item("lockbox", "house", true, "lighter");
 
-  private Item Lighter = new Item("lighter", "house", "light torch", "house",
-    true, "lockbox", "holds lighter", "none");
+  private Item Lighter = new Item("lighter", "house");
 
   // private ArrayList<Item> itemsInScene = new ArrayList<>(Arrays.asList(
   //   Lockbox, Lighter));

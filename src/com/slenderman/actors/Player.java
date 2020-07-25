@@ -9,9 +9,9 @@ public class Player extends Shed {
   private String currentSceneName = "forest";
 
   private List<Item> inventory = new ArrayList<>();
-  private Item Watch = new Item("watch", "forest", "timer", "forest");
+  private Item Watch = new Item("watch", "forest");
 
-  private Item Key = new Item("key", "forest", "unlock lockbox", "forest");
+  private Item Key = new Item("key", "forest");
 
 
   /*
