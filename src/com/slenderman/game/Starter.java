@@ -1,6 +1,5 @@
 package com.slenderman.game;
 
-import com.slenderman.actors.ItemBuilder;
 import com.slenderman.game.Game;
 
 import java.util.Scanner;
@@ -13,7 +12,8 @@ import java.util.Scanner;
 public class Starter {
     // We can use give args a filename and read a file in to replace the
     // console input with a text file for testing.
-    public static void main(String[] args) throws InterruptedException { // change input to come from a file
+    public static void main(String[] args) throws InterruptedException {
+
       Game game = new Game();
       Scanner scanMe = new Scanner(System.in);
 

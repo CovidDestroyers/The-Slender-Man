@@ -11,15 +11,8 @@ public class ItemBuilder {
                   "lighter:house", "toilet_paper:abandonedcar",
                   "torch:outhouse", "boat:cave", "blade:field", "key:shed"));
 
-  // which items actually need another item?
-  // lockbox -> key
-  // torch -> lighter
 
-
-  public ItemBuilder() {
-    List<Item> realItems = buildAllItems();
-    System.out.println(realItems);
-  };
+  private ItemBuilder() {};
 
   public static ArrayList<Item> buildAllItems() {
     String itemName;
