@@ -5,14 +5,16 @@ import java.util.List;
 
 public class ItemDirector {
 
-  private static ItemBuilder itemBuilder = new ItemBuilder();
+  private static final ItemBuilder itemBuilder = new ItemBuilder();
 
-  private static List<Item> allItems = itemBuilder.buildAllItems();
+  private static final List<Item> allItems = itemBuilder.buildAllItems();
 
-  private ItemDirector() {
+  private ItemDirector() {}
 
-  }
-
+  /**
+   * @param sceneName the name of the Scene
+   * @return ArrayList of Item objects that belong to that scene
+   */
   public static ArrayList<Item> getItemsForScene(String sceneName) {
     ArrayList<Item> itemsInScene = new ArrayList<>();
 
@@ -25,5 +27,5 @@ public class ItemDirector {
     }
 
     return itemsInScene;
-  };
+  }
 }

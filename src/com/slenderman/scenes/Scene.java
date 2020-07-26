@@ -36,7 +36,8 @@ public abstract class Scene {
    * ============= Constructors ==================
    * =============================================
    */
-  public Scene(){};
+
+  public Scene() {};
 
   // TODO: See if setters will work instread of directly accessing the fields
   public Scene(

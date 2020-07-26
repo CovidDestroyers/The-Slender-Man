@@ -5,7 +5,6 @@ public class Item {
   private String currentScene;
   private String purpose;
 
-
   private Boolean isAnotherItemNeeded = false;
   private String nameOfOtherItem = "none";
   private String whatDoesOtherItemDo = "n/a";
@@ -13,15 +12,12 @@ public class Item {
 
   private String asciiArt = "none";
 
-
   /*
    * =============================================
    * ============= Constructors ==================
    * =============================================
    */
-  private Item() {
-
-  }
+  private Item() {}
 
   private Item(String itemName) {
     setItemName(itemName);
@@ -30,18 +26,14 @@ public class Item {
   public Item(String itemName, String currentScene) {
     this(itemName);
     setCurrentScene(currentScene);
-
   }
 
-  public Item(String itemName, String currentScene,
-    Boolean isAnotherItemNeeded, String nameOfOtherItem) {
+  public Item(
+      String itemName, String currentScene, Boolean isAnotherItemNeeded, String nameOfOtherItem) {
     this(itemName, currentScene);
     setAnotherItemNeeded(isAnotherItemNeeded);
     setNameOfOtherItem(nameOfOtherItem);
-
   }
-
-
 
   /*
    * =============================================
@@ -127,18 +119,34 @@ public class Item {
     return isAnotherItemNeeded;
   }
 
-
-  @Override public String toString() {
-    return "Item{" +
-           "itemName='" + itemName + '\'' +
-           ", currentScene='" + currentScene + '\'' +
-           ", purpose='" + purpose + '\'' +
-           ", isAnotherItemNeeded=" + isAnotherItemNeeded +
-           ", nameOfOtherItem='" + nameOfOtherItem + '\'' +
-           ", whatDoesOtherItemDo='" + whatDoesOtherItemDo + '\'' +
-           ", itemRevealed='" + itemRevealed + '\'' +
-           ", asciiArt='" + asciiArt + '\'' +
-           ", anotherItemNeeded=" + getAnotherItemNeeded() +
-           '}';
+  @Override
+  public String toString() {
+    return "Item{"
+        + "itemName='"
+        + itemName
+        + '\''
+        + ", currentScene='"
+        + currentScene
+        + '\''
+        + ", purpose='"
+        + purpose
+        + '\''
+        + ", isAnotherItemNeeded="
+        + isAnotherItemNeeded
+        + ", nameOfOtherItem='"
+        + nameOfOtherItem
+        + '\''
+        + ", whatDoesOtherItemDo='"
+        + whatDoesOtherItemDo
+        + '\''
+        + ", itemRevealed='"
+        + itemRevealed
+        + '\''
+        + ", asciiArt='"
+        + asciiArt
+        + '\''
+        + ", anotherItemNeeded="
+        + getAnotherItemNeeded()
+        + '}';
   }
 }

@@ -40,15 +40,15 @@ public class Game {
   public Game() {
     Player = new Player();
 
-    aForest = new Forest();
     aShed = new Shed();
-    aAbandonedCar = new AbandonedCar();
-    aField = new Field();
     aTree = new Tree();
     aPond = new Pond();
     aCave = new Cave();
-    aOutHouse = new OutHouse();
+    aField = new Field();
     aHouse = new House();
+    aForest = new Forest();
+    aOutHouse = new OutHouse();
+    aAbandonedCar = new AbandonedCar();
 
     aForest.connectSouth(aShed);
     aForest.connectEast(aHouse);
