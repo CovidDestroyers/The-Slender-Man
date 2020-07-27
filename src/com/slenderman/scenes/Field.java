@@ -13,16 +13,14 @@ public class Field extends Scene {
   final String FILE_BASE_NAME = "storyFieldNoColor";
   final String PATH = "com.slenderman.scenes.files.";
 
-  ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+  ResourceBundle.Control rbc =
+      ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-  /////////////////////////
 
   // Unit testing purpose //
   private boolean _max_iteration_not_reached;
-  //////////////////////////
 
   public final int MAX_ITERATION_DISPLAY_STORIES = 10;
-
 
   private Scanner scanner;
 
@@ -55,8 +53,7 @@ public class Field extends Scene {
 
     if (choice.equals("0")) {
       smellIt(in, player);
-    }
-    else{
+    } else {
       footCut(in, player);
     }
   }
@@ -67,8 +64,7 @@ public class Field extends Scene {
 
     if (choice.equals("0")) {
       sneeze(in, player);
-    }
-    else{
+    } else {
       displayStories("askDirection");
     }
   }
@@ -80,8 +76,7 @@ public class Field extends Scene {
 
     if (choice.equals("0")) {
       findBlade(in, player);
-    }
-    else{
+    } else {
       // go to the next Tree class
       displayStories("askDirection");
       choice = playerChoice();
@@ -94,8 +89,7 @@ public class Field extends Scene {
     String choice = playerChoice();
     if (choice.equals("0")) {
       findBlade(in, player);
-    }
-    else{
+    } else {
       sneeze(in, player);
     }
   }
@@ -116,10 +110,9 @@ public class Field extends Scene {
 
     if (choice.equals("0")) {
       sneeze(in, player);
-    }
-    else{
+    } else {
       displayStories("askDirection");
-      //System.out.println(bundle.getString("askDirection[0]"));
+      // System.out.println(bundle.getString("askDirection[0]"));
     }
   }
 
@@ -135,12 +128,12 @@ public class Field extends Scene {
    */
   private String textPainter(String text) {
     return MessageFormat.format(
-      text,
-      Scene.ANSI_GREEN,
-      Scene.ANSI_BLUE,
-      Scene.ANSI_RED,
-      Scene.ANSI_BLACK,
-      Scene.ANSI_WHITE);
+        text,
+        Scene.ANSI_GREEN,
+        Scene.ANSI_BLUE,
+        Scene.ANSI_RED,
+        Scene.ANSI_BLACK,
+        Scene.ANSI_WHITE);
   }
 
   /** For accessing and displaying stories in Resource Bundle file */
@@ -148,12 +141,11 @@ public class Field extends Scene {
     _max_iteration_not_reached = false;
     for (int i = 0; i < MAX_ITERATION_DISPLAY_STORIES; i++) {
       try {
-        System.out.println(textPainter(bundle.getString(key + "[" + Integer.toString(i) + "]")));
+        System.out.println(textPainter(bundle.getString(key + "[" + i + "]")));
       } catch (MissingResourceException e) {
         _max_iteration_not_reached = true;
         break;
       }
     }
   }
-
 }
