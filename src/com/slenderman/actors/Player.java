@@ -53,7 +53,8 @@ public class Player extends Shed {
 
       inventory.remove(indexOfItem);
 
-      System.out.printf("You dropped a %s from your inventory.\n", returnableItem.getItemName());
+      System.out.printf("You dropped the %s from your inventory.\n",
+                        returnableItem.getItemName());
     } else {
       System.out.println("It doesn't look like you have that item in your " + "inventory.\n");
     }
