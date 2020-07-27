@@ -72,11 +72,12 @@ public final class Game {
     String userText = "";
 
 
-    new LoseGameTimer(10);
+    //new LoseGameTimer(1);
 
     // For Unit Testing purpose
     if (!disableIntroduction) {
-      Introduction.playIntro();
+      //Introduction.playIntro();
+      new LoseGameTimer(10);
     }
 
 
@@ -118,10 +119,16 @@ public final class Game {
     Thread.sleep(2000);
     System.out.println("You have killed SlenderMan\n");
     Thread.sleep(5000);
-    System.out.println("You Win!");
+    System.out.println("\n" +
+      "       __                            \n" +
+      " /  | /  | /  |      /  | / /| |  /  \n" +
+      "(___|(   |(   |     (   |( ( | | (   \n" +
+      "    )|   )|   )     | / )| | | ) |   \n" +
+      " __/ |__/ |__/      |/|/ | | |/  _   \n" +
+      "                                     \n");
     System.out.println("Thanks for playing!");
     Thread.sleep(5000);
-    System.exit(0);
+    System.exit(1);
   }
 
  /**

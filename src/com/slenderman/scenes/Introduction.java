@@ -9,14 +9,13 @@ public class Introduction {
     System.out.println();
     Thread.sleep(3000);
     System.out.println("\n" +
-      "\n" +
-      " ▄▀▀▀▀▄  ▄▀▀▀▀▄     ▄▀▀█▄▄▄▄  ▄▀▀▄ ▀▄  ▄▀▀█▄▄   ▄▀▀█▄▄▄▄  ▄▀▀▄▀▀▀▄  ▄▀▀▄ ▄▀▄  ▄▀▀█▄   ▄▀▀▄ ▀▄ \n" +
-      "█ █   ▐ █    █     ▐  ▄▀   ▐ █  █ █ █ █ ▄▀   █ ▐  ▄▀   ▐ █   █   █ █  █ ▀  █ ▐ ▄▀ ▀▄ █  █ █ █ \n" +
-      "   ▀▄   ▐    █       █▄▄▄▄▄  ▐  █  ▀█ ▐ █    █   █▄▄▄▄▄  ▐  █▀▀█▀  ▐  █    █   █▄▄▄█ ▐  █  ▀█ \n" +
-      "▀▄   █      █        █    ▌    █   █    █    █   █    ▌   ▄▀    █    █    █   ▄▀   █   █   █  \n" +
-      " █▀▀▀     ▄▀▄▄▄▄▄▄▀ ▄▀▄▄▄▄   ▄▀   █    ▄▀▄▄▄▄▀  ▄▀▄▄▄▄   █     █   ▄▀   ▄▀   █   ▄▀  ▄▀   █   \n" +
-      " ▐        █         █    ▐   █    ▐   █     ▐   █    ▐   ▐     ▐   █    █    ▐   ▐   █    ▐   \n" +
-      "          ▐         ▐        ▐        ▐         ▐                  ▐    ▐            ▐        \n");
+      "  __        __        __   __   __        __      \n" +
+      " /    /    /    /| ||/  | /    /  | /|/| /  | /| |\n" +
+      "(___ (    (___ ( | ||   |(___ (___|( / |(___|( | |\n" +
+      "    )|   )|    | | )|   )|    |\\   |   )|   )| | )\n" +
+      " __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ \n" +
+      "                                                  " +
+      "\n");
 
     Thread.sleep(5000);
     System.out.println("You feel a breeze of crisp air against your cheek, while the other, a sensation of coarse dirt and rocks.");
@@ -29,21 +28,27 @@ public class Introduction {
     Thread.sleep(5000);
     System.out.println("You pick up the items and read the note:\n");
     Thread.sleep(5000);
-    System.out.println("To whoever finds this, know that there is no escape.");
+    System.out.println("\"To whoever finds this, know that there is no escape.");
     Thread.sleep(5000);
-    System.out.println("There is something in the forest… something truly sinister.");
+    System.out.println("There is something in the forest... something truly sinister.");
     Thread.sleep(5000);
-    System.out.println("I feel like it is watching my every move, waiting for it’s opportunity to strike.");
+    System.out.println("I feel like it is watching my every move... ");
     Thread.sleep(5000);
-    System.out.println("This watch I found was set to 10 minutes, almost as if whatever brought me here was taunting me with its patience.");
+    System.out.println("waiting for it's opportunity to strike.");
     Thread.sleep(5000);
-    System.out.println( "I don’t know why this is happening or what is even out there, but I’m going to find a way to stop it and make it out of this god forsaken forest.");
+    System.out.println("This watch I found was set to 10 minutes...");
     Thread.sleep(5000);
-    System.out.println("If I don’t make it, follow my steps and finish what I couldn’t…\n");
+    System.out.println("Almost as if whatever brought me here was taunting me with its patience.");
     Thread.sleep(5000);
-    System.out.println("You notice your watch’s timer mysteriously begins for 10 minutes of time.");
+    System.out.println( "I don't know why this is happening or what is even out there...");
     Thread.sleep(5000);
-    System.out.println("You look once more into the vast forest as you plan your next move…\n");
+    System.out.println("But I'm going to find a way to stop it and make it out of this god forsaken forest.");
+    Thread.sleep(5000);
+    System.out.println("If I don't make it, follow my steps and finish what I couldn't...\"\n");
+    Thread.sleep(5000);
+    System.out.println("You notice your watch's timer mysteriously begins for 10 minutes of time.");
+    Thread.sleep(5000);
+    System.out.println("You look once more into the vast forest as you plan your next move...\n");
     Thread.sleep(5000);
 
      }
