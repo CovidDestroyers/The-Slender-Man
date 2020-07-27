@@ -4,6 +4,8 @@ import com.slenderman.scenes.*;
 import com.slenderman.actors.Player;
 import com.slenderman.tools.LoseGameTimer;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -23,50 +25,82 @@ public class Game {
   /////////////////////////////
 
   private Scene currentScene;
-  private Scene aAbandonedCar;
-  private Scene aHouse;
-  private Scene aOutHouse;
-  private Scene aForest;
-  private Shed aShed;
+
+
+  private Player player;
+  static Scanner in;
+
   private Scene aTree;
-  private Scene aPond;
-  private Scene aCave;
-  private Scene aField;
+  private Map<Scene, Map> totalMap = new HashMap<>();
+  private Map<String, Scene> forestMap = new HashMap<>();
+  private Map<String, Scene> houseMap = new HashMap<>();
+  private Map<String, Scene> shedMap = new HashMap<>();
+  private Map<String, Scene> abandonedcarMap = new HashMap<>();
+  private Map<String, Scene> outhouseMap = new HashMap<>();
+  private Map<String, Scene> caveMap = new HashMap<>();
+  private Map<String, Scene> pondMap = new HashMap<>();
+  private Map<String, Scene> fieldMap = new HashMap<>();
 
-
-  private Player Player;
 
 
   public Game() {
-    Player = new Player();
 
-    aForest = new Forest();
-    aShed = new Shed();
-    aAbandonedCar = new AbandonedCar();
-    aField = new Field();
-    aTree = new Tree();
-    aPond = new Pond();
-    aCave = new Cave();
-    aOutHouse = new OutHouse();
-    aHouse = new House();
+    setScanner();
 
-    aForest.connectSouth(aShed);
-    aForest.connectEast(aHouse);
+    Scene aForest = new Forest(player);
+    Scene aShed = new Shed(player);
+    Scene aAbandonedCar = new AbandonedCar(player);
+    Scene aField = new Field(player);
+    aTree = new Tree(player);
+    Scene aPond = new Pond(player);
+    Scene aCave = new Cave(player);
+    Scene aOutHouse = new OutHouse(player);
+    Scene aHouse = new House(player);
 
-    aAbandonedCar.connectEast(aOutHouse);
-    aOutHouse.connectSouth(aPond);
-    aHouse.connectEast(aAbandonedCar);
-    aHouse.connectSouth(aCave);
+    setCurrentScene(aForest);
+    player = new Player(aForest);
+    //{forestMap: {"south": aShed, "east":aHouse},
+    // houseMap: {"south":aCave, "east":aAbandonedhouse},
+    // shedMap: {"east":aCave},
+    // abandonedcarMap:{"east":aOutHouse},
+    // outhouseMap : {"south" : aPond},
+    // caveMap : {"east" : aPond},
+    // pondMap : {"east" : aField},
+    // fieldMap : {"east" : aTree}}
+    forestMap.put("south", aShed);
+    forestMap.put("east", aHouse);
 
-    aShed.connectEast(aCave);
-    aCave.connectEast(aPond);
-    aPond.connectEast(aField);
-    aField.connectEast(aTree);
+    houseMap.put("south", aCave);
+    houseMap.put("east", aAbandonedCar);
+
+    shedMap.put("east", aCave);
+
+    abandonedcarMap.put("east", aOutHouse);
+
+    outhouseMap.put("south", aPond);
+
+    caveMap.put("east", aPond);
+
+    pondMap.put("east", aField);
+
+    fieldMap.put("east", aTree);
+
+
+    totalMap.put(aForest, forestMap);
+    totalMap.put(aForest, houseMap);
+    totalMap.put(aForest, houseMap);
+    totalMap.put(aForest, houseMap);
+    totalMap.put(aForest, houseMap);
+    totalMap.put(aForest, houseMap);
+    totalMap.put(aForest, houseMap);
+    totalMap.put(aForest, houseMap);
+
+
   }
 
 
 
-  public void start(Scanner in) throws InterruptedException {
+  public void start() throws Exception {
     String userText = "";
 
     new LoseGameTimer(10);
@@ -76,9 +110,8 @@ public class Game {
       Introduction.playIntro();
     }
 
-    currentScene = aForest;
-    Player.setCurrentSceneName(currentScene.getSceneName());
-    currentScene.enter(in, Player);
+    setScanner();
+    currentScene.enter();
 
     while (true) {
       userText = in.nextLine().toLowerCase().trim();
@@ -89,29 +122,50 @@ public class Game {
       }
 
       if (userText.startsWith("go ")) {
-        currentScene = currentScene.changeScene(userText.substring(3));
 
-        Player.setCurrentSceneName(currentScene.getSceneName());
-        Player.changeInvItemsLocation();
+        currentScene = currentScene.changeScene(Directions.valueOf(userText.substring(3)));
 
-        currentScene.enter(in, Player);
+        player.setCurrentScene(currentScene);
+        player.changeInvItemsLocation();
+
+        currentScene.enter();
+
+
       }
+
       else {
         System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
       }
 
       // For Unit Testing purpose
       if (disableIntroduction) {
+        reachedTree = (currentScene.getSceneName().equals(aTree.getSceneName()));
+
         if (reachedTree) {
           winMessage();
         }
-        reachedTree = (currentScene == aTree);
+
+
       }
 
     }
   }
 
-  private void winMessage() throws InterruptedException {
+  /**Scanner */
+
+  private void setScanner(){
+    in = new Scanner(System.in);
+  }
+
+  public static Scanner getScanner(){
+    return in;
+  }
+
+  public static String playerChoice(Scanner choice) {
+    return choice.nextLine();
+  }
+
+  public static void winMessage() throws Exception {
     Thread.sleep(2000);
     System.out.println("You have killed SlenderMan\n");
     Thread.sleep(5000);
@@ -124,6 +178,10 @@ public class Game {
  /**
   * For Unit Testing purpose
   * */
+   public void setCurrentScene(Scene currentScene) {
+     this.currentScene = currentScene;
+     player.setCurrentScene(currentScene);
+   }
   public Scene getCurrentScene() {
     return currentScene;
   }

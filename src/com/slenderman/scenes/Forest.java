@@ -11,7 +11,7 @@ public class Forest extends Scene {
    * ============= Constructors ==================
    * =============================================
    */
-  public Forest(){
+  public Forest(Player p){
     setSceneName("forest");
   }
 
@@ -22,7 +22,7 @@ public class Forest extends Scene {
 
 
   @Override
-  public void enter(Scanner in, Player player) {
+  public void enter() {
 
     System.out.println("               ,@@@@@@@,\n" +
       "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n" +

@@ -3,6 +3,7 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
+import com.slenderman.game.Game;
 
 import java.util.*;
 
@@ -29,7 +30,7 @@ public class House extends Scene {
    * =============================================
    */
 
-  public House() {
+  public House(Player p) {
     setItemsInScene(itemsInThisScene);
     setSceneName("house");
 
@@ -50,10 +51,9 @@ public class House extends Scene {
    */
 
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter() throws InterruptedException {
     try {
-      player.setCurrentSceneName(this.getSceneName());
-      player.changeInvItemsLocation();
+      Scanner in = Game.getScanner();
 
       introToHouse();
       Thread.sleep(1000);
@@ -63,7 +63,7 @@ public class House extends Scene {
       inHouse();
       Thread.sleep(1000);
       atTable();
-      openingLockbox(in, player);
+      openingLockbox(in);
       leaveHouse();
     }
     catch (InterruptedException e) {
@@ -265,8 +265,8 @@ public class House extends Scene {
     }
   }
 
-  public void openingLockbox(Scanner in, Player player) throws InterruptedException {
-    String playerChoice = "";
+  public void openingLockbox(Scanner in) throws InterruptedException {
+    String playerChoice = Game.playerChoice(in);
 
     try {
       System.out.println(ANSI_WHITE + "You notice the box is locked.");
@@ -291,7 +291,7 @@ public class House extends Scene {
         }
 
         if (playerChoice.equals("3")) {
-          unlockLockBox(player);
+          unlockLockBox(in);
           break;
         }
       }
@@ -316,7 +316,8 @@ public class House extends Scene {
 
 
 
-  public void unlockLockBox(Player player) {
+  public void unlockLockBox(Scanner in) {
+    /**
     if (playerHasItem(player, "key")) {
 
       player.addItemToInventory(Lighter);
@@ -330,6 +331,7 @@ public class House extends Scene {
       System.out.println(ANSI_RED + "You need a key to open this box you half" +
                          " wit!");
     }
+     */
   }
 
 

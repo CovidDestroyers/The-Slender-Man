@@ -1,19 +1,21 @@
 package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
+import com.slenderman.game.Game;
 
 import java.util.Scanner;
 
 public class OutHouse extends Scene {
 
   //default constructor
-  public OutHouse(){
+  public OutHouse(Player p){
     setSceneName("outhouse");
   }
 
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
-    player.setCurrentSceneName(this.getSceneName());
+  public void enter() throws InterruptedException {
+    Scanner in = Game.getScanner();
+
   }
 
   public OutHouse(

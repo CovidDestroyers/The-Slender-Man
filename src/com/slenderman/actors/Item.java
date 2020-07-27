@@ -1,8 +1,10 @@
 package com.slenderman.actors;
 
+import com.slenderman.scenes.Scene;
+
 public class Item {
   private String itemName;
-  private String currentScene;
+  private Scene currentScene;
   private String purpose;
 
 
@@ -27,19 +29,23 @@ public class Item {
     setItemName(itemName);
   }
 
-  public Item(String itemName, String currentScene) {
+  public Item(String itemName, Scene currentScene) {
     this(itemName);
     setCurrentScene(currentScene);
 
   }
 
-  public Item(String itemName, String currentScene,
+  public Item(String itemName, Scene currentScene,
     Boolean isAnotherItemNeeded, String nameOfOtherItem) {
     this(itemName, currentScene);
     setAnotherItemNeeded(isAnotherItemNeeded);
     setNameOfOtherItem(nameOfOtherItem);
 
   }
+
+  public Item(String itemName, Scene currentScene, boolean isAnotherItemNeeded, String nameOfOtherItem) {
+  }
+
 
 
 
@@ -89,7 +95,7 @@ public class Item {
     this.asciiArt = asciiArt;
   }
 
-  public void setCurrentScene(String currentScene) {
+  public void setCurrentScene(Scene currentScene) {
     this.currentScene = currentScene;
   }
 
@@ -119,7 +125,7 @@ public class Item {
     return asciiArt;
   }
 
-  public String getCurrentScene() {
+  public Scene getCurrentScene() {
     return currentScene;
   }
 

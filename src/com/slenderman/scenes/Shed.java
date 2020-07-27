@@ -3,45 +3,43 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Game;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Shed extends Scene{
+public class Shed extends Scene {
 
-  private Scanner choice;
+  private List<String> grabbedItems = new ArrayList<>();
+  private List<String> itemsInScene = new ArrayList<>();
 
   //default constructor
-  public Shed(){
+  public Shed(Player p) {
     setSceneName("shed");
   }
+
   public Shed(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
     setSceneName("shed");
   }
 
-  @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
-    player.setCurrentSceneName(this.getSceneName());
-    choice = in;
-    inFrontOfShed();
-  }
 
-  private void inFrontOfShed() throws InterruptedException {
+  public void enter() throws InterruptedException {
+    Scanner in = Game.getScanner();
     String choice;
     System.out.println(Scene.ANSI_WHITE + "\nThere is an old Shed in front of you.");
     System.out.println("What would you like to do?");
-    System.out.println(" Type " + Scene.ANSI_GREEN +  "\"0\" " + Scene.ANSI_WHITE + ": \"Go into the Shed\" " +
+    System.out.println(" Type " + Scene.ANSI_GREEN + "\"0\" " + Scene.ANSI_WHITE + ": \"Go into the Shed\" " +
       "\n Type " + Scene.ANSI_GREEN + "\"1\" " + Scene.ANSI_WHITE + ": \"Go somewhere else\"");
 
-    choice = playerChoice();
-    if (choice.equals("0")){
-      stepIntoTheShed();
-    }
-    else if(choice.equals("1")) {
+    choice = Game.playerChoice(in);
+
+    if (choice.equals("0")) {
+      stepIntoTheShed(in);
+    } else if (choice.equals("1")) {
       goSomewhereElse();
-    }
-    else {
+    } else {
       System.out.println("Wrong input, try entering " + Scene.ANSI_GREEN + "0 " + Scene.ANSI_WHITE + "or " + Scene.ANSI_GREEN + "1" + Scene.ANSI_WHITE + ".");
-      inFrontOfShed();
+      enter();
     }
   }
 
@@ -50,29 +48,28 @@ public class Shed extends Scene{
     System.out.println("Which direction would you like to go?");
   }
 
-  private void stepIntoTheShed() throws InterruptedException {
+  private void stepIntoTheShed(Scanner in) throws InterruptedException {
     System.out.println("\nYou are walking towards the old shed");
     System.out.println("You notice a bloody hand print on the door..");
     System.out.println("You pull the door open to discover a decaying corpse with the stains of blood all over the interior of the Shed.");
     System.out.println("As you examine the corpse, you notice something shiny sticking out of his coat pocket...");
     System.out.println("Would you like to reach into the coat pocket to see what it is?");
 
-    takeShinyThingChoice();
+    takeShinyThingChoice(in);
   }
 
-  private void takeShinyThingChoice() throws InterruptedException {
+  private void takeShinyThingChoice(Scanner in) throws InterruptedException {
     System.out.println(Scene.ANSI_WHITE + "- Type " + Scene.ANSI_GREEN + "\"Y\":" + Scene.ANSI_WHITE + " to reach and grab the item");
     System.out.println("- Type " + Scene.ANSI_GREEN + "\"N\":" + Scene.ANSI_WHITE + " to walk out of the Shed");
-    String choice = playerChoice().toUpperCase();
-    if (choice.equals("Y")){
+    String choice = null;
+    choice = Game.playerChoice(in).toUpperCase();
+    if (choice.equals("Y")) {
       grabShinyThingYes();
-    }
-    else if(choice.equals("N")){
-      inFrontOfShed();
-    }
-    else{
+    } else if (choice.equals("N")) {
+      enter();
+    } else {
       System.out.println("Wrong input, try typing: " + Scene.ANSI_GREEN + "Y " + Scene.ANSI_WHITE + "or " + Scene.ANSI_GREEN + "N");
-      takeShinyThingChoice();
+      takeShinyThingChoice(in);
     }
   }
 
@@ -99,10 +96,5 @@ public class Shed extends Scene{
     goSomewhereElse();
 
   }
-
-  private String playerChoice(){
-    return choice.nextLine();
-  }
-
 }
 

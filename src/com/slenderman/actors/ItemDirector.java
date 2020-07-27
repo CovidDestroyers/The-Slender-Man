@@ -1,5 +1,7 @@
 package com.slenderman.actors;
 
+import com.slenderman.scenes.Scene;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class ItemDirector {
     ArrayList<Item> itemsInScene = new ArrayList<>();
 
     for (Item item : allItems) {
-      String itemSceneName = item.getCurrentScene();
+      Scene itemSceneName = item.getCurrentScene();
 
       if (itemSceneName.equals(sceneName)) {
         itemsInScene.add(item);

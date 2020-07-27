@@ -7,14 +7,14 @@ import java.util.Scanner;
 public class AbandonedCar extends Scene {
 
   //default constructor
-  public AbandonedCar(){
+  public AbandonedCar(Player p){
     setDescription("You see an abandoned car");
     setSceneName("abandonedcar");
   }
 
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
-    player.setCurrentSceneName(this.getSceneName());
+  public void enter() throws InterruptedException {
+
   }
 
   public AbandonedCar(

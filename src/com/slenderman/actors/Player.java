@@ -1,27 +1,16 @@
 package com.slenderman.actors;
 
+import com.slenderman.scenes.Scene;
 import com.slenderman.scenes.Shed;
 
 import java.util.*;
 
-public class Player extends Shed {
+public class Player {
   private String state = "alive";
-  private String currentSceneName = "forest";
+  public Scene currentScene;
 
   private List<Item> inventory = new ArrayList<>();
-  private Item Watch = new Item("watch", "forest");
 
-  private Item Key = new Item("key", "forest");
-
-
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
-  public Player() {
-    addItemToInventory(Watch, Key);
-  }
 
   /*
    * =============================================
@@ -43,7 +32,7 @@ public class Player extends Shed {
     Item returnableItem;
 
     if (inventory.contains(item)) {
-      item.setCurrentScene(this.currentSceneName);
+      item.setCurrentScene(this.currentScene);
 
       int indexOfItem = inventory.indexOf(item);
       returnableItem = inventory.get(indexOfItem);
@@ -63,7 +52,7 @@ public class Player extends Shed {
    * current scene location
    */
   public void changeInvItemsLocation() {
-    inventory.forEach(item -> item.setCurrentScene(this.currentSceneName));
+    inventory.forEach(item -> item.setCurrentScene(this.currentScene));
   }
 
   /**
@@ -71,7 +60,7 @@ public class Player extends Shed {
    * @param sceneName string representation of the scene i.e. "pond",
    *                  "forest", etc.
    */
-  public void changeInvItemsLocation(String sceneName) {
+  public void changeInvItemsLocation(Scene sceneName) {
     inventory.forEach(item -> item.setCurrentScene(sceneName));
   }
 
@@ -92,8 +81,8 @@ public class Player extends Shed {
     this.inventory = inventory;
   }
 
-  public void setCurrentSceneName(String currentSceneName) {
-    this.currentSceneName = currentSceneName;
+  public void setCurrentScene(Scene currentScene) {
+    this.currentScene = currentScene;
   }
 
   // GET METHODS
@@ -101,12 +90,12 @@ public class Player extends Shed {
     return state;
   }
 
-  public Collection<Item> getInventory() {
-    return Collections.unmodifiableCollection(inventory);
+  public List<Item> getInventory() {
+    return Collections.unmodifiableList(inventory);
   }
 
-  public String getCurrentSceneName() {
-    return currentSceneName;
+  public Scene getCurrentScene() {
+    return currentScene;
   }
 
 }

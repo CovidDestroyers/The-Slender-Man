@@ -1,6 +1,7 @@
 package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
+import com.slenderman.game.Game;
 
 import java.text.MessageFormat;
 import java.util.*;
@@ -44,7 +45,7 @@ public class Pond extends Scene{
    * ============= Constructors ==================
    * =============================================
    */
-    public Pond(){
+    public Pond(Player p){
       setSceneName("pond");
     }
 
@@ -56,8 +57,8 @@ public class Pond extends Scene{
     }
 
     @Override
-    public void enter(Scanner in, Player player) throws InterruptedException {
-      player.setCurrentSceneName(this.getSceneName());
+    public void enter() throws InterruptedException {
+      Scanner in = Game.getScanner();
       inFrontOfPond(in);
     }
 
@@ -74,7 +75,7 @@ public class Pond extends Scene{
       else {
           displayStories("inFrontChoice");
       }
-      String choice = playerChoice(in);
+      String choice = Game.playerChoice(in);
       if (choice.equals("0")){
         //Walk around
         inFrontOfPondChoice_WalkAround(in);
@@ -104,7 +105,7 @@ public class Pond extends Scene{
     private void inFrontOfPondChoice_UseItems(Scanner in) throws InterruptedException {
 
       displayStories("inFrontChoice_ChoiceUseItems_Intro");
-      String choice = playerChoice(in).toUpperCase();
+      String choice = Game.playerChoice(in).toUpperCase();
       if (choice.equals("Y")){
 
         // Create choices based on what the player has currently
@@ -128,13 +129,13 @@ public class Pond extends Scene{
           buildChoices.append(bundle.getString("itemChoice_ExitToGoBack_Register")); // For building choices
           do {
               System.out.println(bundle.getString("itemChoice_AskUseItem") + buildChoices);
-            choice = playerChoice(in).toUpperCase();
+            choice = Game.playerChoice(in).toUpperCase();
             if ((choice.equals("K")) && localItems.contains("RING_BOX_KEY")) {
                 System.out.println(bundle.getString("itemChoice_AskUseItem_AnswerKey"));
 
             } else if ((choice.equals("G")) && localItems.contains("FOG_GLASSES")) {
                 displayStories("itemChoice_AskUseItem_AnswerGlasses");
-                choice = playerChoice(in).toUpperCase();
+                choice = Game.playerChoice(in).toUpperCase();
                 switch (choice) {
                   case "0": displayStories("itemChoice_AskUseItem_AnswerGlassesUp");break;
                   case "1": displayStories("itemChoice_AskUseItem_AnswerGlassesDown");break;
@@ -142,7 +143,7 @@ public class Pond extends Scene{
                 }
             } else if (choice.equals("B") /*Boat*/) {
                 displayStories("itemChoice_UseBoat");
-              choice = playerChoice(in).toUpperCase();
+              choice = Game.playerChoice(in).toUpperCase();
               if (choice.equals("Y")) {
                 if (!wearingFogGlasses) {
 
@@ -176,11 +177,11 @@ public class Pond extends Scene{
     public void inFrontOfPondChoice_WalkAround(Scanner in) throws InterruptedException {
       // Try to find a special glass which you can see though the the fog
       displayStories("WalkAround");
-      String choice = playerChoice(in).toUpperCase();
+      String choice = Game.playerChoice(in).toUpperCase();
 
       if (choice.equals("L")){
         displayStories("WalkAround_Left");
-        choice = playerChoice(in).toUpperCase();
+        choice = Game.playerChoice(in).toUpperCase();
 
         if (choice.equals("Y")){
           if (countCheckBackPack == 0) {
@@ -191,7 +192,7 @@ public class Pond extends Scene{
             if (!localItems.contains("FOG_GLASSES")){
 
               displayStories("CheckBackpack_NotHavingGlasses");
-              choice = playerChoice(in).toUpperCase();
+              choice = Game.playerChoice(in).toUpperCase();
               if (choice.equals("0")){
 
                 displayStories("CheckBackpack_UnwrapObject");
@@ -223,7 +224,7 @@ public class Pond extends Scene{
 
     private void inFrontOfPondChoice_WalkAround_Right(Scanner in) throws InterruptedException {
       displayStories("WalkAround_Right");
-      String choice = playerChoice(in).toUpperCase();
+      String choice = Game.playerChoice(in).toUpperCase();
 
       if (choice.equals("0")){
         displayStories("WalkAround_Right_LookUp");
@@ -232,11 +233,11 @@ public class Pond extends Scene{
       else{
         if (!localItems.contains("RING_BOX_KEY")){
             displayStories("WalkAround_Right_LookDown_FindingRingBox");
-            choice = playerChoice(in).toUpperCase();
+            choice = Game.playerChoice(in).toUpperCase();
 
           if (choice.equals("Y")) {
               displayStories("WalkAround_Right_LookDown_InvestigateRingBox");
-              choice = playerChoice(in).toUpperCase();
+              choice = Game.playerChoice(in).toUpperCase();
 
             if(choice.equals("Y")) {
               displayStories("WalkAround_Right_LookDown_AddRingBoxKey");
@@ -272,7 +273,7 @@ public class Pond extends Scene{
 
     private void inFrontOfIsland_Question(Scanner in) throws InterruptedException {
       displayStories("InFront_Island_AskAction");
-      String choice = playerChoice(in).toUpperCase();
+      String choice = Game.playerChoice(in).toUpperCase();
       if (choice.equals("0")){
         displayStories("IsFront_Island_StayInBoat");
         inFrontOfIsland_Question(in);
@@ -286,7 +287,7 @@ public class Pond extends Scene{
 
     private void onIsland(Scanner in) throws InterruptedException {
       displayStories("OnIsland");
-      String choice = playerChoice(in).toUpperCase();
+      String choice = Game.playerChoice(in).toUpperCase();
 
       if (choice.equals("0")){
         displayStories("OnIsland_Cross");
@@ -309,7 +310,7 @@ public class Pond extends Scene{
      * */
     private void onIsland_lookUpDown(Scanner in) throws InterruptedException {
       displayStories("OnIsland_Tree");
-      String choice = playerChoice(in).toUpperCase();
+      String choice = Game.playerChoice(in).toUpperCase();
 
       if (choice.equals("0")){
         if (!islandTreeLookDown) {

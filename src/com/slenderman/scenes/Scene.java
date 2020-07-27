@@ -5,6 +5,7 @@ import com.slenderman.actors.Player;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -24,9 +25,11 @@ public abstract class Scene {
   protected Scene sceneToTheSouth;
   protected Scene sceneToTheEast;
   protected Scene sceneToTheWest;
+  protected HashMap<Directions, Scene> coordinateNames;
 
   protected String description;
   protected String sceneName;
+  protected Scene currentScene;
 
   protected ArrayList<Item> itemsInScene;
 
@@ -63,49 +66,40 @@ public abstract class Scene {
    * @param player
    * @throws InterruptedException
    */
-  public abstract void enter(Scanner in, Player player) throws InterruptedException;
+  public abstract void enter() throws Exception;
 
+  public void initializeCoordinate() {
+    //for (Directions d : Directions.values())
+
+    coordinateNames.put(Directions.east, sceneToTheEast);
+    coordinateNames.put(Directions.west, sceneToTheWest);
+    coordinateNames.put(Directions.north, sceneToTheNorth);
+    coordinateNames.put(Directions.south, sceneToTheSouth);
+  }
 
   /**
    *
    * @param in -> Scanner object for console input
    * @return String result of console input
-   */
+
   public String playerChoice(Scanner in) {
     return in.nextLine().toLowerCase().trim();
   }
-
+*/
 
   /**
    *
    * @param direction
    * @return
    */
-  public Scene changeScene(String direction) {
-    Scene nextScene = null;
-
-    // 'way to deal with null pointer', 'mitigate completely by using enum'
-    if("north".equals(direction)) {
-      nextScene = sceneToTheNorth;
-
-    } else if ("east".equals(direction)) {
-      nextScene = sceneToTheEast;
-
-    } else if ("south".equals(direction)) {
-      nextScene = sceneToTheSouth;
-
-    } else if ("west".equals(direction)) {
-      nextScene = sceneToTheWest;
-
-    } else {
+  public Scene changeScene(Directions direction) throws Exception {
+    if (coordinateNames.containsKey(direction)) {
+      return coordinateNames.get(direction);
+    }
+    else {
       System.out.println("Error: unknown direction " + direction);
+      throw new Exception("You cannot go " + direction + " from here.");
     }
-
-    if (nextScene == null) {
-      System.out.println("You cannot go " + direction + " from here.");
-      nextScene = this;
-    }
-    return nextScene;
   }
 
 
@@ -161,6 +155,10 @@ public abstract class Scene {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public void setCurrentScene(Scene currentScene) {
+    this.currentScene = currentScene;
   }
 
   public void setSceneToTheNorth(Scene sceneToTheNorth) {
