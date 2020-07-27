@@ -13,12 +13,12 @@ public class House extends Scene {
   private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("house");
 
   private Item Lockbox =
-      (itemsInThisScene.get(0).getItemName().equals("lockbox"))
+      ("lockbox".equals(itemsInThisScene.get(0).getItemName()))
           ? itemsInThisScene.get(0)
           : itemsInThisScene.get(1);
 
   private Item Lighter =
-      (itemsInThisScene.get(0).getItemName().equals("lighter"))
+      ("lighter".equals(itemsInThisScene.get(0).getItemName()))
           ? itemsInThisScene.get(0)
           : itemsInThisScene.get(1);
 
@@ -50,8 +50,6 @@ public class House extends Scene {
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
     try {
-      player.setCurrentSceneName(this.getSceneName());
-      player.changeInvItemsLocation();
 
       introToHouse();
       Thread.sleep(1000);

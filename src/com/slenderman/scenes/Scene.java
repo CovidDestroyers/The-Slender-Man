@@ -30,23 +30,22 @@ public abstract class Scene {
 
   protected ArrayList<Item> itemsInScene;
 
-
   /*
    * =============================================
    * ============= Constructors ==================
    * =============================================
    */
 
-  public Scene() {};
+  public Scene() {}
 
   // TODO: See if setters will work instread of directly accessing the fields
-  public Scene(
-    Scene sceneToTheNorth, Scene sceneToTheSouth,
+  public Scene(Scene sceneToTheNorth, Scene sceneToTheSouth,
     Scene sceneToTheEast, Scene sceneToTheWest) {
-    this.sceneToTheNorth = sceneToTheNorth;
-    this.sceneToTheSouth = sceneToTheSouth;
-    this.sceneToTheEast = sceneToTheEast;
-    this.sceneToTheWest = sceneToTheWest;
+
+    setSceneToTheNorth(sceneToTheNorth);
+    setSceneToTheSouth(sceneToTheSouth);
+    setSceneToTheEast(sceneToTheEast);
+    setSceneToTheWest(sceneToTheWest);
   }
 
   /*

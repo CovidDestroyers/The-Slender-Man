@@ -7,35 +7,29 @@ import com.slenderman.tools.LoseGameTimer;
 import java.util.Scanner;
 
 /**
- * Game is the class where we will build out the logic for the actual game.
- * Essentially, this is the place where everything comes together to create
- * the game.
+ * Game is the class where we will build out the logic for the actual game. Essentially, this is the
+ * place where everything comes together to create the game.
  *
- * This class will be instantiated in the Starter class' Main method to
- * actually start the game
- *
+ * <p>This class will be instantiated in the Starter class' Main method to actually start the game
  */
 public class Game {
 
   // For Unit Testing Purpose //
   private boolean disableIntroduction = false;
   private boolean reachedTree = false;
-  /////////////////////////////
 
   private Scene currentScene;
-  private Scene aAbandonedCar;
-  private Scene aHouse;
-  private Scene aOutHouse;
-  private Scene aForest;
-  private Shed aShed;
-  private Scene aTree;
-  private Scene aPond;
-  private Scene aCave;
-  private Scene aField;
+  private final Scene aAbandonedCar;
+  private final Scene aHouse;
+  private final Scene aOutHouse;
+  private final Scene aForest;
+  private final Shed aShed;
+  private final Scene aTree;
+  private final Scene aPond;
+  private final Scene aCave;
+  private final Scene aField;
 
-
-  private Player Player;
-
+  private final Player Player;
 
   public Game() {
     Player = new Player();
@@ -64,8 +58,6 @@ public class Game {
     aField.connectEast(aTree);
   }
 
-
-
   public void start(Scanner in) throws InterruptedException {
     String userText = "";
 
@@ -77,7 +69,9 @@ public class Game {
     }
 
     currentScene = aForest;
+
     Player.setCurrentSceneName(currentScene.getSceneName());
+
     currentScene.enter(in, Player);
 
     while (true) {
@@ -95,8 +89,7 @@ public class Game {
         Player.changeInvItemsLocation();
 
         currentScene.enter(in, Player);
-      }
-      else {
+      } else {
         System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
       }
 
@@ -107,7 +100,6 @@ public class Game {
         }
         reachedTree = (currentScene == aTree);
       }
-
     }
   }
 
@@ -121,12 +113,11 @@ public class Game {
     System.exit(0);
   }
 
- /**
-  * For Unit Testing purpose
-  * */
+  /** For Unit Testing purpose */
   public Scene getCurrentScene() {
     return currentScene;
   }
+
   public void setDisableIntroduction(boolean disableIntroduction) {
     this.disableIntroduction = disableIntroduction;
   }

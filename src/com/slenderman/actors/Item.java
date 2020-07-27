@@ -3,7 +3,7 @@ package com.slenderman.actors;
 public class Item {
   private String itemName;
   private String currentScene;
-  private String purpose;
+  private String purpose = "none";
 
   private Boolean isAnotherItemNeeded = false;
   private String nameOfOtherItem = "none";

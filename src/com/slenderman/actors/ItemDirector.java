@@ -9,24 +9,33 @@ public class ItemDirector {
 
   private static final List<Item> allItems = itemBuilder.buildAllItems();
 
-  private ItemDirector() {}
-
-  /**
-   * @param sceneName the name of the Scene
-   * @return ArrayList of Item objects that belong to that scene
+  /*
+   * =============================================
+   * ============= Constructors ==================
+   * =============================================
    */
 
+  private ItemDirector() {}
+
+  /*
+   * =============================================
+   * =========== Business Methods ================
+   * =============================================
+   */
   public static ArrayList<Item> getItemsForScene(String sceneName) {
+    String name = sceneName.trim().toLowerCase();
     ArrayList<Item> itemsInScene = new ArrayList<>();
 
     for (Item item : allItems) {
       String itemSceneName = item.getCurrentScene();
 
-      if (itemSceneName.equals(sceneName)) {
+      if (name.equals(itemSceneName)) {
         itemsInScene.add(item);
       }
     }
 
     return itemsInScene;
   }
+
+  // TODO: Write a method that searches for only 1 item
 }

@@ -7,8 +7,6 @@ import java.util.*;
 public class Player extends Shed {
   private String state = "alive";
   private String currentSceneName = "forest";
-  private Item Watch;
-  private Item Key;
 
   private List<Item> inventory = new ArrayList<>();
 
@@ -18,7 +16,8 @@ public class Player extends Shed {
    * =============================================
    */
   public Player() {
-    addItemToInventory(Watch, Key);
+    ArrayList<Item> defaultInvItems = ItemDirector.getItemsForScene("forest");
+    addItemToInventory(defaultInvItems);
   }
 
   /*
@@ -30,6 +29,14 @@ public class Player extends Shed {
   public void addItemToInventory(Item... items) {
     try {
       inventory.addAll(Arrays.asList(items));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void addItemToInventory(ArrayList<Item> items) {
+    try {
+      inventory.addAll(items);
     } catch (Exception e) {
       e.printStackTrace();
     }

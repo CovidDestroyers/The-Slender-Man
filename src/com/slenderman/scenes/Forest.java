@@ -7,7 +7,6 @@ import com.slenderman.actors.Player;
 import java.util.*;
 
 public class Forest extends Scene {
-  private ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("forest");
 
   /*
    * =============================================
@@ -16,9 +15,6 @@ public class Forest extends Scene {
    */
   public Forest() {
     setSceneName("forest");
-    System.out.println();
-    System.out.println();
-    System.out.println();
   }
 
   public Forest(
