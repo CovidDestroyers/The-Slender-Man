@@ -6,15 +6,22 @@ import java.util.Scanner;
 
 public class OutHouse extends Scene {
 
-  //default constructor
-  public OutHouse(){
+  /*
+   * =============================================
+   * ============= Constructors ==================
+   * =============================================
+   */
+  public OutHouse() {
     setSceneName("outhouse");
   }
 
+  /*
+   * =============================================
+   * =========== Business Methods ================
+   * =============================================
+   */
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
-    player.setCurrentSceneName(this.getSceneName());
-  }
+  public void enter(Scanner in, Player player) throws InterruptedException {}
 
   public OutHouse(
 
