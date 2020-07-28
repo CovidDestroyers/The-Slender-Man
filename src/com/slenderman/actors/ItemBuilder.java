@@ -13,7 +13,7 @@ public class ItemBuilder {
               "lockbox:house",
               "lighter:house",
               "toilet_paper:abandonedcar",
-              "torch:outhouse",
+              "torch:forest",
               "boat:cave",
               "blade:field",
               "key:shed"));

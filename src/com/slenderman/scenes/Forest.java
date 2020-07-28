@@ -34,12 +34,6 @@ public class Forest extends Scene {
 
   private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("forest");
 
-//  private Item torch =
-//    ("torch".equals(itemsInThisScene.get(0).getItemName()))
-//      ? itemsInThisScene.get(0)
-//      : itemsInThisScene.get(1);
-
-
   public Forest(
       Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
@@ -62,8 +56,6 @@ public class Forest extends Scene {
             + "\n"
             + "------------------------------------------------\n");
     displayStories("forest");
-//    player.addItemToInventory(torch);
-//    getItemsInScene().remove(torch);
   }
   /**
    * Coloring the fonts
