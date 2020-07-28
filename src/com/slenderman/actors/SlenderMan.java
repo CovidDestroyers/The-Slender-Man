@@ -1,26 +1,23 @@
 package com.slenderman.actors;
 
+//import com.slenderman.scenes.LoseGameScene;
+import com.slenderman.game.Game;
 import com.slenderman.scenes.Scene;
 
 public class SlenderMan {
 
   public static void killPlayer() throws InterruptedException {
-    System.out.println("---------------------------------------------------------------------------------------------------\n" +
-      "The screeching overpowers all of your senses, you become paralyzed... \n" +
-      "SlenderMan emerges from the shadows and wraps his long slimy fingers around your neck and... \n" +
-      " ▄         ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄         ▄       ▄            ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄ \n" +
-      "▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░▌       ▐░▌     ▐░▌          ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌\n" +
-      "▐░▌       ▐░▌▐░█▀▀▀▀▀▀▀█░▌▐░▌       ▐░▌     ▐░▌          ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀ ▐░▌\n" +
-      "▐░▌       ▐░▌▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌          ▐░▌       ▐░▌▐░▌          ▐░▌          ▐░▌\n" +
-      "▐░█▄▄▄▄▄▄▄█░▌▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌          ▐░▌       ▐░▌▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄ ▐░▌\n" +
-      "▐░░░░░░░░░░░▌▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌          ▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌\n" +
-      " ▀▀▀▀█░█▀▀▀▀ ▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌          ▐░▌       ▐░▌ ▀▀▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀ ▐░▌\n" +
-      "     ▐░▌     ▐░▌       ▐░▌▐░▌       ▐░▌     ▐░▌          ▐░▌       ▐░▌          ▐░▌▐░▌           ▀ \n" +
-      "     ▐░▌     ▐░█▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄█░▌     ▐░█▄▄▄▄▄▄▄▄▄ ▐░█▄▄▄▄▄▄▄█░▌ ▄▄▄▄▄▄▄▄▄█░▌▐░█▄▄▄▄▄▄▄▄▄  ▄ \n" +
-      "     ▐░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌\n" +
-      "      ▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀ \n" +
-      "                                                                                                   ");
-    System.exit(0);
+    Game.isPlayerAlive = false;
+    System.out.println("player died");
+//    System.out.println("---------------------------------------------------------------------------------------------------\n" +
+//      "The screeching overpowers all of your senses, you become paralyzed... \n" +
+//      "SlenderMan emerges from the shadows and wraps his long slimy fingers around your neck and... \n" +
+//      "       __                  __   __   __      \n" +
+//      " /  | /  | /  |      /    /  | /    /     /  \n" +
+//      "(___|(   |(   |     (    (   |(___ (___  (   \n" +
+//      "    )|   )|   )     |   )|   )    )|     |   \n" +
+//      " __/ |__/ |__/      |__/ |__/  __/ |__   _   \n" +
+//      "                                             ");
   }
 
   public static void moveCloserToPlayer() {

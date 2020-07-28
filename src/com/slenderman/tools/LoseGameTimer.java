@@ -1,5 +1,6 @@
 package com.slenderman.tools;
 import com.slenderman.actors.SlenderMan;
+import com.slenderman.game.Game;
 
 import java.awt.*;
 import java.util.Timer;
@@ -12,6 +13,7 @@ public class LoseGameTimer {
   public LoseGameTimer(int minutes) {
     toolkit = Toolkit.getDefaultToolkit();
     loseGameTimer = new Timer();
+    Game.isPlayerAlive = true;
     loseGameTimer.schedule(new KillPlayerTask(), minutes * 60000);
   }
 
