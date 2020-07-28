@@ -1,11 +1,18 @@
 package com.slenderman.game;
 
-import com.slenderman.scenes.*;
 import com.slenderman.actors.Player;
+import com.slenderman.scenes.AbandonedCar;
+import com.slenderman.scenes.Cave;
+import com.slenderman.scenes.Field;
+import com.slenderman.scenes.Forest;
+import com.slenderman.scenes.House;
+import com.slenderman.scenes.OutHouse;
+import com.slenderman.scenes.Pond;
+import com.slenderman.scenes.Scene;
+import com.slenderman.scenes.Shed;
+import com.slenderman.scenes.Tree;
 import com.slenderman.tools.LoseGameTimer;
 import java.util.Scanner;
-
-
 
 /**
  * Game is the class where we will build out the logic for the actual game. Essentially, this is the
@@ -14,7 +21,6 @@ import java.util.Scanner;
  * <p>This class will be instantiated in the Starter class' Main method to actually start the game
  */
 public final class Game {
-
 
   // For Unit Testing Purpose //
   private boolean disableIntroduction = false;
@@ -63,15 +69,13 @@ public final class Game {
   public void start(Scanner in) throws InterruptedException {
     String userText = "";
 
-
-    //new LoseGameTimer(1);
+    // new LoseGameTimer(1);
 
     // For Unit Testing purpose
     if (!disableIntroduction) {
-      //Introduction.playIntro();
-      new LoseGameTimer(1);
+      // Introduction.playIntro();
+      new LoseGameTimer(10);
     }
-
 
     currentScene = aForest;
 
@@ -112,13 +116,14 @@ public final class Game {
     Thread.sleep(2000);
     System.out.println("You have killed SlenderMan\n");
     Thread.sleep(5000);
-    System.out.println("\n" +
-      "       __                            \n" +
-      " /  | /  | /  |      /  | / /| |  /  \n" +
-      "(___|(   |(   |     (   |( ( | | (   \n" +
-      "    )|   )|   )     | / )| | | ) |   \n" +
-      " __/ |__/ |__/      |/|/ | | |/  _   \n" +
-      "                                     \n");
+    System.out.println(
+        "\n"
+            + "       __                            \n"
+            + " /  | /  | /  |      /  | / /| |  /  \n"
+            + "(___|(   |(   |     (   |( ( | | (   \n"
+            + "    )|   )|   )     | / )| | | ) |   \n"
+            + " __/ |__/ |__/      |/|/ | | |/  _   \n"
+            + "                                     \n");
     System.out.println("Thanks for playing!");
     Thread.sleep(5000);
     System.exit(1);
