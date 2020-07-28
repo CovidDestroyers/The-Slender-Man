@@ -34,6 +34,7 @@ public class Pond extends Scene {
   public final int MAX_ITERATION_DISPLAY_STORIES = 10;
 
   private final List<String> localItems = new ArrayList<>();
+  private Player player;
 
   /*
    * =============================================
@@ -54,7 +55,7 @@ public class Pond extends Scene {
 
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
-    player.setCurrentSceneName(this.getSceneName());
+    this.player = player;
     inFrontOfPond(in);
   }
 
@@ -97,38 +98,44 @@ public class Pond extends Scene {
     displayStories("inFrontChoice_ChoiceUseItems_Intro");
     String choice = playerChoice(in).toUpperCase();
     if (choice.equals("Y")) {
-
-      // Create choices based on what the player has currently
       StringBuilder buildChoices = new StringBuilder();
 
-      // TODO access to global item collection and if the player has a boat, display the boat
+      Boolean doesPlayerHaveBoat = playerHasItem(player, "boat");
+
       if ((localItems.contains("FOG_GLASSES"))
           || (localItems.contains("RING_BOX_KEY"))
-          || true /* or boat*/) {
+          || doesPlayerHaveBoat) {
+
         System.out.println(bundle.getString("itemChoice_Title"));
         System.out.println(bundle.getString("itemChoiceBoat_Print"));
-        buildChoices.append(bundle.getString("itemChoiceBoat_Register")); // For building choices
+        buildChoices.append(bundle.getString("itemChoiceBoat_Register"));
 
         if (localItems.contains("FOG_GLASSES")) {
           System.out.println(bundle.getString("itemChoiceGlasses_Print"));
           buildChoices.append(
-              bundle.getString("itemChoiceGlasses_Register")); // For building choices
+              bundle.getString("itemChoiceGlasses_Register"));
         }
+
         if (localItems.contains("RING_BOX_KEY")) {
           System.out.println(bundle.getString("itemChoiceKey_Print"));
-          buildChoices.append(bundle.getString("itemChoiceKey_Register")); // For building choices
+          buildChoices.append(bundle.getString("itemChoiceKey_Register"));
         }
+
         buildChoices.append(
-            bundle.getString("itemChoice_ExitToGoBack_Register")); // For building choices
+            bundle.getString("itemChoice_ExitToGoBack_Register"));
+
         do {
           System.out.println(bundle.getString("itemChoice_AskUseItem") + buildChoices);
           choice = playerChoice(in).toUpperCase();
+
           if ((choice.equals("K")) && localItems.contains("RING_BOX_KEY")) {
             System.out.println(bundle.getString("itemChoice_AskUseItem_AnswerKey"));
 
-          } else if ((choice.equals("G")) && localItems.contains("FOG_GLASSES")) {
+          }
+          else if ((choice.equals("G")) && localItems.contains("FOG_GLASSES")) {
             displayStories("itemChoice_AskUseItem_AnswerGlasses");
             choice = playerChoice(in).toUpperCase();
+
             switch (choice) {
               case "0":
                 displayStories("itemChoice_AskUseItem_AnswerGlassesUp");
@@ -141,31 +148,38 @@ public class Pond extends Scene {
                 wearingFogGlasses = true;
                 break;
             }
-          } else if (choice.equals("B") /*Boat*/) {
+
+          }
+          else if (choice.equals("B") /*Boat*/) {
             displayStories("itemChoice_UseBoat");
             choice = playerChoice(in).toUpperCase();
             if (choice.equals("Y")) {
               if (!wearingFogGlasses) {
 
                 displayStories("itemChoice_UseBoat_GlassesOnNot");
-              } else {
+              }
+              else {
 
                 displayStories("itemChoice_UseBoat_GlassesOn");
                 inFontOfIsland(in);
                 break;
               }
             }
-          } else {
+          }
+          else {
             inFrontOfPondChoice(in);
             break;
           }
-        } while (true);
+        }
+        while (true);
 
-      } else {
+      }
+      else {
         displayStories("itemChoice_noItem");
         inFrontOfPondChoice(in);
       }
-    } else {
+    }
+    else {
       displayStories("itemChoice_notSelectedToList");
       inFrontOfPondChoice(in);
     }

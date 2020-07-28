@@ -37,5 +37,27 @@ public class ItemDirector {
     return itemsInScene;
   }
 
-  // TODO: Write a method that searches for only 1 item
+
+  public static Item findThisItem(String itemName, ArrayList<Item> itemsInThisScene) {
+    Item foundItem = null;
+    String nameOfItem = itemName.trim().toLowerCase();
+
+    for (Item item : itemsInThisScene) {
+      if (nameOfItem.equals(item.getItemName())) {
+          foundItem = item;
+      }
+    }
+
+    return foundItem;
+  }
+
+
+
+  @Override
+  public String toString() {
+    return "ItemDirector{" +
+           "itemBuilder=" + itemBuilder +
+           ", allItems=" + allItems +
+           '}';
+  }
 }

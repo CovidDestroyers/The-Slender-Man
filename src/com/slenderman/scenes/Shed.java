@@ -1,26 +1,47 @@
 package com.slenderman.scenes;
 
+import com.slenderman.actors.Item;
+import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
-import com.slenderman.game.Game;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Shed extends Scene{
-
+public class Shed extends Scene {
   private Scanner choice;
+  private Player player;
 
-  //default constructor
-  public Shed(){
+  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("shed");
+  private final Item Key = ItemDirector.findThisItem("key", itemsInThisScene);
+
+  /*
+   * =============================================
+   * ============= Constructors ==================
+   * =============================================
+   */
+
+  public Shed() {
     setSceneName("shed");
+    setItemsInScene(itemsInThisScene);
   }
-  public Shed(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
+
+  public Shed(
+      Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
     setSceneName("shed");
+    setItemsInScene(itemsInThisScene);
   }
+
+  /*
+   * =============================================
+   * =========== Business Methods ================
+   * =============================================
+   */
 
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
-    player.setCurrentSceneName(this.getSceneName());
+    this.player = player;
+
     choice = in;
     inFrontOfShed();
   }
@@ -34,11 +55,11 @@ public class Shed extends Scene{
       "\n Type \"1\" : \"Go somewhere else\"");
 
     choice = playerChoice();
-    if (choice.equals("0")){
+    if (choice.equals("0")) {
       stepIntoTheShed();
-    }
-    else if(choice.equals("1")) {
+    } else if (choice.equals("1")) {
       goSomewhereElse();
+
     }
     else {
       System.out.println("Wrong input, try entering 0 or 1.");
@@ -55,8 +76,10 @@ public class Shed extends Scene{
   private void stepIntoTheShed() throws InterruptedException {
     System.out.println("\nYou are walking towards the old shed");
     System.out.println("You notice a bloody hand print on the door..");
-    System.out.println("You pull the door open to discover a decaying corpse with the stains of blood all over the interior of the Shed.");
-    System.out.println("As you examine the corpse, you notice something shiny sticking out of his coat pocket...");
+    System.out.println(
+        "You pull the door open to discover a decaying corpse with the stains of blood all over the interior of the Shed.");
+    System.out.println(
+        "As you examine the corpse, you notice something shiny sticking out of his coat pocket...");
     System.out.println("Would you like to reach into the coat pocket to see what it is?");
     System.out.println("\n");
 
@@ -64,17 +87,19 @@ public class Shed extends Scene{
   }
 
   private void takeShinyThingChoice() throws InterruptedException {
+
     System.out.println("- Type \"Y\": to reach and grab the item");
     System.out.println("- Type \"N\": to walk out of the Shed");
+
     String choice = playerChoice().toUpperCase();
-    if (choice.equals("Y")){
+    if (choice.equals("Y")) {
       grabShinyThingYes();
-    }
-    else if(choice.equals("N")){
+    } else if (choice.equals("N")) {
       inFrontOfShed();
     }
     else{
       System.out.println("Wrong input, try typing: Y or N");
+
       takeShinyThingChoice();
     }
   }
@@ -101,15 +126,16 @@ public class Shed extends Scene{
     Thread.sleep(10000);
     System.out.println("You added the KEY to your inventory.");
     System.out.println("\n");
+
+    player.addItemToInventory(Key);
+    getItemsInScene().remove(Key);
+
     Thread.sleep(2000);
     System.out.println("You exit the Shed and continue your journey.");
     goSomewhereElse();
-
   }
 
-  private String playerChoice(){
+  private String playerChoice() {
     return choice.nextLine();
   }
-
 }
-

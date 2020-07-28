@@ -38,10 +38,7 @@ public class Cave extends Scene {
 
   private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("cave");
 
-  private final Item boat =
-      ("boat".equals(itemsInThisScene.get(0).getItemName()))
-          ? itemsInThisScene.get(0)
-          : itemsInThisScene.get(1);
+  private final Item boat = ItemDirector.findThisItem("boat", itemsInThisScene);
 
   /*
    * =============================================

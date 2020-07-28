@@ -1,7 +1,7 @@
 package com.slenderman.game;
 
-import com.slenderman.scenes.*;
 import com.slenderman.actors.Player;
+import com.slenderman.scenes.*;
 import com.slenderman.tools.LoseGameTimer;
 import java.util.Scanner;
 
@@ -13,6 +13,7 @@ import java.util.Scanner;
  *
  * <p>This class will be instantiated in the Starter class' Main method to actually start the game
  */
+
 public final class Game {
 
 
@@ -33,9 +34,14 @@ public final class Game {
 
   private final Player Player;
 
+  /*
+   * =============================================
+   * ============= Constructors ==================
+   * =============================================
+   */
+
   public Game() {
     Player = new Player();
-
     aShed = new Shed();
     aTree = new Tree();
     aPond = new Pond();
@@ -48,17 +54,21 @@ public final class Game {
 
     aForest.connectSouth(aShed);
     aForest.connectEast(aHouse);
-
     aAbandonedCar.connectEast(aOutHouse);
     aOutHouse.connectSouth(aPond);
     aHouse.connectEast(aAbandonedCar);
     aHouse.connectSouth(aCave);
-
     aShed.connectEast(aCave);
     aCave.connectEast(aPond);
     aPond.connectEast(aField);
     aField.connectEast(aTree);
   }
+
+  /*
+   * =============================================
+   * =========== Business Methods ================
+   * =============================================
+   */
 
   public void start(Scanner in) throws InterruptedException {
     String userText = "";
@@ -94,7 +104,8 @@ public final class Game {
         Player.changeInvItemsLocation();
 
         currentScene.enter(in, Player);
-      } else {
+      }
+      else {
         System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
       }
 
@@ -133,3 +144,4 @@ public final class Game {
     this.disableIntroduction = disableIntroduction;
   }
 }
+
