@@ -5,25 +5,59 @@ import java.util.List;
 
 public class ItemDirector {
 
-  private static ItemBuilder itemBuilder = new ItemBuilder();
+  private static final ItemBuilder itemBuilder = new ItemBuilder();
 
-  private static List<Item> allItems = itemBuilder.buildAllItems();
+  private static final List<Item> allItems = itemBuilder.buildAllItems();
 
-  private ItemDirector() {
+  /*
+   * =============================================
+   * ============= Constructors ==================
+   * =============================================
+   */
 
-  }
+  private ItemDirector() {}
 
+  /*
+   * =============================================
+   * =========== Business Methods ================
+   * =============================================
+   */
   public static ArrayList<Item> getItemsForScene(String sceneName) {
+    String name = sceneName.trim().toLowerCase();
     ArrayList<Item> itemsInScene = new ArrayList<>();
 
     for (Item item : allItems) {
       String itemSceneName = item.getCurrentScene();
 
-      if (itemSceneName.equals(sceneName)) {
+      if (name.equals(itemSceneName)) {
         itemsInScene.add(item);
       }
     }
 
     return itemsInScene;
-  };
+  }
+
+
+  public static Item findThisItem(String itemName, ArrayList<Item> itemsInThisScene) {
+    Item foundItem = null;
+    String nameOfItem = itemName.trim().toLowerCase();
+
+    for (Item item : itemsInThisScene) {
+      if (nameOfItem.equals(item.getItemName())) {
+          foundItem = item;
+      }
+    }
+
+    return foundItem;
+  }
+
+
+
+  @Override
+  public String toString() {
+    return "ItemDirector{" +
+           "itemBuilder=" + itemBuilder +
+           ", allItems=" + allItems +
+           '}';
+  }
 }

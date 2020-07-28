@@ -1,163 +1,121 @@
 package com.slenderman.scenes;
 
+import com.slenderman.actors.Item;
+import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 
+import java.text.MessageFormat;
 import java.util.*;
 
 public class Field extends Scene {
 
+  // For Resource Bundle //
+  final String FILE_BASE_NAME = "storyFieldNoColor";
+  final String PATH = "com.slenderman.scenes.files.";
+
+  ResourceBundle.Control rbc =
+      ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+  ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
+
+  // Unit testing purpose //
+  private boolean _max_iteration_not_reached;
+
+  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+
   private Scanner scanner;
+  private Player player;
 
-  //private Map<String, String> scenesAround = new HashMap<>();
-  private List<String> grabbedItems = new ArrayList<>();
-  private List<String> itemsInScene = new ArrayList<>();
+  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("field");
 
+  private final Item Blade = ItemDirector.findThisItem("blade", itemsInThisScene);
 
-  //default constructor
-  public Field(){
+  // default constructor
+  public Field() {
     setDescription("You have reached am empty field.");
     setSceneName("field");
+    setItemsInScene(itemsInThisScene);
   }
 
+  public Field(
+      Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
+    super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
-  public Field(Scene sceneToTheNorth, Scene sceneToTheSouth,
-               Scene sceneToTheEast, Scene sceneToTheWest) {
-    super(sceneToTheNorth, sceneToTheSouth,
-      sceneToTheEast, sceneToTheWest);
-
-    //Add the pre existing items to the List
-    itemsInScene.add("blade");
     setDescription("You have reached am empty field.");
     setSceneName("field");
+    setItemsInScene(itemsInThisScene);
   }
-
-//  public void setItemsInScene(List<String> itemsInScene){};
-//  public <String> List<String> getGrabbedItems(List<String> grabbedItems){
-//    List<String> grabbedItems
-//  };
-
-
 
   public void enter(Scanner in, Player player) throws InterruptedException {
     player.setCurrentSceneName(this.getSceneName());
     scanner = in;
+    this.player = player;
     String choice;
-    System.out.println("\nThere is a field in front of you. You see a flower.");
-    System.out.println("What would you like to do?");
-    System.out.println(" Type \"0\" : \"Pick up the flower\" " +
-      "\n Type \"1\" : \"Step on the flower\"");
-
+    displayStories("enter");
     choice = playerChoice();
 
     if (choice.equals("0")) {
       smellIt(in, player);
-    }
-    if (choice.equals("1")) {
+    } else {
       footCut(in, player);
     }
   }
 
   private void smellIt(Scanner in, Player player) throws InterruptedException {
-    System.out.println("Do you want to go ahead and smell the flower?");
-    System.out.println(" Type \"0\" : \"Yes\" " +
-      "\n Type \"1\" : \"No\"");
+    displayStories("smellIt");
     String choice = playerChoice();
 
     if (choice.equals("0")) {
       sneeze(in, player);
     }
-    if (choice.equals("1")) {
-      //go to the next Tree class
-
-      System.out.println("Which direction would you like to go?");
-      System.out.println("Type \"EAST\", \"WEST\", \"NORTH \" or \"SOUTH\"");
-//      choice = playerChoice();
-//      if (choice.equals("WEST")) {
-//        System.out.println("West chosen");
-//        getSceneToTheWest().enter(in, player);
-//      } else if (choice.equals("EAST")) {
-//        getSceneToTheEast().enter(in, player);
-//      } else if (choice.equals("NORTH")) {
-//        getSceneToTheNorth().enter(in, player);
-//      } else if (choice.equals("SOUTH")) {
-//        getSceneToTheSouth().enter(in, player);
-//      }
+    else{
+      displayStories("askDirection");
     }
-
   }
 
   private void sneeze(Scanner in, Player player) throws InterruptedException {
-    System.out.println("You sneeze loudly and that blew away a piece of paper in the bushes");
-    System.out.println("You see a note. Do you want to pick it up?");
 
-    System.out.println(" Type \"0\" : \"Yes\" " +
-      "\n Type \"1\" : \"No\"");
+    displayStories("sneeze");
     String choice = playerChoice();
 
     if (choice.equals("0")) {
       findBlade(in, player);
-    }
-    if (choice.equals("1")) {
-      //go to the next Tree class
-
-      System.out.println("Which direction would you like to go?");
-      System.out.println("Type \"east\", \"west\", \"north \" or \"south\"");
-      choice = playerChoice();
-      changeScene(choice);
-
+    } else {
+      // go to the next Tree class
+      displayStories("askDirection");
+//      choice = playerChoice();
+//      changeScene(choice);
     }
   }
 
   private void footCut(Scanner in, Player player) throws InterruptedException {
-    System.out.println("Ouch! You just got cut on your foot." +
-      "Do you want to look at what cut you?");
-    System.out.println(" Type \"0\" : \"Yes\" " +
-      "\n Type \"1\" : \"No\"");
+    displayStories("footCut");
     String choice = playerChoice();
-    if (choice.equals("0")){
+    if (choice.equals("0")) {
       findBlade(in, player);
-      }
-    else if (choice.equals("1")){
+    } else {
       sneeze(in, player);
     }
   }
 
   private void findBlade(Scanner in, Player player) throws InterruptedException {
-    System.out.println(
-      "You have found a blade. \n Would you like to grab it? "+
-      " Type \"0\" : \"Yes\" " +
-        "\n Type \"1\" : \"No\"");
+
+    displayStories("findBlade");
     String choice = playerChoice();
 
     if (choice.equals("0")) {
-      grabbedItems.add(itemsInScene.get(0));
-      System.out.println("You have put "+ itemsInScene.get(0) +" in your pocket.");
-      itemsInScene.remove(0);
-      System.out.println("itemsInScene: " + itemsInScene);
+      player.addItemToInventory(Blade);
+      System.out.println(bundle.getString("findBladeItem"));
+      getItemsInScene().remove(Blade);
     }
 
-    System.out.println("\nYou look up and see a fork. " +
-      "\nOne is a broad way and another is narrow." +
-        "\nWhich road would you like to take?");
-    System.out.println(" Type \"0\" : \"Broad Way\" " +
-      "\n Type \"1\" : \"Narrow Way\"");
+    displayStories("findBladeChoiceWay");
     choice = playerChoice();
 
     if (choice.equals("0")) {
       sneeze(in, player);
-    } else if (choice.equals("1")) {
-      System.out.println("Which direction would you like to go?");
-//      choice = playerChoice();
-//      if (choice.equals("WEST")) {
-//        System.out.println("West chosen");
-//        getSceneToTheWest().enter(in, player);
-//      } else if (choice.equals("EAST")) {
-//        getSceneToTheEast().enter(in, player);
-//      } else if (choice.equals("NORTH")) {
-//        getSceneToTheNorth().enter(in, player);
-//      } else if (choice.equals("SOUTH")) {
-//        getSceneToTheSouth().enter(in, player);
-//      }
+    } else {
+      displayStories("askDirection");
+      // System.out.println(bundle.getString("askDirection[0]"));
     }
   }
 
@@ -165,6 +123,35 @@ public class Field extends Scene {
     return scanner.nextLine();
   }
 
+
+
+
+  /**
+   * Coloring the fonts
+   *
+   * <p>{0} : Scene.ANSI_GREEN {1} : Scene.ANSI_BLUE {2} : Scene.ANSI_RED {3} : Scene.ANSI_BLACK {4}
+   * : Scene.ANSI_WHITE
+   */
+  private String textPainter(String text) {
+    return MessageFormat.format(
+        text,
+        Scene.ANSI_GREEN,
+        Scene.ANSI_BLUE,
+        Scene.ANSI_RED,
+        Scene.ANSI_BLACK,
+        Scene.ANSI_WHITE);
+  }
+
+  /** For accessing and displaying stories in Resource Bundle file */
+  private void displayStories(String key) {
+    _max_iteration_not_reached = false;
+    for (int i = 0; i < MAX_ITERATION_DISPLAY_STORIES; i++) {
+      try {
+        System.out.println(textPainter(bundle.getString(key + "[" + i + "]")));
+      } catch (MissingResourceException e) {
+        _max_iteration_not_reached = true;
+        break;
+      }
+    }
+  }
 }
-
-

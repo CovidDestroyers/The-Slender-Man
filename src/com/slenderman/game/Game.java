@@ -1,70 +1,72 @@
 package com.slenderman.game;
 
-import com.slenderman.scenes.*;
+import com.slenderman.actors.Item;
 import com.slenderman.actors.Player;
+import com.slenderman.scenes.*;
 import com.slenderman.tools.LoseGameTimer;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 /**
- * Game is the class where we will build out the logic for the actual game.
- * Essentially, this is the place where everything comes together to create
- * the game.
+ * Game is the class where we will build out the logic for the actual game. Essentially, this is the
+ * place where everything comes together to create the game.
  *
- * This class will be instantiated in the Starter class' Main method to
- * actually start the game
- *
+ * <p>This class will be instantiated in the Starter class' Main method to actually start the game
  */
 public class Game {
-
-  // For Unit Testing Purpose //
   private boolean disableIntroduction = false;
   private boolean reachedTree = false;
-  /////////////////////////////
 
   private Scene currentScene;
-  private Scene aAbandonedCar;
-  private Scene aHouse;
-  private Scene aOutHouse;
-  private Scene aForest;
-  private Shed aShed;
-  private Scene aTree;
-  private Scene aPond;
-  private Scene aCave;
-  private Scene aField;
+  private final Scene aAbandonedCar;
+  private final Scene aHouse;
+  private final Scene aOutHouse;
+  private final Scene aForest;
+  private final Shed aShed;
+  private final Scene aTree;
+  private final Scene aPond;
+  private final Scene aCave;
+  private final Scene aField;
 
+  private final Player Player;
 
-  private Player Player;
-
+  /*
+   * =============================================
+   * ============= Constructors ==================
+   * =============================================
+   */
 
   public Game() {
     Player = new Player();
-
-    aForest = new Forest();
     aShed = new Shed();
-    aAbandonedCar = new AbandonedCar();
-    aField = new Field();
     aTree = new Tree();
     aPond = new Pond();
     aCave = new Cave();
-    aOutHouse = new OutHouse();
+    aField = new Field();
     aHouse = new House();
+    aForest = new Forest();
+    aOutHouse = new OutHouse();
+    aAbandonedCar = new AbandonedCar();
 
     aForest.connectSouth(aShed);
     aForest.connectEast(aHouse);
-
     aAbandonedCar.connectEast(aOutHouse);
     aOutHouse.connectSouth(aPond);
     aHouse.connectEast(aAbandonedCar);
     aHouse.connectSouth(aCave);
-
     aShed.connectEast(aCave);
     aCave.connectEast(aPond);
     aPond.connectEast(aField);
     aField.connectEast(aTree);
   }
 
-
+  /*
+   * =============================================
+   * =========== Business Methods ================
+   * =============================================
+   */
 
   public void start(Scanner in) throws InterruptedException {
     String userText = "";
@@ -77,7 +79,9 @@ public class Game {
     }
 
     currentScene = aForest;
+
     Player.setCurrentSceneName(currentScene.getSceneName());
+
     currentScene.enter(in, Player);
 
     while (true) {
@@ -107,7 +111,14 @@ public class Game {
         }
         reachedTree = (currentScene == aTree);
       }
-
+      // Not unit testing mode
+      else{
+        if(currentScene == aTree){
+          if (Player.getNumItemsPlayerHas() >= Player.TOTAL_NUM_ITEMS_TO_FINISH_GAME){
+            winMessage();
+          }
+        }
+      }
     }
   }
 
@@ -121,12 +132,11 @@ public class Game {
     System.exit(0);
   }
 
- /**
-  * For Unit Testing purpose
-  * */
+  /** For Unit Testing purpose */
   public Scene getCurrentScene() {
     return currentScene;
   }
+
   public void setDisableIntroduction(boolean disableIntroduction) {
     this.disableIntroduction = disableIntroduction;
   }

@@ -1,7 +1,5 @@
 package com.slenderman.actors;
 
-
-import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
@@ -9,8 +7,8 @@ import org.junit.After;
 /**
 * Player Tester.
 *
-* @author  David Hull
-* @since <pre>Jul 19, 2020</pre>
+* @author <Authors name>
+* @since <pre>Jul 27, 2020</pre>
 * @version 1.0
 */
 public class PlayerTest {
@@ -29,7 +27,7 @@ public void after() throws Exception {
 *
 */
 @Test
-public void testAddItemToInventory() throws Exception {
+public void testAddItemToInventoryItems() throws Exception {
 //TODO: Test goes here...
 }
 
@@ -69,7 +67,7 @@ public void testChangeInvItemsLocationSceneName() throws Exception {
 *
 */
 @Test
-public void testSetState() throws Exception {
+public void testGetSetState() throws Exception {
 //TODO: Test goes here...
 }
 
@@ -79,7 +77,7 @@ public void testSetState() throws Exception {
 *
 */
 @Test
-public void testSetInventory() throws Exception {
+public void testGetSetInventory() throws Exception {
 //TODO: Test goes here...
 }
 
@@ -89,37 +87,7 @@ public void testSetInventory() throws Exception {
 *
 */
 @Test
-public void testSetCurrentSceneName() throws Exception {
-//TODO: Test goes here...
-}
-
-/**
-*
-* Method: getState()
-*
-*/
-@Test
-public void testGetState() throws Exception {
-//TODO: Test goes here...
-}
-
-/**
-*
-* Method: getInventory()
-*
-*/
-@Test
-public void testGetInventory() throws Exception {
-//TODO: Test goes here...
-}
-
-/**
-*
-* Method: getCurrentSceneName()
-*
-*/
-@Test
-public void testGetCurrentSceneName() throws Exception {
+public void testGetSetCurrentSceneName() throws Exception {
 //TODO: Test goes here...
 }
 
