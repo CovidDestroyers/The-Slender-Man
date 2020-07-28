@@ -30,6 +30,9 @@ public final class Game {
   private final Scene aPond;
   private final Scene aCave;
   private final Scene aField;
+  private final Scene LoseGameScene;
+
+  public static boolean isPlayerAlive;
 
   private final Player Player;
 
@@ -50,6 +53,7 @@ public final class Game {
     aForest = new Forest();
     aOutHouse = new OutHouse();
     aAbandonedCar = new AbandonedCar();
+    LoseGameScene = new LoseGameScene();
 
     aForest.connectSouth(aShed);
     aForest.connectEast(aHouse);
@@ -69,16 +73,20 @@ public final class Game {
    * =============================================
    */
 
+
   public void start(Scanner in) throws InterruptedException {
     String userText = "";
+
 
     // new LoseGameTimer(1);
 
     // For Unit Testing purpose
     if (!disableIntroduction) {
       // Introduction.playIntro();
-      new LoseGameTimer(10);
+      new LoseGameTimer(1);
     }
+
+
 
     currentScene = aForest;
 
@@ -86,35 +94,52 @@ public final class Game {
 
     currentScene.enter(in, Player);
 
+
+
     while (true) {
       userText = in.nextLine().toLowerCase().trim();
+      if (isPlayerAlive == true) {
 
-      if (userText.equals("quit")) {
-        System.out.println("Goodbye!");
-        break;
-      }
-
-      if (userText.startsWith("go ")) {
-        currentScene = currentScene.changeScene(userText.substring(3));
-
-        Player.setCurrentSceneName(currentScene.getSceneName());
-        Player.changeInvItemsLocation();
-
-        currentScene.enter(in, Player);
-      }
-      else {
-        System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
-      }
-
-      // For Unit Testing purpose
-      if (disableIntroduction) {
-        if (reachedTree) {
-          winMessage();
+        if (userText.equals("quit")) {
+          System.out.println("Goodbye!");
+          break;
         }
-        reachedTree = (currentScene == aTree);
+
+        if (userText.startsWith("go ")) {
+          currentScene = currentScene.changeScene(userText.substring(3));
+
+          Player.setCurrentSceneName(currentScene.getSceneName());
+          Player.changeInvItemsLocation();
+
+          currentScene.enter(in, Player);
+        } else {
+          System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
+        }
+
+        // For Unit Testing purpose
+        if (disableIntroduction) {
+          if (reachedTree) {
+            winMessage();
+          }
+          reachedTree = (currentScene == aTree);
+        }
+        // Not unit testing mode
+        else {
+          if (currentScene == aTree) {
+            winMessage();
+          }
+        }
+      }
+      else if (isPlayerAlive == false) {
+        System.out.println("changing scenes to LoseGameScene");
+        currentScene = LoseGameScene;
+        Player.setCurrentSceneName(currentScene.getSceneName());
+        currentScene.enter(in, Player);
       }
     }
   }
+
+
 
   private void winMessage() throws InterruptedException {
     Thread.sleep(2000);

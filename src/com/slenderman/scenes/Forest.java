@@ -32,6 +32,8 @@ public class Forest extends Scene {
 
   public final int MAX_ITERATION_DISPLAY_STORIES = 10;
 
+  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("forest");
+
   public Forest(
       Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);

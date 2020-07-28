@@ -1,8 +1,7 @@
 package com.slenderman.actors;
 
-import com.slenderman.actors.Item;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ItemBuilder {
 
@@ -14,7 +13,7 @@ public class ItemBuilder {
               "lockbox:house",
               "lighter:house",
               "toilet_paper:abandonedcar",
-              "torch:outhouse",
+              "torch:forest",
               "boat:cave",
               "blade:field",
               "key:shed"));
@@ -33,9 +32,7 @@ public class ItemBuilder {
    * =============================================
    */
 
-  /**
-   * @return allItems -> an ArrayList of all Items in game
-   */
+  /** @return allItems -> an ArrayList of all Items in game */
   public ArrayList<Item> buildAllItems() {
     String itemName;
     String currentScene;

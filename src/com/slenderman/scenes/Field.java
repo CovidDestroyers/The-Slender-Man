@@ -79,8 +79,8 @@ public class Field extends Scene {
     } else {
       // go to the next Tree class
       displayStories("askDirection");
-      choice = playerChoice();
-      changeScene(choice);
+//      choice = playerChoice();
+//      changeScene(choice);
     }
   }
 
