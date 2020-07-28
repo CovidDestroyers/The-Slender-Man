@@ -1,74 +1,71 @@
 package com.slenderman.game;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
-import javax.swing.*;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-
-class Console {
-  final JFrame frame = new JFrame("SlenderMan");
-  final GridLayout layout = new GridLayout(2, 1);
-  final JPanel outputPanel = new JPanel();
-
-  final JPanel inputPanel = new JPanel(new BorderLayout());
-
-
-
-
-
+class Console extends JPanel {
 
   public Console() {
-    frame.setLocation(100, 100);
-    frame.setLayout(layout);
-    frame.add(outputPanel);
-    frame.add(inputPanel);
+    setFocusable(true);
+    setDoubleBuffered(true);
+    setLayout(new BorderLayout());
 
-    JTextPane textPane = new JTextPane();
+    JTextArea textArea = new JTextArea(100, 80);
 
-    SimpleAttributeSet attributeSet = new SimpleAttributeSet();
-    StyleConstants.setItalic(attributeSet, true);
-    StyleConstants.setForeground(attributeSet, Color.BLUE);
-    textPane.setBackground(Color.white);
-    textPane.setCharacterAttributes(attributeSet, true);
-
-    inputPanel.add(textPane);
-    textPane.setText(textPane.getText());
-    System.out.println(textPane.getText());
-
-
-    JTextArea textArea = new JTextArea(24, 80);
-    JScrollPane scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     textArea.setBackground(Color.BLACK);
     textArea.setForeground(Color.LIGHT_GRAY);
+
     textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
-    System.setOut(new PrintStream(new OutputStream() {
 
-      @Override
-      public void write(int b) throws IOException {
-        textArea.append(String.valueOf((char) b));
+    JScrollPane scroll =
+        new JScrollPane(
+            textArea,
+            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        textArea.setCaretPosition(textArea.getDocument().getLength());
-      }
-    }));
-    outputPanel.add(scroll);
+    System.setOut(
+        new PrintStream(
+            new OutputStream() {
 
+              @Override
+              public void write(int b) throws IOException {
+                textArea.append(String.valueOf((char) b));
+                textArea.setCaretPosition(textArea.getDocument().getLength());
+              }
+            }));
 
-    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-    // only a configuration to the jScrollPane...
-
+    textArea.addKeyListener(new WatchMyKeys());
+    add(scroll);
   }
 
-  public void init() {
-    frame.pack();
-    frame.setVisible(true);
+  /*
+   * =============================================
+   * =========== Private Class ===================
+   * =============================================
+   */
 
-  }
-  public JFrame getFrame() {
-    return frame;
+  private class WatchMyKeys extends KeyAdapter {
+
+    @Override
+    public void keyReleased(KeyEvent event) {
+      super.keyReleased(event);
+    }
+
+    @Override
+    public void keyPressed(KeyEvent event) {
+      super.keyPressed(event);
+      int key = event.getKeyCode();
+      System.out.printf("Key Code: %s\n", key);
+      System.out.printf("Key Char: %s\n", event.getKeyChar());
+    }
   }
 }

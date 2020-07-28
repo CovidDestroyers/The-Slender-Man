@@ -1,11 +1,11 @@
 package com.slenderman.game;
 
 import com.slenderman.actors.Player;
+
 import com.slenderman.scenes.*;
+
 import com.slenderman.tools.LoseGameTimer;
 import java.util.Scanner;
-
-
 
 /**
  * Game is the class where we will build out the logic for the actual game. Essentially, this is the
@@ -15,7 +15,6 @@ import java.util.Scanner;
  */
 
 public final class Game {
-
 
   // For Unit Testing Purpose //
   private boolean disableIntroduction = false;
@@ -73,15 +72,13 @@ public final class Game {
   public void start(Scanner in) throws InterruptedException {
     String userText = "";
 
-
-    //new LoseGameTimer(1);
+    // new LoseGameTimer(1);
 
     // For Unit Testing purpose
     if (!disableIntroduction) {
-      //Introduction.playIntro();
-      new LoseGameTimer(1);
+      // Introduction.playIntro();
+      new LoseGameTimer(10);
     }
-
 
     currentScene = aForest;
 
@@ -123,13 +120,14 @@ public final class Game {
     Thread.sleep(2000);
     System.out.println("You have killed SlenderMan\n");
     Thread.sleep(5000);
-    System.out.println("\n" +
-      "       __                            \n" +
-      " /  | /  | /  |      /  | / /| |  /  \n" +
-      "(___|(   |(   |     (   |( ( | | (   \n" +
-      "    )|   )|   )     | / )| | | ) |   \n" +
-      " __/ |__/ |__/      |/|/ | | |/  _   \n" +
-      "                                     \n");
+    System.out.println(
+        "\n"
+            + "       __                            \n"
+            + " /  | /  | /  |      /  | / /| |  /  \n"
+            + "(___|(   |(   |     (   |( ( | | (   \n"
+            + "    )|   )|   )     | / )| | | ) |   \n"
+            + " __/ |__/ |__/      |/|/ | | |/  _   \n"
+            + "                                     \n");
     System.out.println("Thanks for playing!");
     Thread.sleep(5000);
     System.exit(1);
