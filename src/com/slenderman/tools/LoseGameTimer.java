@@ -1,5 +1,6 @@
 package com.slenderman.tools;
 import com.slenderman.actors.SlenderMan;
+import com.slenderman.game.Game;
 
 import java.awt.*;
 import java.util.Timer;

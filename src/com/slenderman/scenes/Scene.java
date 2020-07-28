@@ -30,22 +30,22 @@ public abstract class Scene {
 
   protected ArrayList<Item> itemsInScene;
 
-
   /*
    * =============================================
    * ============= Constructors ==================
    * =============================================
    */
-  public Scene(){};
+
+  public Scene() {}
 
   // TODO: See if setters will work instread of directly accessing the fields
-  public Scene(
-    Scene sceneToTheNorth, Scene sceneToTheSouth,
+  public Scene(Scene sceneToTheNorth, Scene sceneToTheSouth,
     Scene sceneToTheEast, Scene sceneToTheWest) {
-    this.sceneToTheNorth = sceneToTheNorth;
-    this.sceneToTheSouth = sceneToTheSouth;
-    this.sceneToTheEast = sceneToTheEast;
-    this.sceneToTheWest = sceneToTheWest;
+
+    setSceneToTheNorth(sceneToTheNorth);
+    setSceneToTheSouth(sceneToTheSouth);
+    setSceneToTheEast(sceneToTheEast);
+    setSceneToTheWest(sceneToTheWest);
   }
 
   /*
@@ -212,16 +212,16 @@ public abstract class Scene {
   }
 
 
-  @Override
-  public String toString() {
-    return "Scene{" + "ANSI_BLUE='" + ANSI_BLUE + '\'' + ", ANSI_WHITE='" +
-           ANSI_WHITE + '\'' + ", ANSI_RED='" + ANSI_RED + '\'' +
-           ", ANSI_BLACK='" + ANSI_BLACK + '\'' + ", ANSI_GREEN='" +
-           ANSI_GREEN + '\'' + ", sceneToTheNorth=" + sceneToTheNorth +
-           ", sceneToTheSouth=" + sceneToTheSouth + ", sceneToTheEast=" +
-           sceneToTheEast + ", sceneToTheWest=" + sceneToTheWest +
-           ", description='" + description + '\'' + ", itemsInScene=" +
-           itemsInScene + '}';
+  @Override public String toString() {
+    return "Scene{" +
+           "sceneToTheNorth=" + sceneToTheNorth +
+           ", sceneToTheSouth=" + sceneToTheSouth +
+           ", sceneToTheEast=" + sceneToTheEast +
+           ", sceneToTheWest=" + sceneToTheWest +
+           ", description='" + description + '\'' +
+           ", sceneName='" + sceneName + '\'' +
+           ", itemsInScene=" + itemsInScene +
+           '}';
   }
 }
 

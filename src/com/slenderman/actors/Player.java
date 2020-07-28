@@ -9,10 +9,6 @@ public class Player extends Shed {
   private String currentSceneName = "forest";
 
   private List<Item> inventory = new ArrayList<>();
-  private Item Watch = new Item("watch", "forest", "timer", "forest");
-
-  private Item Key = new Item("key", "forest", "unlock lockbox", "forest");
-
 
   /*
    * =============================================
@@ -20,7 +16,8 @@ public class Player extends Shed {
    * =============================================
    */
   public Player() {
-    addItemToInventory(Watch, Key);
+    ArrayList<Item> defaultInvItems = ItemDirector.getItemsForScene("forest");
+    addItemToInventory(defaultInvItems);
   }
 
   /*
@@ -30,10 +27,18 @@ public class Player extends Shed {
    */
 
   public void addItemToInventory(Item... items) {
-    inventory.addAll(Arrays.asList(items));
+    try {
+      inventory.addAll(Arrays.asList(items));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
 
-    for (Item item : items) {
-      item.setCurrentScene(this.currentSceneName);
+  public void addItemToInventory(ArrayList<Item> items) {
+    try {
+      inventory.addAll(items);
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
@@ -48,17 +53,14 @@ public class Player extends Shed {
 
       inventory.remove(indexOfItem);
 
-      System.out.printf("You dropped a %s from your inventory.\n",
-                        returnableItem.getItemName());
+      System.out.printf("You dropped a %s from your inventory.\n", returnableItem.getItemName());
     } else {
-      System.out.println("It doesn't look like you have that item in your " +
-                         "inventory.\n");
+      System.out.println("It doesn't look like you have that item in your " + "inventory.\n");
     }
   }
 
   /**
-   * Changes the currentScene field for ALL items in inventory to Player's
-   * current scene location
+   * Changes the currentScene field for ALL items in inventory to Player's current scene location
    */
   public void changeInvItemsLocation() {
     inventory.forEach(item -> item.setCurrentScene(this.currentSceneName));
@@ -66,14 +68,12 @@ public class Player extends Shed {
 
   /**
    * Changes the currentScene field for ALL items in inventory to sceneName
-   * @param sceneName string representation of the scene i.e. "pond",
-   *                  "forest", etc.
+   *
+   * @param sceneName string representation of the scene i.e. "pond", "forest", etc.
    */
   public void changeInvItemsLocation(String sceneName) {
     inventory.forEach(item -> item.setCurrentScene(sceneName));
   }
-
-
 
   /*
    * =============================================
@@ -106,5 +106,4 @@ public class Player extends Shed {
   public String getCurrentSceneName() {
     return currentSceneName;
   }
-
 }

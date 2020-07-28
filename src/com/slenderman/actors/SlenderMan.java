@@ -1,5 +1,6 @@
 package com.slenderman.actors;
 
+//import com.slenderman.scenes.LoseGameScene;
 import com.slenderman.scenes.Scene;
 
 public class SlenderMan {
@@ -14,7 +15,6 @@ public class SlenderMan {
       "    )|   )|   )     |   )|   )    )|     |   \n" +
       " __/ |__/ |__/      |__/ |__/  __/ |__   _   \n" +
       "                                             ");
-    System.exit(1);
   }
 
   public static void moveCloserToPlayer() {

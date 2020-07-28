@@ -1,5 +1,7 @@
 package com.slenderman.scenes;
 
+import com.slenderman.actors.Item;
+import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 
 import java.util.*;
@@ -11,20 +13,20 @@ public class Forest extends Scene {
    * ============= Constructors ==================
    * =============================================
    */
-  public Forest(){
+  public Forest() {
     setSceneName("forest");
   }
 
-  public Forest(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
+  public Forest(
+      Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
-
   }
-
 
   @Override
   public void enter(Scanner in, Player player) {
 
     System.out.println(
+
       "               ,@@@@@@@,\n" +
       "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n" +
       "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n" +
@@ -43,6 +45,6 @@ public class Forest extends Scene {
     System.out.println("\n");
 
 
-  }
 
+  }
 }

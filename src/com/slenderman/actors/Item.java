@@ -2,63 +2,37 @@ package com.slenderman.actors;
 
 public class Item {
   private String itemName;
-  private String homeScene;
-  private String purpose;
-  private Boolean otherItemNeeded = false;
-  private String otherItem = "none";
+  private String currentScene;
+  private String purpose = "none";
+
+  private Boolean isAnotherItemNeeded = false;
+  private String nameOfOtherItem = "none";
   private String whatDoesOtherItemDo = "n/a";
   private String itemRevealed = "none";
 
   private String asciiArt = "none";
-  private String currentScene = "nowhere";
-
 
   /*
    * =============================================
    * ============= Constructors ==================
    * =============================================
    */
-  public Item() {
+  private Item() {}
 
-  }
-
-  public Item(String itemName) {
+  private Item(String itemName) {
     setItemName(itemName);
   }
 
-  public Item(String itemName, String homeScene) {
+  public Item(String itemName, String currentScene) {
     this(itemName);
-    setHomeScene(homeScene);
-  }
-
-  public Item(String itemName, String homeScene, String purpose) {
-    setItemName(itemName);
-    setHomeScene(homeScene);
-    setPurpose(purpose);
-  }
-
-  public Item(String itemName, String homeScene, String purpose, String currentScene) {
-    this(itemName, homeScene, purpose);
     setCurrentScene(currentScene);
   }
 
-  public Item(String itemName, String homeScene, String purpose,
-    String currentScene, Boolean otherItemNeeded, String otherItem,
-    String whatDoesOtherItemDo) {
-
-    this(itemName, homeScene, purpose, currentScene);
-    setOtherItemNeeded(otherItemNeeded);
-    setOtherItem(otherItem);
-    setWhatDoesOtherItemDo(whatDoesOtherItemDo);
-  }
-
-  public Item(String itemName, String homeScene, String purpose,
-    String currentScene, Boolean otherItemNeeded, String otherItem,
-    String whatDoesOtherItemDo, String itemRevealed) {
-
-    this(itemName, homeScene, purpose, currentScene, otherItemNeeded,
-      otherItem, whatDoesOtherItemDo);
-    setItemRevealed(itemRevealed);
+  public Item(
+      String itemName, String currentScene, Boolean isAnotherItemNeeded, String nameOfOtherItem) {
+    this(itemName, currentScene);
+    setAnotherItemNeeded(isAnotherItemNeeded);
+    setNameOfOtherItem(nameOfOtherItem);
   }
 
   /*
@@ -79,20 +53,16 @@ public class Item {
 
   // SET METHODS
 
-  public void setHomeScene(String homeScene) {
-    this.homeScene = homeScene;
-  }
-
   public void setPurpose(String purpose) {
     this.purpose = purpose;
   }
 
-  public void setOtherItemNeeded(Boolean otherItemNeeded) {
-    this.otherItemNeeded = otherItemNeeded;
+  public void setAnotherItemNeeded(Boolean anotherItemNeeded) {
+    isAnotherItemNeeded = anotherItemNeeded;
   }
 
-  public void setOtherItem(String otherItem) {
-    this.otherItem = otherItem;
+  public void setNameOfOtherItem(String nameOfOtherItem) {
+    this.nameOfOtherItem = nameOfOtherItem;
   }
 
   public void setWhatDoesOtherItemDo(String whatDoesOtherItemDo) {
@@ -117,10 +87,6 @@ public class Item {
 
   // GET METHODS
 
-  public String getHomeScene() {
-    return homeScene;
-  }
-
   public String getItemName() {
     return itemName;
   }
@@ -133,16 +99,12 @@ public class Item {
     return whatDoesOtherItemDo;
   }
 
-  public String getOtherItem() {
-    return otherItem;
+  public String getNameOfOtherItem() {
+    return nameOfOtherItem;
   }
 
   public String getPurpose() {
     return purpose;
-  }
-
-  public Boolean getOtherItemNeeded() {
-    return otherItemNeeded;
   }
 
   public String getAsciiArt() {
@@ -153,19 +115,38 @@ public class Item {
     return currentScene;
   }
 
+  public Boolean getAnotherItemNeeded() {
+    return isAnotherItemNeeded;
+  }
 
   @Override
   public String toString() {
-    return "Item{" +
-           "itemName='" + itemName + '\'' +
-           ", homeScene='" + homeScene + '\'' +
-           ", purpose='" + purpose + '\'' +
-           ", otherItemNeeded=" + otherItemNeeded +
-           ", otherItem='" + otherItem + '\'' +
-           ", whatDoesOtherItemDo='" + whatDoesOtherItemDo + '\'' +
-           ", itemRevealed='" + itemRevealed + '\'' +
-           ", asciiArt='" + asciiArt + '\'' +
-           ", currentScene='" + currentScene + '\'' +
-           '}';
+    return "Item{"
+        + "itemName='"
+        + itemName
+        + '\''
+        + ", currentScene='"
+        + currentScene
+        + '\''
+        + ", purpose='"
+        + purpose
+        + '\''
+        + ", isAnotherItemNeeded="
+        + isAnotherItemNeeded
+        + ", nameOfOtherItem='"
+        + nameOfOtherItem
+        + '\''
+        + ", whatDoesOtherItemDo='"
+        + whatDoesOtherItemDo
+        + '\''
+        + ", itemRevealed='"
+        + itemRevealed
+        + '\''
+        + ", asciiArt='"
+        + asciiArt
+        + '\''
+        + ", anotherItemNeeded="
+        + getAnotherItemNeeded()
+        + '}';
   }
 }
