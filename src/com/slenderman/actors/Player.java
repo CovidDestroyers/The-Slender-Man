@@ -5,6 +5,9 @@ import com.slenderman.scenes.Shed;
 import java.util.*;
 
 public class Player extends Shed {
+
+  public final int TOTAL_NUM_ITEMS_TO_FINISH_GAME = 5;
+
   private String state = "alive";
   private String currentSceneName = "forest";
 
@@ -102,6 +105,10 @@ public class Player extends Shed {
 
   public Collection<Item> getInventory() {
     return Collections.unmodifiableCollection(inventory);
+  }
+
+  public int getNumItemsPlayerHas(){
+    return getInventory().size();
   }
 
   public String getCurrentSceneName() {

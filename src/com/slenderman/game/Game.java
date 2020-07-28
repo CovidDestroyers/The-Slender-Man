@@ -1,9 +1,12 @@
 package com.slenderman.game;
 
+import com.slenderman.actors.Item;
 import com.slenderman.actors.Player;
 import com.slenderman.scenes.*;
 import com.slenderman.tools.LoseGameTimer;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 /**
@@ -111,7 +114,9 @@ public class Game {
       // Not unit testing mode
       else{
         if(currentScene == aTree){
-          winMessage();
+          if (Player.getNumItemsPlayerHas() >= Player.TOTAL_NUM_ITEMS_TO_FINISH_GAME){
+            winMessage();
+          }
         }
       }
     }
