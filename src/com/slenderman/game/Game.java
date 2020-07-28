@@ -108,6 +108,12 @@ public class Game {
         }
         reachedTree = (currentScene == aTree);
       }
+      // Not unit testing mode
+      else{
+        if(currentScene == aTree){
+          winMessage();
+        }
+      }
     }
   }
 
