@@ -7,7 +7,7 @@ class ItemTest2 {
     Item item= new Item("itemName", "homeScene", "purpose", "house", false,
                         "otherItem", "whatDoesOtherItemDo", "itemRevealed");
 
-    @Test
+    @org.junit.jupiter.api.DynamicTest
     void testPrintAsciiArt(){
         item.printAsciiArt();
     }
