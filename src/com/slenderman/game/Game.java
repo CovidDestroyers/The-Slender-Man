@@ -1,10 +1,15 @@
 package com.slenderman.game;
 
+import com.slenderman.actors.Item;
 import com.slenderman.actors.Player;
 
 import com.slenderman.scenes.*;
 
 import com.slenderman.tools.LoseGameTimer;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 import java.util.Scanner;
 
 /**
@@ -123,19 +128,23 @@ public final class Game {
           }
           reachedTree = (currentScene == aTree);
         }
-        // Not unit testing mode
-        else {
-          if (currentScene == aTree) {
+
+        reachedTree = (currentScene == aTree);
+      }
+      // Not unit testing mode
+      else{
+        if(currentScene == aTree){
+          if (Player.getNumItemsPlayerHas() >= Player.TOTAL_NUM_ITEMS_TO_FINISH_GAME){
             winMessage();
           }
         }
       }
-      else if (isPlayerAlive == false) {
-        System.out.println("changing scenes to LoseGameScene");
-        currentScene = LoseGameScene;
-        Player.setCurrentSceneName(currentScene.getSceneName());
-        currentScene.enter(in, Player);
-      }
+//      else if (isPlayerAlive == false) {
+//        System.out.println("changing scenes to LoseGameScene");
+//        currentScene = LoseGameScene;
+//        Player.setCurrentSceneName(currentScene.getSceneName());
+//        currentScene.enter(in, Player);
+//      }
     }
   }
 

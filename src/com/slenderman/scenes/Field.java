@@ -23,6 +23,7 @@ public class Field extends Scene {
   public final int MAX_ITERATION_DISPLAY_STORIES = 10;
 
   private Scanner scanner;
+  private Player player;
 
   private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("field");
 
@@ -47,6 +48,7 @@ public class Field extends Scene {
   public void enter(Scanner in, Player player) throws InterruptedException {
     player.setCurrentSceneName(this.getSceneName());
     scanner = in;
+    this.player = player;
     String choice;
     displayStories("enter");
     choice = playerChoice();
@@ -64,7 +66,8 @@ public class Field extends Scene {
 
     if (choice.equals("0")) {
       sneeze(in, player);
-    } else {
+    }
+    else{
       displayStories("askDirection");
     }
   }
@@ -119,6 +122,9 @@ public class Field extends Scene {
   private String playerChoice() {
     return scanner.nextLine();
   }
+
+
+
 
   /**
    * Coloring the fonts
