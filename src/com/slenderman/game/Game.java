@@ -63,9 +63,6 @@ public final class Game {
 
     aForest.connectSouth(aShed);
     aForest.connectEast(aHouse);
-    aAbandonedCar.connectEast(aOutHouse);
-    aOutHouse.connectSouth(aPond);
-    aHouse.connectEast(aAbandonedCar);
     aHouse.connectSouth(aCave);
     aShed.connectEast(aCave);
     aCave.connectEast(aPond);
@@ -88,8 +85,8 @@ public final class Game {
 
     // For Unit Testing purpose
     if (!disableIntroduction) {
-      // Introduction.playIntro();
-      new LoseGameTimer(1);
+      Introduction.playIntro();
+      new LoseGameTimer(10);
     }
 
 
