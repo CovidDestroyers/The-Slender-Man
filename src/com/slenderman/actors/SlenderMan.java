@@ -23,8 +23,11 @@ public class SlenderMan {
   }
 
   public static void moveCloserToPlayer() {
-    System.out.println("---------------------------------------------------------------------------------------------------\n" +
-      "You hear a screeching sound in the distance. Something is watching you and it is moving closer... \n");
+    System.out.println(
+      "---------------------------------------------------------------------------------------------------\n" +
+        "You hear a screeching sound in the distance. Something is watching you and it is moving closer... \n" +
+        "---------------------------------------------------------------------------------------------------\n");
   }
+
 
 }
