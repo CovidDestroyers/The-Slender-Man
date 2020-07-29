@@ -5,18 +5,25 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.io.*;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.Scanner;
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingWorker;
 
 class Console extends JFrame implements ActionListener {
   JTextField tfIn;
   JLabel lblOut;
   JTextArea outText;
-
-
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
@@ -27,13 +34,11 @@ class Console extends JFrame implements ActionListener {
     super("SlenderMan");
     setFocusable(true);
 
-    // 2. set the System.in and System.out streams
     System.setIn(inPipe);
+
     try {
-      //System.setOut(new PrintStream(new PipedOutputStream(outPipe), true));
       inWriter = new PrintWriter(new PipedOutputStream(inPipe), true);
-    }
-    catch(IOException e) {
+    } catch (IOException e) {
       System.out.println("Error: " + e);
       return;
     }
@@ -44,31 +49,32 @@ class Console extends JFrame implements ActionListener {
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+
     JScrollPane scroll =
-      new JScrollPane(
+        new JScrollPane(
+            outText,
+            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        outText,
-        JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    panel.add(scroll, BorderLayout.CENTER);
 
-    panel.add(scroll, BorderLayout.CENTER );
     System.setOut(
-      new PrintStream(
-        new OutputStream() {
+        new PrintStream(
+            new OutputStream() {
 
-          @Override
-          public void write(int b) throws IOException {
-            outText.append(String.valueOf((char) b));
-            outText.setCaretPosition(outText.getDocument().getLength());
-          }
-        }));
-
-
+              @Override
+              public void write(int b) throws IOException {
+                outText.append(String.valueOf((char) b));
+                outText.setCaretPosition(outText.getDocument().getLength());
+              }
+            }));
 
     tfIn = new JTextField();
     tfIn.addActionListener(this);
-    panel.add(tfIn, BorderLayout.SOUTH);
 
+    tfIn.setToolTipText("Please type your command here (such as go *direction* or quit) and then press ENTER/RETURN on your keyboard");
+
+    panel.add(tfIn, BorderLayout.SOUTH);
     add(panel);
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,26 +84,22 @@ class Console extends JFrame implements ActionListener {
     new SwingWorker<Void, String>() {
       protected Void doInBackground() throws Exception {
         Scanner s = new Scanner(outPipe);
+
         while (s.hasNextLine()) {
           String line = s.nextLine();
           publish(line);
         }
+
         return null;
       }
-//      @Override protected void process(java.util.List<String> chunks) {
-//        for (String line : chunks) outText.setText(line);
-//      }
-
     }.execute();
-
   }
 
+  @Override
   public void actionPerformed(ActionEvent e) {
     String text = tfIn.getText();
     tfIn.setText("");
+
     inWriter.println(text);
   }
-
-
-
-  }
+}
