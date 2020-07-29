@@ -1,4 +1,4 @@
-package test.com.slenderman.actors;
+package com.slenderman.actors;
 
 import org.junit.Test;
 import org.junit.Before;

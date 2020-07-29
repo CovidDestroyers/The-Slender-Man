@@ -1,16 +1,20 @@
 package com.slenderman.game;
 
-import com.slenderman.actors.Item;
 import com.slenderman.actors.Player;
-
 import com.slenderman.actors.SlenderMan;
-import com.slenderman.scenes.*;
-
+import com.slenderman.scenes.AbandonedCar;
+import com.slenderman.scenes.Cave;
+import com.slenderman.scenes.Field;
+import com.slenderman.scenes.Forest;
+import com.slenderman.scenes.House;
+import com.slenderman.scenes.Introduction;
+import com.slenderman.scenes.LoseGameScene;
+import com.slenderman.scenes.OutHouse;
+import com.slenderman.scenes.Pond;
+import com.slenderman.scenes.Scene;
+import com.slenderman.scenes.Shed;
+import com.slenderman.scenes.Tree;
 import com.slenderman.tools.LoseGameTimer;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
 import java.util.Scanner;
 
 /**
@@ -76,10 +80,8 @@ public final class Game {
    * =============================================
    */
 
-
   public void start(Scanner in) throws InterruptedException {
     String userText = "";
-
 
     // new LoseGameTimer(1);
 
@@ -89,13 +91,11 @@ public final class Game {
       new LoseGameTimer(10);
     }
 
-
     currentScene = aForest;
 
     Player.setCurrentSceneName(currentScene.getSceneName());
 
     currentScene.enter(in, Player);
-
 
     while (true) {
       if (!SlenderMan.isGameDone) {
@@ -103,9 +103,11 @@ public final class Game {
       }
       else {
         currentScene = LoseGameScene;
-        Player.setCurrentSceneName(currentScene.getSceneName());
-        currentScene.enter(in, Player);
 
+        Player.setCurrentSceneName(currentScene.getSceneName());
+        Player.changeInvItemsLocation();
+
+        currentScene.enter(in, Player);
       }
 
 
