@@ -113,6 +113,12 @@ public class Cave extends Scene {
     String input = playerChoice().toUpperCase();
     String[] objectInput = input.split(" ");
 
+    // Added code here for checking number of items typed
+    if (objectInput.length != 2){
+      System.out.println("-> You typed "+ objectInput.length + " items. Please try again.");
+      inFrontOfCave();
+    }
+
     if ((objectInput[0].equals("TORCH") && objectInput[1].equals("LIGHTER"))
         || (objectInput[1].equals("TORCH") && objectInput[0].equals("LIGHTER"))) {
       exploreCave();
