@@ -154,33 +154,33 @@ public final class Game {
   private void winMessage() throws InterruptedException {
     Thread.sleep(2000);
     System.out.println("You walk slowly towards a lonely tree in the middle of a field...\n");
-    Thread.sleep(2000);
-    System.out.println("Something tells you to carve an X on the tree...\n");
-    Thread.sleep(2000);
-    System.out.println("You take the blade, and stab it into the tree...\n");
-    Thread.sleep(2000);
-    System.out.println("You breathe heavily as you begin to make the shape of an X on the tree...\n");
-    Thread.sleep(2000);
-    System.out.println("As you finish, you take a couple steps back...");
-    Thread.sleep(2000);
-    System.out.println("You begin to hear an overpowering screeching sound...");
-    Thread.sleep(2000);
-    System.out.println("You see something emerge from the shadows...");
-    Thread.sleep(2000);
-    System.out.println("The creature cracks and shifts around as it approaches you...");
-    Thread.sleep(2000);
-    System.out.println("The screeching becomes unbearable as you begin to lose your senses...");
-    Thread.sleep(2000);
-    System.out.println("You reach out for the blade and hold it front of you as the creature charges...");
-    Thread.sleep(2000);
-    System.out.println("...");
-    Thread.sleep(2000);
-    System.out.println("...");
     Thread.sleep(3000);
+    System.out.println("Something tells you to carve an X on the tree...\n");
+    Thread.sleep(3000);
+    System.out.println("You take the blade, and stab it into the tree...\n");
+    Thread.sleep(3000);
+    System.out.println("You breathe heavily as you begin to make the shape of an X on the tree...\n");
+    Thread.sleep(3000);
+    System.out.println("As you finish, you take a couple steps back...\n");
+    Thread.sleep(3000);
+    System.out.println("You begin to hear an overpowering screeching sound...\n");
+    Thread.sleep(3000);
+    System.out.println("You see something emerge from the shadows...\n");
+    Thread.sleep(3000);
+    System.out.println("The creature cracks and shifts around as it approaches you...\n");
+    Thread.sleep(3000);
+    System.out.println("The screeching becomes unbearable as you begin to lose your senses...\n");
+    Thread.sleep(3000);
+    System.out.println("You reach out for the blade and hold it front of you as the creature charges...\n");
+    Thread.sleep(3000);
+    System.out.println("...\n");
+    Thread.sleep(4000);
+    System.out.println("...\n");
+    Thread.sleep(5000);
     System.out.println("You have killed SlenderMan!\n");
-    Thread.sleep(1000);
-    System.out.println("You let out a sigh of relief as the sun rises over the thick woods.");
-    System.out.println("You see a possible exit in the distance, and begin your journey to freedom...");
+    Thread.sleep(3000);
+    System.out.println("You let out a sigh of relief as the sun rises over the thick woods.\n");
+    System.out.println("You see a possible exit in the distance, and begin your journey to freedom...\n");
     Thread.sleep(5000);
     System.out.println(
         "\n"
@@ -191,7 +191,7 @@ public final class Game {
             + " __/ |__/ |__/      |/|/ | | |/  _   \n"
             + "                                     \n");
     System.out.println("Thanks for playing!");
-    Thread.sleep(5000);
+    Thread.sleep(9000);
     System.exit(1);
   }
 
