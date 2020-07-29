@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Player extends Shed {
 
-  public final int TOTAL_NUM_ITEMS_TO_FINISH_GAME = 5;
+  public final int TOTAL_NUM_ITEMS_TO_FINISH_GAME = 6;
 
   private String state = "alive";
   private String currentSceneName = "forest";
