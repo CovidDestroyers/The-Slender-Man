@@ -56,6 +56,7 @@ public class Forest extends Scene {
             + "\n"
             + "------------------------------------------------\n");
     displayStories("forest");
+    SceneImage.printForest();
   }
   /**
    * Coloring the fonts
