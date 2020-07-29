@@ -65,6 +65,7 @@ public class Cave extends Scene {
   public void enter(Scanner in, Player player) throws InterruptedException {
     thePlayer = player;
     choice = in;
+    SceneImage.printCave();
     inFrontOfCave();
   }
 

@@ -27,9 +27,7 @@ public final class Game {
   private boolean reachedTree = false;
 
   private Scene currentScene;
-  private final Scene aAbandonedCar;
   private final Scene aHouse;
-  private final Scene aOutHouse;
   private final Scene aForest;
   private final Shed aShed;
   private final Scene aTree;
@@ -57,8 +55,6 @@ public final class Game {
     aField = new Field();
     aHouse = new House();
     aForest = new Forest();
-    aOutHouse = new OutHouse();
-    aAbandonedCar = new AbandonedCar();
     LoseGameScene = new LoseGameScene();
 
     aForest.connectSouth(aShed);
