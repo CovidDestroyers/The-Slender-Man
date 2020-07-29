@@ -120,7 +120,7 @@ public class Shed extends Scene {
     player.addItemToInventory(Key);
     getItemsInScene().remove(Key);
 
-    Thread.sleep(1000);
+    Thread.sleep(10000);
     System.out.println(textPainter(bundle.getString("exitShed_0")));
     Thread.sleep(2000);
     System.out.println(textPainter(bundle.getString("exitShed_1")));
