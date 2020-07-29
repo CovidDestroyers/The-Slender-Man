@@ -3,6 +3,7 @@ package com.slenderman.game;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.Player;
 
+import com.slenderman.actors.SlenderMan;
 import com.slenderman.scenes.*;
 
 import com.slenderman.tools.LoseGameTimer;
@@ -92,7 +93,6 @@ public final class Game {
     }
 
 
-
     currentScene = aForest;
 
     Player.setCurrentSceneName(currentScene.getSceneName());
@@ -100,51 +100,55 @@ public final class Game {
     currentScene.enter(in, Player);
 
 
-
     while (true) {
-      userText = in.nextLine().toLowerCase().trim();
-      if (isPlayerAlive == true) {
+      if (!SlenderMan.isGameDone) {
+        userText = in.nextLine().toLowerCase().trim();
+      }
+      else {
+        currentScene = LoseGameScene;
+        Player.setCurrentSceneName(currentScene.getSceneName());
+        currentScene.enter(in, Player);
 
-        if (userText.equals("quit")) {
-          System.out.println("Goodbye!");
-          break;
+      }
+
+
+      if (userText.equals("quit")) {
+        System.out.println("Goodbye!");
+        break;
+      }
+
+      if (userText.startsWith("go ")) {
+        currentScene = currentScene.changeScene(userText.substring(3));
+
+        Player.setCurrentSceneName(currentScene.getSceneName());
+        Player.changeInvItemsLocation();
+
+        currentScene.enter(in, Player);
+      } else {
+        System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
+      }
+
+      // For Unit Testing purpose
+      if (disableIntroduction) {
+        if (reachedTree) {
+          winMessage();
         }
-
-        if (userText.startsWith("go ")) {
-          currentScene = currentScene.changeScene(userText.substring(3));
-
-          Player.setCurrentSceneName(currentScene.getSceneName());
-          Player.changeInvItemsLocation();
-
-          currentScene.enter(in, Player);
-        } else {
-          System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
-        }
-
-        // For Unit Testing purpose
-        if (disableIntroduction) {
-          if (reachedTree) {
-            winMessage();
-          }
-          reachedTree = (currentScene == aTree);
-        }
-
         reachedTree = (currentScene == aTree);
       }
       // Not unit testing mode
-      else{
-        if(currentScene == aTree){
-          if (Player.getNumItemsPlayerHas() >= Player.TOTAL_NUM_ITEMS_TO_FINISH_GAME){
+      else {
+        if (currentScene == aTree) {
+          if (Player.getNumItemsPlayerHas() >= Player.TOTAL_NUM_ITEMS_TO_FINISH_GAME) {
             winMessage();
           }
         }
-      }
 //      else if (isPlayerAlive == false) {
 //        System.out.println("changing scenes to LoseGameScene");
 //        currentScene = LoseGameScene;
 //        Player.setCurrentSceneName(currentScene.getSceneName());
 //        currentScene.enter(in, Player);
 //      }
+      }
     }
   }
 

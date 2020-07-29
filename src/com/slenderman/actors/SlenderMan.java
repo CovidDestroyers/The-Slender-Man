@@ -6,9 +6,11 @@ import com.slenderman.scenes.Scene;
 
 public class SlenderMan {
 
+  public static boolean isGameDone = false;
+
   public static void killPlayer() throws InterruptedException {
     Game.isPlayerAlive = false;
-    System.out.println("player died");
+    isGameDone = true;
 //    System.out.println("---------------------------------------------------------------------------------------------------\n" +
 //      "The screeching overpowers all of your senses, you become paralyzed... \n" +
 //      "SlenderMan emerges from the shadows and wraps his long slimy fingers around your neck and... \n" +
