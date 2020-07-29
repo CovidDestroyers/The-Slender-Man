@@ -1,11 +1,11 @@
 package com.slenderman.scenes;
 
-import com.slenderman.actors.Item;
-import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
-
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class Forest extends Scene {
 
@@ -32,8 +32,6 @@ public class Forest extends Scene {
 
   public final int MAX_ITERATION_DISPLAY_STORIES = 10;
 
-  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("forest");
-
   public Forest(
       Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
@@ -41,6 +39,7 @@ public class Forest extends Scene {
 
   @Override
   public void enter(Scanner in, Player player) {
+    SceneImage.printForest();
 
     System.out.println(
               "               ,@@@@@@@,\n"
@@ -56,7 +55,6 @@ public class Forest extends Scene {
             + "\n"
             + "------------------------------------------------\n");
     displayStories("forest");
-    SceneImage.printForest();
   }
   /**
    * Coloring the fonts

@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.slenderman.game.Starter</OriginalElement>
+  <nodes>
+    <node x="180.06527415675424" y="730.0">com.slenderman.scenes.Shed</node>
+    <node x="1118.5861074900877" y="730.0">com.slenderman.scenes.Cave</node>
+    <node x="283.06527415675424" y="730.0">com.slenderman.scenes.Pond</node>
+    <node x="795.5861074900876" y="730.0">com.slenderman.actors.SlenderMan</node>
+    <node x="286.7777741567543" y="224.0">com.slenderman.actors.ItemDirector</node>
+    <node x="576.0861074900876" y="458.0">com.slenderman.scenes.Scene</node>
+    <node x="1220.5861074900877" y="730.0">com.slenderman.scenes.House</node>
+    <node x="262.4027741567543" y="142.0">com.slenderman.actors.ItemBuilder</node>
+    <node x="693.5861074900876" y="730.0">com.slenderman.scenes.Tree</node>
+    <node x="43.5" y="730.0">com.slenderman.scenes.Field</node>
+    <node x="514.5861074900876" y="730.0">com.slenderman.scenes.LoseGameScene</node>
+    <node x="340.2555147058824" y="458.0">com.slenderman.scenes.SceneImage</node>
+    <node x="372.9027741567543" y="0.0">com.slenderman.actors.Item</node>
+    <node x="548.1625664684153" y="1046.0">com.slenderman.game.Starter</node>
+    <node x="534.1625664684153" y="882.0">com.slenderman.game.Game</node>
+    <node x="484.1625664684153" y="964.0">com.slenderman.game.Console</node>
+    <node x="255.46527415675428" y="326.0">com.slenderman.actors.Player</node>
+    <node x="385.06527415675424" y="730.0">com.slenderman.scenes.Forest</node>
+    <node x="949.5861074900876" y="730.0">com.slenderman.scenes.Introduction</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.slenderman.scenes.Scene" target="com.slenderman.actors.Item">
+      <point x="30.33333333333337" y="-16.0" />
+      <point x="651.9194408234209" y="438.0" />
+      <point x="642.2527741567542" y="438.0" />
+      <point x="642.2527741567542" y="102.0" />
+      <point x="428.3733623920484" y="102.0" />
+      <point x="14.470588235294144" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Pond" target="com.slenderman.scenes.Scene">
+      <point x="16.399999999999977" y="-16.0" />
+      <point x="340.4652741567542" y="670.0" />
+      <point x="597.638739069035" y="670.0" />
+      <point x="-23.9473684210526" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Cave" target="com.slenderman.actors.ItemDirector">
+      <point x="15.375" y="-16.0" />
+      <point x="1174.9611074900877" y="690.0" />
+      <point x="1191.0648697789363" y="690.0" />
+      <point x="1191.0648697789363" y="306.0" />
+      <point x="391.0777741567543" y="306.0" />
+      <point x="29.80000000000001" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.scenes.Cave">
+      <point x="33.3125" y="-16.0" />
+      <point x="608.4750664684153" y="852.0" />
+      <point x="1159.5861074900877" y="852.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.actors.ItemDirector" target="com.slenderman.actors.Item">
+      <point x="55.875" y="-16.0" />
+      <point x="417.1527741567543" y="204.0" />
+      <point x="424.9027741567543" y="204.0" />
+      <point x="424.9027741567543" y="122.0" />
+      <point x="418.72630356851903" y="122.0" />
+      <point x="4.823529411764753" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.House" target="com.slenderman.actors.Item">
+      <point x="28.4375" y="-16.0" />
+      <point x="1294.1486074900877" y="62.0" />
+      <point x="447.6674800391072" y="62.0" />
+      <point x="33.764705882352985" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Field" target="com.slenderman.scenes.Scene">
+      <point x="28.4375" y="-16.0" />
+      <point x="117.4375" y="630.0" />
+      <point x="578.4808443321928" y="630.0" />
+      <point x="-43.1052631578948" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.scenes.Scene">
+      <point x="23.0625" y="-16.0" />
+      <point x="598.2250664684153" y="832.0" />
+      <point x="939.0861074900876" y="832.0" />
+      <point x="939.0861074900876" y="580.0" />
+      <point x="640.7440022269296" y="580.0" />
+      <point x="19.15789473684208" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.actors.Player" target="com.slenderman.actors.Item">
+      <point x="0.0" y="-16.0" />
+      <point x="304.9652741567543" y="276.0" />
+      <point x="251.90277415675428" y="276.0" />
+      <point x="251.90277415675428" y="102.0" />
+      <point x="399.43218592146013" y="102.0" />
+      <point x="-14.470588235294088" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Shed" target="com.slenderman.scenes.Scene">
+      <point x="35.875" y="-16.0" />
+      <point x="256.94027415675424" y="660.0" />
+      <point x="592.8492653848244" y="660.0" />
+      <point x="-28.736842105263122" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Shed" target="com.slenderman.actors.Player">
+      <point x="5.125" y="-16.0" />
+      <point x="226.19027415675424" y="590.0" />
+      <point x="229.86527415675425" y="590.0" />
+      <point x="229.86527415675425" y="418.0" />
+      <point x="285.16527415675426" y="418.0" />
+      <point x="-19.80000000000001" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Scene" target="com.slenderman.actors.Player">
+      <point x="-30.33333333333337" y="-16.0" />
+      <point x="591.2527741567542" y="418.0" />
+      <point x="324.7652741567543" y="418.0" />
+      <point x="19.80000000000001" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.scenes.Tree">
+      <point x="7.6875" y="-16.0" />
+      <point x="582.8500664684153" y="802.0" />
+      <point x="734.5861074900876" y="802.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.LoseGameScene" target="com.slenderman.actors.Player">
+      <point x="-52.66666666666663" y="-16.0" />
+      <point x="540.9194408234209" y="620.0" />
+      <point x="565.5861074900876" y="620.0" />
+      <point x="565.5861074900876" y="428.0" />
+      <point x="318.16527415675426" y="428.0" />
+      <point x="13.199999999999989" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.scenes.Shed">
+      <point x="-28.1875" y="-16.0" />
+      <point x="546.9750664684153" y="842.0" />
+      <point x="200.56527415675424" y="842.0" />
+      <point x="-20.5" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.scenes.Field">
+      <point x="-33.3125" y="-16.0" />
+      <point x="541.8500664684153" y="852.0" />
+      <point x="89.0" y="852.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.actors.Player" target="com.slenderman.actors.ItemDirector">
+      <point x="33.0" y="-16.0" />
+      <point x="337.9652741567543" y="306.0" />
+      <point x="361.2777741567543" y="306.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Field" target="com.slenderman.actors.ItemDirector">
+      <point x="-17.0625" y="-16.0" />
+      <point x="71.9375" y="690.0" />
+      <point x="22.0" y="690.0" />
+      <point x="22.0" y="296.0" />
+      <point x="301.67777415675425" y="296.0" />
+      <point x="-59.60000000000002" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Field" target="com.slenderman.actors.Player">
+      <point x="5.6875" y="-16.0" />
+      <point x="94.6875" y="590.0" />
+      <point x="168.47152415675419" y="590.0" />
+      <point x="168.47152415675419" y="398.0" />
+      <point x="271.9652741567543" y="398.0" />
+      <point x="-33.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.actors.ItemDirector" target="com.slenderman.actors.ItemBuilder">
+      <point x="-55.875" y="-16.0" />
+      <point x="305.4027741567543" y="204.0" />
+      <point x="297.6527741567543" y="204.0" />
+      <point x="-35.25" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Shed" target="com.slenderman.actors.ItemDirector">
+      <point x="-15.375" y="-16.0" />
+      <point x="205.69027415675424" y="560.0" />
+      <point x="154.57426470588234" y="560.0" />
+      <point x="154.57426470588234" y="306.0" />
+      <point x="331.47777415675426" y="306.0" />
+      <point x="-29.80000000000001" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Shed" target="com.slenderman.scenes.SceneImage">
+      <point x="15.375" y="-16.0" />
+      <point x="236.44027415675424" y="610.0" />
+      <point x="368.7555147058824" y="610.0" />
+      <point x="-38.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Cave" target="com.slenderman.scenes.Scene">
+      <point x="-15.375" y="-16.0" />
+      <point x="1144.2111074900877" y="540.0" />
+      <point x="655.1124232795612" y="540.0" />
+      <point x="33.52631578947364" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.House" target="com.slenderman.actors.Player">
+      <point x="-5.6875" y="-16.0" />
+      <point x="1261.1486074900877" y="378.0" />
+      <point x="351.16527415675426" y="378.0" />
+      <point x="46.19999999999999" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Cave" target="com.slenderman.scenes.SceneImage">
+      <point x="-35.875" y="-16.0" />
+      <point x="1123.7111074900877" y="560.0" />
+      <point x="444.7555147058824" y="560.0" />
+      <point x="38.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Tree" target="com.slenderman.scenes.SceneImage">
+      <point x="-30.75" y="-16.0" />
+      <point x="703.8361074900876" y="610.0" />
+      <point x="425.7555147058824" y="610.0" />
+      <point x="19.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.House" target="com.slenderman.scenes.Scene">
+      <point x="-28.4375" y="-16.0" />
+      <point x="1237.6486074900877" y="520.0" />
+      <point x="659.9018969637717" y="520.0" />
+      <point x="38.31578947368416" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Tree" target="com.slenderman.actors.Player">
+      <point x="30.75" y="-16.0" />
+      <point x="765.3361074900876" y="408.0" />
+      <point x="331.36527415675425" y="408.0" />
+      <point x="26.399999999999977" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.actors.SlenderMan" target="com.slenderman.game.Game">
+      <point x="33.25" y="16.0" />
+      <point x="895.3361074900876" y="822.0" />
+      <point x="593.1000664684153" y="822.0" />
+      <point x="17.9375" y="-16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Field" target="com.slenderman.scenes.SceneImage">
+      <point x="17.0625" y="-16.0" />
+      <point x="106.0625" y="600.0" />
+      <point x="349.7555147058824" y="600.0" />
+      <point x="-57.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Tree" target="com.slenderman.scenes.Scene">
+      <point x="10.25" y="-16.0" />
+      <point x="744.8361074900876" y="590.0" />
+      <point x="635.9545285427191" y="590.0" />
+      <point x="14.368421052631561" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Forest" target="com.slenderman.scenes.Scene">
+      <point x="12.375" y="-16.0" />
+      <point x="446.94027415675424" y="690.0" />
+      <point x="607.217686437456" y="690.0" />
+      <point x="-14.368421052631561" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Cave" target="com.slenderman.actors.Player">
+      <point x="5.125" y="-16.0" />
+      <point x="1164.7111074900877" y="388.0" />
+      <point x="344.56527415675424" y="388.0" />
+      <point x="39.599999999999966" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.actors.SlenderMan">
+      <point x="12.8125" y="-16.0" />
+      <point x="587.9750664684153" y="812.0" />
+      <point x="828.8361074900876" y="812.0" />
+      <point x="-33.25" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.scenes.Forest">
+      <point x="-7.6875" y="-16.0" />
+      <point x="567.4750664684153" y="802.0" />
+      <point x="434.56527415675424" y="802.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Console" target="com.slenderman.game.Game">
+      <point x="0.0" y="-16.0" />
+      <point x="537.6625664684153" y="944.0" />
+      <point x="547.829233135082" y="944.0" />
+      <point x="-27.33333333333337" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Field" target="com.slenderman.actors.Item">
+      <point x="-28.4375" y="-16.0" />
+      <point x="60.5625" y="700.0" />
+      <point x="11.0" y="700.0" />
+      <point x="11.0" y="62.0" />
+      <point x="380.13806827440135" y="62.0" />
+      <point x="-33.76470588235293" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Shed" target="com.slenderman.actors.Item">
+      <point x="-25.625" y="-16.0" />
+      <point x="195.44027415675424" y="570.0" />
+      <point x="89.0" y="570.0" />
+      <point x="89.0" y="82.0" />
+      <point x="389.78512709793074" y="82.0" />
+      <point x="-24.117647058823536" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.House" target="com.slenderman.actors.ItemDirector">
+      <point x="5.6875" y="-16.0" />
+      <point x="1272.1486074900877" y="296.0" />
+      <point x="420.8777741567543" y="296.0" />
+      <point x="59.60000000000002" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.House" target="com.slenderman.scenes.SceneImage">
+      <point x="-39.8125" y="-16.0" />
+      <point x="1226.2736074900877" y="530.0" />
+      <point x="463.7555147058824" y="530.0" />
+      <point x="57.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.scenes.Pond">
+      <point x="-12.8125" y="-16.0" />
+      <point x="562.3500664684153" y="812.0" />
+      <point x="324.06527415675424" y="812.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Starter" target="com.slenderman.game.Game">
+      <point x="35.66666666666663" y="-16.0" />
+      <point x="637.329233135082" y="1021.0" />
+      <point x="612.6625664684153" y="1021.0" />
+      <point x="612.6625664684153" y="934.0" />
+      <point x="602.4958998017487" y="934.0" />
+      <point x="27.33333333333337" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Pond" target="com.slenderman.actors.Player">
+      <point x="-16.399999999999977" y="-16.0" />
+      <point x="307.66527415675426" y="590.0" />
+      <point x="304.9652741567543" y="590.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.scenes.Introduction">
+      <point x="28.1875" y="-16.0" />
+      <point x="603.3500664684153" y="842.0" />
+      <point x="1024.0861074900877" y="842.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.actors.Player">
+      <point x="-17.9375" y="-16.0" />
+      <point x="557.2250664684153" y="822.0" />
+      <point x="272.56527415675424" y="822.0" />
+      <point x="272.56527415675424" y="428.0" />
+      <point x="291.7652741567543" y="428.0" />
+      <point x="-13.199999999999989" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.actors.ItemBuilder" target="com.slenderman.actors.Item">
+      <point x="-35.25" y="-16.0" />
+      <point x="297.6527741567543" y="112.0" />
+      <point x="404.2557153332249" y="112.0" />
+      <point x="-9.647058823529392" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Starter" target="com.slenderman.game.Console">
+      <point x="-35.66666666666663" y="-16.0" />
+      <point x="565.9958998017487" y="1021.0" />
+      <point x="537.6625664684153" y="1021.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.LoseGameScene" target="com.slenderman.scenes.Scene">
+      <point x="0.0" y="-16.0" />
+      <point x="593.5861074900876" y="710.0" />
+      <point x="616.796633805877" y="710.0" />
+      <point x="-4.78947368421052" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Pond" target="com.slenderman.scenes.SceneImage">
+      <point x="0.0" y="-16.0" />
+      <point x="324.06527415675424" y="620.0" />
+      <point x="387.7555147058824" y="620.0" />
+      <point x="-19.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Cave" target="com.slenderman.actors.Item">
+      <point x="25.625" y="-16.0" />
+      <point x="1185.2111074900877" y="700.0" />
+      <point x="1201.3148697789363" y="700.0" />
+      <point x="1201.3148697789363" y="92.0" />
+      <point x="433.19689180381306" y="92.0" />
+      <point x="19.29411764705884" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Forest" target="com.slenderman.scenes.SceneImage">
+      <point x="-12.375" y="-16.0" />
+      <point x="422.19027415675424" y="620.0" />
+      <point x="406.7555147058824" y="620.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.scenes.House">
+      <point x="38.4375" y="-16.0" />
+      <point x="613.6000664684153" y="862.0" />
+      <point x="1266.0861074900877" y="862.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Forest" target="com.slenderman.actors.Player">
+      <point x="-37.125" y="-16.0" />
+      <point x="397.44027415675424" y="590.0" />
+      <point x="329.7555147058824" y="590.0" />
+      <point x="329.7555147058824" y="438.0" />
+      <point x="311.5652741567543" y="438.0" />
+      <point x="6.600000000000023" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.scenes.Introduction" target="com.slenderman.scenes.Scene">
+      <point x="0.0" y="-16.0" />
+      <point x="1024.0861074900877" y="570.0" />
+      <point x="645.5334759111402" y="570.0" />
+      <point x="23.9473684210526" y="16.0" />
+    </edge>
+    <edge source="com.slenderman.game.Game" target="com.slenderman.scenes.LoseGameScene">
+      <point x="-2.5625" y="-16.0" />
+      <point x="572.6000664684153" y="782.0" />
+      <point x="593.5861074900876" y="782.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.863685366022092" x="567.2102079165985" y="510.02306893606624" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>packageLocal</VISIBILITY>
+</Diagram>
+

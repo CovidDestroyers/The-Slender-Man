@@ -12,7 +12,8 @@ import com.slenderman.scenes.Pond;
 import com.slenderman.scenes.Scene;
 import com.slenderman.scenes.Shed;
 import com.slenderman.scenes.Tree;
-import com.slenderman.tools.LoseGameTimer;
+import com.slenderman.tools.*;
+
 import java.util.Scanner;
 
 /**
@@ -80,6 +81,15 @@ public final class Game {
     if (!disableIntroduction) {
       Introduction.playIntro();
       new LoseGameTimer(10);
+      new OneMinuteTimer(1);
+      new OneMinuteTimer(2);
+      new OneMinuteTimer(3);
+      new OneMinuteTimer(4);
+      new OneMinuteTimer(5);
+      new OneMinuteTimer(6);
+      new OneMinuteTimer(7);
+      new OneMinuteTimer(8);
+      new OneMinuteTimer(9);
     }
 
     currentScene = aForest;

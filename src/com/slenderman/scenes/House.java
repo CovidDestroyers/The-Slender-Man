@@ -77,6 +77,7 @@ public class House extends Scene {
 
   public void introToHouse() throws InterruptedException {
     try {
+      SceneImage.printHouse();
       System.out.println(textPainter(bundle.getString("introToHouse_0")));
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("introToHouse_1")));
@@ -117,7 +118,6 @@ public class House extends Scene {
 
   public void houseInView() throws InterruptedException {
     try {
-      SceneImage.printHouse();
       System.out.println(textPainter(bundle.getString("houseInView_0")));
       Thread.sleep(1000);
       System.out.println(
