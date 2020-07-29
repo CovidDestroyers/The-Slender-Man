@@ -2,14 +2,12 @@ package com.slenderman.game;
 
 import com.slenderman.actors.Player;
 import com.slenderman.actors.SlenderMan;
-import com.slenderman.scenes.AbandonedCar;
 import com.slenderman.scenes.Cave;
 import com.slenderman.scenes.Field;
 import com.slenderman.scenes.Forest;
 import com.slenderman.scenes.House;
 import com.slenderman.scenes.Introduction;
 import com.slenderman.scenes.LoseGameScene;
-import com.slenderman.scenes.OutHouse;
 import com.slenderman.scenes.Pond;
 import com.slenderman.scenes.Scene;
 import com.slenderman.scenes.Shed;
@@ -21,9 +19,8 @@ import java.util.Scanner;
  * Game is the class where we will build out the logic for the actual game. Essentially, this is the
  * place where everything comes together to create the game.
  *
- * <p>This class will be instantiated in the Starter class' Main method to actually start the game
+ * This class will be instantiated in the Starter class' Main method to actually start the game
  */
-
 public final class Game {
 
   // For Unit Testing Purpose //
@@ -79,8 +76,6 @@ public final class Game {
   public void start(Scanner in) throws InterruptedException {
     String userText = "";
 
-    // new LoseGameTimer(1);
-
     // For Unit Testing purpose
     if (!disableIntroduction) {
       Introduction.playIntro();
@@ -96,8 +91,7 @@ public final class Game {
     while (true) {
       if (!SlenderMan.isGameDone) {
         userText = in.nextLine().toLowerCase().trim();
-      }
-      else {
+      } else {
         currentScene = LoseGameScene;
 
         Player.setCurrentSceneName(currentScene.getSceneName());
@@ -105,7 +99,6 @@ public final class Game {
 
         currentScene.enter(in, Player);
       }
-
 
       if (userText.equals("quit")) {
         System.out.println("Goodbye!");
@@ -137,17 +130,9 @@ public final class Game {
             winMessage();
           }
         }
-//      else if (isPlayerAlive == false) {
-//        System.out.println("changing scenes to LoseGameScene");
-//        currentScene = LoseGameScene;
-//        Player.setCurrentSceneName(currentScene.getSceneName());
-//        currentScene.enter(in, Player);
-//      }
       }
     }
   }
-
-
 
   private void winMessage() throws InterruptedException {
     Thread.sleep(2000);
@@ -157,7 +142,8 @@ public final class Game {
     Thread.sleep(3000);
     System.out.println("You take the blade, and stab it into the tree...\n");
     Thread.sleep(3000);
-    System.out.println("You breathe heavily as you begin to make the shape of an X on the tree...\n");
+    System.out.println(
+        "You breathe heavily as you begin to make the shape of an X on the tree...\n");
     Thread.sleep(3000);
     System.out.println("As you finish, you take a couple steps back...\n");
     Thread.sleep(3000);
@@ -169,7 +155,8 @@ public final class Game {
     Thread.sleep(3000);
     System.out.println("The screeching becomes unbearable as you begin to lose your senses...\n");
     Thread.sleep(3000);
-    System.out.println("You reach out for the blade and hold it front of you as the creature charges...\n");
+    System.out.println(
+        "You reach out for the blade and hold it front of you as the creature charges...\n");
     Thread.sleep(3000);
     System.out.println("...\n");
     Thread.sleep(4000);
@@ -178,7 +165,8 @@ public final class Game {
     System.out.println("You have killed SlenderMan!\n");
     Thread.sleep(3000);
     System.out.println("You let out a sigh of relief as the sun rises over the thick woods.\n");
-    System.out.println("You see a possible exit in the distance, and begin your journey to freedom...\n");
+    System.out.println(
+        "You see a possible exit in the distance, and begin your journey to freedom...\n");
     Thread.sleep(5000);
     System.out.println(
         "\n"
@@ -202,4 +190,3 @@ public final class Game {
     this.disableIntroduction = disableIntroduction;
   }
 }
-

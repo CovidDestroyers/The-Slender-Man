@@ -305,7 +305,7 @@ public class Cave extends Scene {
   /**
    * Coloring the fonts
    *
-   * <p>{0} : Scene.ANSI_GREEN {1} : Scene.ANSI_BLUE {2} : Scene.ANSI_RED {3} : Scene.ANSI_BLACK {4}
+   * {0} : Scene.ANSI_GREEN {1} : Scene.ANSI_BLUE {2} : Scene.ANSI_RED {3} : Scene.ANSI_BLACK {4}
    * : Scene.ANSI_WHITE
    */
   private String textPainter(String text) {
