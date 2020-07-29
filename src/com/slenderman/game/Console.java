@@ -3,10 +3,7 @@ package com.slenderman.game;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.io.*;
 import java.util.Scanner;
 import javax.swing.*;
@@ -68,6 +65,8 @@ class Console extends JFrame implements ActionListener {
     tfIn = new JTextField();
     tfIn.addActionListener(this);
     panel.add(tfIn, BorderLayout.SOUTH);
+    tfIn.setToolTipText("Please type your command here (such as go *direction* or quit) and then press ENTER/RETURN on your keyboard");
+
 
     add(panel);
 
@@ -95,9 +94,21 @@ class Console extends JFrame implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     String text = tfIn.getText();
     tfIn.setText("");
+
     inWriter.println(text);
   }
 
 
-
-  }
+//  @Override
+//  public void focusGained(FocusEvent e) {
+//    String text = tfIn.getText();
+//    tfIn.setText("");
+//
+//    inWriter.println(text);
+//  }
+//
+//  @Override
+//  public void focusLost(FocusEvent e) {
+//
+//  }
+}

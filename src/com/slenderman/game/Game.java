@@ -122,7 +122,7 @@ public final class Game {
 
         currentScene.enter(in, Player);
       } else {
-        System.out.println("Unknown command '" + userText + "'.  Try go/take/quit.\n");
+        System.out.println("Unknown command '" + userText + "'.  Try go/quit.\n");
       }
 
       // For Unit Testing purpose
