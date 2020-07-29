@@ -156,8 +156,10 @@ public class Pond extends Scene {
             choice = playerChoice(in).toUpperCase();
             if (choice.equals("Y")) {
               if (!wearingFogGlasses) {
-
                 displayStories("itemChoice_UseBoat_GlassesOnNot");
+              }
+              else if (!localItems.contains("RING_BOX_KEY")){
+                System.out.println("\nYou do not have a key.");
               }
               else {
 
