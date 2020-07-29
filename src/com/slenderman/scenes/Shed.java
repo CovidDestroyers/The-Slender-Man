@@ -116,9 +116,6 @@ public class Shed extends Scene {
   }
 
   private void exitShed() throws InterruptedException {
-    Thread.sleep(10000);
-    System.out.println("You added the KEY to your inventory.");
-    System.out.println("\n");
 
     player.addItemToInventory(Key);
     getItemsInScene().remove(Key);
