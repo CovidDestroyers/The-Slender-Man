@@ -39,6 +39,7 @@ public class Forest extends Scene {
 
   @Override
   public void enter(Scanner in, Player player) {
+    SceneImage.printForest();
 
     System.out.println(
               "               ,@@@@@@@,\n"
@@ -54,7 +55,6 @@ public class Forest extends Scene {
             + "\n"
             + "------------------------------------------------\n");
     displayStories("forest");
-    SceneImage.printForest();
   }
   /**
    * Coloring the fonts
