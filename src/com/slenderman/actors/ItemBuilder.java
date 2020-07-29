@@ -65,4 +65,13 @@ public class ItemBuilder {
 
     return allItems;
   }
+
+
+  @Override
+  public String toString() {
+    return "ItemBuilder{" +
+      "itemsAndScenes=" + itemsAndScenes +
+      ", buildAllItems=" + buildAllItems() +
+      '}';
+  }
 }

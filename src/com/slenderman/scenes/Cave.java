@@ -3,9 +3,13 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
-
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 
 /**
  * Things needs for this class : Lighter and torch Thing the player needs to get in this class :
@@ -14,24 +18,22 @@ import java.util.*;
  * <p>East : POND West : SHED North : HUT_CAR
  */
 public class Cave extends Scene {
-  // For Resource Bundle //
   final String FILE_BASE_NAME = "storyCaveNoColor";
   final String PATH = "com.slenderman.scenes.files.";
 
-  ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+  ResourceBundle.Control rbc =
+      ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-  /////////////////////////
 
   // Unit testing purpose //
   private boolean _max_iteration_not_reached;
-  //////////////////////////
 
   public final int MAX_ITERATION_DISPLAY_STORIES = 10;
   private boolean isPlayerWithTorch = false;
   private boolean isPlayerWithLighter = false;
   private boolean isPlayerWithBoat = false;
 
-  private List<String> localItems = new ArrayList<>();
+  private final List<String> localItems = new ArrayList<>();
 
   private Scanner choice;
   private Player thePlayer;
@@ -94,7 +96,6 @@ public class Cave extends Scene {
     }
   }
 
-
   private boolean checkItems() {
     Boolean doesPlayerHaveTorch = playerHasItem(thePlayer, "torch");
     Boolean doesPlayerHaveLighter = playerHasItem(thePlayer, "lighter");
@@ -114,8 +115,8 @@ public class Cave extends Scene {
     String[] objectInput = input.split(" ");
 
     // Added code here for checking number of items typed
-    if (objectInput.length != 2){
-      System.out.println("-> You typed "+ objectInput.length + " items. Please try again.");
+    if (objectInput.length != 2) {
+      System.out.println("-> You typed " + objectInput.length + " items. Please try again.");
       inFrontOfCave();
     }
 
@@ -288,7 +289,8 @@ public class Cave extends Scene {
       getItemsInScene().remove(boat);
 
       // DONE Program needs to be added
-      System.out.println(textPainter(bundle.getString("exploreCave_TryCombination_Successful_registerBoat")));
+      System.out.println(
+          textPainter(bundle.getString("exploreCave_TryCombination_Successful_registerBoat")));
 
       isPlayerWithBoat = true;
     }
@@ -320,7 +322,7 @@ public class Cave extends Scene {
     _max_iteration_not_reached = false;
     for (int i = 0; i < MAX_ITERATION_DISPLAY_STORIES; i++) {
       try {
-        System.out.println(textPainter(bundle.getString(key + "[" + Integer.toString(i) + "]")));
+        System.out.println(textPainter(bundle.getString(key + "[" + i + "]")));
       } catch (MissingResourceException e) {
         _max_iteration_not_reached = true;
         break;
@@ -338,5 +340,26 @@ public class Cave extends Scene {
 
   public boolean getIsPlayerWithBoat() {
     return isPlayerWithBoat;
+  }
+
+
+  @Override
+  public String toString() {
+    return "Cave{" +
+      "FILE_BASE_NAME='" + FILE_BASE_NAME + '\'' +
+      ", PATH='" + PATH + '\'' +
+      ", rbc=" + rbc +
+      ", bundle=" + bundle +
+      ", _max_iteration_not_reached=" + _max_iteration_not_reached +
+      ", MAX_ITERATION_DISPLAY_STORIES=" + MAX_ITERATION_DISPLAY_STORIES +
+      ", isPlayerWithTorch=" + isPlayerWithTorch +
+      ", isPlayerWithLighter=" + isPlayerWithLighter +
+      ", isPlayerWithBoat=" + isPlayerWithBoat +
+      ", localItems=" + localItems +
+      ", choice=" + choice +
+      ", thePlayer=" + thePlayer +
+      ", itemsInThisScene=" + itemsInThisScene +
+      ", boat=" + boat +
+      "} " + super.toString();
   }
 }

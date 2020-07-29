@@ -37,14 +37,13 @@ public class ItemDirector {
     return itemsInScene;
   }
 
-
   public static Item findThisItem(String itemName, ArrayList<Item> itemsInThisScene) {
     Item foundItem = null;
     String nameOfItem = itemName.trim().toLowerCase();
 
     for (Item item : itemsInThisScene) {
       if (nameOfItem.equals(item.getItemName())) {
-          foundItem = item;
+        foundItem = item;
       }
     }
 
@@ -52,12 +51,11 @@ public class ItemDirector {
   }
 
 
-
   @Override
   public String toString() {
     return "ItemDirector{" +
-           "itemBuilder=" + itemBuilder +
-           ", allItems=" + allItems +
-           '}';
+      "itemBuilder=" + itemBuilder +
+      ", allItems=" + allItems +
+      '}';
   }
 }
