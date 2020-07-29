@@ -25,6 +25,8 @@ class Console extends JFrame implements ActionListener {
 
   public Console(Game game) {
     super("SlenderMan");
+    setFocusable(true);
+
     // 2. set the System.in and System.out streams
     System.setIn(inPipe);
     try {
@@ -49,7 +51,7 @@ class Console extends JFrame implements ActionListener {
         JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-    panel.add(outText, BorderLayout.CENTER);
+    panel.add(scroll, BorderLayout.CENTER );
     System.setOut(
       new PrintStream(
         new OutputStream() {
@@ -60,7 +62,7 @@ class Console extends JFrame implements ActionListener {
             outText.setCaretPosition(outText.getDocument().getLength());
           }
         }));
-    outText.add(scroll);
+
 
 
     tfIn = new JTextField();
@@ -71,7 +73,7 @@ class Console extends JFrame implements ActionListener {
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
-    setSize(500, 100);
+    setSize(800, 800);
 
     new SwingWorker<Void, String>() {
       protected Void doInBackground() throws Exception {
@@ -82,9 +84,9 @@ class Console extends JFrame implements ActionListener {
         }
         return null;
       }
-      @Override protected void process(java.util.List<String> chunks) {
-        for (String line : chunks) outText.setText(line);
-      }
+//      @Override protected void process(java.util.List<String> chunks) {
+//        for (String line : chunks) outText.setText(line);
+//      }
 
     }.execute();
 

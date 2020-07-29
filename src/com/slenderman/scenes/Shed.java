@@ -13,8 +13,7 @@ public class Shed extends Scene {
   final String FILE_BASE_NAME = "storyShedNoColor";
   final String PATH = "com.slenderman.scenes.files.";
 
-  ResourceBundle.Control rbc =
-    ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+  ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
 
   // Unit testing purpose //
@@ -117,9 +116,6 @@ public class Shed extends Scene {
   }
 
   private void exitShed() throws InterruptedException {
-    Thread.sleep(10000);
-    System.out.println("You added the KEY to your inventory.");
-    System.out.println("\n");
 
     player.addItemToInventory(Key);
     getItemsInScene().remove(Key);
