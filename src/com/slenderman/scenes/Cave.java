@@ -4,12 +4,7 @@ import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Things needs for this class : Lighter and torch Thing the player needs to get in this class :
@@ -118,15 +113,17 @@ public class Cave extends Scene {
     // Added code here for checking number of items typed
     if (objectInput.length != 2) {
       System.out.println("-> You typed " + objectInput.length + " items. Please try again.");
+      Arrays.fill(objectInput, null);
       inFrontOfCave();
     }
-
-    if ((objectInput[0].equals("TORCH") && objectInput[1].equals("LIGHTER"))
+    else {
+      if ((objectInput[0].equals("TORCH") && objectInput[1].equals("LIGHTER"))
         || (objectInput[1].equals("TORCH") && objectInput[0].equals("LIGHTER"))) {
-      exploreCave();
-    } else {
-      System.out.println(textPainter(bundle.getString("quizChoosingRightItems_incorrect")));
-      inFrontOfCave();
+        exploreCave();
+      } else {
+        System.out.println(textPainter(bundle.getString("quizChoosingRightItems_incorrect")));
+        inFrontOfCave();
+      }
     }
   }
 
