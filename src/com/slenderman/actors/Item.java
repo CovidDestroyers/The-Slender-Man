@@ -122,16 +122,16 @@ public class Item {
 
   @Override
   public String toString() {
-      return "Item{" +
-             "itemName='" + itemName + '\'' +
-             ", currentScene='" + currentScene + '\'' +
-             ", purpose='" + purpose + '\'' +
-             ", isAnotherItemNeeded=" + isAnotherItemNeeded +
-             ", nameOfOtherItem='" + nameOfOtherItem + '\'' +
-             ", whatDoesOtherItemDo='" + whatDoesOtherItemDo + '\'' +
-             ", itemRevealed='" + itemRevealed + '\'' +
-             ", asciiArt='" + asciiArt + '\'' +
-             ", anotherItemNeeded=" + getAnotherItemNeeded() +
-             '}';
+    return "Item{" +
+      "itemName='" + itemName + '\'' +
+      ", currentScene='" + currentScene + '\'' +
+      ", purpose='" + purpose + '\'' +
+      ", isAnotherItemNeeded=" + isAnotherItemNeeded +
+      ", nameOfOtherItem='" + nameOfOtherItem + '\'' +
+      ", whatDoesOtherItemDo='" + whatDoesOtherItemDo + '\'' +
+      ", itemRevealed='" + itemRevealed + '\'' +
+      ", asciiArt='" + asciiArt + '\'' +
+      ", anotherItemNeeded=" + getAnotherItemNeeded() +
+      '}';
   }
 }
