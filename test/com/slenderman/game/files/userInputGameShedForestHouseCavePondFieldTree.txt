@@ -1,0 +1,45 @@
+go south
+0
+y
+go north
+go east
+3
+go south
+0
+lighter torch
+r
+y
+624
+y
+l
+y
+go east
+0
+l
+y
+0
+l
+y
+0
+0
+r
+1
+y
+y
+1
+2
+y
+g
+2
+b
+y
+1
+0
+1
+1
+0
+go east
+1
+1
+1
+go east
