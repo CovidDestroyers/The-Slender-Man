@@ -9,23 +9,14 @@ import java.util.Scanner;
  */
 public class Starter extends JFrame {
 
-  public Starter() {
-    add(new Console());
-    setTitle("Slender Man");
-    setDefaultCloseOperation(EXIT_ON_CLOSE);
-    setLocation(100, 100);
-    setSize(900, 700);
-    setResizable(true);
-    pack();
-    setVisible(true);
-
-  }
 
   public static void main(String[] args) throws InterruptedException {
 
-    new Starter();
+    //new Starter();
+
 
     Game game = new Game();
+    new Console(game);
     Scanner scanMe = new Scanner(System.in);
 
     game.start(scanMe);
