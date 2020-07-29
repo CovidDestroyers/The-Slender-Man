@@ -3,9 +3,12 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
-
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class Shed extends Scene {
 
@@ -13,7 +16,8 @@ public class Shed extends Scene {
   final String FILE_BASE_NAME = "storyShedNoColor";
   final String PATH = "com.slenderman.scenes.files.";
 
-  ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+  ResourceBundle.Control rbc =
+      ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
 
   // Unit testing purpose //
@@ -70,8 +74,7 @@ public class Shed extends Scene {
     } else if (choice.equals("1")) {
       goSomewhereElse();
 
-    }
-    else {
+    } else {
       displayStories("inFrontShed_WrongInput");
 
       inFrontOfShed();
@@ -98,8 +101,7 @@ public class Shed extends Scene {
       grabShinyThingYes();
     } else if (choice.equals("N")) {
       inFrontOfShed();
-    }
-    else {
+    } else {
       displayStories("takeShinyThingChoice_WrongInput");
       takeShinyThingChoice();
     }
@@ -141,12 +143,12 @@ public class Shed extends Scene {
    */
   private String textPainter(String text) {
     return MessageFormat.format(
-      text,
-      Scene.ANSI_GREEN,
-      Scene.ANSI_BLUE,
-      Scene.ANSI_RED,
-      Scene.ANSI_BLACK,
-      Scene.ANSI_WHITE);
+        text,
+        Scene.ANSI_GREEN,
+        Scene.ANSI_BLUE,
+        Scene.ANSI_RED,
+        Scene.ANSI_BLACK,
+        Scene.ANSI_WHITE);
   }
 
   /** For accessing and displaying stories in Resource Bundle file */
@@ -160,5 +162,22 @@ public class Shed extends Scene {
         break;
       }
     }
+  }
+
+
+  @Override
+  public String toString() {
+    return "Shed{" +
+      "FILE_BASE_NAME='" + FILE_BASE_NAME + '\'' +
+      ", PATH='" + PATH + '\'' +
+      ", rbc=" + rbc +
+      ", bundle=" + bundle +
+      ", _max_iteration_not_reached=" + _max_iteration_not_reached +
+      ", MAX_ITERATION_DISPLAY_STORIES=" + MAX_ITERATION_DISPLAY_STORIES +
+      ", choice=" + choice +
+      ", player=" + player +
+      ", itemsInThisScene=" + itemsInThisScene +
+      ", Key=" + Key +
+      "} " + super.toString();
   }
 }
