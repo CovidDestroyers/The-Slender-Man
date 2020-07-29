@@ -13,8 +13,7 @@ public class Field extends Scene {
   final String FILE_BASE_NAME = "storyFieldNoColor";
   final String PATH = "com.slenderman.scenes.files.";
 
-  ResourceBundle.Control rbc =
-      ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+  ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
 
   // Unit testing purpose //
