@@ -69,7 +69,7 @@ class Console extends JFrame implements ActionListener {
               }
             }));
 
-    tfIn = new JTextField();
+    tfIn = new JTextField("Enter commands here");
     tfIn.addActionListener(this);
 
     tfIn.setToolTipText("Please type your command here (such as go *direction* or quit) and then press ENTER/RETURN on your keyboard");
