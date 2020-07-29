@@ -3,37 +3,32 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
-
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class House extends Scene {
-  // For Resource Bundle //
   final String FILE_BASE_NAME = "storyHouseNoColor";
   final String PATH = "com.slenderman.scenes.files.";
 
-  ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+  ResourceBundle.Control rbc =
+      ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-  /////////////////////////
 
-  // Unit testing purpose //
+  // Unit testing purpose
   private boolean _max_iteration_not_reached;
-  //////////////////////////
   public final int MAX_ITERATION_DISPLAY_STORIES = 10;
 
   private String introduction;
 
   private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("house");
 
-  private Item Lockbox =
-      ("lockbox".equals(itemsInThisScene.get(0).getItemName()))
-          ? itemsInThisScene.get(0)
-          : itemsInThisScene.get(1);
+  private Item Lockbox = ItemDirector.findThisItem("lockbox", itemsInThisScene);
 
-  private Item Lighter =
-      ("lighter".equals(itemsInThisScene.get(0).getItemName()))
-          ? itemsInThisScene.get(0)
-          : itemsInThisScene.get(1);
+  private Item Lighter = ItemDirector.findThisItem("lighter", itemsInThisScene);
 
   /*
    * =============================================
@@ -48,7 +43,6 @@ public class House extends Scene {
 
   public House(
       Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
-
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
     setItemsInScene(itemsInThisScene);
@@ -63,16 +57,18 @@ public class House extends Scene {
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
     try {
-
       introToHouse();
       Thread.sleep(1000);
 
       houseInView();
       Thread.sleep(1000);
+
       inHouse();
       Thread.sleep(1000);
+
       atTable();
       openingLockbox(in, player);
+
       leaveHouse();
     } catch (InterruptedException e) {
       e.printStackTrace();
@@ -121,10 +117,11 @@ public class House extends Scene {
 
   public void houseInView() throws InterruptedException {
     try {
+      SceneImage.printHouse();
       System.out.println(textPainter(bundle.getString("houseInView_0")));
       Thread.sleep(1000);
       System.out.println(
-              "\n"
+          "\n"
               + "                                   /\\\n"
               + "                              /\\  //\\\\\n"
               + "                       /\\    //\\\\///\\\\\\        /\\\n"
@@ -172,7 +169,7 @@ public class House extends Scene {
       System.out.println(textPainter(bundle.getString("inHouse_1")));
       Thread.sleep(1000);
       System.out.println(
-              " _________________________________________________________\n"
+          " _________________________________________________________\n"
               + "||-------------------------------------------------------||\n"
               + "||.--.    .-._                        .----.             ||\n"
               + "|||==|____| |H|___            .---.___|\"\"\"\"|_____.--.___ ||\n"
@@ -210,7 +207,7 @@ public class House extends Scene {
   public void atTable() throws InterruptedException {
     try {
       System.out.println(textPainter(bundle.getString("atTable_0")));
-      Thread.sleep(750);
+      Thread.sleep(1000);
       System.out.println(
           "          _________________________________________________\n"
               + "        .' ____________________________________________ _.'|\n"
@@ -282,9 +279,9 @@ public class House extends Scene {
 
       player.addItemToInventory(Lighter);
       getItemsInScene().remove(Lighter);
+
       displayStories("unlockLockBox");
-    }
-    else {
+    } else {
       displayStories("unlockLockBox_needKey");
     }
   }
@@ -293,22 +290,14 @@ public class House extends Scene {
     displayStories("lockBoxChoices");
   }
 
-
-
-  /**
-   * Coloring the fonts
-   *
-   * <p>{0} : Scene.ANSI_GREEN {1} : Scene.ANSI_BLUE {2} : Scene.ANSI_RED {3} : Scene.ANSI_BLACK {4}
-   * : Scene.ANSI_WHITE
-   */
   private String textPainter(String text) {
     return MessageFormat.format(
-      text,
-      Scene.ANSI_GREEN,
-      Scene.ANSI_BLUE,
-      Scene.ANSI_RED,
-      Scene.ANSI_BLACK,
-      Scene.ANSI_WHITE);
+        text,
+        Scene.ANSI_GREEN,
+        Scene.ANSI_BLUE,
+        Scene.ANSI_RED,
+        Scene.ANSI_BLACK,
+        Scene.ANSI_WHITE);
   }
 
   /** For accessing and displaying stories in Resource Bundle file */
@@ -316,14 +305,13 @@ public class House extends Scene {
     _max_iteration_not_reached = false;
     for (int i = 0; i < MAX_ITERATION_DISPLAY_STORIES; i++) {
       try {
-        System.out.println(textPainter(bundle.getString(key + "[" + Integer.toString(i) + "]")));
+        System.out.println(textPainter(bundle.getString(key + "[" + i + "]")));
       } catch (MissingResourceException e) {
         _max_iteration_not_reached = true;
         break;
       }
     }
   }
-
 
   /*
    * =============================================
@@ -356,5 +344,24 @@ public class House extends Scene {
 
   public String getIntroduction() {
     return introduction;
+  }
+
+
+  @Override
+  public String toString() {
+    return "House{" +
+      "FILE_BASE_NAME='" + FILE_BASE_NAME + '\'' +
+      ", PATH='" + PATH + '\'' +
+      ", rbc=" + rbc +
+      ", bundle=" + bundle +
+      ", _max_iteration_not_reached=" + _max_iteration_not_reached +
+      ", MAX_ITERATION_DISPLAY_STORIES=" + MAX_ITERATION_DISPLAY_STORIES +
+      ", introduction='" + introduction + '\'' +
+      ", itemsInThisScene=" + itemsInThisScene +
+      ", Lockbox=" + Lockbox +
+      ", Lighter=" + Lighter +
+      ", lighter=" + getLighter() +
+      ", lockbox=" + getLockbox() +
+      "} " + super.toString();
   }
 }

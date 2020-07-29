@@ -3,9 +3,12 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
-
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class Field extends Scene {
 
@@ -13,7 +16,8 @@ public class Field extends Scene {
   final String FILE_BASE_NAME = "storyFieldNoColor";
   final String PATH = "com.slenderman.scenes.files.";
 
-  ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+  ResourceBundle.Control rbc =
+      ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
 
   // Unit testing purpose //
@@ -45,10 +49,10 @@ public class Field extends Scene {
   }
 
   public void enter(Scanner in, Player player) throws InterruptedException {
-    player.setCurrentSceneName(this.getSceneName());
     scanner = in;
     this.player = player;
     String choice;
+    SceneImage.printField();
     displayStories("enter");
     choice = playerChoice();
 
@@ -65,8 +69,7 @@ public class Field extends Scene {
 
     if (choice.equals("0")) {
       sneeze(in, player);
-    }
-    else{
+    } else {
       displayStories("askDirection");
     }
   }
@@ -81,8 +84,8 @@ public class Field extends Scene {
     } else {
       // go to the next Tree class
       displayStories("askDirection");
-//      choice = playerChoice();
-//      changeScene(choice);
+      //      choice = playerChoice();
+      //      changeScene(choice);
     }
   }
 
@@ -114,7 +117,6 @@ public class Field extends Scene {
       sneeze(in, player);
     } else {
       displayStories("askDirection");
-      // System.out.println(bundle.getString("askDirection[0]"));
     }
   }
 
@@ -122,13 +124,10 @@ public class Field extends Scene {
     return scanner.nextLine();
   }
 
-
-
-
   /**
    * Coloring the fonts
    *
-   * <p>{0} : Scene.ANSI_GREEN {1} : Scene.ANSI_BLUE {2} : Scene.ANSI_RED {3} : Scene.ANSI_BLACK {4}
+   * {0} : Scene.ANSI_GREEN {1} : Scene.ANSI_BLUE {2} : Scene.ANSI_RED {3} : Scene.ANSI_BLACK {4}
    * : Scene.ANSI_WHITE
    */
   private String textPainter(String text) {
@@ -152,5 +151,22 @@ public class Field extends Scene {
         break;
       }
     }
+  }
+
+
+  @Override
+  public String toString() {
+    return "Field{" +
+      "FILE_BASE_NAME='" + FILE_BASE_NAME + '\'' +
+      ", PATH='" + PATH + '\'' +
+      ", rbc=" + rbc +
+      ", bundle=" + bundle +
+      ", _max_iteration_not_reached=" + _max_iteration_not_reached +
+      ", MAX_ITERATION_DISPLAY_STORIES=" + MAX_ITERATION_DISPLAY_STORIES +
+      ", scanner=" + scanner +
+      ", player=" + player +
+      ", itemsInThisScene=" + itemsInThisScene +
+      ", Blade=" + Blade +
+      "} " + super.toString();
   }
 }

@@ -1,11 +1,12 @@
 package com.slenderman.actors;
 
-import com.slenderman.scenes.Shed;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
-import java.util.*;
-
-public class Player extends Shed {
-
+public class Player {
   public final int TOTAL_NUM_ITEMS_TO_FINISH_GAME = 6;
 
   private String state = "alive";
@@ -59,7 +60,7 @@ public class Player extends Shed {
       System.out.printf("You dropped the %s from your inventory.\n",
                         returnableItem.getItemName());
     } else {
-      System.out.println("It doesn't look like you have that item in your " + "inventory.\n");
+      System.out.println("It doesn't look like you have that item in your inventory.\n");
     }
   }
 

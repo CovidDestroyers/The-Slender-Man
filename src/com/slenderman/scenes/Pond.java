@@ -56,6 +56,7 @@ public class Pond extends Scene {
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
     this.player = player;
+    SceneImage.printPond();
     inFrontOfPond(in);
   }
 

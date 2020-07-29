@@ -43,7 +43,7 @@ public class Forest extends Scene {
   public void enter(Scanner in, Player player) {
 
     System.out.println(
-        "               ,@@@@@@@,\n"
+              "               ,@@@@@@@,\n"
             + "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n"
             + "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n"
             + "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n"
@@ -56,6 +56,7 @@ public class Forest extends Scene {
             + "\n"
             + "------------------------------------------------\n");
     displayStories("forest");
+    SceneImage.printForest();
   }
   /**
    * Coloring the fonts
