@@ -1,10 +1,8 @@
 package com.slenderman.scenes;
 
-
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 
 public class Introduction {
 
@@ -14,12 +12,12 @@ public class Introduction {
 
   static ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   static ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-  /////////////////////////
 
   public static void playIntro() throws InterruptedException {
+    long introDelaySlow = 2500;
+    long introDelayQuick = 1750;
 
-    System.out.println();
-    Thread.sleep(3000);
+    Thread.sleep(introDelaySlow);
     System.out.println(textPainter(bundle.getString("intro_0")));
     System.out.println(
       "\n" +
@@ -30,34 +28,34 @@ public class Introduction {
         " __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ \n" +
         "                                                  \n");
 
-    Thread.sleep(4000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_1")));
-    Thread.sleep(4000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_2")));
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_3")));
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_4")));
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_5")));
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_6")));
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_7")));
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_8")));
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_9")));
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_10")));
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_11")));
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_12")));
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_13")));
 
-    Thread.sleep(5000);
+    Thread.sleep(introDelayQuick);
 
      }
   /**
@@ -75,5 +73,4 @@ public class Introduction {
       Scene.ANSI_BLACK,
       Scene.ANSI_WHITE);
   }
-
 }
