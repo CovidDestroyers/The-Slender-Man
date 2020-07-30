@@ -30,7 +30,7 @@ public class Introduction {
         " __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ \n" +
         "                                                  \n");
 
-    Thread.sleep(5000);
+    Thread.sleep(4000);
     System.out.println(textPainter(bundle.getString("intro_1")));
     Thread.sleep(5000);
     System.out.println(textPainter(bundle.getString("intro_2")));
