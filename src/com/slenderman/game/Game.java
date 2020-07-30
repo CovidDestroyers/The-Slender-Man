@@ -80,7 +80,7 @@ public final class Game {
     // For Unit Testing purpose
     if (!disableIntroduction) {
       Introduction.playIntro();
-      new LoseGameTimer(11);
+      new LoseGameTimer(10);
       new OneMinuteTimer(1);
       new OneMinuteTimer(2);
       new OneMinuteTimer(3);
@@ -90,8 +90,6 @@ public final class Game {
       new OneMinuteTimer(7);
       new OneMinuteTimer(8);
       new OneMinuteTimer(9);
-      //Check branching
-      new OneMinuteTimer(10);
     }
 
     currentScene = aForest;

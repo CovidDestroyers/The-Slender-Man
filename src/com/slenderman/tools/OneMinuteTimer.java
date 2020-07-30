@@ -3,6 +3,7 @@ package com.slenderman.tools;
 import com.slenderman.actors.SlenderMan;
 
 import java.awt.*;
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,8 +20,9 @@ public class OneMinuteTimer {
 
   class oneMinuteUp extends TimerTask {
     public void run() {
-      toolkit.beep();
+//      toolkit.beep();
       SlenderMan.moveCloserToPlayer();
+      Sound.play(new File("oneMinute.wav"));
     }
   }
 }
