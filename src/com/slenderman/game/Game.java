@@ -117,7 +117,7 @@ public final class Game {
         break;
       }
 
-      if (userText.startsWith("pause ")) {
+      else if (userText.startsWith("pause ")) {
         int delay = Integer.parseInt(userText.substring(6));
         int delayCounter = delay;
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -133,17 +133,34 @@ public final class Game {
               toolkit.beep();
             }
           }
+
+          if (delayCounter == 0) {
+            System.out.println("\b");
+            System.out.println("Resuming Game Now!");
+            toolkit.beep();
+            Thread.sleep(1500);
+
+            for (int h = 0; h < 50; h++) {
+              System.out.println("\b");
+            }
+          }
         }
+
+        Player.setCurrentSceneName(currentScene.getSceneName());
+        Player.changeInvItemsLocation();
+        currentScene.enter(in, Player);
       }
 
-      if (userText.startsWith("go ")) {
+      else if (userText.startsWith("go ")) {
         currentScene = currentScene.changeScene(userText.substring(3));
 
         Player.setCurrentSceneName(currentScene.getSceneName());
         Player.changeInvItemsLocation();
 
         currentScene.enter(in, Player);
-      } else {
+      }
+
+      else {
         System.out.println("Unknown command '" + userText + "'.  Try go/quit.\n");
       }
 
@@ -166,39 +183,44 @@ public final class Game {
   }
 
   private void winMessage() throws InterruptedException {
-    Thread.sleep(2000);
+    int quickest = 2000;
+    int middle = 3000;
+    int slow = 4000;
+    int slowest = 5000;
+
+    Thread.sleep(quickest);
     System.out.println("You walk slowly towards a lonely tree in the middle of a field...\n");
-    Thread.sleep(3000);
+    Thread.sleep(middle);
     System.out.println("Something tells you to carve an X on the tree...\n");
-    Thread.sleep(3000);
+    Thread.sleep(middle);
     System.out.println("You take the blade, and stab it into the tree...\n");
-    Thread.sleep(3000);
+    Thread.sleep(middle);
     System.out.println(
         "You breathe heavily as you begin to make the shape of an X on the tree...\n");
-    Thread.sleep(3000);
+    Thread.sleep(middle);
     System.out.println("As you finish, you take a couple steps back...\n");
-    Thread.sleep(3000);
+    Thread.sleep(middle);
     System.out.println("You begin to hear an overpowering screeching sound...\n");
-    Thread.sleep(3000);
+    Thread.sleep(middle);
     System.out.println("You see something emerge from the shadows...\n");
-    Thread.sleep(3000);
+    Thread.sleep(middle);
     System.out.println("The creature cracks and shifts around as it approaches you...\n");
-    Thread.sleep(3000);
+    Thread.sleep(middle);
     System.out.println("The screeching becomes unbearable as you begin to lose your senses...\n");
-    Thread.sleep(3000);
+    Thread.sleep(middle);
     System.out.println(
         "You reach out for the blade and hold it front of you as the creature charges...\n");
-    Thread.sleep(3000);
+    Thread.sleep(middle);
     System.out.println("...\n");
-    Thread.sleep(4000);
+    Thread.sleep(slow);
     System.out.println("...\n");
-    Thread.sleep(5000);
+    Thread.sleep(slowest);
     System.out.println("You have killed SlenderMan!\n");
-    Thread.sleep(3000);
+    Thread.sleep(middle);
     System.out.println("You let out a sigh of relief as the sun rises over the thick woods.\n");
     System.out.println(
         "You see a possible exit in the distance, and begin your journey to freedom...\n");
-    Thread.sleep(5000);
+    Thread.sleep(slowest);
     System.out.println(
         "\n"
             + "       __                            \n"
