@@ -73,5 +73,4 @@ public class Introduction {
       Scene.ANSI_BLACK,
       Scene.ANSI_WHITE);
   }
-
 }
