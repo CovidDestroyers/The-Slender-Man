@@ -64,6 +64,23 @@ public class Player {
     }
   }
 
+  @Override
+  public String toString() {
+    return "Item" + inventory.get(0);
+  }
+
+  public void printItemsfromInventory(){
+    System.out.println("\nCurrent Inventory:");
+    for(Item items : inventory){
+      if(inventory.size() == 0){
+        System.out.println("You have nothing in your inventory");
+      }
+      else{
+        System.out.println(items.getItemName());
+      }
+    }
+  }
+
   /**
    * Changes the currentScene field for ALL items in inventory to Player's current scene location
    */

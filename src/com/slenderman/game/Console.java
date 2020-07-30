@@ -85,6 +85,7 @@ class Console extends JFrame implements ActionListener {
         }
       }
     });
+    tfIn.setBackground(Color.LIGHT_GRAY);
 
     //ending placeholder logic
 

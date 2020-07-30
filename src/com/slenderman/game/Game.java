@@ -122,7 +122,13 @@ public final class Game {
         Player.changeInvItemsLocation();
 
         currentScene.enter(in, Player);
-      } else {
+      }
+
+      if("inventory".equalsIgnoreCase(userText)){
+        Player.printItemsfromInventory();
+      }
+
+      else {
         System.out.println("Unknown command '" + userText + "'.  Try go/quit.\n");
       }
 
