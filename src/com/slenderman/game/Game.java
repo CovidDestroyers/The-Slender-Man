@@ -137,7 +137,7 @@ public final class Game {
           }
         }
       } else {
-        System.out.println("Unknown command \"" + userText.substring(6) + "");
+        System.out.println("Unknown command \"" + userText.substring(6));
       }
 
       if (userText.startsWith("go ")) {
