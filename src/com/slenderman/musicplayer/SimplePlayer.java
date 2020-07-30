@@ -9,15 +9,17 @@ import java.io.FileNotFoundException;
 
 public class SimplePlayer {
 
-  public SimplePlayer() {
-    while (!SlenderMan.isGameDone) {
+  String backgroundMusic = "Paranormal_Lullaby.mp3";
+
+  public SimplePlayer(String filename) {
+//    while (!SlenderMan.isGameDone) {
       try {
-        FileInputStream fileInputStream = new FileInputStream("Paranormal_Lullaby.mp3");
+        FileInputStream fileInputStream = new FileInputStream(filename);
         Player playMP3 = new Player(fileInputStream);
         playMP3.play();
       } catch (FileNotFoundException | JavaLayerException e) {
         e.printStackTrace();
       }
     }
-  }
+//  }
 }
