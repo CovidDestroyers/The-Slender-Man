@@ -76,7 +76,7 @@ public final class Game {
    * =============================================
    */
 
-  public void start(Scanner in) throws InterruptedException {
+  public void start(Scanner in) throws Exception {
     String userText = "";
 
     // For Unit Testing purpose
