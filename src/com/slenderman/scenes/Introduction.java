@@ -32,7 +32,7 @@ public class Introduction {
 
     Thread.sleep(4000);
     System.out.println(textPainter(bundle.getString("intro_1")));
-    Thread.sleep(5000);
+    Thread.sleep(4000);
     System.out.println(textPainter(bundle.getString("intro_2")));
     Thread.sleep(5000);
     System.out.println(textPainter(bundle.getString("intro_3")));
