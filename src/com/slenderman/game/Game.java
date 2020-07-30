@@ -25,7 +25,8 @@ import java.util.Scanner;
 public final class Game {
 
   // For Unit Testing Purpose //
-  private boolean disableIntroduction = false;
+  //TODO change back to false so intro will play once development is complete.
+  private boolean disableIntroduction = true;
   private boolean reachedTree = false;
 
   private Scene currentScene;
@@ -37,6 +38,8 @@ public final class Game {
   private final Scene aCave;
   private final Scene aField;
   private final Scene LoseGameScene;
+  private final int sleep = 300; //was 3000ms except for last 3 were 5000ms
+  private final int endAndExit = 900; // was 9000ms made shorter for dev purposes
 
   public static boolean isPlayerAlive;
 
@@ -151,39 +154,39 @@ public final class Game {
   }
 
   private void winMessage() throws InterruptedException {
-    Thread.sleep(2000);
+    Thread.sleep(sleep);
     System.out.println("You walk slowly towards a lonely tree in the middle of a field...\n");
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println("Something tells you to carve an X on the tree...\n");
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println("You take the blade, and stab it into the tree...\n");
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println(
         "You breathe heavily as you begin to make the shape of an X on the tree...\n");
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println("As you finish, you take a couple steps back...\n");
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println("You begin to hear an overpowering screeching sound...\n");
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println("You see something emerge from the shadows...\n");
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println("The creature cracks and shifts around as it approaches you...\n");
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println("The screeching becomes unbearable as you begin to lose your senses...\n");
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println(
         "You reach out for the blade and hold it front of you as the creature charges...\n");
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println("...\n");
-    Thread.sleep(4000);
+    Thread.sleep(sleep);
     System.out.println("...\n");
-    Thread.sleep(5000);
+    Thread.sleep(sleep);
     System.out.println("You have killed SlenderMan!\n");
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println("You let out a sigh of relief as the sun rises over the thick woods.\n");
     System.out.println(
         "You see a possible exit in the distance, and begin your journey to freedom...\n");
-    Thread.sleep(5000);
+    Thread.sleep(sleep);
     System.out.println(
         "\n"
             + "       __                            \n"
