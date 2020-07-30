@@ -24,7 +24,7 @@ import java.util.Scanner;
  * This class will be instantiated in the Starter class' Main method to actually start the game
  */
 public final class Game {
-  Color color=new Color();
+
 
   // For Unit Testing Purpose //
   private boolean disableIntroduction = false;
@@ -148,7 +148,7 @@ public final class Game {
 
   private void winMessage() throws InterruptedException {
     Thread.sleep(2000);
-    System.out.println("You walk slowly towards a lonely tree in the middle of a field...\n");
+    System.out.println(Color.ANSI_GREEN+"You walk slowly towards a lonely tree in the middle of a field...\n"+Color.ANSI_RESET);
     Thread.sleep(3000);
     System.out.println("Something tells you to carve an X on the tree...\n");
     Thread.sleep(3000);
