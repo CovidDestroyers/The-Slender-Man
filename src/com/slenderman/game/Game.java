@@ -117,6 +117,15 @@ public final class Game {
         break;
       }
 
+
+      if (userText.startsWith("pause ")) {
+        long delay = Long.parseLong(userText.substring(6));
+        long delayFinal = delay * 1000;
+        System.out.println("Pausing the game for: " + delay + " seconds.");
+        Thread.sleep(delayFinal);
+      }
+
+
       if (userText.startsWith("go ")) {
         currentScene = currentScene.changeScene(userText.substring(3));
 
