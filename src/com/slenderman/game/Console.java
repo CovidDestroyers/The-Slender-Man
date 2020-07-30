@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PipedInputStream;
@@ -27,6 +29,8 @@ class Console extends JFrame implements ActionListener {
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
+  //placeholder boolean;
+  private boolean clicked = false;
 
   PrintWriter inWriter;
 
@@ -69,7 +73,23 @@ class Console extends JFrame implements ActionListener {
               }
             }));
 
-    tfIn = new JTextField("Enter commands here");
+    tfIn = new JTextField();
+    //trying placeholder here
+    tfIn.setText("Enter Game Commands Here");
+    tfIn.addMouseListener(new MouseAdapter(){
+      @Override
+      public void mousePressed(MouseEvent e){
+        if(!clicked){
+          clicked = true;
+          tfIn.setText("");
+        }
+      }
+    });
+
+    //ending placeholder logic
+
+
+
     tfIn.addActionListener(this);
 
     tfIn.setToolTipText("Please type your command here (such as go *direction* or quit) and then press ENTER/RETURN on your keyboard");
