@@ -14,7 +14,9 @@ import com.slenderman.scenes.Shed;
 import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
 
+import java.awt.*;
 import java.util.Scanner;
+import java.util.Timer;
 
 /**
  * Game is the class where we will build out the logic for the actual game. Essentially, this is the
@@ -25,7 +27,7 @@ import java.util.Scanner;
 public final class Game {
 
   // For Unit Testing Purpose //
-  private boolean disableIntroduction = false;
+  private boolean disableIntroduction = true;
   private boolean reachedTree = false;
 
   private Scene currentScene;
@@ -117,14 +119,24 @@ public final class Game {
         break;
       }
 
-
       if (userText.startsWith("pause ")) {
-        long delay = Long.parseLong(userText.substring(6));
-        long delayFinal = delay * 1000;
+        int delay = Integer.parseInt(userText.substring(6));
+        int delayCounter = delay;
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
         System.out.println("Pausing the game for: " + delay + " seconds.");
-        Thread.sleep(delayFinal);
-      }
+        System.out.println("\b");
 
+        for (int i = 0; i < delay; i++) {
+          System.out.println("Resuming the game in " + delayCounter-- + " seconds.");
+          Thread.sleep(1000);
+
+          if (delayCounter <= 10) {
+            for (int k = 0; k < 10; k++) {
+              toolkit.beep();
+            }
+          }
+        }
+      }
 
       if (userText.startsWith("go ")) {
         currentScene = currentScene.changeScene(userText.substring(3));
