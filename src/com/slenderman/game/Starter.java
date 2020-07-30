@@ -53,16 +53,7 @@ public class Starter {
     thread1.start();
     thread2.start();
     thread3.start();
-//    Game game = new Game();
-//    new Console(game);
-//    Scanner scanMe = new Scanner(System.in);
-//    game.start(scanMe);
-//    SimplePlayer player = new SimplePlayer();
-
-
   }
-
-
 }
 
 
