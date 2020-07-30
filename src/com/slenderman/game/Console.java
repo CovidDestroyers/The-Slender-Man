@@ -45,7 +45,10 @@ class Console extends JFrame implements ActionListener {
 
     JPanel panel = new JPanel(new BorderLayout());
 
-    outText = new JTextArea(100, 80);
+    int jColumns = 80;
+    int jRows = 100;
+
+    outText = new JTextArea(jRows, jColumns);
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
@@ -79,7 +82,11 @@ class Console extends JFrame implements ActionListener {
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
-    setSize(800, 800);
+
+    int jframeWidth = 800;
+    int jframeHeight = 800;
+
+    setSize(jframeWidth, jframeHeight);
 
     new SwingWorker<Void, String>() {
       protected Void doInBackground() throws Exception {

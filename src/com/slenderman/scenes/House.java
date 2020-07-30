@@ -22,6 +22,9 @@ public class House extends Scene {
   private boolean _max_iteration_not_reached;
   public final int MAX_ITERATION_DISPLAY_STORIES = 10;
 
+  //TODO changed from 1000ms and in some places a little more time. Felt necessary to change the 2000's and 1500's to shorter time as well for simplicity.
+  private final int sleep100 = 100;
+
   private String introduction;
 
   private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("house");
@@ -58,13 +61,13 @@ public class House extends Scene {
   public void enter(Scanner in, Player player) throws InterruptedException {
     try {
       introToHouse();
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
 
       houseInView();
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
 
       inHouse();
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
 
       atTable();
       openingLockbox(in, player);
@@ -79,34 +82,34 @@ public class House extends Scene {
     try {
       SceneImage.printHouse();
       System.out.println(textPainter(bundle.getString("introToHouse_0")));
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("introToHouse_1")));
-      Thread.sleep(2000);
+      Thread.sleep(sleep100);
       System.out.println();
       System.out.println(textPainter(bundle.getString("introToHouse_2")));
-      Thread.sleep(2000);
+      Thread.sleep(sleep100);
       System.out.println();
       System.out.println(textPainter(bundle.getString("introToHouse_3")));
-      Thread.sleep(2000);
+      Thread.sleep(sleep100);
       System.out.println();
       System.out.println(textPainter(bundle.getString("introToHouse_4")));
-      Thread.sleep(1500);
+      Thread.sleep(sleep100);
       System.out.println();
       System.out.println(textPainter(bundle.getString("introToHouse_5")));
-      Thread.sleep(1250);
+      Thread.sleep(sleep100);
       System.out.println();
       System.out.println(textPainter(bundle.getString("introToHouse_6")));
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println();
       System.out.println(textPainter(bundle.getString("introToHouse_7")));
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println();
       System.out.println(textPainter(bundle.getString("introToHouse_8")));
-      Thread.sleep(1500);
+      Thread.sleep(sleep100);
       System.out.println();
       System.out.println(textPainter(bundle.getString("introToHouse_9")));
       System.out.println();
-      Thread.sleep(2000);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("introToHouse_10")));
       System.out.println();
 
@@ -119,7 +122,7 @@ public class House extends Scene {
   public void houseInView() throws InterruptedException {
     try {
       System.out.println(textPainter(bundle.getString("houseInView_0")));
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(
           "\n"
               + "                                   /\\\n"
@@ -138,22 +141,22 @@ public class House extends Scene {
               + "/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo\n"
               + "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
 
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("houseInView_2")));
 
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("houseInView_3")));
 
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("houseInView_4")));
 
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("houseInView_5")));
 
-      Thread.sleep(1500);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("houseInView_6")));
 
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("houseInView_7")));
     } catch (InterruptedException e) {
       System.out.println("Awe you broke it :(");
@@ -163,11 +166,11 @@ public class House extends Scene {
 
   public void inHouse() throws InterruptedException {
     try {
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("inHouse_0")));
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("inHouse_1")));
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(
           " _________________________________________________________\n"
               + "||-------------------------------------------------------||\n"
@@ -193,11 +196,11 @@ public class House extends Scene {
               + "||_______________________________________________________||\n"
               + "\n");
 
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("inHouse_3")));
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("inHouse_4")));
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -207,7 +210,7 @@ public class House extends Scene {
   public void atTable() throws InterruptedException {
     try {
       System.out.println(textPainter(bundle.getString("atTable_0")));
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       System.out.println(
           "          _________________________________________________\n"
               + "        .' ____________________________________________ _.'|\n"
@@ -225,9 +228,9 @@ public class House extends Scene {
               + "  |  ||____________________________________|  | |'\n"
               + "  |  | |                                   |  | |\n"
               + "  |__|.'                                   |__|.'");
-      Thread.sleep(1500);
+      Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("atTable_1")));
-      Thread.sleep(1000);
+      Thread.sleep(sleep100);
       displayStories("atTable_2");
       displayStories("atTable_3");
 
@@ -254,7 +257,7 @@ public class House extends Scene {
 
         if (playerChoice.equals("2")) {
           System.out.println(textPainter(bundle.getString("openingLockBox_2_0")));
-          Thread.sleep(1000);
+          Thread.sleep(sleep100);
           displayStories("openingLockBox_2");
 
           lockBoxChoices();
