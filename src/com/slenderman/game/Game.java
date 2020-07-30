@@ -2,6 +2,7 @@ package com.slenderman.game;
 
 import com.slenderman.actors.Player;
 import com.slenderman.actors.SlenderMan;
+import com.slenderman.musicplayer.SimplePlayer;
 import com.slenderman.scenes.Cave;
 import com.slenderman.scenes.Field;
 import com.slenderman.scenes.Forest;
@@ -25,7 +26,8 @@ import java.util.Scanner;
 public final class Game {
 
   // For Unit Testing Purpose //
-  private boolean disableIntroduction = false;
+//  private boolean isDisableIntroduction = false;
+  private boolean disableIntroduction = true;
   private boolean reachedTree = false;
 
   private Scene currentScene;
@@ -42,13 +44,15 @@ public final class Game {
 
   private final Player Player;
 
+
+
   /*
    * =============================================
    * ============= Constructors ==================
    * =============================================
    */
 
-  public Game() {
+  public Game(){
     Player = new Player();
     aShed = new Shed();
     aTree = new Tree();
@@ -66,6 +70,9 @@ public final class Game {
     aCave.connectEast(aPond);
     aPond.connectEast(aField);
     aField.connectEast(aTree);
+
+//    SimplePlayer player = new SimplePlayer();
+
   }
 
   /*
@@ -80,6 +87,8 @@ public final class Game {
     // For Unit Testing purpose
     if (!disableIntroduction) {
       Introduction.playIntro();
+
+      //TODO Java.util.timer to reduce repeated OneMinuteTimer
       new LoseGameTimer(10);
       new OneMinuteTimer(1);
       new OneMinuteTimer(2);
