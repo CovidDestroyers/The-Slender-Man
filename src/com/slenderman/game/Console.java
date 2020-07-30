@@ -48,7 +48,7 @@ class Console extends JFrame implements ActionListener {
     outText = new JTextArea(100, 80);
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
-    outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+    outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
 
     JScrollPane scroll =
         new JScrollPane(
@@ -79,7 +79,7 @@ class Console extends JFrame implements ActionListener {
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
-    setSize(800, 800);
+    setSize(1300, 1000);
 
     new SwingWorker<Void, String>() {
       protected Void doInBackground() throws Exception {
