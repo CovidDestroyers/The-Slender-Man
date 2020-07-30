@@ -6,7 +6,7 @@ public class SceneImage {
       "+-----------+-----------+\n" +
       "|  Forest   |   House   |\n" +
       "|           |           |\n" +
-      "|  (Player) |           |\n" +
+      "|  (*) |           |\n" +
       "+-----------+-----------+-----------+-----------+----------+ \n" +
       "|   Shed    |    Cave   |    Pond   |   Field   |   Tree    | \n" +
       "|           |           |           |           |  The End  | \n" +
