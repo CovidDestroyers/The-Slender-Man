@@ -14,6 +14,8 @@ public class House extends Scene {
   final String FILE_BASE_NAME = "storyHouseNoColor";
   final String PATH = "com.slenderman.scenes.files.";
 
+  public int count = 0;
+
   ResourceBundle.Control rbc =
       ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
@@ -59,64 +61,73 @@ public class House extends Scene {
 
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
-    try {
-      introToHouse();
-      Thread.sleep(sleep100);
+    if (count == 0) {
+      try {
+        introToHouse();
+        Thread.sleep(sleep100);
 
-      houseInView();
-      Thread.sleep(sleep100);
+        houseInView();
+        Thread.sleep(sleep100);
 
-      inHouse();
-      Thread.sleep(sleep100);
+        inHouse();
+        Thread.sleep(sleep100);
 
-      atTable();
+        atTable();
+        openingLockbox(in, player);
+
+        leaveHouse();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    } else if (count >= 1){
+      System.out.println("You are back in the house...");
+      Thread.sleep(sleep100);
+      SceneImage.printHouse();
       openingLockbox(in, player);
 
       leaveHouse();
-    } catch (InterruptedException e) {
-      e.printStackTrace();
     }
   }
 
   public void introToHouse() throws InterruptedException {
-    try {
-      SceneImage.printHouse();
-      System.out.println(textPainter(bundle.getString("introToHouse_0")));
-      Thread.sleep(sleep100);
-      System.out.println(textPainter(bundle.getString("introToHouse_1")));
-      Thread.sleep(sleep100);
-      System.out.println();
-      System.out.println(textPainter(bundle.getString("introToHouse_2")));
-      Thread.sleep(sleep100);
-      System.out.println();
-      System.out.println(textPainter(bundle.getString("introToHouse_3")));
-      Thread.sleep(sleep100);
-      System.out.println();
-      System.out.println(textPainter(bundle.getString("introToHouse_4")));
-      Thread.sleep(sleep100);
-      System.out.println();
-      System.out.println(textPainter(bundle.getString("introToHouse_5")));
-      Thread.sleep(sleep100);
-      System.out.println();
-      System.out.println(textPainter(bundle.getString("introToHouse_6")));
-      Thread.sleep(sleep100);
-      System.out.println();
-      System.out.println(textPainter(bundle.getString("introToHouse_7")));
-      Thread.sleep(sleep100);
-      System.out.println();
-      System.out.println(textPainter(bundle.getString("introToHouse_8")));
-      Thread.sleep(sleep100);
-      System.out.println();
-      System.out.println(textPainter(bundle.getString("introToHouse_9")));
-      System.out.println();
-      Thread.sleep(sleep100);
-      System.out.println(textPainter(bundle.getString("introToHouse_10")));
-      System.out.println();
+      try {
+        SceneImage.printHouse();
+        System.out.println(textPainter(bundle.getString("introToHouse_0")));
+        Thread.sleep(sleep100);
+        System.out.println(textPainter(bundle.getString("introToHouse_1")));
+        Thread.sleep(sleep100);
+        System.out.println();
+        System.out.println(textPainter(bundle.getString("introToHouse_2")));
+        Thread.sleep(sleep100);
+        System.out.println();
+        System.out.println(textPainter(bundle.getString("introToHouse_3")));
+        Thread.sleep(sleep100);
+        System.out.println();
+        System.out.println(textPainter(bundle.getString("introToHouse_4")));
+        Thread.sleep(sleep100);
+        System.out.println();
+        System.out.println(textPainter(bundle.getString("introToHouse_5")));
+        Thread.sleep(sleep100);
+        System.out.println();
+        System.out.println(textPainter(bundle.getString("introToHouse_6")));
+        Thread.sleep(sleep100);
+        System.out.println();
+        System.out.println(textPainter(bundle.getString("introToHouse_7")));
+        Thread.sleep(sleep100);
+        System.out.println();
+        System.out.println(textPainter(bundle.getString("introToHouse_8")));
+        Thread.sleep(sleep100);
+        System.out.println();
+        System.out.println(textPainter(bundle.getString("introToHouse_9")));
+        System.out.println();
+        Thread.sleep(sleep100);
+        System.out.println(textPainter(bundle.getString("introToHouse_10")));
+        System.out.println();
 
-    } catch (InterruptedException e) {
-      System.out.println("Awe you broke it :(");
-      e.printStackTrace();
-    }
+      } catch (InterruptedException e) {
+        System.out.println("Awe you broke it :(");
+        e.printStackTrace();
+      }
   }
 
   public void houseInView() throws InterruptedException {
@@ -233,8 +244,9 @@ public class House extends Scene {
       Thread.sleep(sleep100);
       displayStories("atTable_2");
       displayStories("atTable_3");
-
       Thread.sleep(6000);
+      count = count + 1;
+
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -243,33 +255,66 @@ public class House extends Scene {
   public void openingLockbox(Scanner in, Player player) throws InterruptedException {
     String playerChoice = "";
 
-    try {
-      System.out.println(textPainter(bundle.getString("openingLockBox_0")));
-      lockBoxChoices();
+    if (count == 0) {
 
-      while (!playerChoice.equals("4")) {
-        playerChoice = in.nextLine().toLowerCase().trim();
+      try {
+        System.out.println(textPainter(bundle.getString("openingLockBox_0")));
+        lockBoxChoices();
 
-        if (playerChoice.equals("1")) {
-          displayStories("openingLockBox_1");
-          lockBoxChoices();
+        while (!playerChoice.equals("4")) {
+          playerChoice = in.nextLine().toLowerCase().trim();
+
+          if (playerChoice.equals("1")) {
+            displayStories("openingLockBox_0");
+            lockBoxChoices();
+          }
+
+          if (playerChoice.equals("2")) {
+            System.out.println(textPainter(bundle.getString("openingLockBox_2_0")));
+            Thread.sleep(sleep100);
+            displayStories("openingLockBox_2");
+
+            lockBoxChoices();
+          }
+
+          if (playerChoice.equals("3")) {
+            unlockLockBox(player);
+            break;
+          }
         }
-
-        if (playerChoice.equals("2")) {
-          System.out.println(textPainter(bundle.getString("openingLockBox_2_0")));
-          Thread.sleep(sleep100);
-          displayStories("openingLockBox_2");
-
-          lockBoxChoices();
-        }
-
-        if (playerChoice.equals("3")) {
-          unlockLockBox(player);
-          break;
-        }
+      } catch (Exception e) {
+        e.printStackTrace();
       }
-    } catch (Exception e) {
-      e.printStackTrace();
+    } else if (count >= 1){
+      try {
+        System.out.println("You look back at the lockbox...");
+        Thread.sleep(sleep100);
+        lockBoxChoices();
+
+        while (!playerChoice.equals("4")) {
+          playerChoice = in.nextLine().toLowerCase().trim();
+
+          if (playerChoice.equals("1")) {
+            displayStories("openingLockBox_1");
+            lockBoxChoices();
+          }
+
+          if (playerChoice.equals("2")) {
+            System.out.println(textPainter(bundle.getString("openingLockBox_2_1")));
+            Thread.sleep(sleep100);
+            displayStories("openingLockBox_2");
+
+            lockBoxChoices();
+          }
+
+          if (playerChoice.equals("3")) {
+            unlockLockBox(player);
+            break;
+          }
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
   }
 
