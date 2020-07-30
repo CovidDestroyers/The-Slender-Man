@@ -124,7 +124,7 @@ public final class Game {
         currentScene.enter(in, Player);
       }
 
-      if("inventory".equalsIgnoreCase(userText)){
+      if("inventory".equalsIgnoreCase(userText) || "i".equalsIgnoreCase(userText)){
         Player.printItemsfromInventory();
       }
 
