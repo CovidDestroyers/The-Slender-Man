@@ -119,7 +119,7 @@ public final class Game {
         break;
       }
 
-      if (userText.startsWith("pause ")) {
+      else if (userText.startsWith("pause ")) {
         int delay = Integer.parseInt(userText.substring(6));
         int delayCounter = delay;
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -135,18 +135,34 @@ public final class Game {
               toolkit.beep();
             }
           }
+
+          if (delayCounter == 0) {
+            System.out.println("\b");
+            System.out.println("Resuming Game Now!");
+            toolkit.beep();
+            Thread.sleep(1500);
+
+            for (int h = 0; h < 50; h++) {
+              System.out.println("\b");
+            }
+          }
         }
+
+        Player.setCurrentSceneName(currentScene.getSceneName());
+        Player.changeInvItemsLocation();
+        currentScene.enter(in, Player);
       }
 
-
-      if (userText.startsWith("go ")) {
+      else if (userText.startsWith("go ")) {
         currentScene = currentScene.changeScene(userText.substring(3));
 
         Player.setCurrentSceneName(currentScene.getSceneName());
         Player.changeInvItemsLocation();
 
         currentScene.enter(in, Player);
-      } else {
+      }
+
+      else {
         System.out.println("Unknown command '" + userText + "'.  Try go/quit.\n");
       }
 
