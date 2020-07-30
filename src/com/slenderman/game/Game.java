@@ -136,9 +136,8 @@ public final class Game {
             }
           }
         }
-      } else {
-        System.out.println("Unknown command \"" + userText.substring(6) + "");
       }
+
 
       if (userText.startsWith("go ")) {
         currentScene = currentScene.changeScene(userText.substring(3));
