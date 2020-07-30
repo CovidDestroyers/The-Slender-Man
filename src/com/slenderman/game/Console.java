@@ -48,7 +48,7 @@ class Console extends JFrame implements ActionListener {
     outText = new JTextArea(100, 80);
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
-    outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+    outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
 
     JScrollPane scroll =
         new JScrollPane(

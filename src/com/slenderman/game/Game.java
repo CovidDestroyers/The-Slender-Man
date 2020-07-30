@@ -2,6 +2,7 @@ package com.slenderman.game;
 
 import com.slenderman.actors.Player;
 import com.slenderman.actors.SlenderMan;
+import com.slenderman.color.Color;
 import com.slenderman.scenes.Cave;
 import com.slenderman.scenes.Field;
 import com.slenderman.scenes.Forest;
@@ -23,6 +24,7 @@ import java.util.Scanner;
  * This class will be instantiated in the Starter class' Main method to actually start the game
  */
 public final class Game {
+  Color color=new Color();
 
   // For Unit Testing Purpose //
   private boolean disableIntroduction = false;
@@ -110,8 +112,8 @@ public final class Game {
         currentScene.enter(in, Player);
       }
 
-      if (userText.equals("quit")) {
-        System.out.println("Goodbye!");
+      if (userText.equals(Color.ANSI_GREEN+"quit"+Color.ANSI_RESET)) {
+        System.out.println(Color.ANSI_GREEN+"Goodbye!"+Color.ANSI_RESET);
         break;
       }
 
