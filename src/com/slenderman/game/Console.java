@@ -49,6 +49,29 @@ class Console extends JFrame implements ActionListener {
 
     JPanel panel = new JPanel(new BorderLayout());
 
+//ADDING TOP SET PANEL FOR INSTRUCTIONS
+    //TODO adjust size of JPanel to make text look cleaner
+//    JTextArea instructions = new JTextArea(5, 10);
+//    instructions.setBackground(Color.black);
+//    instructions.setForeground(Color.white);
+    JPanel instructions = new JPanel();
+    instructions.setBounds(300, 100, 400, 350);
+    instructions.setBackground(Color.black);
+
+
+    JLabel instructionsText = new JLabel("Commands: \n\n " +
+      "Travel: go + direction \n"
+      + ", Check Inventory: I/Inventory");
+    instructionsText.setForeground(Color.white);
+    instructions.add(instructionsText);
+    panel.add(instructions, BorderLayout.NORTH);
+
+    //End of instructions panel
+
+
+
+
+
     int jColumns = 80;
     int jRows = 100;
 
@@ -56,6 +79,8 @@ class Console extends JFrame implements ActionListener {
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+
+    //This prevents users from deleting text from this JTextArea
     outText.setEditable(false);
 
     JScrollPane scroll =

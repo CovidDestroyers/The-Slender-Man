@@ -26,8 +26,8 @@ import java.util.Scanner;
 public final class Game {
 
   // For Unit Testing Purpose //
-//  private final boolean disableIntroduction = false;
-  private boolean disableIntroduction = true;
+  private boolean disableIntroduction = false;
+//  private boolean disableIntroduction = true;
   private boolean reachedTree = false;
 
   private Scene currentScene;
