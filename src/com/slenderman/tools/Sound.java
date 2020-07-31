@@ -22,7 +22,7 @@ class Sound {
   }
 
 //  public static void main(String[] args) {
-//    File oneMinSound=new File("oneMinute.wav");
+//    File oneMinSound=new File("vampire-hiss.wav");
 //    play(oneMinSound);
 //  }
 }

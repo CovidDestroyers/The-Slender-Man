@@ -1,8 +1,9 @@
 package com.slenderman.game;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
+import com.slenderman.scenes.Scene;
+import com.slenderman.scenes.SceneImage;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,18 +13,13 @@ import java.io.PipedOutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingWorker;
+import javax.swing.*;
 
-class Console extends JFrame implements ActionListener {
+public class Console extends JFrame implements ActionListener {
   JTextField tfIn;
   JLabel lblOut;
   JTextArea outText;
+  static JTextArea mapArea;
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
@@ -49,6 +45,15 @@ class Console extends JFrame implements ActionListener {
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+
+    mapArea= new JTextArea(10,80);
+    mapArea.setBackground(Color.BLACK);
+    mapArea.setForeground(Color.YELLOW);
+    mapArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+    panel.add(mapArea,BorderLayout.NORTH);
+
+//    mapArea.setText(SceneImage.printForest());
+
 
     JScrollPane scroll =
         new JScrollPane(
@@ -93,7 +98,15 @@ class Console extends JFrame implements ActionListener {
         return null;
       }
     }.execute();
+
   }
+
+
+  //Update maps in the mapPanel with game progression
+  public static void updateMap(String sceneName){
+    mapArea.setText(String.valueOf(SceneImage.sceneMap.get(sceneName)));
+  }
+
 
   @Override
   public void actionPerformed(ActionEvent e) {
