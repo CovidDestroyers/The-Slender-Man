@@ -8,19 +8,19 @@ import java.util.TimerTask;
 
 public class OneMinuteTimer {
   Toolkit toolkit;
-  Timer oneMinuteTimer;
+  Timer timer = new Timer();
 
-  public OneMinuteTimer(int minutes) {
+  public void oneMinuteUp() {
     toolkit = Toolkit.getDefaultToolkit();
-    oneMinuteTimer = new Timer();
-    oneMinuteTimer.schedule(new oneMinuteUp(), minutes * 60000);
+    toolkit.beep();
+    SlenderMan.moveCloserToPlayer();
   }
 
-
-  class oneMinuteUp extends TimerTask {
-    public void run() {
-      toolkit.beep();
-      SlenderMan.moveCloserToPlayer();
-    }
+  public void startOneTimer() {
+    timer.scheduleAtFixedRate(new TimerTask() {
+      public void run() {
+        oneMinuteUp();
+      }
+    }, 0, 60000);
   }
 }

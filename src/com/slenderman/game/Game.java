@@ -15,7 +15,10 @@ import com.slenderman.scenes.Shed;
 import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
 
+import java.time.temporal.Temporal;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Game is the class where we will build out the logic for the actual game. Essentially, this is the
@@ -90,15 +93,7 @@ public final class Game {
 
       //TODO Java.util.timer to reduce repeated OneMinuteTimer
       new LoseGameTimer(10);
-      new OneMinuteTimer(1);
-      new OneMinuteTimer(2);
-      new OneMinuteTimer(3);
-      new OneMinuteTimer(4);
-      new OneMinuteTimer(5);
-      new OneMinuteTimer(6);
-      new OneMinuteTimer(7);
-      new OneMinuteTimer(8);
-      new OneMinuteTimer(9);
+      new OneMinuteTimer().startOneTimer();
     }
 
     currentScene = aForest;
