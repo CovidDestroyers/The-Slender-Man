@@ -1,11 +1,15 @@
 package com.slenderman.game;
 
+import com.slenderman.scenes.Scene;
+import com.slenderman.scenes.SceneImage;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Scanner;
+import javax.swing.*;
+
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +23,7 @@ class Console extends JFrame implements ActionListener {
   JTextField tfIn;
   JLabel lblOut;
   JTextArea outText;
+  static JTextArea mapArea;
 
   BufferedImage axe1Img;
   BufferedImage axe2Img;
@@ -49,6 +54,15 @@ class Console extends JFrame implements ActionListener {
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+
+    mapArea= new JTextArea(10,80);
+    mapArea.setBackground(Color.BLACK);
+    mapArea.setForeground(Color.YELLOW);
+    mapArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+    panel.add(mapArea,BorderLayout.NORTH);
+
+//    mapArea.setText(SceneImage.printForest());
+
 
     JScrollPane scroll =
         new JScrollPane(
@@ -95,7 +109,15 @@ class Console extends JFrame implements ActionListener {
         return null;
       }
     }.execute();
+
   }
+
+
+  //Update maps in the mapPanel with game progression
+  public static void updateMap(String sceneName){
+    mapArea.setText(String.valueOf(SceneImage.sceneMap.get(sceneName)));
+  }
+
 
   @Override
   public void actionPerformed(ActionEvent e) {

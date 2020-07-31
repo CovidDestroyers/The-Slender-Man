@@ -1,6 +1,7 @@
 package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
 import music.Music;
 
 import java.text.MessageFormat;
@@ -40,8 +41,9 @@ public class Forest extends Scene {
   }
 
   @Override
+
   public void enter(Scanner in, Player player) throws Exception {
-    SceneImage.printForest();
+    Console.updateMap(this.getSceneName());
     Music music = new Music();
     music.gardenMusic();
 
