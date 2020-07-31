@@ -75,9 +75,6 @@ public final class Game {
     aCave.connectEast(aPond);
     aPond.connectEast(aField);
     aField.connectEast(aTree);
-
-//    SimplePlayer player = new SimplePlayer();
-
   }
 
   /*
@@ -133,7 +130,9 @@ public final class Game {
         Player.printItemsfromInventory();
       }
 
-      else {
+//      else
+      if(!userText.startsWith("go ") && !userText.startsWith("i"))
+        {
         System.out.println("Unknown command '" + userText + "'.  Try go/quit.\n");
       }
 
