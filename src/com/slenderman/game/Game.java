@@ -76,6 +76,8 @@ public final class Game {
         currentScene.enter(in, Player);
     }
 
+    // TODO: Need to update with multiple word parsing.
+    // TODO: Need to update go/pause with synonyms.
     for (String word : words) {
       if (userText.startsWith("go ")){
         playerMovement(in, userText);
