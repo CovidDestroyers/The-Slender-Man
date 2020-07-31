@@ -63,6 +63,34 @@ public class Starter {
 //    thread1.start();
 //    thread2.start();
 //    thread3.start();
+
+//    Game game = new Game();
+//    new Console(game);
+//    Scanner scanme = new Scanner(System.in);
+//    game.start(scanme);
+
+    Thread thread1 = new Thread(){
+      public void run(){
+        Game game = new Game();
+        new Console(game);
+        Scanner scanMe = new Scanner(System.in);
+        try {
+          game.start(scanMe);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    };
+
+    Thread thread2 = new Thread(){
+      public void run(){
+        while(!SlenderMan.isGameDone) {
+          SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
+        }
+      }
+    };
+
+    thread1.start();
   }
 
 }
