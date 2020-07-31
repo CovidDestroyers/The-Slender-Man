@@ -1,6 +1,8 @@
 package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
+import music.Music;
+
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -38,8 +40,10 @@ public class Forest extends Scene {
   }
 
   @Override
-  public void enter(Scanner in, Player player) {
+  public void enter(Scanner in, Player player) throws Exception {
     SceneImage.printForest();
+    Music music = new Music();
+    music.gardenMusic();
 
     System.out.println(
               "               ,@@@@@@@,\n"

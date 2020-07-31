@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class Starter {
 
-  public static void main(String[] args) throws InterruptedException {
+  public static void main(String[] args) throws Exception {
     Game game = new Game();
     new Console(game);
     Scanner scanMe = new Scanner(System.in);

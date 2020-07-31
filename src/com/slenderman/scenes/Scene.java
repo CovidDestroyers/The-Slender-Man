@@ -58,7 +58,7 @@ public abstract class Scene {
    * @param player
    * @throws InterruptedException
    */
-  public abstract void enter(Scanner in, Player player) throws InterruptedException;
+  public abstract void enter(Scanner in, Player player) throws Exception;
 
   /**
    * @param in -> Scanner object for console input
