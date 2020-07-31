@@ -24,6 +24,8 @@ import java.util.Scanner;
  * This class will be instantiated in the Starter class' Main method to actually start the game
  */
 public final class Game {
+  String userText = "";
+  Scanner scanner = new Scanner(System.in);
 
   // For Unit Testing Purpose //
 
@@ -80,8 +82,25 @@ public final class Game {
    * =============================================
    */
 
+  public  void gameOptions(Scanner in) throws InterruptedException {
+    System.out.println("Would you like music enabled or disabled?");
+    userText = in.nextLine();
+    if("enabled".equalsIgnoreCase(userText) || "e".equalsIgnoreCase(userText)){
+      thread1.start();
+      thread2.start();
+      thread3.start();
+
+    }
+    if("disabled".equalsIgnoreCase(userText) || "d".equalsIgnoreCase(userText)){
+      start(in);
+    }
+    else{
+      gameOptions(in);
+    }
+  }
+
   public void start(Scanner in) throws InterruptedException {
-    String userText = "";
+//    String userText = "";
 
     // For Unit Testing purpose
     if (!disableIntroduction) {
@@ -215,4 +234,40 @@ public final class Game {
   public void setDisableIntroduction(boolean disableIntroduction) {
     this.disableIntroduction = disableIntroduction;
   }
+
+  Thread thread2 = new Thread(() -> {
+    try {
+      Thread.sleep(1500);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    while(!SlenderMan.isGameDone) {
+      SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
+    }
+  });
+
+      Thread thread3 = new Thread(() -> {
+        try {
+          Thread.sleep(1500);
+          while (!SlenderMan.isGameDone) {
+            Thread.sleep(60000);
+            SimplePlayer player = new SimplePlayer("Scream.mp3");
+          }
+          } catch(InterruptedException e){
+            e.printStackTrace();
+          }
+      });
+
+
+  Thread thread1 = new Thread(() -> {
+//    Game game = new Game();
+//    new Console(game);
+    Scanner scanMe = new Scanner(System.in);
+    try {
+//          game.start(scanMe);
+      start(scanMe);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  });
 }
