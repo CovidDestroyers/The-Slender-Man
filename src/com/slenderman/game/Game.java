@@ -3,6 +3,7 @@ package com.slenderman.game;
 import com.slenderman.actors.Player;
 import com.slenderman.actors.SlenderMan;
 import com.slenderman.color.Color;
+import com.slenderman.commands.Commands;
 import com.slenderman.scenes.Cave;
 import com.slenderman.scenes.Field;
 import com.slenderman.scenes.Forest;
@@ -64,6 +65,7 @@ public final class Game {
 
   void start(Scanner in) throws Exception {
     String userText = "";
+    String[] words = userText.split(" ");
 
     if (!SlenderMan.isGameDone) {
       userText = in.nextLine().toLowerCase();
@@ -74,15 +76,17 @@ public final class Game {
         currentScene.enter(in, Player);
     }
 
-    if (userText.startsWith("go ")){
-      playerMovement(in, userText);
-    } else if (userText.equals("quit")) {
-      quitGame();
-    } else if (userText.startsWith("pause ")) {
-      pauseGame(in, userText);
-    } else {
-      System.out.println("Unknown Command of: " + userText);
-      System.out.println("Try Another Command");
+    for (String word : words) {
+      if (userText.startsWith("go ")){
+        playerMovement(in, userText);
+      } else if (Commands.getQuitCommands().contains(userText)) {
+        quitGame();
+      } else if (userText.startsWith("pause ")) {
+        pauseGame(in, userText);
+      } else {
+        System.out.println("Unknown Command of: " + userText);
+        System.out.println("Try Another Command");
+      }
     }
 
     winCondition();
