@@ -3,6 +3,8 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -52,7 +54,8 @@ public class Field extends Scene {
     scanner = in;
     this.player = player;
     String choice;
-    SceneImage.printField();
+//    SceneImage.printField();
+    Console.updateMap(this.getSceneName());
     displayStories("enter");
     choice = playerChoice();
 
