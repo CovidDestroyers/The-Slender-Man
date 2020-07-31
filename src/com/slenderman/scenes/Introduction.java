@@ -1,7 +1,7 @@
 package com.slenderman.scenes;
 
 
-import com.slenderman.color.Color;
+//import com.slenderman.color.Color;
 
 import java.text.MessageFormat;
 import java.util.Locale;
@@ -23,14 +23,14 @@ public class Introduction {
     System.out.println();
     Thread.sleep(3000);
     System.out.println(textPainter(bundle.getString("intro_0")));
-    System.out.println(Color.ANSI_GREEN+
+    System.out.println(
       "\n"  +
       "  __        __        __   __   __        __      \n" +
         " /    /    /    /| ||/  | /    /  | /|/| /  | /| |\n" +
         "(___ (    (___ ( | ||   |(___ (___|( / |(___|( | |\n" +
         "    )|   )|    | | )|   )|    |\\   |   )|   )| | )\n" +
         " __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ \n" +
-        "                                                  \n"+Color.ANSI_RESET);
+        "                                                  \n");
 
     Thread.sleep(5000);
     System.out.println(textPainter(bundle.getString("intro_1")));
