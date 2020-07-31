@@ -18,7 +18,7 @@ public class Music {
     SwingUtilities.invokeLater(() -> {
       // Pop up will  display to user what user supposed to do.
 
-      JOptionPane.showMessageDialog(null, "You are in Garden Relex!!!!");
+      JOptionPane.showMessageDialog(null, "You are in Forest But watch out for SlenderMan !!!!");
     });
 
   }
