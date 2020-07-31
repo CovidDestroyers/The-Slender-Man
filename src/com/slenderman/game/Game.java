@@ -148,7 +148,7 @@ public final class Game {
 
   private void winMessage() throws InterruptedException {
     Thread.sleep(2000);
-    System.out.println(Color.ANSI_GREEN+"You walk slowly towards a lonely tree in the middle of a field...\n"+Color.ANSI_RESET);
+    System.out.println("You walk slowly towards a lonely tree in the middle of a field...\n");
     Thread.sleep(3000);
     System.out.println("Something tells you to carve an X on the tree...\n");
     Thread.sleep(3000);
