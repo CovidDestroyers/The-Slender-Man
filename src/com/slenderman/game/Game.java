@@ -93,8 +93,7 @@ public final class Game {
     if (!disableIntroduction) {
       Introduction.playIntro();
 
-      //TODO Java.util.timer to reduce repeated OneMinuteTimer
-      new LoseGameTimer(10);
+      new LoseGameTimer().gameTimer(10);
       new OneMinuteTimer().startOneTimer();
     }
 
