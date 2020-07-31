@@ -84,23 +84,25 @@ public final class Game {
    * =========== Business Methods ================
    * =============================================
    */
+//TODO find better way to enable/disable music, when enabled it doesnt let you work the game, though disabled functions correctly
 
-  public  void gameOptions(Scanner in) throws InterruptedException {
-    System.out.println("Would you like music enabled or disabled?");
-    userText = in.nextLine();
-    if("enabled".equalsIgnoreCase(userText) || "e".equalsIgnoreCase(userText)){
-      thread1.start();
-      thread2.start();
-      thread3.start();
-
-    }
-    if("disabled".equalsIgnoreCase(userText) || "d".equalsIgnoreCase(userText)){
-      start(in);
-    }
-    else{
-      gameOptions(in);
-    }
-  }
+//  public  void gameOptions(Scanner in) throws InterruptedException {
+//    System.out.println("Would you like music enabled or disabled?");
+//    userText = in.nextLine();
+//    if("enabled".equalsIgnoreCase(userText) || "e".equalsIgnoreCase(userText)){
+//
+//      thread1.start();
+//      thread2.start();
+//      thread3.start();
+//
+//    }
+//    if("disabled".equalsIgnoreCase(userText) || "d".equalsIgnoreCase(userText)){
+//      start(in);
+//    }
+//    else{
+//      gameOptions(in);
+//    }
+//  }
 
   public void start(Scanner in) throws InterruptedException {
 //    String userText = "";
@@ -242,7 +244,6 @@ public final class Game {
 
       Thread thread3 = new Thread(() -> {
         try {
-          Thread.sleep(1500);
           while (!SlenderMan.isGameDone) {
             Thread.sleep(60000);
             SimplePlayer player = new SimplePlayer("Scream.mp3");
@@ -256,10 +257,10 @@ public final class Game {
   Thread thread1 = new Thread(() -> {
 //    Game game = new Game();
 //    new Console(game);
-    Scanner scanMe = new Scanner(System.in);
+//    Scanner scanMe = new Scanner(System.in);
     try {
 //          game.start(scanMe);
-      start(scanMe);
+      start(scanner);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
