@@ -42,7 +42,6 @@ public class Forest extends Scene {
   @Override
   public void enter(Scanner in, Player player) {
     //SceneImage.printForest();
-    //TODO : need to print the specific map to mapPanel
     Console.updateMap(this.getSceneName());
     System.out.println(
               "               ,@@@@@@@,\n"
