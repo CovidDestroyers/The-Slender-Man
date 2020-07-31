@@ -1,6 +1,7 @@
 package com.slenderman.tools;
 
 import com.slenderman.actors.SlenderMan;
+import com.slenderman.game.Game;
 
 import java.awt.*;
 import java.util.Timer;
@@ -11,9 +12,11 @@ public class OneMinuteTimer {
   Timer timer = new Timer();
 
   public void oneMinuteUp() {
-    toolkit = Toolkit.getDefaultToolkit();
-    toolkit.beep();
-    SlenderMan.moveCloserToPlayer();
+    if(Game.isPlayerAlive) {
+      toolkit = Toolkit.getDefaultToolkit();
+      toolkit.beep();
+      SlenderMan.moveCloserToPlayer();
+    }
   }
 
   public void startOneTimer() {
