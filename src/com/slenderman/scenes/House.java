@@ -3,6 +3,7 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -14,10 +15,10 @@ public class House extends Scene {
   final String FILE_BASE_NAME = "storyHouseNoColor";
   final String PATH = "com.slenderman.scenes.files.";
 
-  public int count = 0;
+  public int visitCount = 0;
 
   ResourceBundle.Control rbc =
-      ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+    ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
 
   // Unit testing purpose
@@ -47,7 +48,7 @@ public class House extends Scene {
   }
 
   public House(
-      Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
+    Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
     setItemsInScene(itemsInThisScene);
@@ -61,7 +62,7 @@ public class House extends Scene {
 
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
-    if (count == 0) {
+    if (visitCount == 0) {
       try {
         introToHouse();
         Thread.sleep(sleep100);
@@ -79,7 +80,7 @@ public class House extends Scene {
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
-    } else if (count >= 1){
+    } else if (visitCount >= 1) {
       System.out.println("You are back in the house...");
       Thread.sleep(sleep100);
       SceneImage.printHouse();
@@ -90,44 +91,44 @@ public class House extends Scene {
   }
 
   public void introToHouse() throws InterruptedException {
-      try {
-        SceneImage.printHouse();
-        System.out.println(textPainter(bundle.getString("introToHouse_0")));
-        Thread.sleep(sleep100);
-        System.out.println(textPainter(bundle.getString("introToHouse_1")));
-        Thread.sleep(sleep100);
-        System.out.println();
-        System.out.println(textPainter(bundle.getString("introToHouse_2")));
-        Thread.sleep(sleep100);
-        System.out.println();
-        System.out.println(textPainter(bundle.getString("introToHouse_3")));
-        Thread.sleep(sleep100);
-        System.out.println();
-        System.out.println(textPainter(bundle.getString("introToHouse_4")));
-        Thread.sleep(sleep100);
-        System.out.println();
-        System.out.println(textPainter(bundle.getString("introToHouse_5")));
-        Thread.sleep(sleep100);
-        System.out.println();
-        System.out.println(textPainter(bundle.getString("introToHouse_6")));
-        Thread.sleep(sleep100);
-        System.out.println();
-        System.out.println(textPainter(bundle.getString("introToHouse_7")));
-        Thread.sleep(sleep100);
-        System.out.println();
-        System.out.println(textPainter(bundle.getString("introToHouse_8")));
-        Thread.sleep(sleep100);
-        System.out.println();
-        System.out.println(textPainter(bundle.getString("introToHouse_9")));
-        System.out.println();
-        Thread.sleep(sleep100);
-        System.out.println(textPainter(bundle.getString("introToHouse_10")));
-        System.out.println();
+    try {
+      SceneImage.printHouse();
+      System.out.println(textPainter(bundle.getString("introToHouse_0")));
+      Thread.sleep(sleep100);
+      System.out.println(textPainter(bundle.getString("introToHouse_1")));
+      Thread.sleep(sleep100);
+      System.out.println();
+      System.out.println(textPainter(bundle.getString("introToHouse_2")));
+      Thread.sleep(sleep100);
+      System.out.println();
+      System.out.println(textPainter(bundle.getString("introToHouse_3")));
+      Thread.sleep(sleep100);
+      System.out.println();
+      System.out.println(textPainter(bundle.getString("introToHouse_4")));
+      Thread.sleep(sleep100);
+      System.out.println();
+      System.out.println(textPainter(bundle.getString("introToHouse_5")));
+      Thread.sleep(sleep100);
+      System.out.println();
+      System.out.println(textPainter(bundle.getString("introToHouse_6")));
+      Thread.sleep(sleep100);
+      System.out.println();
+      System.out.println(textPainter(bundle.getString("introToHouse_7")));
+      Thread.sleep(sleep100);
+      System.out.println();
+      System.out.println(textPainter(bundle.getString("introToHouse_8")));
+      Thread.sleep(sleep100);
+      System.out.println();
+      System.out.println(textPainter(bundle.getString("introToHouse_9")));
+      System.out.println();
+      Thread.sleep(sleep100);
+      System.out.println(textPainter(bundle.getString("introToHouse_10")));
+      System.out.println();
 
-      } catch (InterruptedException e) {
-        System.out.println("Awe you broke it :(");
-        e.printStackTrace();
-      }
+    } catch (InterruptedException e) {
+      System.out.println("Awe you broke it :(");
+      e.printStackTrace();
+    }
   }
 
   public void houseInView() throws InterruptedException {
@@ -135,22 +136,22 @@ public class House extends Scene {
       System.out.println(textPainter(bundle.getString("houseInView_0")));
       Thread.sleep(sleep100);
       System.out.println(
-          "\n"
-              + "                                   /\\\n"
-              + "                              /\\  //\\\\\n"
-              + "                       /\\    //\\\\///\\\\\\        /\\\n"
-              + "                      //\\\\  ///\\////\\\\\\\\  /\\  //\\\\\n"
-              + "         /\\          /  ^ \\/^ ^/^  ^  ^ \\/^ \\/  ^ \\\n"
-              + "        / ^\\    /\\  / ^   /  ^/ ^ ^ ^   ^\\ ^/  ^^  \\\n"
-              + "       /^   \\  / ^\\/ ^ ^   ^ / ^  ^    ^  \\/ ^   ^  \\       *\n"
-              + "      /  ^ ^ \\/^  ^\\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \\     /|\\\n"
-              + "     / ^ ^  ^ \\ ^  _\\___________________|  |_____^ ^  \\   /||o\\\n"
-              + "    / ^^  ^ ^ ^\\  /______________________________\\ ^ ^ \\ /|o|||\\\n"
-              + "   /  ^  ^^ ^ ^  /________________________________\\  ^  /|||||o|\\\n"
-              + "  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||\\\n"
-              + " / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |\n"
-              + "/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo\n"
-              + "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+        "\n"
+          + "                                   /\\\n"
+          + "                              /\\  //\\\\\n"
+          + "                       /\\    //\\\\///\\\\\\        /\\\n"
+          + "                      //\\\\  ///\\////\\\\\\\\  /\\  //\\\\\n"
+          + "         /\\          /  ^ \\/^ ^/^  ^  ^ \\/^ \\/  ^ \\\n"
+          + "        / ^\\    /\\  / ^   /  ^/ ^ ^ ^   ^\\ ^/  ^^  \\\n"
+          + "       /^   \\  / ^\\/ ^ ^   ^ / ^  ^    ^  \\/ ^   ^  \\       *\n"
+          + "      /  ^ ^ \\/^  ^\\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \\     /|\\\n"
+          + "     / ^ ^  ^ \\ ^  _\\___________________|  |_____^ ^  \\   /||o\\\n"
+          + "    / ^^  ^ ^ ^\\  /______________________________\\ ^ ^ \\ /|o|||\\\n"
+          + "   /  ^  ^^ ^ ^  /________________________________\\  ^  /|||||o|\\\n"
+          + "  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||\\\n"
+          + " / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |\n"
+          + "/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo\n"
+          + "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
 
       Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("houseInView_2")));
@@ -183,29 +184,29 @@ public class House extends Scene {
       System.out.println(textPainter(bundle.getString("inHouse_1")));
       Thread.sleep(sleep100);
       System.out.println(
-          " _________________________________________________________\n"
-              + "||-------------------------------------------------------||\n"
-              + "||.--.    .-._                        .----.             ||\n"
-              + "|||==|____| |H|___            .---.___|\"\"\"\"|_____.--.___ ||\n"
-              + "|||  |====| | |xxx|_          |+++|=-=|_  _|-=+=-|==|---|||\n"
-              + "|||==|    | | |   | \\         |   |   |_\\/_|Black|  | ^ |||\n"
-              + "|||  |    | | |   |\\ \\   .--. |   |=-=|_/\\_|-=+=-|  | ^ |||\n"
-              + "|||  |    | | |   |_\\ \\_( oo )|   |   |    |Magus|  | ^ |||\n"
-              + "|||==|====| |H|xxx|  \\ \\ |''| |+++|=-=|\"\"\"\"|-=+=-|==|---|||\n"
-              + "||`--^----'-^-^---'   `-' \"\"  '---^---^----^-----^--^---^||\n"
-              + "||-------------------------------------------------------||\n"
-              + "||-------------------------------------------------------||\n"
-              + "||               ___                   .-.__.-----. .---.||\n"
-              + "||              |===| .---.   __   .---| |XX|<(*)>|_|^^^|||\n"
-              + "||         ,  /(|   |_|III|__|''|__|:x:|=|  |     |=| Q |||\n"
-              + "||      _a'{ / (|===|+|   |++|  |==|   | |  |Illum| | R |||\n"
-              + "||      '/\\\\/ _(|===|-|   |  |''|  |:x:|=|  |inati| | Y |||\n"
-              + "||_____  -\\{___(|   |-|   |  |  |  |   | |  |     | | Z |||\n"
-              + "||       _(____)|===|+|[I]|DK|''|==|:x:|=|XX|<(*)>|=|^^^|||\n"
-              + "||              `---^-^---^--^--'--^---^-^--^-----^-^---^||\n"
-              + "||-------------------------------------------------------||\n"
-              + "||_______________________________________________________||\n"
-              + "\n");
+        " _________________________________________________________\n"
+          + "||-------------------------------------------------------||\n"
+          + "||.--.    .-._                        .----.             ||\n"
+          + "|||==|____| |H|___            .---.___|\"\"\"\"|_____.--.___ ||\n"
+          + "|||  |====| | |xxx|_          |+++|=-=|_  _|-=+=-|==|---|||\n"
+          + "|||==|    | | |   | \\         |   |   |_\\/_|Black|  | ^ |||\n"
+          + "|||  |    | | |   |\\ \\   .--. |   |=-=|_/\\_|-=+=-|  | ^ |||\n"
+          + "|||  |    | | |   |_\\ \\_( oo )|   |   |    |Magus|  | ^ |||\n"
+          + "|||==|====| |H|xxx|  \\ \\ |''| |+++|=-=|\"\"\"\"|-=+=-|==|---|||\n"
+          + "||`--^----'-^-^---'   `-' \"\"  '---^---^----^-----^--^---^||\n"
+          + "||-------------------------------------------------------||\n"
+          + "||-------------------------------------------------------||\n"
+          + "||               ___                   .-.__.-----. .---.||\n"
+          + "||              |===| .---.   __   .---| |XX|<(*)>|_|^^^|||\n"
+          + "||         ,  /(|   |_|III|__|''|__|:x:|=|  |     |=| Q |||\n"
+          + "||      _a'{ / (|===|+|   |++|  |==|   | |  |Illum| | R |||\n"
+          + "||      '/\\\\/ _(|===|-|   |  |''|  |:x:|=|  |inati| | Y |||\n"
+          + "||_____  -\\{___(|   |-|   |  |  |  |   | |  |     | | Z |||\n"
+          + "||       _(____)|===|+|[I]|DK|''|==|:x:|=|XX|<(*)>|=|^^^|||\n"
+          + "||              `---^-^---^--^--'--^---^-^--^-----^-^---^||\n"
+          + "||-------------------------------------------------------||\n"
+          + "||_______________________________________________________||\n"
+          + "\n");
 
       Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("inHouse_3")));
@@ -223,29 +224,29 @@ public class House extends Scene {
       System.out.println(textPainter(bundle.getString("atTable_0")));
       Thread.sleep(sleep100);
       System.out.println(
-          "          _________________________________________________\n"
-              + "        .' ____________________________________________ _.'|\n"
-              + "      .' .'____________________________________________|_| |\n"
-              + "    .' .'.'                                           .'.' |\n"
-              + "  .' .'.'                                           .'.'  .'\n"
-              + " __.'.'___________________________________________.'.'  .'|\n"
-              + "|  |'______.-.__________________________.-.____ __.'  .'| |\n"
-              + "|  |    o--[]--o                     o--[]--o  |  | .'  | |\n"
-              + "|__|____[.|  |.]____ ________ _______[.|  |.]__|__|' |  | |\n"
-              + "  |  | |  \\__/ _____|  ====  |  .'_____\\__/|  | |____|  | |\n"
-              + "  |  | |.'          |        |.'           |  | |   . . | |\n"
-              + "  |  | |            '--------'             |  | | .'.'__|.'\n"
-              + "  |  | ____________________________________|  | |'.'\n"
-              + "  |  ||____________________________________|  | |'\n"
-              + "  |  | |                                   |  | |\n"
-              + "  |__|.'                                   |__|.'");
+        "          _________________________________________________\n"
+          + "        .' ____________________________________________ _.'|\n"
+          + "      .' .'____________________________________________|_| |\n"
+          + "    .' .'.'                                           .'.' |\n"
+          + "  .' .'.'                                           .'.'  .'\n"
+          + " __.'.'___________________________________________.'.'  .'|\n"
+          + "|  |'______.-.__________________________.-.____ __.'  .'| |\n"
+          + "|  |    o--[]--o                     o--[]--o  |  | .'  | |\n"
+          + "|__|____[.|  |.]____ ________ _______[.|  |.]__|__|' |  | |\n"
+          + "  |  | |  \\__/ _____|  ====  |  .'_____\\__/|  | |____|  | |\n"
+          + "  |  | |.'          |        |.'           |  | |   . . | |\n"
+          + "  |  | |            '--------'             |  | | .'.'__|.'\n"
+          + "  |  | ____________________________________|  | |'.'\n"
+          + "  |  ||____________________________________|  | |'\n"
+          + "  |  | |                                   |  | |\n"
+          + "  |__|.'                                   |__|.'");
       Thread.sleep(sleep100);
       System.out.println(textPainter(bundle.getString("atTable_1")));
       Thread.sleep(sleep100);
       displayStories("atTable_2");
       displayStories("atTable_3");
       Thread.sleep(6000);
-      count = count + 1;
+      visitCount = visitCount + 1;
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -255,7 +256,7 @@ public class House extends Scene {
   public void openingLockbox(Scanner in, Player player) throws InterruptedException {
     String playerChoice = "";
 
-    if (count == 0) {
+    if (visitCount == 0) {
 
       try {
         System.out.println(textPainter(bundle.getString("openingLockBox_0")));
@@ -285,7 +286,7 @@ public class House extends Scene {
       } catch (Exception e) {
         e.printStackTrace();
       }
-    } else if (count >= 1){
+    } else if (visitCount >= 1) {
       try {
         System.out.println("You look back at the lockbox...");
         Thread.sleep(sleep100);
@@ -340,15 +341,17 @@ public class House extends Scene {
 
   private String textPainter(String text) {
     return MessageFormat.format(
-        text,
-        Scene.ANSI_GREEN,
-        Scene.ANSI_BLUE,
-        Scene.ANSI_RED,
-        Scene.ANSI_BLACK,
-        Scene.ANSI_WHITE);
+      text,
+      Scene.ANSI_GREEN,
+      Scene.ANSI_BLUE,
+      Scene.ANSI_RED,
+      Scene.ANSI_BLACK,
+      Scene.ANSI_WHITE);
   }
 
-  /** For accessing and displaying stories in Resource Bundle file */
+  /**
+   * For accessing and displaying stories in Resource Bundle file
+   */
   private void displayStories(String key) {
     _max_iteration_not_reached = false;
     for (int i = 0; i < MAX_ITERATION_DISPLAY_STORIES; i++) {
