@@ -21,7 +21,7 @@ public class Introduction {
     System.out.println(textPainter(bundle.getString("intro_0")));
     System.out.println(
       "\n" +
-      "  __        __        __   __   __        __      \n" +
+        "  __        __        __   __   __        __      \n" +
         " /    /    /    /| ||/  | /    /  | /|/| /  | /| |\n" +
         "(___ (    (___ ( | ||   |(___ (___|( / |(___|( | |\n" +
         "    )|   )|    | | )|   )|    |\\   |   )|   )| | )\n" +
@@ -57,7 +57,7 @@ public class Introduction {
 
     Thread.sleep(introDelayQuick);
 
-     }
+  }
   /**
    * Coloring the fonts
    *

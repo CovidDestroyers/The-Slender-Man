@@ -2,6 +2,7 @@ package com.slenderman.game;
 
 import com.slenderman.actors.Player;
 import com.slenderman.actors.SlenderMan;
+import com.slenderman.color.Color;
 import com.slenderman.scenes.Cave;
 import com.slenderman.scenes.Field;
 import com.slenderman.scenes.Forest;
@@ -25,6 +26,7 @@ import java.util.Timer;
  * This class will be instantiated in the Starter class' Main method to actually start the game
  */
 public final class Game {
+
 
   // For Unit Testing Purpose //
   private boolean disableIntroduction = false;
@@ -76,7 +78,7 @@ public final class Game {
    * =============================================
    */
 
-  public void start(Scanner in) throws InterruptedException {
+  public void start(Scanner in) throws Exception {
     String userText = "";
 
     // For Unit Testing purpose
