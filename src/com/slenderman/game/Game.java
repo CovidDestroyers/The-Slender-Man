@@ -139,7 +139,9 @@ public final class Game {
         Player.printItemsfromInventory();
       }
 
-      else {
+//      else
+      if(!userText.startsWith("go "))
+        {
         System.out.println("Unknown command '" + userText + "'.  Try go/quit.\n");
       }
 
