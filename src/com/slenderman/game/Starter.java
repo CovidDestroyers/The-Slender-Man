@@ -16,6 +16,12 @@ import java.util.Scanner;
 public class Starter {
 
   public static void main(String[] args) throws InterruptedException {
+
+//    Game game = new Game();
+//    new Console(game);
+//    Scanner scanme = new Scanner(System.in);
+//    game.start(scanme);
+
     Thread thread1 = new Thread(){
       public void run(){
         Game game = new Game();
@@ -51,9 +57,10 @@ public class Starter {
     };
 
     thread1.start();
-    thread2.start();
-    thread3.start();
+//    thread2.start();
+//    thread3.start();
   }
+
 }
 
 
