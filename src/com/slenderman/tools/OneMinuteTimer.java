@@ -2,6 +2,7 @@ package com.slenderman.tools;
 
 import com.slenderman.actors.SlenderMan;
 import com.slenderman.game.Game;
+import com.slenderman.musicplayer.SimplePlayer;
 
 import java.awt.*;
 import java.util.Timer;
@@ -13,11 +14,14 @@ public class OneMinuteTimer {
 
   public void oneMinuteUp() {
     if(Game.isPlayerAlive) {
-      toolkit = Toolkit.getDefaultToolkit();
-      toolkit.beep();
       SlenderMan.moveCloserToPlayer();
+      scream();
     }
   }
+
+  private void scream(){
+        SimplePlayer player = new SimplePlayer("Scream.mp3");
+  };
 
   public void startOneTimer() {
     timer.scheduleAtFixedRate(new TimerTask() {

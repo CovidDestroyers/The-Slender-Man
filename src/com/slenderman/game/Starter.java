@@ -43,22 +43,8 @@ public class Starter {
       }
     };
 
-    Thread thread3 = new Thread(){
-      public void run(){
-        try {
-          while (!SlenderMan.isGameDone) {
-            sleep(60000);
-            SimplePlayer player = new SimplePlayer("Scream.mp3");
-          }
-          } catch(InterruptedException e){
-            e.printStackTrace();
-          }
-      }
-    };
-
     thread1.start();
-    thread2.start();
-    thread3.start();
+//    thread2.start();
   }
 
 }
