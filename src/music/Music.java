@@ -22,8 +22,8 @@ public class Music {
   }
 
 
-  public static void forestMusic() throws Exception {
-//    gardenMusic =true;
+  public  void forestMusic() throws Exception {
+     isForestMusic = true;
     //when user/Gamer enter in garden relex music will play
     URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ForestDay_6095_24.wav");
     Clip clip = AudioSystem.getClip();
@@ -55,9 +55,5 @@ public class Music {
     isForestMusic = forestMusic;
   }
 
-  public static void main(String[] args) throws Exception {
-    Music music =new Music();
-    music.forestMusic();
-//    gameStartMusic();
-  }
+
 }
