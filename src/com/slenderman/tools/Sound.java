@@ -2,13 +2,10 @@ package com.slenderman.tools;
 
 import javax.sound.sampled.*;
 import java.io.File;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 
+class Sound {
 
-public class Sound {
-
-  public static void play(File file)
+  static void play(File file)
   {
     try
     {
