@@ -1,8 +1,4 @@
 package com.slenderman.scenes;
-
-
-//import com.slenderman.color.Color;
-
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
