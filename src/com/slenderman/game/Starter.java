@@ -12,6 +12,6 @@ public class Starter {
     Game game = new Game();
     new Console(game);
     Scanner scanMe = new Scanner(System.in);
-    game.start(scanMe);
+    game.startTheGame(scanMe);
   }
 }
