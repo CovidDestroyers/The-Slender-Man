@@ -19,7 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
-class Console extends JFrame implements ActionListener {
+public class Console extends JFrame implements ActionListener {
   JTextField tfIn;
   JLabel lblOut;
   JTextArea outText;
