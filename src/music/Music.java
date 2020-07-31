@@ -7,19 +7,31 @@ import javax.swing.*;
 import java.net.URL;
 
 public class Music {
-  public static void gardenMusic() throws Exception {
+
+
+  // variable
+  private boolean isForestMusic = false;
+//  Constructor
+
+  public Music(boolean isForestMusic) {
+    this.isForestMusic = isForestMusic;
+  }
+
+  public Music() {
+
+  }
+
+
+  public static void forestMusic() throws Exception {
+//    gardenMusic =true;
     //when user/Gamer enter in garden relex music will play
     URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ForestDay_6095_24.wav");
     Clip clip = AudioSystem.getClip();
 
     AudioInputStream ais = AudioSystem.getAudioInputStream(url);
     clip.open(ais);
-    clip.loop(Clip.LOOP_CONTINUOUSLY);
-    SwingUtilities.invokeLater(() -> {
-      // Pop up will  display to user what user supposed to do.
+    clip.loop(Clip.LOOP_CONTINUOUSLY-1);
 
-      JOptionPane.showMessageDialog(null, "You are in Forest But watch out for SlenderMan !!!!");
-    });
 
   }
   public static void gameStartMusic() throws Exception {
@@ -30,17 +42,22 @@ public class Music {
     AudioInputStream ais = AudioSystem.getAudioInputStream(url);
     clip.open(ais);
     clip.loop(Clip.LOOP_CONTINUOUSLY);
-    SwingUtilities.invokeLater(() -> {
-      // Pop up will  display to user what user supposed to do.
 
-      JOptionPane.showMessageDialog(null, "Lets Play Game!!!!");
-    });
 
+  }
+  //getter and setter
+
+  public boolean isForestMusic() {
+    return isForestMusic;
+  }
+
+  public void setForestMusic(boolean forestMusic) {
+    isForestMusic = forestMusic;
   }
 
   public static void main(String[] args) throws Exception {
     Music music =new Music();
-//    music.gardenMusic();
-    gameStartMusic();
+    music.forestMusic();
+//    gameStartMusic();
   }
 }

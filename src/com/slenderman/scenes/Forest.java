@@ -43,7 +43,7 @@ public class Forest extends Scene {
   public void enter(Scanner in, Player player) throws Exception {
     SceneImage.printForest();
     Music music = new Music();
-    music.gardenMusic();
+    music.forestMusic();
 
     System.out.println(
               "               ,@@@@@@@,\n"
