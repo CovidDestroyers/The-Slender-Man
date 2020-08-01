@@ -55,9 +55,9 @@ public class Music {
     isForestMusic = forestMusic;
   }
 
-  public static void main(String[] args) throws Exception {
-    Music music =new Music();
-    music.forestMusic();
-//    gameStartMusic();
-  }
+//  public static void main(String[] args) throws Exception {
+//    Music music =new Music();
+//    music.forestMusic();
+////    gameStartMusic();
+//  }
 }
