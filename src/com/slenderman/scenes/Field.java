@@ -54,8 +54,8 @@ public class Field extends Scene {
     scanner = in;
     this.player = player;
     String choice;
-//    SceneImage.printField();
     Console.updateMap(this.getSceneName());
+    Console.clearScreen();
     displayStories("enter");
     choice = playerChoice();
 

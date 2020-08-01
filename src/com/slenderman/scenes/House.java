@@ -79,8 +79,8 @@ public class House extends Scene {
 
   public void introToHouse() throws InterruptedException {
     try {
-//      SceneImage.printHouse();
       Console.updateMap(this.getSceneName());
+      Console.clearScreen();
       System.out.println(textPainter(bundle.getString("introToHouse_0")));
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("introToHouse_1")));
