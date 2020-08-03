@@ -17,6 +17,7 @@ import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
 
 import java.awt.*;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.Timer;
 
@@ -65,10 +66,11 @@ public final class Game {
 
   void start(Scanner in) throws Exception {
     String userText = "";
-    String[] words = userText.split(" ");
+    String[] words = null;
 
     if (!SlenderMan.isGameDone) {
       userText = in.nextLine().toLowerCase();
+      words = userText.split("\\W+");
     } else {
         currentScene = LoseGameScene;
         Player.setCurrentSceneName(currentScene.getSceneName());
@@ -76,32 +78,29 @@ public final class Game {
         currentScene.enter(in, Player);
     }
 
-    // TODO: Need to update with multiple word parsing.
-    // TODO: Need to update go/pause with synonyms.
-    for (String word : words) {
-      if (userText.startsWith("go ")){
-        playerMovement(in, userText);
-      } else if (Commands.getQuitCommands().contains(userText)) {
-        quitGame();
-      } else if (userText.startsWith("pause ")) {
-        pauseGame(in, userText);
-      } else {
-        System.out.println("Unknown Command of: " + userText);
-        System.out.println("Try Another Command");
-      }
+    assert Objects.requireNonNull(words)[0] != null;
+    assert Objects.requireNonNull(words)[1] != null;
+
+    if (Commands.getGoCommands().contains(words[0])) {
+      playerMovement(in, words[1]);
+    } else if (Commands.getQuitCommands().contains(words[0])) {
+      quitGame();
+    } else if (Commands.getPauseCommands().contains(words[0])) {
+      pauseGame(in, Integer.parseInt(words[1]));
+    } else {
+      System.out.println("Unknown Command of: " + userText);
+      System.out.println("Try Another Command.");
     }
 
     winCondition();
   }
 
-  private void playerMovement(Scanner in, String userText) throws Exception {
-    if (userText.startsWith("go ")) {
-      currentScene = currentScene.changeScene(userText.substring(3));
-      Player.setCurrentSceneName(currentScene.getSceneName());
-      Player.changeInvItemsLocation();
-      currentScene.enter(in, Player);
-      start(in);
-    }
+  private void playerMovement(Scanner in, String direction) throws Exception {
+    currentScene = currentScene.changeScene(direction);
+    Player.setCurrentSceneName(currentScene.getSceneName());
+    Player.changeInvItemsLocation();
+    currentScene.enter(in, Player);
+    start(in);
   }
 
   private void winCondition() throws InterruptedException {
@@ -143,33 +142,31 @@ public final class Game {
     start(in);
   }
 
-  private void pauseGame(Scanner in, String userText) throws Exception {
-    if (userText.startsWith("pause ")) {
-      int delay = Integer.parseInt(userText.substring(6));
-      int delayCounter = delay;
-      Toolkit toolkit = Toolkit.getDefaultToolkit();
-      System.out.println("Pausing the game for: " + delay + " seconds.");
-      System.out.println("\b");
+  private void pauseGame(Scanner in, int time) throws Exception {
+    int delay = time;
+    int delayCounter = time;
+    Toolkit toolkit = Toolkit.getDefaultToolkit();
+    System.out.println("Pausing the game for: " + delay + " seconds.");
+    System.out.println("\b");
 
-      for (int i = 0; i < delay; i++) {
-        System.out.println("Resuming the game in " + delayCounter-- + " seconds.");
-        Thread.sleep(1000);
+    for (int i = 0; i < delay; i++) {
+      System.out.println("Resuming the game in " + delayCounter-- + " seconds.");
+      Thread.sleep(1000);
 
-        if (delayCounter <= 10) {
-          for (int k = 0; k < 10; k++) {
-            toolkit.beep();
-          }
-        }
-
-        if (delayCounter == 0) {
-          System.out.println("\b");
-          System.out.println("Resuming Game Now!");
+      if (delayCounter <= 10) {
+        for (int k = 0; k < 10; k++) {
           toolkit.beep();
-          Thread.sleep(1500);
+        }
+      }
 
-          for (int h = 0; h < 50; h++) {
-            System.out.println("\b");
-          }
+      if (delayCounter == 0) {
+        System.out.println("\b");
+        System.out.println("Resuming Game Now!");
+        toolkit.beep();
+        Thread.sleep(1500);
+
+        for (int h = 0; h < 50; h++) {
+          System.out.println("\b");
         }
       }
 
