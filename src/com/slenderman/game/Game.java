@@ -26,7 +26,7 @@ import java.util.TimerTask;
  *
  * This class will be instantiated in the Starter class' Main method to actually start the game
  */
-public final class Game {
+public final class Game{
   String userText = "";
   Scanner scanner = new Scanner(System.in);
 
@@ -86,28 +86,30 @@ public final class Game {
    */
 //TODO find better way to enable/disable music, when enabled it doesnt let you work the game, though disabled functions correctly
 
-//  public  void gameOptions(Scanner in) throws InterruptedException {
-//    System.out.println("Would you like music enabled or disabled?");
-//    userText = in.nextLine();
-//    if("enabled".equalsIgnoreCase(userText) || "e".equalsIgnoreCase(userText)){
-//
-//      thread1.start();
-//      thread2.start();
-//      thread3.start();
-//
-//    }
-//    if("disabled".equalsIgnoreCase(userText) || "d".equalsIgnoreCase(userText)){
-//      start(in);
-//    }
-//    else{
-//      gameOptions(in);
-//    }
-//  }
+  public  void gameOptions(Scanner in) throws InterruptedException {
+    System.out.println("Would you like music enabled or disabled?");
+    userText = in.nextLine();
+    if("enabled".equalsIgnoreCase(userText) || "e".equalsIgnoreCase(userText)){
+
+      thread2.start();
+      start(in);
+
+
+
+    }
+    if("disabled".equalsIgnoreCase(userText) || "d".equalsIgnoreCase(userText)){
+      start(in);
+    }
+    else{
+      gameOptions(in);
+    }
+  }
 
   public void start(Scanner in) throws InterruptedException {
-//    String userText = "";
+    System.out.println("gameOptions hit start()");
 
     // For Unit Testing purpose
+//    gameOptions(in);
     if (!disableIntroduction) {
       Introduction.playIntro();
 
@@ -233,36 +235,29 @@ public final class Game {
 
   Thread thread2 = new Thread(() -> {
     try {
+      System.out.println("Thread 2 hit in try block");
       Thread.sleep(1500);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
     while(!SlenderMan.isGameDone) {
+      System.out.println("Thread 2 hit in while loop");
       SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
     }
   });
 
-      Thread thread3 = new Thread(() -> {
-        try {
-          while (!SlenderMan.isGameDone) {
-            Thread.sleep(60000);
-            SimplePlayer player = new SimplePlayer("Scream.mp3");
-          }
-          } catch(InterruptedException e){
-            e.printStackTrace();
-          }
-      });
 
 
-  Thread thread1 = new Thread(() -> {
-//    Game game = new Game();
-//    new Console(game);
-//    Scanner scanMe = new Scanner(System.in);
-    try {
-//          game.start(scanMe);
-      start(scanner);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-  });
+
+//  Thread thread1 = new Thread(() -> {
+////    Game game = new Game();
+////    new Console(game);
+////    Scanner scanMe = new Scanner(System.in);
+//    try {
+////          game.start(scanMe);
+//      start(scanner);
+//    } catch (InterruptedException e) {
+//      e.printStackTrace();
+//    }
+//  });
 }
