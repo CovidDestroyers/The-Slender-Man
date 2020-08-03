@@ -15,6 +15,7 @@ public class LoseGameTimer {
     loseGameTimer = new Timer();
     Game.isPlayerAlive = true;
     loseGameTimer.schedule(new KillPlayerTask(), minutes * 60000);
+
   }
 
 
@@ -31,3 +32,4 @@ public class LoseGameTimer {
 
 
 }
+

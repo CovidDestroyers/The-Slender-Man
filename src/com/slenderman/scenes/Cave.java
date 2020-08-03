@@ -3,6 +3,8 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
+
 import java.text.MessageFormat;
 import java.util.*;
 
@@ -62,7 +64,8 @@ public class Cave extends Scene {
   public void enter(Scanner in, Player player) throws InterruptedException {
     thePlayer = player;
     choice = in;
-    SceneImage.printCave();
+    Console.updateMap(this.getSceneName());
+    Console.clearScreen();
     inFrontOfCave();
   }
 
