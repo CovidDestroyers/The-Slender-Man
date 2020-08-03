@@ -3,9 +3,9 @@ package com.slenderman.tools;
 import javax.sound.sampled.*;
 import java.io.File;
 
-class Sound {
+public class Sound {
 
-  static void play(File file)
+  public static void play(File file)
   {
     try
     {
@@ -22,7 +22,7 @@ class Sound {
   }
 
 //  public static void main(String[] args) {
-//    File oneMinSound=new File("oneMinute.wav");
+//    File oneMinSound=new File("vampire-hiss.wav");
 //    play(oneMinSound);
 //  }
 }

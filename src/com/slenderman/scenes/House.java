@@ -3,6 +3,8 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -77,7 +79,8 @@ public class House extends Scene {
 
   public void introToHouse() throws InterruptedException {
     try {
-      SceneImage.printHouse();
+      Console.updateMap(this.getSceneName());
+      Console.clearScreen();
       System.out.println(textPainter(bundle.getString("introToHouse_0")));
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("introToHouse_1")));

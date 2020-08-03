@@ -3,6 +3,8 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -60,7 +62,8 @@ public class Shed extends Scene {
     this.player = player;
 
     choice = in;
-    SceneImage.printShed();
+    Console.updateMap(this.getSceneName());
+    Console.clearScreen();
     inFrontOfShed();
   }
 
