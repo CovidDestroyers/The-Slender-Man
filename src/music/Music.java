@@ -4,6 +4,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
+import java.io.File;
 import java.net.URL;
 
 public class Music {
@@ -22,15 +23,19 @@ public class Music {
   }
 
 
-  public  void forestMusic() throws Exception {
-     isForestMusic = true;
-    //when user/Gamer enter in garden relex music will play
-    URL url = new URL("https://www.videomaker.com/sites/videomaker.com/files/downloads/free-sound-effects/Free_ForestDay_6095_24.wav");
-    Clip clip = AudioSystem.getClip();
+  public  void forestMusic(File file) throws Exception {
+    try
+    {
+      Clip clip = AudioSystem.getClip();
+      clip.open(AudioSystem.getAudioInputStream(file));
+      clip.start();
 
-    AudioInputStream ais = AudioSystem.getAudioInputStream(url);
-    clip.open(ais);
-    clip.loop(Clip.LOOP_CONTINUOUSLY-1);
+      Thread.sleep(clip.getMicrosecondLength()/1000);
+    }
+    catch (Exception exc)
+    {
+      exc.printStackTrace(System.out);
+    }
 
 
   }
@@ -53,6 +58,12 @@ public class Music {
 
   public void setForestMusic(boolean forestMusic) {
     isForestMusic = forestMusic;
+  }
+
+  public static void main(String[] args) throws Exception {
+
+   Music music = new Music ();
+   music.forestMusic(new File("Forest.wav"));
   }
 
 
