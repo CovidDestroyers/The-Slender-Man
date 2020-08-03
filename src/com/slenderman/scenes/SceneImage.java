@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 public class SceneImage {
-  public static void printForest() {
+  public static void printForest(){
     System.out.println("\n" +
       "+-----------+-----------+\n" +
       "|  Forest   |   House   |\n" +
@@ -17,7 +17,6 @@ public class SceneImage {
       "|           |           |           |           |           | \n" +
       "+-----------+-----------+-----------+-----------+-----------+");
   }
-
   public static void printHouse() {
     System.out.println("\n" +
       "+-----------+-----------+\n" +
@@ -82,8 +81,6 @@ public class SceneImage {
       "|           |           |           |  (Player) |           | \n" +
       "+-----------+-----------+-----------+-----------+-----------+");
   }
-
-
 
   public static void printTree() {
     System.out.println("\n" +
@@ -188,6 +185,7 @@ public class SceneImage {
       "|           |           |           |           |  (Player) | \n" +
       "+-----------+-----------+-----------+-----------+-----------+";
   }
+
   public static Map<String, Function> sceneMap=new HashMap(){
     {
       put("forest",mapForest());
@@ -199,6 +197,4 @@ public class SceneImage {
       put("tree",mapTree());
     }
   };
-
-
 }
