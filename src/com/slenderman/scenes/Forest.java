@@ -4,6 +4,7 @@ import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
 import music.Music;
 
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -45,8 +46,8 @@ public class Forest extends Scene {
   public void enter(Scanner in, Player player) throws Exception {
     Console.updateMap(this.getSceneName());
     Console.clearScreen();
-    Music music = new Music();
-    music.forestMusic();
+
+    Music.forestMusic(new File("Forest.wav"));
 
     System.out.println(
       "               ,@@@@@@@,\n"
