@@ -143,13 +143,12 @@ public final class Game {
   }
 
   private void pauseGame(Scanner in, int time) throws Exception {
-    int delay = time;
     int delayCounter = time;
     Toolkit toolkit = Toolkit.getDefaultToolkit();
-    System.out.println("Pausing the game for: " + delay + " seconds.");
-    System.out.println("\b");
+    System.out.println("Pausing the game for: " + time + " seconds.");
+    System.out.println("\n");
 
-    for (int i = 0; i < delay; i++) {
+    for (int i = 0; i < time; i++) {
       System.out.println("Resuming the game in " + delayCounter-- + " seconds.");
       Thread.sleep(1000);
 
@@ -160,21 +159,21 @@ public final class Game {
       }
 
       if (delayCounter == 0) {
-        System.out.println("\b");
+        System.out.println("\n");
         System.out.println("Resuming Game Now!");
         toolkit.beep();
         Thread.sleep(1500);
 
         for (int h = 0; h < 50; h++) {
-          System.out.println("\b");
+          System.out.println("\n");
         }
       }
-
-      Player.setCurrentSceneName(currentScene.getSceneName());
-      Player.changeInvItemsLocation();
-      currentScene.enter(in, Player);
-      start(in);
     }
+
+    Player.setCurrentSceneName(currentScene.getSceneName());
+    Player.changeInvItemsLocation();
+    currentScene.enter(in, Player);
+    start(in);
   }
 
   private void quitGame() {
