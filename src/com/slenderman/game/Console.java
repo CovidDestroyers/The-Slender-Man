@@ -22,8 +22,7 @@ import javax.swing.SwingWorker;
 public class Console extends JFrame implements ActionListener {
   JTextField tfIn;
   JLabel lblOut;
-  JTextArea outText;
-  static JTextArea mapArea;
+  static JTextArea mapArea,outText;
 
   BufferedImage axe1Img;
   BufferedImage axe2Img;
@@ -50,7 +49,7 @@ public class Console extends JFrame implements ActionListener {
 
     JPanel panel = new JPanel(new BorderLayout());
 
-    outText = new JTextArea(100, 80);
+    outText = new JTextArea(35, 80);
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
@@ -116,6 +115,11 @@ public class Console extends JFrame implements ActionListener {
   //Update maps in the mapPanel with game progression
   public static void updateMap(String sceneName){
     mapArea.setText(String.valueOf(SceneImage.sceneMap.get(sceneName)));
+  }
+
+  //Clear screen static method
+  public static void clearScreen(){
+    outText.setText("");
   }
 
 

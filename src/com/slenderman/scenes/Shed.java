@@ -62,9 +62,8 @@ public class Shed extends Scene {
     this.player = player;
 
     choice = in;
-//    SceneImage.printShed();
     Console.updateMap(this.getSceneName());
-
+    Console.clearScreen();
     inFrontOfShed();
   }
 
