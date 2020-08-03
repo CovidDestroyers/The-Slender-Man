@@ -1,12 +1,17 @@
 package com.slenderman.scenes;
 
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 
-public class Introduction {
+public class Introduction implements KeyListener {
+
+//  private Scanner choice;
 
   // For Resource Bundle //
   static final String FILE_BASE_NAME = "storyIntroNoColor";
@@ -63,12 +68,18 @@ public class Introduction {
     Thread.sleep(sleep);
 
      }
+
   /**
    * Coloring the fonts
    *
    * <p>{0} : Scene.ANSI_GREEN {1} : Scene.ANSI_BLUE {2} : Scene.ANSI_RED {3} : Scene.ANSI_BLACK {4}
    * : Scene.ANSI_WHITE
    */
+
+  public void skipIntro(){
+    sleep = 0;
+  }
+
   private static String textPainter(String text) {
     return MessageFormat.format(
       text,
@@ -79,4 +90,18 @@ public class Introduction {
       Scene.ANSI_WHITE);
   }
 
+  @Override
+  public void keyTyped(KeyEvent e) {
+
+  }
+
+  @Override
+  public void keyPressed(KeyEvent e) {
+
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e) {
+
+  }
 }
