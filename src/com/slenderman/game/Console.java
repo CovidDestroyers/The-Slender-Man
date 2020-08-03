@@ -28,6 +28,10 @@ public class Console extends JFrame implements ActionListener {
   BufferedImage axe2Img;
   BufferedImage axe3Img;
   BufferedImage axe4Img;
+  BufferedImage axe5Img;
+  BufferedImage axe6Img;
+  BufferedImage axe7Img;
+  BufferedImage axe8Img;
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
@@ -134,14 +138,23 @@ public class Console extends JFrame implements ActionListener {
 
   //TODO: ActionPerformed Event Listener is triggering second thread run; need further study to solve it
   public void loadImage() {
-    String axe1Path = "images/axe1.png";
-    String axe2Path = "images/axe2.png";
-    String axe3Path = "images/axe3.png";
-    String axe4Path = "images/axe4.png";
+    String axe1Path = "images/spooky_trees.png";
+    String axe2Path = "images/spooky_trees.png";
+    String axe3Path = "images/spooky_trees.png";
+    String axe4Path = "images/spooky_trees.png";
+    String axe5Path = "images/spooky_trees.png";
+    String axe6Path = "images/spooky_trees.png";
+    String axe7Path = "images/spooky_trees.png";
+    String axe8Path = "images/spooky_trees.png";
     File axe1file = new File(axe1Path);
     File axe2file = new File(axe2Path);
     File axe3file = new File(axe3Path);
     File axe4file = new File(axe4Path);
+    File axe5file = new File(axe5Path);
+    File axe6file = new File(axe6Path);
+    File axe7file = new File(axe7Path);
+    File axe8file = new File(axe8Path);
+
 
     try {
 
@@ -149,6 +162,10 @@ public class Console extends JFrame implements ActionListener {
       axe2Img = ImageIO.read(axe2file);
       axe3Img = ImageIO.read(axe3file);
       axe4Img = ImageIO.read(axe4file);
+      axe5Img = ImageIO.read(axe5file);
+      axe6Img = ImageIO.read(axe6file);
+      axe7Img = ImageIO.read(axe7file);
+      axe8Img = ImageIO.read(axe8file);
 
     } catch (IOException e) {
       e.printStackTrace();
@@ -158,19 +175,14 @@ public class Console extends JFrame implements ActionListener {
   public void paint(Graphics g) {
 
     super.paint(g);
+    g.drawImage(axe1Img, 1070, 50, null);
+    g.drawImage(axe2Img, 800, 50, null);
+    g.drawImage(axe4Img, 700, 50, null);
+    g.drawImage(axe7Img, 620, 50, null);
+    g.drawImage(axe3Img, 500, 50, null);//
+    g.drawImage(axe8Img, 350, 50, null);
+    g.drawImage(axe6Img, 300, 50, null);
+    g.drawImage(axe5Img, -25, 50, null);
 
-    try {
-      g.drawImage(axe1Img, 1000, 50, null);
-      Thread.sleep(1000);
-      g.drawImage(axe2Img, 800, 50, null);
-      Thread.sleep(1000);
-      g.drawImage(axe3Img, 500, 50, null);
-      Thread.sleep(1000);
-      g.drawImage(axe4Img, 150, 50, null);
-      Thread.sleep(1000);
-
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
   }
 }
