@@ -4,7 +4,9 @@ import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
+import com.slenderman.music.Music;
 
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -58,12 +60,13 @@ public class Shed extends Scene {
    */
 
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter(Scanner in, Player player) throws Exception {
     this.player = player;
 
     choice = in;
     Console.updateMap(this.getSceneName());
     Console.clearScreen();
+    Music.gameMusic(new File("shed.wav"));
     inFrontOfShed();
   }
 

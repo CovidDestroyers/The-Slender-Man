@@ -4,7 +4,9 @@ import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
+import com.slenderman.music.Music;
 
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -50,7 +52,7 @@ public class Field extends Scene {
     setItemsInScene(itemsInThisScene);
   }
 
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter(Scanner in, Player player) throws Exception {
     scanner = in;
     this.player = player;
     String choice;
@@ -58,6 +60,7 @@ public class Field extends Scene {
     Console.clearScreen();
     displayStories("enter");
     choice = playerChoice();
+    Music.gameMusic(new File("field.wav"));
 
     if (choice.equals("0")) {
       smellIt(in, player);

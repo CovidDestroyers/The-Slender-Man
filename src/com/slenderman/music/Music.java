@@ -37,7 +37,8 @@ public class Music {
     clip.start();
     //Below thing will loop continuous
     clip.loop(Clip.LOOP_CONTINUOUSLY);
-
+    JOptionPane.showMessageDialog(null,"Please Click ok to stop Music");
+   clip.stop();
   }
 
 
