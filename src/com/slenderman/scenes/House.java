@@ -4,7 +4,9 @@ import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
+import com.slenderman.music.Music;
 
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -59,7 +61,9 @@ public class House extends Scene {
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
     try {
+      Music.gameMusic(new File("house.wav"));
       introToHouse();
+
       Thread.sleep(1000);
 
       houseInView();
@@ -73,6 +77,8 @@ public class House extends Scene {
 
       leaveHouse();
     } catch (InterruptedException e) {
+      e.printStackTrace();
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }

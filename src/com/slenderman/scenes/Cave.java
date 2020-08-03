@@ -55,7 +55,7 @@ public class Cave extends Scene {
       Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) throws Exception {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
     setSceneName("cave");
-    Music.gameMusic(new File("cave.wav"));
+
   }
 
   /*
@@ -64,12 +64,13 @@ public class Cave extends Scene {
    * =============================================
    */
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter(Scanner in, Player player) throws Exception {
     thePlayer = player;
     choice = in;
     Console.updateMap(this.getSceneName());
     Console.clearScreen();
     inFrontOfCave();
+    Music.gameMusic(new File("cave.wav"));
   }
 
   private void inFrontOfCave() throws InterruptedException {
