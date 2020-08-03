@@ -60,11 +60,7 @@ public class Music {
     isForestMusic = forestMusic;
   }
 
-//  public static void main(String[] args) throws Exception {
-//
-//
-//   Music.forestMusic(new File("Forest.wav"));
-//  }
+
 
 
 }

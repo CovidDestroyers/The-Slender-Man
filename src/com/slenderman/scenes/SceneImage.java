@@ -188,6 +188,17 @@ public class SceneImage {
       "|           |           |           |           |  (Player) | \n" +
       "+-----------+-----------+-----------+-----------+-----------+";
   }
+  public static Map<String, Function> sceneMap=new HashMap(){
+    {
+      put("forest",mapForest());
+      put("house",mapHouse());
+      put("cave",mapCave());
+      put("field",mapField());
+      put("pond",mapPond());
+      put("shed",mapShed());
+      put("tree",mapTree());
+    }
+  };
 
 
 }
