@@ -4,7 +4,9 @@ import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
+import com.slenderman.music.Music;
 
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.*;
 
@@ -50,9 +52,10 @@ public class Cave extends Scene {
   }
 
   public Cave(
-      Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
+      Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) throws Exception {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
     setSceneName("cave");
+    Music.gameMusic(new File("cave.wav"));
   }
 
   /*
