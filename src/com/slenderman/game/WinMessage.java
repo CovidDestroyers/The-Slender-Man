@@ -1,5 +1,7 @@
 package com.slenderman.game;
 
+import com.slenderman.scenes.Introduction;
+
 public class WinMessage {
   public void winMessage() throws InterruptedException {
     int quickest = 2000;
@@ -48,7 +50,7 @@ public class WinMessage {
         + "    )|   )|   )     | / )| | | ) |   \n"
         + " __/ |__/ |__/      |/|/ | | |/  _   \n"
         + "                                     \n");
-    System.out.println("Thanks for playing!");
+    System.out.println("Thanks for playing " + Introduction.getPlayerName() + "!");
     Thread.sleep(9000);
     System.exit(1);
   }

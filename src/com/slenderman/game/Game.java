@@ -177,7 +177,7 @@ public final class Game {
   }
 
   private void quitGame() {
-    System.out.println("Goodbye!");
+    System.out.println("Goodbye, " + Introduction.getPlayerName() + "!");
     System.exit(0);
   }
 

@@ -44,7 +44,7 @@ public class LoseGameScene extends Scene {
 
   public void restartOrQuit() throws InterruptedException {
     Thread.sleep(2000);
-    System.out.println("Thanks for playing");
+    System.out.println("Thanks for playing, " + Introduction.getPlayerName());
     System.out.println("- Type \"Q\": to quit.");
     String choice = playerChoice().toUpperCase();
    if(choice.equals("Q")){

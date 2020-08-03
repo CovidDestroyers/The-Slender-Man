@@ -45,7 +45,7 @@ public class Field extends Scene {
       Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
-    setDescription("You have reached am empty field.");
+    setDescription("You have reached an empty field.");
     setSceneName("field");
     setItemsInScene(itemsInThisScene);
   }
