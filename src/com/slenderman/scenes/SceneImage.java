@@ -189,12 +189,5 @@ public class SceneImage {
       "+-----------+-----------+-----------+-----------+-----------+";
   }
 
-  public static Map<String, Function> sceneMap1 = new HashMap() {
-    {
-      put("forestMusic", mapForest());
 
-
-    }
-
-  };
 }

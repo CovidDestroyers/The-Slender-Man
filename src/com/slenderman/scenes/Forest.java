@@ -43,8 +43,7 @@ public class Forest extends Scene {
   @Override
   public void enter(Scanner in, Player player) throws Exception {
     SceneImage.printForest();
-    Music.forestMusic(new File("Forest.wav"));
-    //Music.sceneMusic
+
 
     System.out.println(
               "               ,@@@@@@@,\n"
