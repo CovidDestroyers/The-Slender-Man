@@ -82,7 +82,11 @@ public final class Game {
     assert Objects.requireNonNull(words)[1] != null;
 
     if (Commands.getGoCommands().contains(words[0])) {
-      playerMovement(in, words[1]);
+      if (Commands.getDirectionCommands().contains(words[1])) {
+        playerMovement(in, words[1]);
+      } else {
+        System.out.println("Incorrect Direction");
+      }
     } else if (Commands.getQuitCommands().contains(words[0])) {
       quitGame();
     } else if (Commands.getPauseCommands().contains(words[0])) {
