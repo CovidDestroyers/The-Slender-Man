@@ -2,7 +2,7 @@ package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
-import music.Music;
+import com.slenderman.music.Music;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -47,7 +47,7 @@ public class Forest extends Scene {
     Console.updateMap(this.getSceneName());
     Console.clearScreen();
 
-    Music.forestMusic(new File("Forest.wav"));
+    Music.gameMusic(new File("Forest.wav"));
 
     System.out.println(
       "               ,@@@@@@@,\n"

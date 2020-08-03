@@ -1,5 +1,8 @@
 package com.slenderman.scenes;
 
+import com.slenderman.music.Music;
+
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -15,7 +18,7 @@ public class Introduction {
   static ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
   public static String playerName;
 
-  public static void playIntro() throws InterruptedException {
+  public static void playIntro() throws Exception {
     Scanner scanner = new Scanner(System.in);
     long introDelaySlow = 2500;
     long introDelayQuick = 1750;
@@ -34,6 +37,7 @@ public class Introduction {
     System.out.println("Please enter your name to start your journey...");
     setPlayerName(scanner.nextLine());
     System.out.println("Your name has been set to " + getPlayerName() + " ... good luck.");
+    Music.gameSingleMusic(new File("gameIntro.wav"));
 
     Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_1")));

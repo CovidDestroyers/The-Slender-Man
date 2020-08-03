@@ -1,4 +1,4 @@
-package music;
+package com.slenderman.music;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -8,8 +8,23 @@ import java.io.File;
 import java.net.URL;
 
 public class Music {
+  public  static  void gameSingleMusic(File file){
+    try
+    {
+      Clip clip = AudioSystem.getClip();
+      clip.open(AudioSystem.getAudioInputStream(file));
+      clip.start();
 
-  public static void forestMusic(File file) throws Exception {
+      Thread.sleep(clip.getMicrosecondLength()/1000);
+    }
+    catch (Exception exc)
+    {
+      exc.printStackTrace(System.out);
+    }
+
+  }
+
+  public static void gameMusic(File file) throws Exception {
 //    gardenMusic =true;
     //when user/Gamer enter in Forestmusic will play
 //    Clip clip = AudioSystem.getClip();
