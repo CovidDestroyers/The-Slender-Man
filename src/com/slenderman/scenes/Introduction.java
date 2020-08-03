@@ -3,6 +3,7 @@ package com.slenderman.scenes;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class Introduction {
 
@@ -12,8 +13,10 @@ public class Introduction {
 
   static ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   static ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
+  public static String playerName;
 
   public static void playIntro() throws InterruptedException {
+    Scanner scanner = new Scanner(System.in);
     long introDelaySlow = 2500;
     long introDelayQuick = 1750;
 
@@ -27,6 +30,10 @@ public class Introduction {
         "    )|   )|    | | )|   )|    |\\   |   )|   )| | )\n" +
         " __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ \n" +
         "                                                  \n");
+
+    System.out.println("Please enter your name to start your journey...");
+    setPlayerName(scanner.nextLine());
+    System.out.println("Your name has been set to " + getPlayerName() + " ... good luck.");
 
     Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_1")));
@@ -72,5 +79,13 @@ public class Introduction {
       Scene.ANSI_RED,
       Scene.ANSI_BLACK,
       Scene.ANSI_WHITE);
+  }
+
+  public static String getPlayerName() {
+    return playerName;
+  }
+
+  public static void setPlayerName(String playerName) {
+    Introduction.playerName = playerName;
   }
 }
