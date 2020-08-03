@@ -246,7 +246,7 @@ public class House extends Scene {
       displayStories("atTable_2");
       displayStories("atTable_3");
       Thread.sleep(6000);
-      visitCount = visitCount + 1;
+//      visitCount = visitCount + 1;
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -266,7 +266,7 @@ public class House extends Scene {
           playerChoice = in.nextLine().toLowerCase().trim();
 
           if (playerChoice.equals("1")) {
-            displayStories("openingLockBox_0");
+            System.out.println("There is definitely something in there...");
             lockBoxChoices();
           }
 
@@ -274,6 +274,7 @@ public class House extends Scene {
             System.out.println(textPainter(bundle.getString("openingLockBox_2_0")));
             Thread.sleep(sleep100);
             displayStories("openingLockBox_2");
+            visitCount = visitCount +1;
 
             lockBoxChoices();
           }
@@ -296,14 +297,15 @@ public class House extends Scene {
           playerChoice = in.nextLine().toLowerCase().trim();
 
           if (playerChoice.equals("1")) {
-            displayStories("openingLockBox_1");
+            System.out.println("There is definitely something in there...\n");
+            Thread.sleep(sleep100);
             lockBoxChoices();
           }
 
           if (playerChoice.equals("2")) {
-            System.out.println(textPainter(bundle.getString("openingLockBox_2_1")));
+            System.out.println("It didn't work the first time you did it, why on earth would you kick it again.");
+            System.out.println("Try again.\n");
             Thread.sleep(sleep100);
-            displayStories("openingLockBox_2");
 
             lockBoxChoices();
           }
