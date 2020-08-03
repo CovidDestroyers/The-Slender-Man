@@ -23,7 +23,7 @@ public class Music {
   }
 
 
-  public  void forestMusic(File file) throws Exception {
+  public static void forestMusic(File file) throws Exception {
     try
     {
       Clip clip = AudioSystem.getClip();
@@ -60,11 +60,11 @@ public class Music {
     isForestMusic = forestMusic;
   }
 
-  public static void main(String[] args) throws Exception {
-
-   Music music = new Music ();
-   music.forestMusic(new File("Forest.wav"));
-  }
+//  public static void main(String[] args) throws Exception {
+//
+//
+//   Music.forestMusic(new File("Forest.wav"));
+//  }
 
 
 }
