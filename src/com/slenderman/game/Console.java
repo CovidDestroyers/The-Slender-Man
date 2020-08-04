@@ -5,10 +5,7 @@ import com.slenderman.musicplayer.SimplePlayer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PipedInputStream;
@@ -105,8 +102,6 @@ class Console extends JFrame implements ActionListener {
         repaint();
       }
     });
-
-
 
 
 
