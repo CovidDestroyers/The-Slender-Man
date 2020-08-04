@@ -15,8 +15,6 @@ public class OneMinuteTimer {
   public void oneMinuteUp() {
     if(Game.isPlayerAlive) {
       SlenderMan.moveCloserToPlayer();
-      TimerVisual tv = new TimerVisual();
-      tv.hereComesSlenderMan();
       scream();
     }
   }
