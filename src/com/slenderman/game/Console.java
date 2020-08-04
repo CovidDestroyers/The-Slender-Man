@@ -77,13 +77,40 @@ class Console extends JFrame implements ActionListener {
     musicOptions.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        game.thread2.stop();
+          game.thread2.stop();
       }
     });
 
     //end of music panel
 
     //End of instructions panel
+
+    // Adding Side Map JPanel
+    GameMap gMap = new GameMap();
+    JPanel locMap = new JPanel(new BorderLayout());
+    locMap.setBounds(100,100,200,200);
+    locMap.setBackground(Color.BLACK);
+    // Loading Initial Side Map
+//    System.out.println("current scene: " + game.getPlayer().getCurrentSceneName());
+    if (game.getPlayer().getCurrentSceneName() != null) {
+      locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
+    } else {
+      locMap.add(gMap.makeMap(""));
+    }
+    panel.add(locMap, BorderLayout.EAST);
+
+    // Property change listener for scene change to update map
+    game.getPlayer().addPropertyChangeListener(evt -> {
+    System.out.println("did I make it in here?");
+      if(evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())){
+        locMap.removeAll();
+        locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
+        panel.add(locMap, BorderLayout.EAST);
+        revalidate();
+        repaint();
+      }
+    });
+
 
 
 

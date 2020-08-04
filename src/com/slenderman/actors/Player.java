@@ -1,5 +1,7 @@
 package com.slenderman.actors;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -11,7 +13,7 @@ public class Player {
 
   private String state = "alive";
   private String currentSceneName = "forest";
-
+  PropertyChangeSupport pcs = new PropertyChangeSupport(this);
   private List<Item> inventory = new ArrayList<>();
 
   /*
@@ -112,8 +114,14 @@ public class Player {
     this.inventory = inventory;
   }
 
-  public void setCurrentSceneName(String currentSceneName) {
-    this.currentSceneName = currentSceneName;
+  public void setCurrentSceneName(String newCurrentSceneName) {
+    String oldSceneName = this.currentSceneName;
+    this.currentSceneName = newCurrentSceneName;
+    this.pcs.firePropertyChange(currentSceneName,oldSceneName,newCurrentSceneName);
+  }
+
+  public void addPropertyChangeListener(PropertyChangeListener listener) {
+    this.pcs.addPropertyChangeListener(listener);
   }
 
   // GET METHODS
