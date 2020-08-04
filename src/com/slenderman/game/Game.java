@@ -122,7 +122,9 @@ public final class Game{
     while (true) {
       String[] userInput = null;
       if (!SlenderMan.isGameDone) {
-        userText = in.nextLine().toLowerCase();
+        userText = in.nextLine().toLowerCase().trim();
+        //
+        //Do a global search for non-word characters in a string (w3schools.com)
         userInput = userText.split("\\W");
 
       } else {
