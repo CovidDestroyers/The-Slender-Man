@@ -10,7 +10,7 @@ public class GameMap {
 
   private static String sceneName;
 
-  public static JTextArea makeMap(String sceneName) {
+  public JTextArea makeMap(String sceneName) {
     String cs = "";
     JTextArea result = new JTextArea(15, 55);
     result.setBackground(Color.BLACK);

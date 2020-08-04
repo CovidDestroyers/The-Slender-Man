@@ -76,7 +76,7 @@ class Console extends JFrame implements ActionListener {
     musicOptions.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        game.thread2.stop();
+          game.thread2.stop();
       }
     });
 
@@ -86,6 +86,13 @@ class Console extends JFrame implements ActionListener {
 
 
     // Adding Map panel
+    JButton mapButton = new JButton("Update Map");
+    musicOptions.setBounds(70, 10, 95, 30);
+    musicOptions.setBackground(Color.GREEN);
+    musicOptions.setForeground(Color.WHITE);
+    instructions.add(mapButton);
+
+
     JPanel locMap;
     GameMap gMap = new GameMap();
 
@@ -101,15 +108,26 @@ class Console extends JFrame implements ActionListener {
     }
     panel.add(locMap, BorderLayout.EAST);
 
-// Property change listener for scene change
-    game.getPlayer().addPropertyChangeListener(evt -> {
-      if(evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())){
-        locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
-        panel.add(locMap, BorderLayout.EAST);
-      }
+
+    mapButton.addActionListener(e -> {
+      System.out.println("I pushed the update map button");
+      System.out.println(game.getPlayer().getCurrentSceneName());
+      locMap.removeAll();
+      locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
+      panel.add(locMap, BorderLayout.EAST);
+      revalidate();
+      repaint();
     });
 
-//    makePanelUpdate();
+// Property change listener for scene change to update map
+//    game.getPlayer().addPropertyChangeListener(evt -> {
+//    System.out.println("did I make it in here?");
+//      if(evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())){
+//        locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
+//        panel.add(locMap, BorderLayout.EAST);
+//      }
+//    });
+
 
 
 
