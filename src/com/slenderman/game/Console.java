@@ -72,6 +72,7 @@ class Console extends JFrame implements ActionListener {
     musicOptions.setForeground(Color.WHITE);
     instructions.add(musicOptions);
 
+    //TODO actionPerformed uses deprecated method, ticket id 200.
 
     musicOptions.addActionListener(new ActionListener() {
       @Override

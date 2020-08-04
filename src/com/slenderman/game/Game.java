@@ -14,14 +14,10 @@ import com.slenderman.scenes.Scene;
 import com.slenderman.scenes.Shed;
 import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
+import com.slendermand.inputcommands.InputCommands;
 
-import javax.swing.*;
-import java.awt.*;
-import java.time.temporal.Temporal;
+import java.util.Objects;
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Game is the class where we will build out the logic for the actual game. Essentially, this is the
@@ -119,44 +115,47 @@ public final class Game{
       new LoseGameTimer().gameTimer(10);
       new OneMinuteTimer().startOneTimer();
     }
-
     currentScene = aForest;
-
     Player.setCurrentSceneName(currentScene.getSceneName());
-
     currentScene.enter(in, Player);
 
     while (true) {
+      String[] userInput = null;
       if (!SlenderMan.isGameDone) {
-        userText = in.nextLine().toLowerCase().trim();
+        userText = in.nextLine().toLowerCase();
+        userInput = userText.split("\\W");
+
       } else {
         currentScene = LoseGameScene;
-
         Player.setCurrentSceneName(currentScene.getSceneName());
         Player.changeInvItemsLocation();
-
         currentScene.enter(in, Player);
       }
+      assert userInput != null;
 
-      if (userText.equals("quit")) {
-        System.out.println("Goodbye!");
-        break;
+      if(InputCommands.getPlayerMovement().contains(userInput[0])){
+        if(InputCommands.getPlayerDirection().contains(userInput[1])){
+          System.out.println(userInput[1]);
+          currentScene = currentScene.changeScene(userInput[1]);
+          Player.setCurrentSceneName(currentScene.getSceneName());
+          Player.changeInvItemsLocation();
+          currentScene.enter(in, Player);
+        }
+        else{
+          System.out.println("Incorrect input");
+        }
+      }
+      else if(InputCommands.getQuitGameCommands().contains(userInput[0])){
+        System.out.println("Goodbye");
+        Thread.sleep(3000);
+        System.exit(0);
       }
 
-      if (userText.startsWith("go ")) {
-        currentScene = currentScene.changeScene(userText.substring(3));
-
-        Player.setCurrentSceneName(currentScene.getSceneName());
-        Player.changeInvItemsLocation();
-
-        currentScene.enter(in, Player);
-      }
 
       if("inventory".equalsIgnoreCase(userText) || "i".equalsIgnoreCase(userText)){
         Player.printItemsfromInventory();
       }
 
-//      else
       if(!userText.startsWith("go ") && !userText.startsWith("i"))
         {
         System.out.println("Unknown command '" + userText + "'.  Try go/quit.\n");
@@ -179,6 +178,7 @@ public final class Game{
       }
     }
   }
+
 
   private void winMessage() throws InterruptedException {
     Thread.sleep(2000);
