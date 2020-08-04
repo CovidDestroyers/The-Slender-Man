@@ -90,7 +90,6 @@ public class House extends Scene {
 
   public void introToHouse() throws InterruptedException {
     try {
-      SceneImage.printHouse();
       System.out.println(textPainter(bundle.getString("introToHouse_0")));
       Thread.sleep(sleep);
       System.out.println(textPainter(bundle.getString("introToHouse_1")));
