@@ -28,6 +28,6 @@ public class OneMinuteTimer {
       public void run() {
         oneMinuteUp();
       }
-    }, 0, 60000);
+    }, 60000, 60000);
   }
 }

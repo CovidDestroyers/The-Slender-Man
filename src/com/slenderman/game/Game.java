@@ -232,6 +232,10 @@ public final class Game{
     return currentScene;
   }
 
+  public com.slenderman.actors.Player getPlayer() {
+    return Player;
+  }
+
   public void setDisableIntroduction(boolean disableIntroduction) {
     this.disableIntroduction = disableIntroduction;
   }
