@@ -15,10 +15,13 @@ import com.slenderman.scenes.Shed;
 import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
 
+import javax.swing.*;
+import java.awt.*;
 import java.time.temporal.Temporal;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Game is the class where we will build out the logic for the actual game. Essentially, this is the
@@ -50,6 +53,11 @@ public final class Game{
   public static boolean isPlayerAlive;
 
   private final Player Player;
+
+  public static volatile boolean isRunning = true;
+//  public AtomicBoolean running = new AtomicBoolean(true);
+
+
 
 
 
@@ -90,12 +98,8 @@ public final class Game{
     System.out.println("Would you like music enabled or disabled?");
     userText = in.nextLine();
     if("enabled".equalsIgnoreCase(userText) || "e".equalsIgnoreCase(userText)){
-
       thread2.start();
       start(in);
-
-
-
     }
     if("disabled".equalsIgnoreCase(userText) || "d".equalsIgnoreCase(userText)){
       start(in);
@@ -106,7 +110,6 @@ public final class Game{
   }
 
   public void start(Scanner in) throws InterruptedException {
-    System.out.println("gameOptions hit start()");
 
     // For Unit Testing purpose
 //    gameOptions(in);
@@ -235,29 +238,17 @@ public final class Game{
 
   Thread thread2 = new Thread(() -> {
     try {
-      System.out.println("Thread 2 hit in try block");
       Thread.sleep(1500);
+      while(!SlenderMan.isGameDone)
+      {
+        SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
+      }
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      Thread.currentThread().interrupt();
+      System.out.println("Thread was interrupted");
     }
-    while(!SlenderMan.isGameDone) {
-      System.out.println("Thread 2 hit in while loop");
-      SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
-    }
+
   });
 
 
-
-
-//  Thread thread1 = new Thread(() -> {
-////    Game game = new Game();
-////    new Console(game);
-////    Scanner scanMe = new Scanner(System.in);
-//    try {
-////          game.start(scanMe);
-//      start(scanner);
-//    } catch (InterruptedException e) {
-//      e.printStackTrace();
-//    }
-//  });
 }

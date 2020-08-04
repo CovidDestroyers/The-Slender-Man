@@ -19,27 +19,29 @@ public class Starter {
 
     Game game = new Game();
     new Console(game);
-    Scanner scanme = new Scanner(System.in);
-    game.gameOptions(scanme);
+    Scanner scanMe = new Scanner(System.in);
+    game.gameOptions(scanMe);
+
+
 
 
 
 
 //TODO can possibly be deleted later, keeping now incase we find future bugs
 
-//    Thread thread1 = new Thread() {
-//      public void run() {
-//        Game game = new Game();
-//        new Console(game);
-//        Scanner scanMe = new Scanner(System.in);
-//        try {
-////          game.gameOptions(scanMe);
-//          game.start(scanMe);
-//        } catch (InterruptedException e) {
-//          e.printStackTrace();
-//        }
-//      }
-//    };
+    Thread thread1 = new Thread() {
+      public void run() {
+        Game game = new Game();
+        new Console(game);
+        Scanner scanMe = new Scanner(System.in);
+        try {
+//          game.gameOptions(scanMe);
+          game.start(scanMe);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+    };
 //
 //
 //    Thread thread2 = new Thread(() -> {

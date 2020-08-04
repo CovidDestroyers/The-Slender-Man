@@ -7,12 +7,12 @@ import javazoom.jl.player.Player;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+
 public class SimplePlayer {
 
   String backgroundMusic = "Paranormal_Lullaby.mp3";
 
   public SimplePlayer(String filename) {
-//    while (!SlenderMan.isGameDone) {
       try {
         FileInputStream fileInputStream = new FileInputStream(filename);
         Player playMP3 = new Player(fileInputStream);
@@ -21,5 +21,4 @@ public class SimplePlayer {
         e.printStackTrace();
       }
     }
-//  }
 }

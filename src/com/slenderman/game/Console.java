@@ -1,5 +1,7 @@
 package com.slenderman.game;
 
+import com.slenderman.musicplayer.SimplePlayer;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -14,18 +16,13 @@ import java.io.PipedOutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingWorker;
+import javax.swing.*;
 
 class Console extends JFrame implements ActionListener {
   JTextField tfIn;
   JLabel lblOut;
   JTextArea outText;
+  JButton enableMusic, disableMusic;
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
@@ -33,6 +30,8 @@ class Console extends JFrame implements ActionListener {
   private boolean clicked = false;
 
   PrintWriter inWriter;
+
+
 
   public Console(Game game) {
     super("SlenderMan");
@@ -55,7 +54,7 @@ class Console extends JFrame implements ActionListener {
 //    instructions.setBackground(Color.black);
 //    instructions.setForeground(Color.white);
     JPanel instructions = new JPanel();
-    instructions.setBounds(300, 100, 400, 350);
+    instructions.setBounds(10, 0, 400, 350);
     instructions.setBackground(Color.black);
 
 
@@ -65,6 +64,23 @@ class Console extends JFrame implements ActionListener {
     instructionsText.setForeground(Color.white);
     instructions.add(instructionsText);
     panel.add(instructions, BorderLayout.NORTH);
+
+//trying to get music button to work
+    JButton musicOptions = new JButton("Music Off");
+    musicOptions.setBounds(30, 10, 95, 30);
+    musicOptions.setBackground(Color.WHITE);
+    musicOptions.setForeground(Color.WHITE);
+    instructions.add(musicOptions);
+
+
+    musicOptions.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        game.thread2.stop();
+      }
+    });
+
+    //end of music panel
 
     //End of instructions panel
 
@@ -101,7 +117,7 @@ class Console extends JFrame implements ActionListener {
                 outText.setCaretPosition(outText.getDocument().getLength());
               }
             }));
-
+  //beginning of text input placeholder logic
     tfIn = new JTextField();
     //trying placeholder here
     tfIn.setText("Enter Game Commands Here");
