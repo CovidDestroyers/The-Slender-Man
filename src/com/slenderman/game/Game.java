@@ -132,24 +132,25 @@ public final class Game{
         currentScene.enter(in, Player);
       }
       assert userInput != null;
-
-      if(InputCommands.getPlayerMovement().contains(userInput[0])){
-        if(InputCommands.getPlayerDirection().contains(userInput[1])){
+    try {
+      if (InputCommands.getPlayerMovement().contains(userInput[0])) {
+        if (InputCommands.getPlayerDirection().contains(userInput[1])) {
           System.out.println(userInput[1]);
           currentScene = currentScene.changeScene(userInput[1]);
           Player.setCurrentSceneName(currentScene.getSceneName());
           Player.changeInvItemsLocation();
           currentScene.enter(in, Player);
-        }
-        else{
+        } else {
           System.out.println("Incorrect input");
         }
-      }
-      else if(InputCommands.getQuitGameCommands().contains(userInput[0])){
+      } else if (InputCommands.getQuitGameCommands().contains(userInput[0])) {
         System.out.println("Goodbye");
         Thread.sleep(3000);
         System.exit(0);
       }
+    } catch(Exception e){
+      System.out.println("Invalid input");
+    }
 
 
       if("inventory".equalsIgnoreCase(userText) || "i".equalsIgnoreCase(userText)){
