@@ -66,7 +66,6 @@ public class Shed extends Scene {
     this.player = player;
 
     choice = in;
-    SceneImage.printShed();
     inFrontOfShed();
   }
 

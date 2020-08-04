@@ -83,7 +83,6 @@ public class House extends Scene {
     } else if (visitCount >= 1) {
       System.out.println("You are back in the house...");
       Thread.sleep(sleep100);
-      SceneImage.printHouse();
       openingLockbox(in, player);
 
       leaveHouse();
