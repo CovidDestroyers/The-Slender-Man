@@ -17,7 +17,9 @@ import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
 
 import java.awt.*;
+import java.text.DecimalFormat;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Timer;
 
@@ -69,6 +71,7 @@ public final class Game {
     String[] words = null;
 
     if (!SlenderMan.isGameDone) {
+      slenderManProgressionStatus(Player.getInventory().size());
       userText = in.nextLine().toLowerCase();
       words = userText.split("\\W+");
     } else {
@@ -105,6 +108,16 @@ public final class Game {
     Player.changeInvItemsLocation();
     currentScene.enter(in, Player);
     start(in);
+  }
+
+  // TODO: Needs some improvements.
+  // TODO: Add current room & time left to the calculations.
+  private void slenderManProgressionStatus(int inventorySize) throws InterruptedException {
+    Random random = new Random();
+    double progressionResult = Double.parseDouble(new DecimalFormat("##.##")
+        .format(inventorySize * 5 + random.nextFloat()));
+    System.out.println("\nThe SlenderMan notices you're progressing...");
+    System.out.println("You have a " + progressionResult + "% chance of him attacking you.\n");
   }
 
   private void winCondition() throws InterruptedException {
