@@ -82,7 +82,6 @@ public class House extends Scene {
     } else if (visitCount >= 1) {
       System.out.println("You are back in the house...");
       Thread.sleep(sleep);
-      SceneImage.printHouse();
       openingLockbox(in, player);
 
       leaveHouse();
@@ -91,7 +90,6 @@ public class House extends Scene {
 
   public void introToHouse() throws InterruptedException {
     try {
-      SceneImage.printHouse();
       System.out.println(textPainter(bundle.getString("introToHouse_0")));
       Thread.sleep(sleep);
       System.out.println(textPainter(bundle.getString("introToHouse_1")));
