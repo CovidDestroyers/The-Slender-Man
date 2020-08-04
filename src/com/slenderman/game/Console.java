@@ -89,14 +89,9 @@ class Console extends JFrame implements ActionListener {
     GameMap gMap = new GameMap();
     JPanel locMap = new JPanel(new BorderLayout());
     locMap.setBounds(100,100,200,200);
-    locMap.setBackground(Color.BLACK);
+
     // Loading Initial Side Map
-//    System.out.println("current scene: " + game.getPlayer().getCurrentSceneName());
-    if (game.getPlayer().getCurrentSceneName() != null) {
-      locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
-    } else {
-      locMap.add(gMap.makeMap(""));
-    }
+    locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
     panel.add(locMap, BorderLayout.EAST);
 
     // Property change listener for scene change to update map
