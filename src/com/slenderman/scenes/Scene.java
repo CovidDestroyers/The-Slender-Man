@@ -17,6 +17,8 @@ public abstract class Scene {
   public static final String ANSI_BLACK = "\u001B[30m";
   public static final String ANSI_GREEN = "\u001B[32m";
 
+  public static long sleep = 3000;
+
   protected Scene sceneToTheNorth;
   protected Scene sceneToTheSouth;
   protected Scene sceneToTheEast;
@@ -75,15 +77,6 @@ public abstract class Scene {
   public Scene changeScene(String direction) {
     Scene nextScene = null;
 
-    //TODO changed to switch statement. Reduced code size. code commented out below just in case.
-//    switch (direction) {
-//      case "north" -> nextScene = sceneToTheNorth;
-//      case "south" -> nextScene = sceneToTheSouth;
-//      case "east" -> nextScene = sceneToTheEast;
-//      case "west" -> nextScene = sceneToTheWest;
-//      default -> System.out.println("Error: unknown direction " + direction);
-//    }
-
     if ("north".equals(direction)) {
       nextScene = sceneToTheNorth;
 
@@ -131,6 +124,14 @@ public abstract class Scene {
     Collection<Item> playerInventory = player.getInventory();
 
     return playerInventory.stream().anyMatch(item -> item.getItemName().equals(itemName));
+  }
+
+  public void skipIntro(){
+    sleep = 1000;
+  }
+
+  public void fullIntro(){
+    sleep = 3000;
   }
 
   /*

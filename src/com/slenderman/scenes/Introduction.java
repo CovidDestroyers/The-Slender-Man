@@ -1,6 +1,8 @@
 package com.slenderman.scenes;
 
 
+import com.slenderman.actors.Player;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.MessageFormat;
@@ -9,7 +11,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 
-public class Introduction implements KeyListener {
+public class Introduction extends Scene implements KeyListener {
 
 //  private Scanner choice;
 
@@ -19,10 +21,6 @@ public class Introduction implements KeyListener {
 
   static ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   static ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-
-  //TODO change back to 5000 once complete or whatever number necessary.
-  public static int sleep = 500;
-
 
   public static void playIntro() throws InterruptedException {
 
@@ -76,9 +74,9 @@ public class Introduction implements KeyListener {
    * : Scene.ANSI_WHITE
    */
 
-  public void skipIntro(){
-    sleep = 0;
-  }
+//  public void skipIntro(){
+//    sleep = 0;
+//  }
 
   private static String textPainter(String text) {
     return MessageFormat.format(
@@ -102,6 +100,11 @@ public class Introduction implements KeyListener {
 
   @Override
   public void keyReleased(KeyEvent e) {
+
+  }
+
+  @Override
+  public void enter(Scanner in, Player player) throws InterruptedException {
 
   }
 }

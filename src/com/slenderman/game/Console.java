@@ -1,14 +1,14 @@
 package com.slenderman.game;
 
 import com.slenderman.musicplayer.SimplePlayer;
+import com.slenderman.scenes.House;
+import com.slenderman.scenes.Introduction;
+import com.slenderman.scenes.Scene;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PipedInputStream;
@@ -66,8 +66,15 @@ class Console extends JFrame implements ActionListener {
     JButton musicOptions = new JButton("Music Off");
     musicOptions.setBounds(30, 10, 95, 30);
     musicOptions.setBackground(Color.WHITE);
-    musicOptions.setForeground(Color.WHITE);
+//    musicOptions.setForeground(Color.WHITE);
     instructions.add(musicOptions);
+
+    //Would like to change the sleep values with the click of a button
+    JButton speed = new JButton("Adjust Speed");
+    speed.setBounds(0, 0, 95, 30);
+    speed.addActionListener(this);
+    instructions.add(speed);
+
 
     //TODO actionPerformed uses deprecated method, ticket id 200.
 
@@ -78,6 +85,20 @@ class Console extends JFrame implements ActionListener {
       }
     });
 
+    //Speed up the intro...
+    speed.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        int count = 0;
+        Introduction introduction = new Introduction();
+        House house = new House();
+        introduction.skipIntro();
+        house.skipIntro();
+        count += 1;
+      }
+    }
+    );
+
     //end of music panel
 
     //End of instructions panel
@@ -86,14 +107,9 @@ class Console extends JFrame implements ActionListener {
     GameMap gMap = new GameMap();
     JPanel locMap = new JPanel(new BorderLayout());
     locMap.setBounds(100,100,200,200);
-    locMap.setBackground(Color.BLACK);
+
     // Loading Initial Side Map
-//    System.out.println("current scene: " + game.getPlayer().getCurrentSceneName());
-    if (game.getPlayer().getCurrentSceneName() != null) {
-      locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
-    } else {
-      locMap.add(gMap.makeMap(""));
-    }
+    locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
     panel.add(locMap, BorderLayout.EAST);
 
     // Property change listener for scene change to update map
@@ -107,8 +123,6 @@ class Console extends JFrame implements ActionListener {
         repaint();
       }
     });
-
-
 
 
 
@@ -192,9 +206,10 @@ class Console extends JFrame implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+//    Introduction introduction = new Introduction();
     String text = tfIn.getText();
     tfIn.setText("");
-
+//    introduction.skipIntro();
     inWriter.println(text);
   }
 }
