@@ -27,7 +27,8 @@ public class LoseGameScene extends Scene {
   public void enter(Scanner in, Player player) throws Exception {
     player.setCurrentSceneName(this.getSceneName());
     choice = in;
-    Music.gameMusic(new File("loose.wav"));
+
+//    Music.gameMusic(new File("loose.wav"));
     loseGame();
   }
 

@@ -58,6 +58,11 @@ public class Cave extends Scene {
 
   }
 
+//  @Override
+//  public void enter(Scanner in, Player player) throws Exception {
+//
+//  }
+
   /*
    * =============================================
    * =========== Business Methods ================
@@ -69,8 +74,9 @@ public class Cave extends Scene {
     choice = in;
     Console.updateMap(this.getSceneName());
     Console.clearScreen();
+
     inFrontOfCave();
-    Music.gameMusic(new File("cave.wav"));
+
   }
 
   private void inFrontOfCave() throws InterruptedException {

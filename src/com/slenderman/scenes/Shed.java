@@ -53,6 +53,11 @@ public class Shed extends Scene {
     setItemsInScene(itemsInThisScene);
   }
 
+//  @Override
+//  public void enter(Scanner in, Player player) throws Exception {
+//
+//  }
+
   /*
    * =============================================
    * =========== Business Methods ================
@@ -61,12 +66,18 @@ public class Shed extends Scene {
 
   @Override
   public void enter(Scanner in, Player player) throws Exception {
+
     this.player = player;
 
     choice = in;
+    Music music = new Music();
     Console.updateMap(this.getSceneName());
+
+
+    music.stopMusic ();
+    music.gameMusic(new File("shed.wav"));
     Console.clearScreen();
-    Music.gameMusic(new File("shed.wav"));
+
     inFrontOfShed();
   }
 
