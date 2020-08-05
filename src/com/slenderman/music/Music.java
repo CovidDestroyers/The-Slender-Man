@@ -29,34 +29,27 @@ public class Music  {
 
   }
 
-  public  void gameMusic(File file) throws Exception {
 
-    AudioInputStream audioInput=AudioSystem.getAudioInputStream(file);
-    Clip clip = AudioSystem.getClip();
-    clip.open(audioInput);
-    clip.start();
-    //Below thing will loop continuous
-    clip.loop(Clip.LOOP_CONTINUOUSLY);
-    Thread.sleep(clip.getMicrosecondLength()/1000);
-//    JOptionPane.showMessageDialog(null,"Please Click ok to stop Music");
-//
-//       clip.stop();
+
+
+    public static void gameMusic (File file) throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
+
+
+      AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);
+      Clip clip = AudioSystem.getClip();
+      clip.open(audioInput);
+      clip.start();
+      //Below thing will loop continuous
+      clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+      Thread.sleep(clip.getMicrosecondLength() / 10000);
+
+
+    }
+
+
+
+
   }
-  public  void stopMusic () throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 
 
-    clip.stop();
-  }
-
-  //getter
-//  public Clip getClip() {
-//    return clip;
-//  }
-//  public static void main(String[] args) throws Exception {
-//    Music music= new Music();
-//    music.gameMusic(new File ("ScaryMusic.wav"));
-//  }
-
-
-
-}

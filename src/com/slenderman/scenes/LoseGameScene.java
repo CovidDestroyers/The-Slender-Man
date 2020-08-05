@@ -28,7 +28,6 @@ public class LoseGameScene extends Scene {
     player.setCurrentSceneName(this.getSceneName());
     choice = in;
 
-//    Music.gameMusic(new File("loose.wav"));
     loseGame();
   }
 

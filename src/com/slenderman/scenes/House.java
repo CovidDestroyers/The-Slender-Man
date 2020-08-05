@@ -62,9 +62,9 @@ public class House extends Scene {
   public void enter(Scanner in, Player player) throws InterruptedException {
     try {
 
-//     Music music= new Music();
-////     music.stopMusic();
-//     music.gameMusic(new File("house.wav"));
+
+
+
       introToHouse();
 
 

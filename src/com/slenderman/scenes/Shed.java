@@ -74,8 +74,7 @@ public class Shed extends Scene {
     Console.updateMap(this.getSceneName());
 
 
-    music.stopMusic ();
-    music.gameMusic(new File("shed.wav"));
+
     Console.clearScreen();
 
     inFrontOfShed();
