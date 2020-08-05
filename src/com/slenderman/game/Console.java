@@ -24,7 +24,6 @@ class Console extends JFrame implements ActionListener {
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
-  //placeholder boolean;
   private boolean clicked = false;
 
   PrintWriter inWriter;
@@ -67,13 +66,11 @@ class Console extends JFrame implements ActionListener {
     JButton musicOptions = new JButton("Music Off");
     musicOptions.setBounds(30, 10, 95, 30);
     musicOptions.setBackground(Color.WHITE);
-//    musicOptions.setForeground(Color.WHITE);
     instructions.add(musicOptions);
 
     //Would like to change the sleep values with the click of a button
-    JButton speed = new JButton("Adjust Speed");
+    JButton speed = new JButton("Speed Up");
     speed.setBounds(0, 0, 95, 30);
-    speed.addActionListener(this);
     instructions.add(speed);
 
 
