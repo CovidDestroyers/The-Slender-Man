@@ -25,20 +25,13 @@ public class Music {
   }
 
   public static void gameMusic(File file) throws Exception {
-//    gardenMusic =true;
-    //when user/Gamer enter in Forest music will play
-//    Clip clip = AudioSystem.getClip();
-//    AudioInputStream ais = AudioSystem.getAudioInputStream(file);
-//    clip.open(AudioSystem.getAudioInputStream(file));
-//    clip.loop(Clip.LOOP_CONTINUOUSLY-1);
     AudioInputStream audioInput=AudioSystem.getAudioInputStream(file);
     Clip clip = AudioSystem.getClip();
     clip.open(audioInput);
     clip.start();
     //Below thing will loop continuous
     clip.loop(Clip.LOOP_CONTINUOUSLY);
-//    JOptionPane.showMessageDialog(null,"Please Click ok to stop Music");
-//    clip.stop();
+
   }
 
 

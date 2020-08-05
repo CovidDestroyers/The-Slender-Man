@@ -5,8 +5,6 @@ import java.io.File;
 
 public class Sound {
 
-
-
   public static void play(File file)
   {
     try
@@ -25,7 +23,7 @@ public class Sound {
 
 
 
-  public static void main(String[] args) {
-    Sound.play(new File("Forest.wav"));
-  }
+//  public static void main(String[] args) throws Exception {
+//    Sound.play(new File("Forest.wav"));
+//  }
 }
