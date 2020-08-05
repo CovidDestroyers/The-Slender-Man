@@ -60,7 +60,7 @@ public class Field extends Scene {
     Console.clearScreen();
     displayStories("enter");
     choice = playerChoice();
-    Music.gameSingleMusic(new File("field.wav"));
+
 
     if (choice.equals("0")) {
       smellIt(in, player);
@@ -68,6 +68,8 @@ public class Field extends Scene {
       footCut(in, player);
     }
   }
+
+
 
   private void smellIt(Scanner in, Player player) throws InterruptedException {
     displayStories("smellIt");

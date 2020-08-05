@@ -3,6 +3,7 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
+import com.slenderman.music.Music;
 
 import java.text.MessageFormat;
 import java.util.*;
@@ -38,4 +39,9 @@ public class Tree extends Scene {
       System.out.println(bundle.getString("enter_2") + " " + player.getNumItemsPlayerHas() + " "+ bundle.getString("enter_3"));
     }
   }
+
+//  @Override
+//  public void enter(Scanner in, Player player, Music music) throws Exception {
+//
+//  }
 }
