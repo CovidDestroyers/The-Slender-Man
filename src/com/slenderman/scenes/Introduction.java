@@ -26,14 +26,14 @@ public class Introduction {
 
     Thread.sleep(introDelaySlow);
     System.out.println(textPainter(bundle.getString("intro_0")));
-    System.out.println(
-      "\n" +
-        "  __        __        __   __   __        __      \n" +
-        " /    /    /    /| ||/  | /    /  | /|/| /  | /| |\n" +
-        "(___ (    (___ ( | ||   |(___ (___|( / |(___|( | |\n" +
-        "    )|   )|    | | )|   )|    |\\   |   )|   )| | )\n" +
-        " __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ \n" +
-        "                                                  \n");
+//    System.out.println(
+//      "\n" +
+//        "  __        __        __   __   __        __      \n" +
+//        " /    /    /    /| ||/  | /    /  | /|/| /  | /| |\n" +
+//        "(___ (    (___ ( | ||   |(___ (___|( / |(___|( | |\n" +
+//        "    )|   )|    | | )|   )|    |\\   |   )|   )| | )\n" +
+//        " __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ \n" +
+//        "                                                  \n");
 
     System.out.println("Please enter your name to start your journey...");
     setPlayerName(scanner.nextLine());

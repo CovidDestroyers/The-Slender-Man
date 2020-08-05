@@ -18,10 +18,7 @@ import com.slenderman.tools.*;
 
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.Objects;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.Timer;
+import java.util.*;
 
 /**
  * Game is the class where we will build out the logic for the actual game. Essentially, this is the
@@ -39,10 +36,12 @@ public final class Game {
   private final Scene aTree;
   private final Scene LoseGameScene;
   private final Player Player;
+  public SlenderManProgression slenderManProgression;
   public static boolean isPlayerAlive;
 
   public Game() {
     Player = new Player();
+    slenderManProgression = new SlenderManProgression(1);
     Shed aShed = new Shed();
     aTree = new Tree();
     Scene aPond = new Pond();
@@ -51,7 +50,6 @@ public final class Game {
     Scene aHouse = new House();
     aForest = new Forest();
     LoseGameScene = new LoseGameScene();
-
     aForest.connectSouth(aShed);
     aForest.connectEast(aHouse);
     aHouse.connectSouth(aCave);
@@ -60,6 +58,38 @@ public final class Game {
     aPond.connectEast(aField);
     aField.connectEast(aTree);
   }
+
+  private void gameInitializer(Scanner in) throws Exception {
+    if (!disableIntroduction) {
+      Introduction.playIntro();
+      new LoseGameTimer(10);
+      new OneMinuteTimer(1);
+      new OneMinuteTimer(2);
+      new OneMinuteTimer(3);
+      new OneMinuteTimer(4);
+      new OneMinuteTimer(5);
+      new OneMinuteTimer(6);
+      new OneMinuteTimer(7);
+      new OneMinuteTimer(8);
+      new OneMinuteTimer(9);
+      new SlenderManProgression(1);
+      new SlenderManProgression(2);
+      new SlenderManProgression(3);
+      new SlenderManProgression(4);
+      new SlenderManProgression(5);
+      new SlenderManProgression(6);
+      new SlenderManProgression(7);
+      new SlenderManProgression(8);
+      new SlenderManProgression(9);
+      new SlenderManProgression(10);
+    }
+
+    currentScene = aForest;
+    Player.setCurrentSceneName(currentScene.getSceneName());
+    currentScene.enter(in, Player);
+    start(in);
+  }
+
 
   public void startTheGame(Scanner in) throws Exception {
     gameInitializer(in);
@@ -110,14 +140,18 @@ public final class Game {
     start(in);
   }
 
-  // TODO: Needs some improvements.
-  // TODO: Add current room & time left to the calculations.
   private void slenderManProgressionStatus(int inventorySize) throws InterruptedException {
     Random random = new Random();
-    double progressionResult = Double.parseDouble(new DecimalFormat("##.##")
-        .format(inventorySize * 5 + random.nextFloat()));
+    double finalResult = Double.parseDouble(new DecimalFormat("##.##")
+      .format((inventorySize * 5) + (SlenderMan.getCompletions() * 5)
+      + random.nextFloat()));
+
+    if (finalResult >= 100) {
+      SlenderMan.killPlayer();
+    }
+
     System.out.println("\nThe SlenderMan notices you're progressing...");
-    System.out.println("You have a " + progressionResult + "% chance of him attacking you.\n");
+    System.out.println("You have a " + finalResult + "% chance of him attacking you.\n");
   }
 
   private void winCondition() throws InterruptedException {
@@ -136,27 +170,6 @@ public final class Game {
         }
       }
     }
-  }
-
-  private void gameInitializer(Scanner in) throws Exception {
-    if (!disableIntroduction) {
-      Introduction.playIntro();
-      new LoseGameTimer(10);
-      new OneMinuteTimer(1);
-      new OneMinuteTimer(2);
-      new OneMinuteTimer(3);
-      new OneMinuteTimer(4);
-      new OneMinuteTimer(5);
-      new OneMinuteTimer(6);
-      new OneMinuteTimer(7);
-      new OneMinuteTimer(8);
-      new OneMinuteTimer(9);
-    }
-
-    currentScene = aForest;
-    Player.setCurrentSceneName(currentScene.getSceneName());
-    currentScene.enter(in, Player);
-    start(in);
   }
 
   private void pauseGame(Scanner in, int time) throws Exception {
