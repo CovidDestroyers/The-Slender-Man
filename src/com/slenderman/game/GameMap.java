@@ -12,11 +12,11 @@ public class GameMap {
 
   public JTextArea makeMap(String sceneName) {
     setLoc(sceneName);
-    JTextArea result = new JTextArea(15, 55);
+    JTextArea result = new JTextArea(25, 55);
     result.setBackground(Color.BLACK);
-    result.setForeground(Color.GREEN);
+    result.setForeground(Color.WHITE);
     result.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
-    result.append("\n" +
+    result.append("\n\n\n" +
       "+-----------+-----------+ \n" +
       "|  Forest   |   House   | \n" +
       "|  " + getLoc().get("forest") + " |  "+ getLoc().get("house") +" |  \n" +

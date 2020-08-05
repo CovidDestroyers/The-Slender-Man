@@ -5,9 +5,7 @@ import com.slenderman.scenes.House;
 import com.slenderman.scenes.Introduction;
 import com.slenderman.scenes.Scene;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -17,6 +15,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 class Console extends JFrame implements ActionListener {
   JTextField tfIn;
@@ -47,6 +46,7 @@ class Console extends JFrame implements ActionListener {
     }
 
     JPanel panel = new JPanel(new BorderLayout());
+    Border whiteline = BorderFactory.createLineBorder(Color.white);
 
 //ADDING TOP SET PANEL FOR INSTRUCTIONS
     //TODO adjust size of JPanel to make text look cleaner
@@ -109,10 +109,23 @@ class Console extends JFrame implements ActionListener {
     // Adding Side Map JPanel
     GameMap gMap = new GameMap();
     JPanel locMap = new JPanel(new BorderLayout());
-    locMap.setBounds(100,100,200,200);
+    JLabel mapLabel = new JLabel("PLAYER MAP LOCATION",SwingConstants.CENTER);
+    locMap.setBorder(whiteline);
+    locMap.add(mapLabel,BorderLayout.NORTH);
 
     // Loading Initial Side Map
     locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
+
+    Inventory inventory = new Inventory();
+    JPanel inventoryPanel = new JPanel(new BorderLayout());
+    JLabel inventoryLabel = new JLabel("PLAYER INVENTORY", SwingConstants.CENTER);
+//    locMap.setBounds(0,0,200,600);
+    inventoryPanel.add(inventoryLabel,BorderLayout.NORTH);
+    inventoryPanel.add(inventory.printInventory());
+    inventoryPanel.setBorder(whiteline);
+    locMap.add(inventoryPanel,BorderLayout.SOUTH);
+
+
     panel.add(locMap, BorderLayout.EAST);
 
     // Property change listener for scene change to update map

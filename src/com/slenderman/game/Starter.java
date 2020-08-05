@@ -2,6 +2,8 @@ package com.slenderman.game;
 
 import com.slenderman.actors.SlenderMan;
 import com.slenderman.musicplayer.SimplePlayer;
+
+import java.awt.*;
 import java.util.Scanner;
 
 
