@@ -75,10 +75,10 @@ public final class Game {
       userText = in.nextLine().toLowerCase();
       words = userText.split("\\W+");
     } else {
-        currentScene = LoseGameScene;
-        Player.setCurrentSceneName(currentScene.getSceneName());
-        Player.changeInvItemsLocation();
-        currentScene.enter(in, Player);
+      currentScene = LoseGameScene;
+      Player.setCurrentSceneName(currentScene.getSceneName());
+      Player.changeInvItemsLocation();
+      currentScene.enter(in, Player);
     }
 
     assert Objects.requireNonNull(words)[0] != null;

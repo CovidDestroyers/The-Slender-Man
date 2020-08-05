@@ -64,8 +64,10 @@ public class House extends Scene {
 
 
 
-      Music.gameSingleMusic(new File("house.wav"));
+
+
       introToHouse();
+
 
       Thread.sleep(1000);
 
@@ -86,6 +88,11 @@ public class House extends Scene {
       e.printStackTrace();
     }
   }
+
+//  @Override
+//  public void enter(Scanner in, Player player, Music music) throws Exception {
+//
+//  }
 
   public void introToHouse() throws InterruptedException {
     try {

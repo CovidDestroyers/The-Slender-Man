@@ -45,9 +45,15 @@ public class Forest extends Scene {
 
   public void enter(Scanner in, Player player) throws Exception {
     Console.updateMap(this.getSceneName());
+    Music music = new Music();
+    music.gameMusic(new File("ScaryMusic.wav"));
     Console.clearScreen();
 
-    Music.gameSingleMusic(new File("Forest.wav"));
+
+
+
+
+
 
 //    System.out.println(
 //      "               ,@@@@@@@,\n"
@@ -64,6 +70,12 @@ public class Forest extends Scene {
 //        + "------------------------------------------------\n");
     displayStories("forest");
   }
+
+//  @Override
+//  public void enter(Scanner in, Player player, Music music) throws Exception {
+//
+//  }
+
   /**
    * Coloring the fonts
    *

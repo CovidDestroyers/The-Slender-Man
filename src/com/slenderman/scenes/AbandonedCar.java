@@ -1,6 +1,7 @@
 package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
+import com.slenderman.music.Music;
 
 import java.util.Scanner;
 
@@ -16,6 +17,8 @@ public class AbandonedCar extends Scene {
   public void enter(Scanner in, Player player) throws InterruptedException {
     player.setCurrentSceneName(this.getSceneName());
   }
+
+
 
   public AbandonedCar(
 
