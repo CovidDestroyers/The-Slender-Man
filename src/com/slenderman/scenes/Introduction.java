@@ -38,7 +38,9 @@ public class Introduction {
     System.out.println("Please enter your name to start your journey...");
     setPlayerName(scanner.nextLine());
     System.out.println("Your name has been set to " + getPlayerName() + " ... good luck.");
-    Music.gameSingleMusic(new File("gameIntro.wav"));
+//    Music.gameSingleMusic(new File("gameIntro.wav"));
+    Music introMusic= new Music(new File("gameIntro.wav"));
+    introMusic.play();
 
     Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_1")));
@@ -75,8 +77,7 @@ public class Introduction {
     System.out.println(textPainter(bundle.getString("intro_13")));
     Sound.play(new File("./Speech/Introduction/I_intro13.mp3"));
 
-    Thread.sleep(introDelayQuick);
-
+//    Thread.sleep(introDelayQuick);
   }
   /**
    * Coloring the fonts

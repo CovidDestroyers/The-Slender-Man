@@ -5,6 +5,7 @@ import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
 import com.slenderman.music.Music;
+import com.slenderman.tools.Sound;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -58,6 +59,11 @@ public class Cave extends Scene {
 
   }
 
+//  @Override
+//  public void enter(Scanner in, Player player) throws Exception {
+//
+//  }
+
   /*
    * =============================================
    * =========== Business Methods ================
@@ -69,8 +75,9 @@ public class Cave extends Scene {
     choice = in;
     Console.updateMap(this.getSceneName());
     Console.clearScreen();
+
     inFrontOfCave();
-    Music.gameSingleMusic(new File("cave.wav"));
+
   }
 
   private void inFrontOfCave() throws InterruptedException {
@@ -94,6 +101,7 @@ public class Cave extends Scene {
         quizChoosingRightItems();
       } else {
         System.out.println(textPainter(bundle.getString("stepIntoTheCave_notEnoughItem")));
+        Sound.play(new File("./Speech/Cave/Run.mp3"));
         inFrontOfCave();
       }
     }

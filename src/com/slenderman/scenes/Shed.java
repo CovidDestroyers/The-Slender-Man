@@ -54,6 +54,11 @@ public class Shed extends Scene {
     setItemsInScene(itemsInThisScene);
   }
 
+//  @Override
+//  public void enter(Scanner in, Player player) throws Exception {
+//
+//  }
+
   /*
    * =============================================
    * =========== Business Methods ================
@@ -62,12 +67,16 @@ public class Shed extends Scene {
 
   @Override
   public void enter(Scanner in, Player player) throws Exception {
+
     this.player = player;
 
     choice = in;
     Console.updateMap(this.getSceneName());
+
+
+
     Console.clearScreen();
-    Music.gameSingleMusic(new File("shed.wav"));
+
     inFrontOfShed();
   }
 
@@ -121,6 +130,7 @@ public class Shed extends Scene {
     System.out.println(textPainter(bundle.getString("grabShinyThingYes_2")));
     Thread.sleep(2000);
     displayStories("grabShinyThingYes_Note");
+
     Sound.play(new File("./Speech/Shed/note.mp3"));
 
     exitShed();
