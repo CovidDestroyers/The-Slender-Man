@@ -1,9 +1,7 @@
 package com.slenderman.game;
 
-import com.slenderman.musicplayer.SimplePlayer;
 import com.slenderman.scenes.House;
 import com.slenderman.scenes.Introduction;
-import com.slenderman.scenes.Scene;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -26,7 +24,6 @@ class Console extends JFrame implements ActionListener {
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
-  //placeholder boolean;
   private boolean clicked = false;
 
   PrintWriter inWriter;
@@ -66,13 +63,11 @@ class Console extends JFrame implements ActionListener {
     JButton musicOptions = new JButton("Music Off");
     musicOptions.setBounds(30, 10, 95, 30);
     musicOptions.setBackground(Color.WHITE);
-//    musicOptions.setForeground(Color.WHITE);
     instructions.add(musicOptions);
 
     //Would like to change the sleep values with the click of a button
-    JButton speed = new JButton("Adjust Speed");
+    JButton speed = new JButton("Speed Up");
     speed.setBounds(0, 0, 95, 30);
-    speed.addActionListener(this);
     instructions.add(speed);
 
 
@@ -89,15 +84,12 @@ class Console extends JFrame implements ActionListener {
     speed.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        int count = 0;
         Introduction introduction = new Introduction();
         House house = new House();
         introduction.skipIntro();
         house.skipIntro();
-        count += 1;
       }
-    }
-    );
+    });
 
     //end of music panel
 
@@ -123,9 +115,6 @@ class Console extends JFrame implements ActionListener {
         repaint();
       }
     });
-
-
-
 
     int jColumns = 80;
     int jRows = 100;
@@ -193,12 +182,10 @@ class Console extends JFrame implements ActionListener {
     new SwingWorker<Void, String>() {
       protected Void doInBackground() throws Exception {
         Scanner s = new Scanner(outPipe);
-
         while (s.hasNextLine()) {
           String line = s.nextLine();
           publish(line);
         }
-
         return null;
       }
     }.execute();
@@ -206,10 +193,9 @@ class Console extends JFrame implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-//    Introduction introduction = new Introduction();
     String text = tfIn.getText();
     tfIn.setText("");
-//    introduction.skipIntro();
     inWriter.println(text);
+    clicked = true;
   }
 }
