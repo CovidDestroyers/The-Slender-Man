@@ -74,9 +74,9 @@ public class Introduction extends Scene implements KeyListener {
    * : Scene.ANSI_WHITE
    */
 
-//  public void skipIntro(){
-//    sleep = 0;
-//  }
+  public void skipIntro(){
+    sleep = 0;
+  }
 
   private static String textPainter(String text) {
     return MessageFormat.format(
