@@ -1,6 +1,7 @@
 package com.slenderman.scenes;
 
 import com.slenderman.music.Music;
+import com.slenderman.tools.Sound;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -41,30 +42,38 @@ public class Introduction {
 
     Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_1")));
-    Thread.sleep(introDelayQuick);
+    Sound.play(new File("./Speech/Introduction/I_intro1.mp3"));
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_2")));
-    Thread.sleep(introDelayQuick);
+    Sound.play(new File("./Speech/Introduction/I_intro2.mp3"));
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_3")));
-    Thread.sleep(introDelayQuick);
+    Sound.play(new File("./Speech/Introduction/I_intro3.mp3"));
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_4")));
-    Thread.sleep(introDelayQuick);
+    Sound.play(new File("./Speech/Introduction/I_intro4.mp3"));
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_5")));
-    Thread.sleep(introDelayQuick);
+    Sound.play(new File("./Speech/Introduction/I_intro5.mp3"));
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_6")));
-    Thread.sleep(introDelayQuick);
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_7")));
-    Thread.sleep(introDelayQuick);
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_8")));
-    Thread.sleep(introDelayQuick);
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_9")));
-    Thread.sleep(introDelayQuick);
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_10")));
-    Thread.sleep(introDelayQuick);
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_11")));
-    Thread.sleep(introDelayQuick);
+    Sound.play(new File("./Speech/Introduction/I_note.mp3"));
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_12")));
-    Thread.sleep(introDelayQuick);
+    Sound.play(new File("./Speech/Introduction/I_intro12.mp3"));
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_13")));
+    Sound.play(new File("./Speech/Introduction/I_intro13.mp3"));
 
     Thread.sleep(introDelayQuick);
 

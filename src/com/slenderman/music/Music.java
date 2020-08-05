@@ -26,7 +26,7 @@ public class Music {
 
   public static void gameMusic(File file) throws Exception {
 //    gardenMusic =true;
-    //when user/Gamer enter in Forestmusic will play
+    //when user/Gamer enter in Forest music will play
 //    Clip clip = AudioSystem.getClip();
 //    AudioInputStream ais = AudioSystem.getAudioInputStream(file);
 //    clip.open(AudioSystem.getAudioInputStream(file));
@@ -37,8 +37,8 @@ public class Music {
     clip.start();
     //Below thing will loop continuous
     clip.loop(Clip.LOOP_CONTINUOUSLY);
-    JOptionPane.showMessageDialog(null,"Please Click ok to stop Music");
-   clip.stop();
+//    JOptionPane.showMessageDialog(null,"Please Click ok to stop Music");
+//    clip.stop();
   }
 
 
