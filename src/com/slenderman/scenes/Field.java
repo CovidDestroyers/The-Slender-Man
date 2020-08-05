@@ -60,7 +60,7 @@ public class Field extends Scene {
     Console.clearScreen();
     displayStories("enter");
     choice = playerChoice();
-    Music.gameMusic(new File("field.wav"));
+    Music.gameSingleMusic(new File("field.wav"));
 
     if (choice.equals("0")) {
       smellIt(in, player);

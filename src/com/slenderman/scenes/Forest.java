@@ -47,7 +47,7 @@ public class Forest extends Scene {
     Console.updateMap(this.getSceneName());
     Console.clearScreen();
 
-    Music.gameMusic(new File("Forest.wav"));
+    Music.gameSingleMusic(new File("Forest.wav"));
 
     System.out.println(
       "               ,@@@@@@@,\n"

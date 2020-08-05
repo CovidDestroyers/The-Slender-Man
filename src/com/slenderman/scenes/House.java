@@ -61,7 +61,7 @@ public class House extends Scene {
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
     try {
-      Music.gameMusic(new File("house.wav"));
+      Music.gameSingleMusic(new File("house.wav"));
       introToHouse();
 
       Thread.sleep(1000);

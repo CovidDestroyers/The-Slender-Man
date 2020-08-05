@@ -70,7 +70,7 @@ public class Cave extends Scene {
     Console.updateMap(this.getSceneName());
     Console.clearScreen();
     inFrontOfCave();
-    Music.gameMusic(new File("cave.wav"));
+    Music.gameSingleMusic(new File("cave.wav"));
   }
 
   private void inFrontOfCave() throws InterruptedException {
