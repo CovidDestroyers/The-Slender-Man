@@ -42,7 +42,7 @@ public class Introduction {
     Music introMusic= new Music(new File("gameIntro.wav"));
     introMusic.play();
 
-    Thread.sleep(introDelayQuick);
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_1")));
     Sound.play(new File("./Speech/Introduction/I_intro1.mp3"));
 //    Thread.sleep(introDelayQuick);
