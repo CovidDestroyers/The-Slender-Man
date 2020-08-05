@@ -4,6 +4,7 @@ import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
 import com.slenderman.music.Music;
 
+import javax.sound.sampled.Clip;
 import java.io.File;
 import java.text.MessageFormat;
 import java.util.Locale;
@@ -45,14 +46,10 @@ public class Forest extends Scene {
 
   public void enter(Scanner in, Player player) throws Exception {
     Console.updateMap(this.getSceneName());
-    Music music = new Music();
-    music.gameMusic(new File("ScaryMusic.wav"));
+//    Clip clip=Music.gameMusic(new File("ScaryMusic.wav"));
+    Music playbackMusic= new Music(new File("ScaryMusic.wav"));
+    playbackMusic.playInLoop();
     Console.clearScreen();
-
-
-
-
-
 
 
 //    System.out.println(
@@ -68,13 +65,10 @@ public class Forest extends Scene {
 //        + "jgs \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_\n"
 //        + "\n"
 //        + "------------------------------------------------\n");
+
     displayStories("forest");
   }
 
-//  @Override
-//  public void enter(Scanner in, Player player, Music music) throws Exception {
-//
-//  }
 
   /**
    * Coloring the fonts

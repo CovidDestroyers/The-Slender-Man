@@ -5,6 +5,7 @@ import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
 import com.slenderman.music.Music;
+import com.slenderman.tools.Sound;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -246,9 +247,10 @@ public class House extends Scene {
       System.out.println(textPainter(bundle.getString("atTable_1")));
       Thread.sleep(1000);
       displayStories("atTable_2");
+      Sound.play(new File("./Speech/House/BoxNote1.mp3"));
       displayStories("atTable_3");
-
-      Thread.sleep(6000);
+      Sound.play(new File("./Speech/House/BoxNote1.mp3"));
+//      Thread.sleep(6000);
     } catch (Exception e) {
       e.printStackTrace();
     }

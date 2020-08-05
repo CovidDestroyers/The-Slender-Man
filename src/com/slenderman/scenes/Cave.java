@@ -5,6 +5,7 @@ import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
 import com.slenderman.music.Music;
+import com.slenderman.tools.Sound;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -100,6 +101,7 @@ public class Cave extends Scene {
         quizChoosingRightItems();
       } else {
         System.out.println(textPainter(bundle.getString("stepIntoTheCave_notEnoughItem")));
+        Sound.play(new File("./Speech/Cave/Run.mp3"));
         inFrontOfCave();
       }
     }
