@@ -14,7 +14,7 @@ import com.slenderman.scenes.Scene;
 import com.slenderman.scenes.Shed;
 import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
-import com.slendermand.inputcommands.InputCommands;
+import com.slenderman.inputcommands.InputCommands;
 
 import java.util.Scanner;
 
@@ -240,9 +240,8 @@ public final class Game{
   Thread thread2 = new Thread(() -> {
     try {
       Thread.sleep(1500);
-      while(!SlenderMan.isGameDone)
-      {
-        SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
+      while(!SlenderMan.isGameDone){
+          SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
       }
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
