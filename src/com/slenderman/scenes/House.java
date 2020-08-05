@@ -76,6 +76,8 @@ public class House extends Scene {
         openingLockbox(in, player);
 
         leaveHouse();
+        visitCount += 1;
+
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
@@ -86,6 +88,7 @@ public class House extends Scene {
       openingLockbox(in, player);
 
       leaveHouse();
+      visitCount +=1;
     }
   }
 
@@ -244,9 +247,7 @@ public class House extends Scene {
       Thread.sleep(sleep);
       displayStories("atTable_2");
       displayStories("atTable_3");
-      Thread.sleep(6000);
-//      visitCount = visitCount + 1;
-
+      Thread.sleep(sleep + 2000);
     } catch (Exception e) {
       e.printStackTrace();
     }

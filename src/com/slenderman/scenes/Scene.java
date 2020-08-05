@@ -127,12 +127,13 @@ public abstract class Scene {
   }
 
   public void skipIntro(){
-    sleep = 1000;
+      sleep = 500;
   }
 
   public void fullIntro(){
     sleep = 3000;
   }
+
 
   /*
    * =============================================
