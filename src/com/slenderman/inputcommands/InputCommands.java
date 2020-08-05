@@ -1,4 +1,4 @@
-package com.slendermand.inputcommands;
+package com.slenderman.inputcommands;
 
 import java.util.ArrayList;
 
@@ -43,6 +43,8 @@ public class InputCommands {
     quitGame.add("vacate");
     quitGame.add("abandon");
     quitGame.add("desert");
+    quitGame.add("deuces");
+
 
     return quitGame;
   }
