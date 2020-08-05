@@ -16,7 +16,6 @@ import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
 import com.slendermand.inputcommands.InputCommands;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -27,9 +26,6 @@ import java.util.Scanner;
  */
 public final class Game{
   String userText = "";
-  Scanner scanner = new Scanner(System.in);
-
-  // For Unit Testing Purpose //
 
   private boolean disableIntroduction = false;
 //  private boolean disableIntroduction = true;
@@ -51,7 +47,6 @@ public final class Game{
   private final Player Player;
 
   public static volatile boolean isRunning = true;
-//  public AtomicBoolean running = new AtomicBoolean(true);
 
 
 
@@ -108,7 +103,6 @@ public final class Game{
   public void start(Scanner in) throws InterruptedException {
 
     // For Unit Testing purpose
-//    gameOptions(in);
     if (!disableIntroduction) {
       Introduction.playIntro();
 

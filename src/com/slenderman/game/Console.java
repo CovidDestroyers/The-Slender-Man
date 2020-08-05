@@ -50,9 +50,6 @@ class Console extends JFrame implements ActionListener {
 
 //ADDING TOP SET PANEL FOR INSTRUCTIONS
     //TODO adjust size of JPanel to make text look cleaner
-//    JTextArea instructions = new JTextArea(5, 10);
-//    instructions.setBackground(Color.black);
-//    instructions.setForeground(Color.white);
     JPanel instructions = new JPanel();
     instructions.setBounds(10, 0, 400, 350);
     instructions.setBackground(Color.black);
