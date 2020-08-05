@@ -129,6 +129,9 @@ public class Player {
     return state;
   }
 
+  public List<Item> getInventoryList(){
+    return inventory;
+  }
   public Collection<Item> getInventory() {
     return Collections.unmodifiableCollection(inventory);
   }

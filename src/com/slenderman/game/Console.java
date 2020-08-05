@@ -113,7 +113,7 @@ class Console extends JFrame implements ActionListener {
     JLabel inventoryLabel = new JLabel("PLAYER INVENTORY", SwingConstants.CENTER);
 //    locMap.setBounds(0,0,200,600);
     inventoryPanel.add(inventoryLabel,BorderLayout.NORTH);
-    inventoryPanel.add(inventory.printInventory());
+    inventoryPanel.add(inventory.printInventory(game.getPlayer().getInventoryList()));
     inventoryPanel.setBorder(whiteline);
     locMap.add(inventoryPanel,BorderLayout.SOUTH);
 
