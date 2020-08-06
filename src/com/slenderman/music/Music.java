@@ -26,10 +26,10 @@ public class Music  {
   }
 
 
-  public void playInLoop () throws InterruptedException {
+  public void playInLoop () {
     //Below thing will loop continuous
     FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-    gainControl.setValue(-25.0f); // Reduce volume by 15 decibels.
+    gainControl.setValue(-25.0f); // Reduce volume by 25 decibels.
     clip.loop(Clip.LOOP_CONTINUOUSLY);
     clip.start();
   }
