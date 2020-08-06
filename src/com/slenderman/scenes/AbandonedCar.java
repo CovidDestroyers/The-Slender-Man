@@ -1,7 +1,6 @@
 package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
-import com.slenderman.music.Music;
 
 import java.util.Scanner;
 
@@ -14,18 +13,7 @@ public class AbandonedCar extends Scene {
   }
 
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter(Scanner in, Player player) {
     player.setCurrentSceneName(this.getSceneName());
   }
-
-
-
-  public AbandonedCar(
-
-    Scene sceneToTheNorth, Scene sceneToTheSouth,
-    Scene sceneToTheEast, Scene sceneToTheWest) {
-    super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
-    setDescription("You see an abandoned car");
-  }
-
 }

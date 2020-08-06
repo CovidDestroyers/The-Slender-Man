@@ -4,7 +4,6 @@ import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
-import com.slenderman.music.Music;
 import com.slenderman.tools.Sound;
 
 import java.io.File;
@@ -16,31 +15,19 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Shed extends Scene {
+  private boolean _max_iteration_not_reached;
+  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+  private Scanner choice;
+  private Player player;
+  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("shed");
+  private final Item Key = ItemDirector.findThisItem("key", itemsInThisScene);
 
-  // For Resource Bundle //
-  final String FILE_BASE_NAME = "storyShedNoColor";
-  final String PATH = "com.slenderman.scenes.files.";
+  public final String FILE_BASE_NAME = "storyShedNoColor";
+  public final String PATH = "com.slenderman.scenes.files.";
 
   ResourceBundle.Control rbc =
       ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-
-  // Unit testing purpose //
-  private boolean _max_iteration_not_reached;
-
-  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
-
-  private Scanner choice;
-  private Player player;
-
-  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("shed");
-  private final Item Key = ItemDirector.findThisItem("key", itemsInThisScene);
-
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
 
   public Shed() {
     setSceneName("shed");
@@ -54,29 +41,12 @@ public class Shed extends Scene {
     setItemsInScene(itemsInThisScene);
   }
 
-//  @Override
-//  public void enter(Scanner in, Player player) throws Exception {
-//
-//  }
-
-  /*
-   * =============================================
-   * =========== Business Methods ================
-   * =============================================
-   */
-
   @Override
   public void enter(Scanner in, Player player) throws Exception {
-
     this.player = player;
-
     choice = in;
     Console.updateMap(this.getSceneName());
-
-
-
     Console.clearScreen();
-
     inFrontOfShed();
   }
 
@@ -98,20 +68,16 @@ public class Shed extends Scene {
   }
 
   private void goSomewhereElse() {
-
     displayStories("goSomewhereElse");
   }
 
   private void stepIntoTheShed() throws InterruptedException {
     displayStories("stepIntoTheShed");
-
     takeShinyThingChoice();
   }
 
   private void takeShinyThingChoice() throws InterruptedException {
-
     displayStories("takeShinyThingChoice");
-
     String choice = playerChoice().toUpperCase();
     if (choice.equals("Y")) {
       grabShinyThingYes();
@@ -130,19 +96,17 @@ public class Shed extends Scene {
     System.out.println(textPainter(bundle.getString("grabShinyThingYes_2")));
     Thread.sleep(2000);
     displayStories("grabShinyThingYes_Note");
-
     Sound.play(new File("./Speech/Shed/note.mp3"));
-
     exitShed();
   }
 
   private void exitShed() throws InterruptedException {
-
     player.addItemToInventory(Key);
     getItemsInScene().remove(Key);
 
     Thread.sleep(2000);
     System.out.println(textPainter(bundle.getString("exitShed_0")));
+
     Thread.sleep(2000);
     System.out.println(textPainter(bundle.getString("exitShed_1")));
 
@@ -181,7 +145,6 @@ public class Shed extends Scene {
       }
     }
   }
-
 
   @Override
   public String toString() {

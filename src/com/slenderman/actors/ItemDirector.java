@@ -4,24 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemDirector {
-
   private static final ItemBuilder itemBuilder = new ItemBuilder();
-
   private static final List<Item> allItems = itemBuilder.buildAllItems();
 
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
-
-  private ItemDirector() {}
-
-  /*
-   * =============================================
-   * =========== Business Methods ================
-   * =============================================
-   */
   public static ArrayList<Item> getItemsForScene(String sceneName) {
     String name = sceneName.trim().toLowerCase();
     ArrayList<Item> itemsInScene = new ArrayList<>();
@@ -49,7 +34,6 @@ public class ItemDirector {
 
     return foundItem;
   }
-
 
   @Override
   public String toString() {

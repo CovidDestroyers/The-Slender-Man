@@ -6,19 +6,9 @@ public class Item {
   private String itemName;
   private String currentScene;
   private String purpose = "none";
-
-  private Boolean isAnotherItemNeeded = false;
   private String nameOfOtherItem = "none";
-  private String whatDoesOtherItemDo = "n/a";
-  private String itemRevealed = "none";
+  private Boolean isAnotherItemNeeded = false;
 
-  private String asciiArt = "none";
-
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
   private Item() {}
 
   public Item(String itemName) {
@@ -31,29 +21,11 @@ public class Item {
   }
 
   public Item(
-      String itemName, String currentScene, Boolean isAnotherItemNeeded, String nameOfOtherItem) {
+    String itemName, String currentScene, Boolean isAnotherItemNeeded, String nameOfOtherItem) {
     this(itemName, currentScene);
     setAnotherItemNeeded(isAnotherItemNeeded);
     setNameOfOtherItem(nameOfOtherItem);
   }
-
-  /*
-   * =============================================
-   * =========== Business Methods ================
-   * =============================================
-   */
-
-  public void printAsciiArt() {
-    System.out.printf("%s", getAsciiArt());
-  }
-
-  /*
-   * =============================================
-   * =========== Accessor Methods ================
-   * =============================================
-   */
-
-  // SET METHODS
 
   public void setPurpose(String purpose) {
     this.purpose = purpose;
@@ -67,50 +39,20 @@ public class Item {
     this.nameOfOtherItem = nameOfOtherItem;
   }
 
-  public void setWhatDoesOtherItemDo(String whatDoesOtherItemDo) {
-    this.whatDoesOtherItemDo = whatDoesOtherItemDo;
-  }
-
-  public void setItemRevealed(String itemRevealed) {
-    this.itemRevealed = itemRevealed;
-  }
-
   public void setItemName(String itemName) {
     this.itemName = itemName;
-  }
-
-  public void setAsciiArt(String asciiArt) {
-    this.asciiArt = asciiArt;
   }
 
   public void setCurrentScene(String currentScene) {
     this.currentScene = currentScene;
   }
 
-  // GET METHODS
-
   public String getItemName() {
     return itemName;
   }
 
-  public String getItemRevealed() {
-    return itemRevealed;
-  }
-
-  public String getWhatDoesOtherItemDo() {
-    return whatDoesOtherItemDo;
-  }
-
-  public String getNameOfOtherItem() {
-    return nameOfOtherItem;
-  }
-
   public String getPurpose() {
     return purpose;
-  }
-
-  public String getAsciiArt() {
-    return asciiArt;
   }
 
   public String getCurrentScene() {
@@ -142,9 +84,6 @@ public class Item {
       ", purpose='" + purpose + '\'' +
       ", isAnotherItemNeeded=" + isAnotherItemNeeded +
       ", nameOfOtherItem='" + nameOfOtherItem + '\'' +
-      ", whatDoesOtherItemDo='" + whatDoesOtherItemDo + '\'' +
-      ", itemRevealed='" + itemRevealed + '\'' +
-      ", asciiArt='" + asciiArt + '\'' +
       ", anotherItemNeeded=" + getAnotherItemNeeded() +
       '}';
   }
