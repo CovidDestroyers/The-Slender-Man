@@ -15,36 +15,24 @@ import java.util.*;
  * <p>East : Field West : Cave North : Outhouse
  */
 public class Pond extends Scene {
-
   private int countCheckBackPack = 0; // Count how many times the player check the backpack
   private boolean memoOnStones = false; // If memo between stones are read
   private boolean wearingFogGlasses = false; // If the player is wearing wog glasses
   private boolean crossVisited = false; // On island, if the player visited the cross
   private boolean islandTreeLookDown = false; // On island, if the player looked down the tree
   private boolean isFogClear = false; // On island, if the fog is cleared
+  private boolean _max_iteration_not_reached;
+  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+  private final List<String> localItems = new ArrayList<>();
+  private Player player;
 
-  // For Resource Bundle //
-  final String FILE_BASE_NAME = "storyPondNoColor";
-  final String PATH = "com.slenderman.scenes.files.";
+  public final String FILE_BASE_NAME = "storyPondNoColor";
+  public final String PATH = "com.slenderman.scenes.files.";
 
   ResourceBundle.Control rbc =
       ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-  /////////////////////////
 
-  // Unit testing purpose //
-  private boolean _max_iteration_not_reached;
-  //////////////////////////
-  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
-
-  private final List<String> localItems = new ArrayList<>();
-  private Player player;
-
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
   public Pond() {
     setSceneName("pond");
   }
@@ -53,7 +41,6 @@ public class Pond extends Scene {
       Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
 
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
-
     setSceneName("pond");
   }
 
@@ -64,16 +51,6 @@ public class Pond extends Scene {
     Console.clearScreen();
     inFrontOfPond(in);
   }
-
-//  @Override
-//  public void enter(Scanner in, Player player, Music music) throws Exception {
-//    this.player = player;
-//    Console.updateMap(this.getSceneName());
-//    Console.clearScreen();
-//    inFrontOfPond(in);
-//    this.Music= music;
-//
-//  }
 
   private void inFrontOfPond(Scanner in) throws InterruptedException {
     displayStories("inFront");
@@ -110,7 +87,6 @@ public class Pond extends Scene {
   }
 
   private void inFrontOfPondChoice_UseItems(Scanner in) throws InterruptedException {
-
     displayStories("inFrontChoice_ChoiceUseItems_Intro");
     String choice = playerChoice(in).toUpperCase();
     if (choice.equals("Y")) {
@@ -344,16 +320,6 @@ public class Pond extends Scene {
     }
   }
 
-  // private String playerChoice(){
-  //   return new Scanner(System.in);
-  // }
-
-  /**
-   * Coloring the fonts
-   *
-   * <p>{0} : Scene.ANSI_GREEN {1} : Scene.ANSI_BLUE {2} : Scene.ANSI_RED {3} : Scene.ANSI_BLACK {4}
-   * : Scene.ANSI_WHITE
-   */
   private String textPainter(String text) {
     return MessageFormat.format(
         text,
@@ -364,7 +330,6 @@ public class Pond extends Scene {
         Scene.ANSI_WHITE);
   }
 
-  /** For accessing and displaying stories in Resource Bundle file */
   private void displayStories(String key) {
     _max_iteration_not_reached = false;
     for (int i = 0; i < MAX_ITERATION_DISPLAY_STORIES; i++) {
@@ -375,15 +340,5 @@ public class Pond extends Scene {
         break;
       }
     }
-  }
-
-  /*** Testing purpose ***/
-  // Controlling "isFogClear"
-  public void setIsFogClear(boolean isFogClear) {
-    this.isFogClear = isFogClear;
-  }
-  // Getting the status of "isFogClear"
-  public boolean getIsFogClear() {
-    return isFogClear;
   }
 }
