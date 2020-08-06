@@ -115,7 +115,6 @@ class Console extends JFrame implements ActionListener {
 
     // Property change listener for inventory updates
     game.getPlayer().addPropertyChangeListener(evt -> {
-      System.out.println(evt);
       if(evt.getPropertyName().equals("inventory")){
         inventoryPanel.removeAll();
         inventoryPanel.add(inventory.printInventory(game.getPlayer().getInventoryList()));
