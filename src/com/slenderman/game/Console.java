@@ -69,6 +69,12 @@ public class Console extends JFrame implements ActionListener {
         + "<pre color='red'>       |.|        | |         | |</pre>"
         + "<pre color='green'>k*s \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_</pre>";
 
+String introduction =
+        "<pre color='red'><small>  __        __        __   __   __        __      </small></pre>" +
+        "<pre color='red'><small> /    /    /    /| ||/  | /    /  | /|/| /  | /| |</small></pre>" +
+        "<pre color='red'><small>(___ (    (___ ( | ||   |(___ (___|( / |(___|( | |</small></pre>" +
+        "<pre color='red'><small>    )|   )|    | | )|   )|    |\\   |   )|   )| | )</small></pre>" +
+        "<pre color='red'><small> __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ </small></pre>";
 
 
     // setting component in right
@@ -89,8 +95,8 @@ public class Console extends JFrame implements ActionListener {
     imageCenter = new JEditorPane();
     imageCenter.setBackground(Color.BLACK);
     imageCenter.setContentType("text/html");
-//    imageCenter.setText(introduction);
-    imageCenter.setMaximumSize(new Dimension(40,40));
+    imageCenter.setText(introduction);
+//    imageCenter.setMaximumSize(new Dimension(40,40));
 
 
     // adding component to top part of frame => main panel
@@ -99,7 +105,7 @@ public class Console extends JFrame implements ActionListener {
 //    northPanel.add(imageCenter, BorderLayout.NORTH);
 
 
-    outText = new JTextArea(35, 80);
+    outText = new JTextArea(30, 80);
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
@@ -191,54 +197,4 @@ public class Console extends JFrame implements ActionListener {
     inWriter.println(text);
   }
 
-
-  //TODO: ActionPerformed Event Listener is triggering second thread run; need further study to solve it
-  public void loadImage() {
-    String axe1Path = "images/spooky_trees.png";
-    String axe2Path = "images/spooky_trees.png";
-    String axe3Path = "images/spooky_trees.png";
-    String axe4Path = "images/spooky_trees.png";
-    String axe5Path = "images/spooky_trees.png";
-    String axe6Path = "images/spooky_trees.png";
-    String axe7Path = "images/spooky_trees.png";
-    String axe8Path = "images/spooky_trees.png";
-    File axe1file = new File(axe1Path);
-    File axe2file = new File(axe2Path);
-    File axe3file = new File(axe3Path);
-    File axe4file = new File(axe4Path);
-    File axe5file = new File(axe5Path);
-    File axe6file = new File(axe6Path);
-    File axe7file = new File(axe7Path);
-    File axe8file = new File(axe8Path);
-
-
-    try {
-
-      axe1Img = ImageIO.read(axe1file);
-      axe2Img = ImageIO.read(axe2file);
-      axe3Img = ImageIO.read(axe3file);
-      axe4Img = ImageIO.read(axe4file);
-      axe5Img = ImageIO.read(axe5file);
-      axe6Img = ImageIO.read(axe6file);
-      axe7Img = ImageIO.read(axe7file);
-      axe8Img = ImageIO.read(axe8file);
-
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-  @Override
-  public void paint(Graphics g) {
-
-    super.paint(g);
-    g.drawImage(axe1Img, 1070, 50, null);
-    g.drawImage(axe2Img, 800, 50, null);
-    g.drawImage(axe4Img, 700, 50, null);
-    g.drawImage(axe7Img, 620, 50, null);
-    g.drawImage(axe3Img, 500, 50, null);//
-    g.drawImage(axe8Img, 350, 50, null);
-    g.drawImage(axe6Img, 300, 50, null);
-    g.drawImage(axe5Img, -25, 50, null);
-
-  }
 }

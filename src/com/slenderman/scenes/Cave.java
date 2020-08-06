@@ -80,6 +80,25 @@ public class Cave extends Scene {
   }
 
   private void inFrontOfCave() throws InterruptedException {
+
+    String cave =
+      "<pre color='green'><small>     \\__,.   /              \\    /           \\/.,   _|  _/ \\                    </small></pre>"+
+        "<pre color='green'><small>          \\_/                \\  /',.,''\\      \\_ \\_/  \\/    \\                   </small></pre>"+
+        "<pre color='green'><small>                           _  \\/   /    ',../',.\\    _/      \\                  </small></pre>"+
+        "<pre color='gray'><small>             /           _/m\\  \\  /    |         \\  /.,/'\\   _\\                 </small></pre>"+
+        "<pre color='gray'><small>           _/           /MMmm\\  \\_     |          \\/      \\_/  \\                </small></pre>"+
+        "<pre color='gray'><small>          /      \\     |MMMMmm|   \\__   \\          \\_       \\   \\_              </small></pre>"+
+        "<pre color='gray'><small>                  \\   /MMMMMMm|      \\   \\           \\       \\    \\             </small></pre>"+
+        "<pre color='gray'><small>                   \\  |MMMMMMmm\\      \\___            \\_      \\_   \\            </small></pre>"+
+        "<pre color='gray'><small>                    \\|MMMMMMMMmm|____.'  /\\_            \\       \\   \\_          </small></pre>"+
+        "<pre color='green'><small>                    /'.,___________...,,'   \\            \\   \\        \\         </small></pre>"+
+        "<pre color='green'><small>                   /       \\          |      \\    |__     \\   \\_       \\        </small></pre>"+
+        "<pre color='green'><small>                 _/        |           \\      \\_     \\     \\    \\\\       \\_      </small></pre>";
+
+
+
+
+    Console.updateImage(cave);
     displayStories("inFront");
     String choice = playerChoice();
     if (choice.equals("0")) {

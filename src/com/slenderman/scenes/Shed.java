@@ -82,6 +82,20 @@ public class Shed extends Scene {
 
   private void inFrontOfShed() throws InterruptedException {
     String choice;
+
+    String shed =
+      "<pre color='lime'>                            +&-              </pre>"+
+        "<pre color='lime'>                          _.-^-._    .--.  </pre>"+
+        "<pre color='lime'>                       .-'   _   '-. |__|	</pre>"+
+        "<pre color='lime'>                      /     |_|     \\|  | </pre>"+
+        "<pre color='lime'>                     /               \\  |	</pre>"+
+        "<pre color='lime'>                    /|     _____     |\\ |	</pre>"+
+        "<pre color='lime'>                     |    |==|==|    |  |	</pre>"+
+        "<pre color='lime'> |---|---|---|---|---|    |--|--|    |  |	</pre>"+
+        "<pre color='lime'> |---|---|---|---|---|    |==|==|    |  |	</pre>"+
+        "<pre color='lime'>^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^	</pre>";
+
+    Console.updateImage(shed);
     displayStories("inFrontShed");
 
     choice = playerChoice();

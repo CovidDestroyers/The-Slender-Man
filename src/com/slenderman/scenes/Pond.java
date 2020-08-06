@@ -74,6 +74,23 @@ public class Pond extends Scene {
 //  }
 
   private void inFrontOfPond(Scanner in) throws InterruptedException {
+
+    String pond =
+      "<pre color='lime'><small>                  _</small></pre>"+
+        "<pre color='lime'><small>             .''.' \\    _  __</small></pre>"+
+        "<pre color='lime'><small> ___         './    '. ' `'  `</small></pre>"+
+        "<pre color='lime'><small>    '._______.'       \\</small></pre>"+
+        "<pre color='lime'><small>                       '.__________</small></pre>"+
+        "<pre color='lime'><small>                                   '-.____________</small></pre>"+
+        "<pre color='aqua'><small> _________________________________________________'.______________</small></pre>"+
+        "<pre color='aqua'><small>                                      ____________.'</small></pre>"+
+        "<pre color='aqua'><small>                         __________.-'</small></pre>"+
+        "<pre color='aqua'><small>      _______          .'</small></pre>"+
+        "<pre color='aqua'><small> ___.'       '.       /               '-._</small></pre>"+
+        "<pre color='aqua'><small>             .'\\    .' ._,.__,        ____\\____.o.</small></pre>"+
+        "<pre color='aqua'><small>             '..'._/                 '-._______.-'</small></pre>";
+
+    Console.updateImage(pond);
     displayStories("inFront");
     inFrontOfPondChoice(in);
   }
