@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ItemBuilder {
-
   private final ArrayList<String> itemsAndScenes =
       new ArrayList<>(
           Arrays.asList(
@@ -17,20 +16,6 @@ public class ItemBuilder {
               "boat:cave",
               "blade:field",
               "key:shed"));
-
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
-
-  public ItemBuilder() {}
-
-  /*
-   * =============================================
-   * =========== Business Methods ================
-   * =============================================
-   */
 
   /** @return allItems -> an ArrayList of all Items in game */
   public ArrayList<Item> buildAllItems() {
@@ -65,7 +50,6 @@ public class ItemBuilder {
 
     return allItems;
   }
-
 
   @Override
   public String toString() {
