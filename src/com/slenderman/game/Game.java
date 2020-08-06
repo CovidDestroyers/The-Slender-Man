@@ -90,7 +90,7 @@ public final class Game{
    */
 //TODO find better way to enable/disable music, when enabled it doesnt let you work the game, though disabled functions correctly
 
-  public  void gameOptions(Scanner in) throws InterruptedException {
+  public void gameOptions(Scanner in) throws InterruptedException {
     System.out.println("Would you like music enabled or disabled?");
     userText = in.nextLine();
     if("enabled".equalsIgnoreCase(userText) || "e".equalsIgnoreCase(userText)){
