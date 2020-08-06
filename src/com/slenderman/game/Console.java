@@ -99,7 +99,7 @@ public class Console extends JFrame implements ActionListener {
 //    northPanel.add(imageCenter, BorderLayout.NORTH);
 
 
-    outText = new JTextArea(35, 80);
+    outText = new JTextArea(30, 80);
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));

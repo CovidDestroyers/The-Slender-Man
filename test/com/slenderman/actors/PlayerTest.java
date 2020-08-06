@@ -3,6 +3,7 @@ package com.slenderman.actors;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+import static org.junit.Assert.*;
 
 /**
 * Player Tester.
@@ -12,13 +13,16 @@ import org.junit.After;
 * @version 1.0
 */
 public class PlayerTest {
+  private Player player;
 
 @Before
-public void before() throws Exception {
+public void before() {
+  player= new Player();
+  player.addItemToInventory(new Item("Protein Bar"));
 }
 
 @After
-public void after() throws Exception {
+public void after() {
 }
 
 /**
@@ -27,9 +31,14 @@ public void after() throws Exception {
 *
 */
 @Test
-public void testAddItemToInventoryItems() throws Exception {
-//TODO: Test goes here...
+public void testAddItemToInventoryItemsPositive(){
+  assertEquals(4,player.getNumItemsPlayerHas());
 }
+
+  @Test
+  public void testAddItemToInventoryItemsNegative() {
+    assertNotEquals(3,player.getNumItemsPlayerHas());
+  }
 
 /**
 *
@@ -37,9 +46,19 @@ public void testAddItemToInventoryItems() throws Exception {
 *
 */
 @Test
-public void testDropItemFromInventory() throws Exception {
-//TODO: Test goes here...
+public void testDropItemFromInventoryPositive() {
+  System.out.println(player.getInventory());
+  player.dropItemFromInventory(new Item("Protein Bar"));
+  assertEquals(3,player.getNumItemsPlayerHas());
 }
+
+@Test
+public void testDropItemFromInventoryNegative() {
+  System.out.println(player.getInventory());
+  player.dropItemFromInventory(new Item("Protein Bar"));
+  assertNotEquals(4,player.getNumItemsPlayerHas());
+}
+
 
 /**
 *

@@ -3,7 +3,9 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
 import com.slenderman.music.Music;
+import com.slenderman.tools.Sound;
 
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.*;
 
@@ -249,6 +251,7 @@ public class Pond extends Scene {
 
     if (choice.equals("0")) {
       displayStories("WalkAround_Right_LookUp");
+      Sound.play(new File("./Speech/Pond/stars.mp3"));
       inFrontOfPondChoice_WalkAround_Right(in);
     } else {
       if (!localItems.contains("RING_BOX_KEY")) {

@@ -17,6 +17,7 @@ import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
 
 import java.awt.*;
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -62,16 +63,16 @@ public final class Game {
   private void gameInitializer(Scanner in) throws Exception {
     if (!disableIntroduction) {
       Introduction.playIntro();
-      new LoseGameTimer(10);
-      new OneMinuteTimer(1);
-      new OneMinuteTimer(2);
-      new OneMinuteTimer(3);
-      new OneMinuteTimer(4);
-      new OneMinuteTimer(5);
-      new OneMinuteTimer(6);
-      new OneMinuteTimer(7);
-      new OneMinuteTimer(8);
-      new OneMinuteTimer(9);
+//      new LoseGameTimer(10);
+//      new OneMinuteTimer(1);
+//      new OneMinuteTimer(2);
+//      new OneMinuteTimer(3);
+//      new OneMinuteTimer(4);
+//      new OneMinuteTimer(5);
+//      new OneMinuteTimer(6);
+//      new OneMinuteTimer(7);
+//      new OneMinuteTimer(8);
+//      new OneMinuteTimer(9);
       new SlenderManProgression(1);
       new SlenderManProgression(2);
       new SlenderManProgression(3);
@@ -150,8 +151,12 @@ public final class Game {
       SlenderMan.killPlayer();
     }
 
-    System.out.println("\nThe SlenderMan notices you're progressing...");
-    System.out.println("You have a " + finalResult + "% chance of him attacking you.\n");
+    System.out.println(
+      "---------------------------------------------------------------------------------------------------\n" +
+      "The SlenderMan notices you're progressing...\n" +
+      "You have a " + finalResult + "% chance of him attacking you.\n"+
+      "---------------------------------------------------------------------------------------------------\n");
+    Sound.play(new File("Vampire-hiss.wav"));
   }
 
   private void winCondition() throws InterruptedException {

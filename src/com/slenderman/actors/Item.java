@@ -1,5 +1,7 @@
 package com.slenderman.actors;
 
+import java.util.Objects;
+
 public class Item {
   private String itemName;
   private String currentScene;
@@ -19,7 +21,7 @@ public class Item {
    */
   private Item() {}
 
-  private Item(String itemName) {
+  public Item(String itemName) {
     setItemName(itemName);
   }
 
@@ -119,6 +121,18 @@ public class Item {
     return isAnotherItemNeeded;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Item)) return false;
+    Item item = (Item) o;
+    return getItemName().equals(item.getItemName());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getItemName());
+  }
 
   @Override
   public String toString() {
