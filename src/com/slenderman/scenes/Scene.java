@@ -126,8 +126,9 @@ public abstract class Scene {
     return playerInventory.stream().anyMatch(item -> item.getItemName().equals(itemName));
   }
 
-  public void skipIntro(){
+  public long skipIntro(){
       sleep = 500;
+    return 0;
   }
 
   public void fullIntro(){
@@ -179,6 +180,10 @@ public abstract class Scene {
 
   public ArrayList<Item> getItemsInScene() {
     return itemsInScene;
+  }
+
+  public long getSleep(){
+    return sleep;
   }
 
   public String getDescription() {

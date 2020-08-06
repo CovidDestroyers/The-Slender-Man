@@ -3,9 +3,7 @@ package com.slenderman.game;
 import com.slenderman.scenes.House;
 import com.slenderman.scenes.Introduction;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -15,6 +13,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.swing.*;
+import javax.swing.border.Border;
 
 class Console extends JFrame implements ActionListener {
   JTextField tfIn;
@@ -44,6 +43,7 @@ class Console extends JFrame implements ActionListener {
     }
 
     JPanel panel = new JPanel(new BorderLayout());
+    Border whiteline = BorderFactory.createLineBorder(Color.white);
 
 //ADDING TOP SET PANEL FOR INSTRUCTIONS
     //TODO adjust size of JPanel to make text look cleaner
@@ -97,20 +97,45 @@ class Console extends JFrame implements ActionListener {
 
     // Adding Side Map JPanel
     GameMap gMap = new GameMap();
-    JPanel locMap = new JPanel(new BorderLayout());
-    locMap.setBounds(100,100,200,200);
+    JPanel locMapPanel = new JPanel(new BorderLayout());
+    JLabel mapLabel = new JLabel("PLAYER MAP LOCATION",SwingConstants.CENTER);
+    locMapPanel.setBorder(whiteline);
+    locMapPanel.add(mapLabel,BorderLayout.NORTH);
 
     // Loading Initial Side Map
-    locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
-    panel.add(locMap, BorderLayout.EAST);
+    locMapPanel.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
+
+    Inventory inventory = new Inventory();
+    JPanel inventoryPanel = new JPanel(new BorderLayout());
+    JLabel inventoryLabel = new JLabel("PLAYER INVENTORY", SwingConstants.CENTER);
+    inventoryPanel.add(inventoryLabel,BorderLayout.NORTH);
+    inventoryPanel.add(inventory.printInventory(game.getPlayer().getInventoryList()));
+    inventoryPanel.setBorder(whiteline);
+    locMapPanel.add(inventoryPanel,BorderLayout.SOUTH);
+
+    // Property change listener for inventory updates
+    game.getPlayer().addPropertyChangeListener(evt -> {
+      System.out.println(evt);
+      if(evt.getPropertyName().equals("inventory")){
+        inventoryPanel.removeAll();
+        inventoryPanel.add(inventory.printInventory(game.getPlayer().getInventoryList()));
+        locMapPanel.add(inventoryPanel,BorderLayout.SOUTH);
+        panel.add(locMapPanel, BorderLayout.EAST);
+        revalidate();
+        repaint();
+      }
+    });
+
+
+    panel.add(locMapPanel, BorderLayout.EAST);
 
     // Property change listener for scene change to update map
     game.getPlayer().addPropertyChangeListener(evt -> {
-    System.out.println("did I make it in here?");
       if(evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())){
-        locMap.removeAll();
-        locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
-        panel.add(locMap, BorderLayout.EAST);
+        locMapPanel.removeAll();
+        locMapPanel.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
+        locMapPanel.add(inventoryPanel,BorderLayout.SOUTH);
+        panel.add(locMapPanel, BorderLayout.EAST);
         revalidate();
         repaint();
       }

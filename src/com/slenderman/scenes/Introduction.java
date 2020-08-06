@@ -3,15 +3,13 @@ package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
 
-public class Introduction extends Scene implements KeyListener {
+public class Introduction extends Scene {
 
 //  private Scanner choice;
 
@@ -72,10 +70,12 @@ public class Introduction extends Scene implements KeyListener {
    *
    * <p>{0} : Scene.ANSI_GREEN {1} : Scene.ANSI_BLUE {2} : Scene.ANSI_RED {3} : Scene.ANSI_BLACK {4}
    * : Scene.ANSI_WHITE
+   * @return
    */
 
-  public void skipIntro(){
+  public long skipIntro(){
     sleep = 0;
+    return sleep;
   }
 
   private static String textPainter(String text) {
@@ -86,21 +86,6 @@ public class Introduction extends Scene implements KeyListener {
       Scene.ANSI_RED,
       Scene.ANSI_BLACK,
       Scene.ANSI_WHITE);
-  }
-
-  @Override
-  public void keyTyped(KeyEvent e) {
-
-  }
-
-  @Override
-  public void keyPressed(KeyEvent e) {
-
-  }
-
-  @Override
-  public void keyReleased(KeyEvent e) {
-
   }
 
   @Override
