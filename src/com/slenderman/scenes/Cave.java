@@ -4,7 +4,7 @@ import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
-import com.slenderman.music.Music;
+import com.slenderman.tools.Sound;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -17,35 +17,24 @@ import java.util.*;
  * <p>East : POND West : SHED North : HUT_CAR
  */
 public class Cave extends Scene {
-  final String FILE_BASE_NAME = "storyCaveNoColor";
-  final String PATH = "com.slenderman.scenes.files.";
+  private boolean _max_iteration_not_reached;
+  private boolean isPlayerWithTorch = false;
+  private boolean isPlayerWithLighter = false;
+  private boolean isPlayerWithBoat = false;
+  private final List<String> localItems = new ArrayList<>();
+  private Scanner choice;
+  private Player thePlayer;
+  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("cave");
+  private final Item boat = ItemDirector.findThisItem("boat", itemsInThisScene);
+
+  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+  public final String FILE_BASE_NAME = "storyCaveNoColor";
+  public final String PATH = "com.slenderman.scenes.files.";
 
   ResourceBundle.Control rbc =
       ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
 
-  // Unit testing purpose //
-  private boolean _max_iteration_not_reached;
-
-  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
-  private boolean isPlayerWithTorch = false;
-  private boolean isPlayerWithLighter = false;
-  private boolean isPlayerWithBoat = false;
-
-  private final List<String> localItems = new ArrayList<>();
-
-  private Scanner choice;
-  private Player thePlayer;
-
-  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("cave");
-
-  private final Item boat = ItemDirector.findThisItem("boat", itemsInThisScene);
-
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
   public Cave() {
     setSceneName("cave");
     setItemsInScene(itemsInThisScene);
@@ -58,16 +47,6 @@ public class Cave extends Scene {
 
   }
 
-//  @Override
-//  public void enter(Scanner in, Player player) throws Exception {
-//
-//  }
-
-  /*
-   * =============================================
-   * =========== Business Methods ================
-   * =============================================
-   */
   @Override
   public void enter(Scanner in, Player player) throws Exception {
     thePlayer = player;
@@ -119,6 +98,7 @@ public class Cave extends Scene {
         quizChoosingRightItems();
       } else {
         System.out.println(textPainter(bundle.getString("stepIntoTheCave_notEnoughItem")));
+        Sound.play(new File("./Speech/Cave/Run.mp3"));
         inFrontOfCave();
       }
     }

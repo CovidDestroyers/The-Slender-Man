@@ -12,29 +12,18 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Forest extends Scene {
+  private boolean _max_iteration_not_reached;
 
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
-  public Forest() {
-    setSceneName("forest");
-  }
-
-  // For Resource Bundle //
-  final String FILE_BASE_NAME = "storyForestNoColor";
-  final String PATH = "com.slenderman.scenes.files.";
+  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+  public final String FILE_BASE_NAME = "storyForestNoColor";
+  public final String PATH = "com.slenderman.scenes.files.";
 
   ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-  /////////////////////////
 
-  // Unit testing purpose //
-  private boolean _max_iteration_not_reached;
-  //////////////////////////
-
-  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+  public Forest() {
+    setSceneName("forest");
+  }
 
   public Forest(
     Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
@@ -42,12 +31,12 @@ public class Forest extends Scene {
   }
 
   @Override
-
   public void enter(Scanner in, Player player) throws Exception {
     Console.updateMap(this.getSceneName());
-    Music music = new Music();
-    music.gameMusic(new File("ScaryMusic.wav"));
+    Music playbackMusic= new Music(new File("ScaryMusic.wav"));
+    playbackMusic.playInLoop();
     Console.clearScreen();
+
 
 
 //    System.out.println(
@@ -77,14 +66,11 @@ public class Forest extends Scene {
         + "<pre color='green'>k*s \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_</pre>";
 
     Console.updateImage(forestScene);
+
+
     displayStories("forest");
 
   }
-
-//  @Override
-//  public void enter(Scanner in, Player player, Music music) throws Exception {
-//
-//  }
 
   /**
    * Coloring the fonts

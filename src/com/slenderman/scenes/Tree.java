@@ -1,26 +1,16 @@
 package com.slenderman.scenes;
 
-import com.slenderman.actors.Item;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
-import com.slenderman.music.Music;
 
-import java.text.MessageFormat;
 import java.util.*;
 
 public class Tree extends Scene {
-
-  // For Resource Bundle //
-  final String FILE_BASE_NAME = "storyTreeNoColor";
-  final String PATH = "com.slenderman.scenes.files.";
+  public final String FILE_BASE_NAME = "storyTreeNoColor";
+  public final String PATH = "com.slenderman.scenes.files.";
 
   ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-
-  // Unit testing purpose //
-  private boolean _max_iteration_not_reached;
-
-  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
 
   public Tree(){
     setDescription("You have reached a Tree.");
@@ -28,10 +18,9 @@ public class Tree extends Scene {
   }
 
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter(Scanner in, Player player) {
     Console.updateMap(this.getSceneName());
     Console.clearScreen();
-    //System.out.println("You have escaped Slenderman's forest.");
 
     String tree =
       "<pre color='lime'><small>              v .   ._, |_  .,            </pre>"+
@@ -54,9 +43,4 @@ public class Tree extends Scene {
       System.out.println(bundle.getString("enter_2") + " " + player.getNumItemsPlayerHas() + " "+ bundle.getString("enter_3"));
     }
   }
-
-//  @Override
-//  public void enter(Scanner in, Player player, Music music) throws Exception {
-//
-//  }
 }

@@ -11,24 +11,12 @@ public class Player {
 
   private String state = "alive";
   private String currentSceneName = "forest";
-
   private List<Item> inventory = new ArrayList<>();
 
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
   public Player() {
     ArrayList<Item> defaultInvItems = ItemDirector.getItemsForScene("forest");
     addItemToInventory(defaultInvItems);
   }
-
-  /*
-   * =============================================
-   * =========== Business Methods ================
-   * =============================================
-   */
 
   public void addItemToInventory(Item... items) {
     try {
@@ -71,35 +59,14 @@ public class Player {
     inventory.forEach(item -> item.setCurrentScene(this.currentSceneName));
   }
 
-  /**
-   * Changes the currentScene field for ALL items in inventory to sceneName
-   *
-   * @param sceneName string representation of the scene i.e. "pond", "forest", etc.
-   */
-  public void changeInvItemsLocation(String sceneName) {
-    inventory.forEach(item -> item.setCurrentScene(sceneName));
-  }
-
-  /*
-   * =============================================
-   * =========== Accessor Methods ================
-   * =============================================
-   */
-
-  // SET METHODS
   public void setState(String state) {
     this.state = state;
-  }
-
-  public void setInventory(List<Item> inventory) {
-    this.inventory = inventory;
   }
 
   public void setCurrentSceneName(String currentSceneName) {
     this.currentSceneName = currentSceneName;
   }
 
-  // GET METHODS
   public String getState() {
     return state;
   }
@@ -110,9 +77,5 @@ public class Player {
 
   public int getNumItemsPlayerHas(){
     return getInventory().size();
-  }
-
-  public String getCurrentSceneName() {
-    return currentSceneName;
   }
 }
