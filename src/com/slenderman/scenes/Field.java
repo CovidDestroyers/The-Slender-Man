@@ -4,9 +4,7 @@ import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
-import com.slenderman.music.Music;
 
-import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -15,26 +13,19 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Field extends Scene {
+  private boolean _max_iteration_not_reached;
+  private Scanner scanner;
+  private Player player;
+  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("field");
+  private final Item Blade = ItemDirector.findThisItem("blade", itemsInThisScene);
 
-  // For Resource Bundle //
-  final String FILE_BASE_NAME = "storyFieldNoColor";
-  final String PATH = "com.slenderman.scenes.files.";
+  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+  public final String FILE_BASE_NAME = "storyFieldNoColor";
+  public final String PATH = "com.slenderman.scenes.files.";
 
   ResourceBundle.Control rbc =
       ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-
-  // Unit testing purpose //
-  private boolean _max_iteration_not_reached;
-
-  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
-
-  private Scanner scanner;
-  private Player player;
-
-  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("field");
-
-  private final Item Blade = ItemDirector.findThisItem("blade", itemsInThisScene);
 
   // default constructor
   public Field() {
@@ -69,8 +60,6 @@ public class Field extends Scene {
     }
   }
 
-
-
   private void smellIt(Scanner in, Player player) throws InterruptedException {
     displayStories("smellIt");
     String choice = playerChoice();
@@ -83,7 +72,6 @@ public class Field extends Scene {
   }
 
   private void sneeze(Scanner in, Player player) throws InterruptedException {
-
     displayStories("sneeze");
     String choice = playerChoice();
 
@@ -160,7 +148,6 @@ public class Field extends Scene {
       }
     }
   }
-
 
   @Override
   public String toString() {
