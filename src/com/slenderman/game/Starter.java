@@ -1,7 +1,5 @@
 package com.slenderman.game;
 
-import com.slenderman.actors.SlenderMan;
-import com.slenderman.musicplayer.SimplePlayer;
 import java.util.Scanner;
 
 
@@ -23,56 +21,10 @@ public class Starter {
     game.gameOptions(scanMe);
 
 
-
-
-
-
-//TODO can possibly be deleted later, keeping now incase we find future bugs
-
-    Thread thread1 = new Thread() {
-      public void run() {
-        Game game = new Game();
-        new Console(game);
-        Scanner scanMe = new Scanner(System.in);
-        try {
-//          game.gameOptions(scanMe);
-          game.start(scanMe);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
-      }
-    };
-//
-//
-//    Thread thread2 = new Thread(() -> {
-//      try {
-//        Thread.sleep(1500);
-//      } catch (InterruptedException e) {
-//        e.printStackTrace();
-//      }
-//      while (!SlenderMan.isGameDone) {
-//        SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
-//      }
-//    });
-//
-//    Thread thread3 = new Thread(() -> {
-//      try {
-//        Thread.sleep(1500);
-//        while (!SlenderMan.isGameDone) {
-//          Thread.sleep(60000);
-//          SimplePlayer player = new SimplePlayer("Scream.mp3");
-//        }
-//      } catch (InterruptedException e) {
-//        e.printStackTrace();
-//      }
-//    });
-
-//    thread1.start();
-//    thread2.start();
-//    thread3.start();
-
-
   }
+
+
+
 }
 
 
