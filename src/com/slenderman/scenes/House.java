@@ -4,7 +4,6 @@ import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
-import com.slenderman.music.Music;
 import com.slenderman.tools.Sound;
 
 import java.io.File;
@@ -16,30 +15,19 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class House extends Scene {
-  final String FILE_BASE_NAME = "storyHouseNoColor";
-  final String PATH = "com.slenderman.scenes.files.";
+  private boolean _max_iteration_not_reached;
+  private String introduction;
+  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("house");
+  private Item Lockbox = ItemDirector.findThisItem("lockbox", itemsInThisScene);
+  private Item Lighter = ItemDirector.findThisItem("lighter", itemsInThisScene);
+
+  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+  public final String FILE_BASE_NAME = "storyHouseNoColor";
+  public final String PATH = "com.slenderman.scenes.files.";
 
   ResourceBundle.Control rbc =
       ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-
-  // Unit testing purpose
-  private boolean _max_iteration_not_reached;
-  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
-
-  private String introduction;
-
-  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("house");
-
-  private Item Lockbox = ItemDirector.findThisItem("lockbox", itemsInThisScene);
-
-  private Item Lighter = ItemDirector.findThisItem("lighter", itemsInThisScene);
-
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
 
   public House() {
     setItemsInScene(itemsInThisScene);
@@ -53,49 +41,24 @@ public class House extends Scene {
     setItemsInScene(itemsInThisScene);
   }
 
-  /*
-   * =============================================
-   * =========== Business Methods ================
-   * =============================================
-   */
-
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter(Scanner in, Player player) {
     try {
-
-
-
-
-
       introToHouse();
-
-
       Thread.sleep(1000);
-
       houseInView();
-
       Thread.sleep(1000);
-
       inHouse();
       Thread.sleep(1000);
-
       atTable();
       openingLockbox(in, player);
-
       leaveHouse();
-    } catch (InterruptedException e) {
-      e.printStackTrace();
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-//  @Override
-//  public void enter(Scanner in, Player player, Music music) throws Exception {
-//
-//  }
-
-  public void introToHouse() throws InterruptedException {
+  public void introToHouse() {
     try {
       Console.updateMap(this.getSceneName());
       Console.clearScreen();
@@ -137,7 +100,7 @@ public class House extends Scene {
     }
   }
 
-  public void houseInView() throws InterruptedException {
+  public void houseInView() {
     try {
       System.out.println(textPainter(bundle.getString("houseInView_0")));
       Thread.sleep(1000);
@@ -179,7 +142,7 @@ public class House extends Scene {
     }
   }
 
-  public void inHouse() throws InterruptedException {
+  public void inHouse() {
     try {
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("inHouse_0")));
@@ -222,7 +185,7 @@ public class House extends Scene {
     }
   }
 
-  public void atTable() throws InterruptedException {
+  public void atTable() {
     try {
       System.out.println(textPainter(bundle.getString("atTable_0")));
       Thread.sleep(1000);
@@ -250,13 +213,12 @@ public class House extends Scene {
       Sound.play(new File("./Speech/House/BoxNote1.mp3"));
       displayStories("atTable_3");
       Sound.play(new File("./Speech/House/BoxNote2.mp3"));
-//      Thread.sleep(6000);
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public void openingLockbox(Scanner in, Player player) throws InterruptedException {
+  public void openingLockbox(Scanner in, Player player) {
     String playerChoice = "";
 
     try {
@@ -332,27 +294,10 @@ public class House extends Scene {
     }
   }
 
-  /*
-   * =============================================
-   * =========== Accessor Methods ================
-   * =============================================
-   */
-
-  // SET METHODS
-
-  public void setIntroduction(String introduction) {
-    this.introduction = introduction;
-  }
-
-  public void setLockbox(Item lockbox) {
-    Lockbox = lockbox;
-  }
-
   public void setLighter(Item lighter) {
     Lighter = lighter;
   }
 
-  // GET METHODS
   public Item getLighter() {
     return Lighter;
   }
@@ -360,11 +305,6 @@ public class House extends Scene {
   public Item getLockbox() {
     return Lockbox;
   }
-
-  public String getIntroduction() {
-    return introduction;
-  }
-
 
   @Override
   public String toString() {

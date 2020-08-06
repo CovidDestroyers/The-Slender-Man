@@ -1,27 +1,14 @@
 package com.slenderman.scenes;
 
-import com.slenderman.actors.Item;
-import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
-import com.slenderman.actors.SlenderMan;
-import com.slenderman.music.Music;
 
-import java.io.File;
-import java.text.MessageFormat;
-import java.util.*;
 import java.util.Scanner;
 
 public class LoseGameScene extends Scene {
   private Scanner choice;
-
   public LoseGameScene() {
     setSceneName("LoseGame");
   }
-
-  public LoseGameScene(Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
-    super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
-  }
-
 
   @Override
   public void enter(Scanner in, Player player) throws Exception {
@@ -42,7 +29,6 @@ public class LoseGameScene extends Scene {
       " __/ |__/ |__/      |__/ |__/  __/ |__   _   \n" +
       "                                             ");
     restartOrQuit();
-
   }
 
   public void restartOrQuit() throws InterruptedException {
