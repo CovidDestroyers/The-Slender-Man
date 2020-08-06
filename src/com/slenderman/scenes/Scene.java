@@ -2,7 +2,6 @@ package com.slenderman.scenes;
 
 import com.slenderman.actors.Item;
 import com.slenderman.actors.Player;
-import com.slenderman.music.Music;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,17 +22,9 @@ public abstract class Scene {
   protected Scene sceneToTheSouth;
   protected Scene sceneToTheEast;
   protected Scene sceneToTheWest;
-
   protected String description;
   protected String sceneName;
-
   protected ArrayList<Item> itemsInScene;
-
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
 
   public Scene() {
   }
@@ -46,12 +37,6 @@ public abstract class Scene {
     setSceneToTheEast(sceneToTheEast);
     setSceneToTheWest(sceneToTheWest);
   }
-
-  /*
-   * =============================================
-   * =========== Business Methods ================
-   * =============================================
-   */
 
   /**
    * The entry point into all scene classes. The Game class will call
@@ -81,16 +66,12 @@ public abstract class Scene {
 
     if ("north".equals(direction)) {
       nextScene = sceneToTheNorth;
-
     } else if ("east".equals(direction)) {
       nextScene = sceneToTheEast;
-
     } else if ("south".equals(direction)) {
       nextScene = sceneToTheSouth;
-
     } else if ("west".equals(direction)) {
       nextScene = sceneToTheWest;
-
     } else {
       System.out.println("Error: unknown direction " + direction);
     }
@@ -102,7 +83,6 @@ public abstract class Scene {
     return nextScene;
   }
 
-
   public void connectEast(Scene otherScene) {
     sceneToTheEast = otherScene;
     otherScene.sceneToTheWest = this;
@@ -112,7 +92,6 @@ public abstract class Scene {
     sceneToTheSouth = otherScene;
     otherScene.sceneToTheNorth = this;
   }
-
 
   /**
    * Searches Player's inventory for an Item based on the Item's name
@@ -126,14 +105,6 @@ public abstract class Scene {
 
     return playerInventory.stream().anyMatch(item -> item.getItemName().equals(itemName));
   }
-
-  /*
-   * =============================================
-   * =========== Accessor Methods ================
-   * =============================================
-   */
-
-  // SET METHODS
 
   public void setSceneName(String sceneName) {
     this.sceneName = sceneName;
@@ -163,34 +134,12 @@ public abstract class Scene {
     this.sceneToTheWest = sceneToTheWest;
   }
 
-  // GET METHODS
-
   public String getSceneName() {
     return sceneName;
   }
 
   public ArrayList<Item> getItemsInScene() {
     return itemsInScene;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public Scene getSceneToTheNorth() {
-    return sceneToTheNorth;
-  }
-
-  public Scene getSceneToTheWest() {
-    return sceneToTheWest;
-  }
-
-  public Scene getSceneToTheEast() {
-    return sceneToTheEast;
-  }
-
-  public Scene getSceneToTheSouth() {
-    return sceneToTheSouth;
   }
 
   @Override
@@ -215,6 +164,3 @@ public abstract class Scene {
       + '}';
   }
 }
-
-//  public abstract void enter(Scanner in, Player player,Music music);
-//}
