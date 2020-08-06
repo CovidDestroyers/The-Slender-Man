@@ -249,7 +249,7 @@ public class House extends Scene {
       displayStories("atTable_2");
       Sound.play(new File("./Speech/House/BoxNote1.mp3"));
       displayStories("atTable_3");
-      Sound.play(new File("./Speech/House/BoxNote1.mp3"));
+      Sound.play(new File("./Speech/House/BoxNote2.mp3"));
 //      Thread.sleep(6000);
     } catch (Exception e) {
       e.printStackTrace();
