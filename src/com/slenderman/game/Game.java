@@ -2,7 +2,6 @@ package com.slenderman.game;
 
 import com.slenderman.actors.Player;
 import com.slenderman.actors.SlenderMan;
-import com.slenderman.color.Color;
 import com.slenderman.commands.Commands;
 import com.slenderman.scenes.Cave;
 import com.slenderman.scenes.Field;
@@ -37,6 +36,7 @@ public final class Game {
   private final Scene aTree;
   private final Scene LoseGameScene;
   private final Player Player;
+
   public SlenderManProgression slenderManProgression;
   public static boolean isPlayerAlive;
 
@@ -63,16 +63,6 @@ public final class Game {
   private void gameInitializer(Scanner in) throws Exception {
     if (!disableIntroduction) {
       Introduction.playIntro();
-//      new LoseGameTimer(10);
-//      new OneMinuteTimer(1);
-//      new OneMinuteTimer(2);
-//      new OneMinuteTimer(3);
-//      new OneMinuteTimer(4);
-//      new OneMinuteTimer(5);
-//      new OneMinuteTimer(6);
-//      new OneMinuteTimer(7);
-//      new OneMinuteTimer(8);
-//      new OneMinuteTimer(9);
       new SlenderManProgression(1);
       new SlenderManProgression(2);
       new SlenderManProgression(3);
@@ -90,7 +80,6 @@ public final class Game {
     currentScene.enter(in, Player);
     start(in);
   }
-
 
   public void startTheGame(Scanner in) throws Exception {
     gameInitializer(in);
