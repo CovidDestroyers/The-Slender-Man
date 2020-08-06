@@ -10,74 +10,52 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Introduction {
-
-  // For Resource Bundle //
-  static final String FILE_BASE_NAME = "storyIntroNoColor";
-  static final String PATH = "com.slenderman.scenes.files.";
-
-  static ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
-  static ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
   public static String playerName;
+  public static final String FILE_BASE_NAME = "storyIntroNoColor";
+  public static final String PATH = "com.slenderman.scenes.files.";
+  public static ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+  public static ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
 
   public static void playIntro() throws Exception {
     Scanner scanner = new Scanner(System.in);
     long introDelaySlow = 2500;
-    long introDelayQuick = 1750;
-
     Thread.sleep(introDelaySlow);
     System.out.println(textPainter(bundle.getString("intro_0")));
-//    System.out.println(
-//      "\n" +
-//        "  __        __        __   __   __        __      \n" +
-//        " /    /    /    /| ||/  | /    /  | /|/| /  | /| |\n" +
-//        "(___ (    (___ ( | ||   |(___ (___|( / |(___|( | |\n" +
-//        "    )|   )|    | | )|   )|    |\\   |   )|   )| | )\n" +
-//        " __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ \n" +
-//        "                                                  \n");
 
     System.out.println("Please enter your name to start your journey...");
     setPlayerName(scanner.nextLine());
     System.out.println("Your name has been set to " + getPlayerName() + " ... good luck.");
-//    Music.gameSingleMusic(new File("gameIntro.wav"));
     Music introMusic= new Music(new File("gameIntro.wav"));
     introMusic.play();
 
-//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_1")));
     Sound.play(new File("./Speech/Introduction/I_intro1.mp3"));
-//    Thread.sleep(introDelayQuick);
+
     System.out.println(textPainter(bundle.getString("intro_2")));
     Sound.play(new File("./Speech/Introduction/I_intro2.mp3"));
-//    Thread.sleep(introDelayQuick);
+
     System.out.println(textPainter(bundle.getString("intro_3")));
     Sound.play(new File("./Speech/Introduction/I_intro3.mp3"));
-//    Thread.sleep(introDelayQuick);
+
     System.out.println(textPainter(bundle.getString("intro_4")));
     Sound.play(new File("./Speech/Introduction/I_intro4.mp3"));
-//    Thread.sleep(introDelayQuick);
+
     System.out.println(textPainter(bundle.getString("intro_5")));
     Sound.play(new File("./Speech/Introduction/I_intro5.mp3"));
-//    Thread.sleep(introDelayQuick);
+
     System.out.println(textPainter(bundle.getString("intro_6")));
-//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_7")));
-//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_8")));
-//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_9")));
-//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_10")));
-//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_11")));
     Sound.play(new File("./Speech/Introduction/I_note.mp3"));
-//    Thread.sleep(introDelayQuick);
+
     System.out.println(textPainter(bundle.getString("intro_12")));
     Sound.play(new File("./Speech/Introduction/I_intro12.mp3"));
-//    Thread.sleep(introDelayQuick);
+
     System.out.println(textPainter(bundle.getString("intro_13")));
     Sound.play(new File("./Speech/Introduction/I_intro13.mp3"));
-
-//    Thread.sleep(introDelayQuick);
   }
   /**
    * Coloring the fonts
