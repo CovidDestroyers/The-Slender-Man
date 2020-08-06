@@ -31,10 +31,13 @@ public class Player {
    * =========== Business Methods ================
    * =============================================
    */
-
+//TODO add listener
   public void addItemToInventory(Item... items) {
     try {
+      List<Item> oldInventory = new ArrayList<>();
       inventory.addAll(Arrays.asList(items));
+      List<Item> newInventory = this.inventory;
+      setInventory(oldInventory,newInventory);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -42,7 +45,10 @@ public class Player {
 
   public void addItemToInventory(ArrayList<Item> items) {
     try {
+      List<Item> oldInventory = new ArrayList<>();
       inventory.addAll(items);
+      List<Item> newInventory = this.inventory;
+      setInventory(oldInventory,newInventory);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -110,8 +116,8 @@ public class Player {
     this.state = state;
   }
 
-  public void setInventory(List<Item> inventory) {
-    this.inventory = inventory;
+  public void setInventory(List<Item> oldInventory, List<Item> newInventory) {
+    this.pcs.firePropertyChange("inventory",oldInventory,newInventory);
   }
 
   public void setCurrentSceneName(String newCurrentSceneName) {

@@ -100,33 +100,45 @@ class Console extends JFrame implements ActionListener {
 
     // Adding Side Map JPanel
     GameMap gMap = new GameMap();
-    JPanel locMap = new JPanel(new BorderLayout());
+    JPanel locMapPanel = new JPanel(new BorderLayout());
     JLabel mapLabel = new JLabel("PLAYER MAP LOCATION",SwingConstants.CENTER);
-    locMap.setBorder(whiteline);
-    locMap.add(mapLabel,BorderLayout.NORTH);
+    locMapPanel.setBorder(whiteline);
+    locMapPanel.add(mapLabel,BorderLayout.NORTH);
 
     // Loading Initial Side Map
-    locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
+    locMapPanel.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
 
     Inventory inventory = new Inventory();
     JPanel inventoryPanel = new JPanel(new BorderLayout());
     JLabel inventoryLabel = new JLabel("PLAYER INVENTORY", SwingConstants.CENTER);
-//    locMap.setBounds(0,0,200,600);
     inventoryPanel.add(inventoryLabel,BorderLayout.NORTH);
     inventoryPanel.add(inventory.printInventory(game.getPlayer().getInventoryList()));
     inventoryPanel.setBorder(whiteline);
-    locMap.add(inventoryPanel,BorderLayout.SOUTH);
+    locMapPanel.add(inventoryPanel,BorderLayout.SOUTH);
+
+    // Property change listener for inventory updates
+    game.getPlayer().addPropertyChangeListener(evt -> {
+      System.out.println(evt);
+      if(evt.getPropertyName().equals("inventory")){
+        inventoryPanel.removeAll();
+        inventoryPanel.add(inventory.printInventory(game.getPlayer().getInventoryList()));
+        locMapPanel.add(inventoryPanel,BorderLayout.SOUTH);
+        panel.add(locMapPanel, BorderLayout.EAST);
+        revalidate();
+        repaint();
+      }
+    });
 
 
-    panel.add(locMap, BorderLayout.EAST);
+    panel.add(locMapPanel, BorderLayout.EAST);
 
     // Property change listener for scene change to update map
     game.getPlayer().addPropertyChangeListener(evt -> {
-    System.out.println("did I make it in here?");
       if(evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())){
-        locMap.removeAll();
-        locMap.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
-        panel.add(locMap, BorderLayout.EAST);
+        locMapPanel.removeAll();
+        locMapPanel.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
+        locMapPanel.add(inventoryPanel,BorderLayout.SOUTH);
+        panel.add(locMapPanel, BorderLayout.EAST);
         revalidate();
         repaint();
       }
