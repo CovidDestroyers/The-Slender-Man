@@ -26,21 +26,27 @@ public class Introduction {
 
     Thread.sleep(introDelaySlow);
     System.out.println(textPainter(bundle.getString("intro_0")));
-    System.out.println(
-      "\n" +
-        "  __        __        __   __   __        __      \n" +
-        " /    /    /    /| ||/  | /    /  | /|/| /  | /| |\n" +
-        "(___ (    (___ ( | ||   |(___ (___|( / |(___|( | |\n" +
-        "    )|   )|    | | )|   )|    |\\   |   )|   )| | )\n" +
-        " __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ \n" +
-        "                                                  \n");
+//    System.out.println(
+//      "\n" +
+//        "  __        __        __   __   __        __      \n" +
+//        " /    /    /    /| ||/  | /    /  | /|/| /  | /| |\n" +
+//        "(___ (    (___ ( | ||   |(___ (___|( / |(___|( | |\n" +
+//        "    )|   )|    | | )|   )|    |\\   |   )|   )| | )\n" +
+//        " __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ \n" +
+//        "                                                  \n");
 
     System.out.println("Please enter your name to start your journey...");
     setPlayerName(scanner.nextLine());
     System.out.println("Your name has been set to " + getPlayerName() + " ... good luck.");
+<<<<<<< HEAD
     Music.gameSingleMusic(new File("field.wav"));
+=======
+//    Music.gameSingleMusic(new File("gameIntro.wav"));
+    Music introMusic= new Music(new File("gameIntro.wav"));
+    introMusic.play();
+>>>>>>> 584ec907c33910e5b4ff14654f7afc0067e0de6f
 
-    Thread.sleep(introDelayQuick);
+//    Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_1")));
     Sound.play(new File("./Speech/Introduction/I_intro1.mp3"));
 //    Thread.sleep(introDelayQuick);
@@ -75,8 +81,7 @@ public class Introduction {
     System.out.println(textPainter(bundle.getString("intro_13")));
     Sound.play(new File("./Speech/Introduction/I_intro13.mp3"));
 
-    Thread.sleep(introDelayQuick);
-
+//    Thread.sleep(introDelayQuick);
   }
   /**
    * Coloring the fonts

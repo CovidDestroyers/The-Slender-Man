@@ -20,6 +20,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
 public class Console extends JFrame implements ActionListener {
+//  private JEditorPane imageLeft;
+//  private JEditorPane imageCenter;
+  static JEditorPane imageRight, imageLeft, imageCenter;
   JTextField tfIn;
   JLabel lblOut;
   static JTextArea mapArea,outText;
@@ -38,7 +41,7 @@ public class Console extends JFrame implements ActionListener {
 
   PrintWriter inWriter;
 
-  public Console(Game game) {
+  public Console(Game game) throws InterruptedException {
     super("SlenderMan");
     setFocusable(true);
 
@@ -51,9 +54,52 @@ public class Console extends JFrame implements ActionListener {
       return;
     }
 
-    JPanel panel = new JPanel(new BorderLayout());
+    JPanel mainPanel = new JPanel(new BorderLayout());
+    JPanel northPanel = new JPanel(new BorderLayout());
 
-    outText = new JTextArea(35, 80);
+    String forestScene =
+          "<pre color='green'>               ,@@@@@@@,</pre>"
+        + "<pre color='green'>       ,,,.   ,@@@@@@/@@,  .oo8888o.</pre>"
+        + "<pre color='green'>    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o</pre>"
+        + "<pre color='green'>   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'</pre>"
+        + "<pre color='green'>   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'</pre>"
+        + "<pre color='green'>   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'</pre>"
+        + "<pre color='green'>   `&%\\ ` /%&'    |.|        \\ '|8'</pre>"
+        + "<pre color='red'>       |o|        | |         | |</pre>"
+        + "<pre color='red'>       |.|        | |         | |</pre>"
+        + "<pre color='green'>k*s \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_</pre>";
+
+
+
+    // setting component in right
+    imageRight = new JEditorPane();
+    imageRight.setBackground(Color.BLACK);
+    imageRight.setContentType("text/html");
+//    imageRight.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+    imageRight.setText(forestScene);
+
+
+    //  setting component in left
+    imageLeft = new JEditorPane();
+    imageLeft.setBackground(Color.BLACK);
+    imageLeft.setContentType("text/html");
+    imageLeft.setText(forestScene);
+
+    // setting component in center
+    imageCenter = new JEditorPane();
+    imageCenter.setBackground(Color.BLACK);
+    imageCenter.setContentType("text/html");
+//    imageCenter.setText(introduction);
+    imageCenter.setMaximumSize(new Dimension(40,40));
+
+
+    // adding component to top part of frame => main panel
+    northPanel.add(imageRight, BorderLayout.EAST);
+    northPanel.add(imageLeft, BorderLayout.WEST);
+//    northPanel.add(imageCenter, BorderLayout.NORTH);
+
+
+    outText = new JTextArea(30, 80);
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
@@ -62,7 +108,10 @@ public class Console extends JFrame implements ActionListener {
     mapArea.setBackground(Color.BLACK);
     mapArea.setForeground(Color.YELLOW);
     mapArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
-    panel.add(mapArea,BorderLayout.NORTH);
+    northPanel.add(mapArea,BorderLayout.CENTER);
+
+    // adding component to main panel
+    mainPanel.add(northPanel, BorderLayout.NORTH);
 
 //    mapArea.setText(SceneImage.printForest());
 
@@ -73,7 +122,9 @@ public class Console extends JFrame implements ActionListener {
             JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-    panel.add(scroll, BorderLayout.CENTER);
+
+
+    mainPanel.add(scroll, BorderLayout.CENTER);
 
     System.setOut(
         new PrintStream(
@@ -91,14 +142,16 @@ public class Console extends JFrame implements ActionListener {
 
     tfIn.setToolTipText("Please type your command here (such as go *direction* or quit) and then press ENTER/RETURN on your keyboard");
 
-    panel.add(tfIn, BorderLayout.SOUTH);
-    add(panel);
+    mainPanel.add(tfIn, BorderLayout.SOUTH);
+
+    // main panel is getting added to frame
+    add(mainPanel);
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    setSize(1300, 1000);
+    setSize(1500, 1000);
     setVisible(true);
-    loadImage();
+//    loadImage(); // not preferred
 
     new SwingWorker<Void, String>() {
       protected Void doInBackground() throws Exception {
@@ -119,6 +172,9 @@ public class Console extends JFrame implements ActionListener {
   //Update maps in the mapPanel with game progression
   public static void updateMap(String sceneName){
     mapArea.setText(String.valueOf(SceneImage.sceneMap.get(sceneName)));
+  }
+  public static void updateImage(String imageName) {
+    imageRight.setText(imageName);
   }
 
   //Clear screen static method

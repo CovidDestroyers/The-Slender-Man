@@ -5,6 +5,7 @@ import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
 import com.slenderman.music.Music;
+import com.slenderman.tools.Sound;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -65,12 +66,14 @@ public class House extends Scene {
 
 
 
+
       introToHouse();
 
 
       Thread.sleep(1000);
 
       houseInView();
+
       Thread.sleep(1000);
 
       inHouse();
@@ -138,23 +141,20 @@ public class House extends Scene {
     try {
       System.out.println(textPainter(bundle.getString("houseInView_0")));
       Thread.sleep(1000);
-      System.out.println(
-          "\n"
-              + "                                   /\\\n"
-              + "                              /\\  //\\\\\n"
-              + "                       /\\    //\\\\///\\\\\\        /\\\n"
-              + "                      //\\\\  ///\\////\\\\\\\\  /\\  //\\\\\n"
-              + "         /\\          /  ^ \\/^ ^/^  ^  ^ \\/^ \\/  ^ \\\n"
-              + "        / ^\\    /\\  / ^   /  ^/ ^ ^ ^   ^\\ ^/  ^^  \\\n"
-              + "       /^   \\  / ^\\/ ^ ^   ^ / ^  ^    ^  \\/ ^   ^  \\       *\n"
-              + "      /  ^ ^ \\/^  ^\\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \\     /|\\\n"
-              + "     / ^ ^  ^ \\ ^  _\\___________________|  |_____^ ^  \\   /||o\\\n"
-              + "    / ^^  ^ ^ ^\\  /______________________________\\ ^ ^ \\ /|o|||\\\n"
-              + "   /  ^  ^^ ^ ^  /________________________________\\  ^  /|||||o|\\\n"
-              + "  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||\\\n"
-              + " / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |\n"
-              + "/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo\n"
-              + "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+
+      String house =
+          "<pre color='green'>          /\\ "+
+          "<pre color='green'>         / ^\\    /\\ "+
+          "<pre color='green'>        /^   \\  / ^\\                                          *"+
+          "<pre color='green'>       /  ^ ^ \\/^  ^\\                    ____                /|\\"+
+          "<pre color='green'>      / ^ ^  ^ \\ ^  _\\___________________|  |_____          /||o\\"+
+          "<pre color='green'>     / ^^  ^ ^ ^\\  /______________________________\\        /|o|||\\"+
+          "<pre color='green'>    /  ^  ^^ ^ ^  /________________________________\\       /|||||o|\\"+
+          "<pre color='yellow'>  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||         /||o||||||\\"+
+          "<pre color='yellow'> / ^   ^   ^    ^  ||___|___||||||||||||___|__|||             | |"+
+          "<pre color='green'> / ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||ooooooooooooo| |ooooooo";
+
+      Console.updateImage(house);
 
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("houseInView_2")));
@@ -247,9 +247,10 @@ public class House extends Scene {
       System.out.println(textPainter(bundle.getString("atTable_1")));
       Thread.sleep(1000);
       displayStories("atTable_2");
+      Sound.play(new File("./Speech/House/BoxNote1.mp3"));
       displayStories("atTable_3");
-
-      Thread.sleep(6000);
+      Sound.play(new File("./Speech/House/BoxNote2.mp3"));
+//      Thread.sleep(6000);
     } catch (Exception e) {
       e.printStackTrace();
     }

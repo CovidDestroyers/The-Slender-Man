@@ -4,6 +4,7 @@ import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
 import com.slenderman.music.Music;
 
+import javax.sound.sampled.Clip;
 import java.io.File;
 import java.text.MessageFormat;
 import java.util.Locale;
@@ -45,38 +46,36 @@ public class Forest extends Scene {
 
   public void enter(Scanner in, Player player) throws Exception {
     Console.updateMap(this.getSceneName());
+<<<<<<< HEAD
 
     Music music = new Music();
     music.gameMusic(new File("ScaryMusic.wav"));
 
+=======
+//    Clip clip=Music.gameMusic(new File("ScaryMusic.wav"));
+    Music playbackMusic= new Music(new File("ScaryMusic.wav"));
+    playbackMusic.playInLoop();
+>>>>>>> 584ec907c33910e5b4ff14654f7afc0067e0de6f
     Console.clearScreen();
 
 
+//    System.out.println(
+//      "               ,@@@@@@@,\n"
+//        + "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n"
+//        + "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n"
+//        + "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n"
+//        + "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n"
+//        + "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n"
+//        + "   `&%\\ ` /%&'    |.|        \\ '|8'\n"
+//        + "       |o|        | |         | |\n"
+//        + "       |.|        | |         | |\n"
+//        + "jgs \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_\n"
+//        + "\n"
+//        + "------------------------------------------------\n");
 
-
-
-
-
-    System.out.println(
-      "               ,@@@@@@@,\n"
-        + "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n"
-        + "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n"
-        + "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n"
-        + "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n"
-        + "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n"
-        + "   `&%\\ ` /%&'    |.|        \\ '|8'\n"
-        + "       |o|        | |         | |\n"
-        + "       |.|        | |         | |\n"
-        + "jgs \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_\n"
-        + "\n"
-        + "------------------------------------------------\n");
     displayStories("forest");
   }
 
-//  @Override
-//  public void enter(Scanner in, Player player, Music music) throws Exception {
-//
-//  }
 
   /**
    * Coloring the fonts

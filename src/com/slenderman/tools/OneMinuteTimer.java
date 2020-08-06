@@ -22,7 +22,7 @@ public class OneMinuteTimer {
     public void run() {
 //      toolkit.beep();
       SlenderMan.moveCloserToPlayer();
-//      Sound.play(new File("vampire-hiss.wav"));
+      Sound.play(new File("vampire-hiss.wav"));
     }
   }
 }

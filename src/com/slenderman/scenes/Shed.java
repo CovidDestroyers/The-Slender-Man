@@ -5,6 +5,7 @@ import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.game.Console;
 import com.slenderman.music.Music;
+import com.slenderman.tools.Sound;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -70,7 +71,6 @@ public class Shed extends Scene {
     this.player = player;
 
     choice = in;
-    Music music = new Music();
     Console.updateMap(this.getSceneName());
 
 
@@ -131,6 +131,8 @@ public class Shed extends Scene {
     Thread.sleep(2000);
     displayStories("grabShinyThingYes_Note");
 
+    Sound.play(new File("./Speech/Shed/note.mp3"));
+
     exitShed();
   }
 
@@ -139,7 +141,7 @@ public class Shed extends Scene {
     player.addItemToInventory(Key);
     getItemsInScene().remove(Key);
 
-    Thread.sleep(10000);
+    Thread.sleep(2000);
     System.out.println(textPainter(bundle.getString("exitShed_0")));
     Thread.sleep(2000);
     System.out.println(textPainter(bundle.getString("exitShed_1")));
