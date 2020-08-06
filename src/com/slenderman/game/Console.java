@@ -148,6 +148,8 @@ class Console extends JFrame implements ActionListener {
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+    outText.setLineWrap(true);
+    outText.setWrapStyleWord(true);
 
     //This prevents users from deleting text from this JTextArea
     outText.setEditable(false);
