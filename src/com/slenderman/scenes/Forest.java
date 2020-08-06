@@ -45,8 +45,10 @@ public class Forest extends Scene {
 
   public void enter(Scanner in, Player player) throws Exception {
     Console.updateMap(this.getSceneName());
+
     Music music = new Music();
     music.gameMusic(new File("ScaryMusic.wav"));
+
     Console.clearScreen();
 
 

@@ -38,7 +38,7 @@ public class Introduction {
     System.out.println("Please enter your name to start your journey...");
     setPlayerName(scanner.nextLine());
     System.out.println("Your name has been set to " + getPlayerName() + " ... good luck.");
-    Music.gameSingleMusic(new File("gameIntro.wav"));
+    Music.gameSingleMusic(new File("field.wav"));
 
     Thread.sleep(introDelayQuick);
     System.out.println(textPainter(bundle.getString("intro_1")));

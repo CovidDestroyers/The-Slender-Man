@@ -37,10 +37,16 @@ public class Music  {
 
       AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);
       Clip clip = AudioSystem.getClip();
+
       clip.open(audioInput);
+//      FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+//      gainControl.setValue(-20.0f);
+
       clip.start();
+
       //Below thing will loop continuous
       clip.loop(Clip.LOOP_CONTINUOUSLY);
+
 
       Thread.sleep(clip.getMicrosecondLength() / 10000);
 
