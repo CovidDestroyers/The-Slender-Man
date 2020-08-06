@@ -1,6 +1,5 @@
 package com.slenderman.game;
 
-import com.slenderman.scenes.Scene;
 import com.slenderman.scenes.SceneImage;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,11 +19,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
 public class Console extends JFrame implements ActionListener {
-//  private JEditorPane imageLeft;
-//  private JEditorPane imageCenter;
   static JEditorPane imageRight, imageLeft, imageCenter;
   JTextField tfIn;
-  JLabel lblOut;
   static JTextArea mapArea,outText;
 
   BufferedImage axe1Img;
@@ -41,7 +37,7 @@ public class Console extends JFrame implements ActionListener {
 
   PrintWriter inWriter;
 
-  public Console(Game game) throws InterruptedException {
+  public Console(Game game) {
     super("SlenderMan");
     setFocusable(true);
 
@@ -69,15 +65,11 @@ public class Console extends JFrame implements ActionListener {
         + "<pre color='red'>       |.|        | |         | |</pre>"
         + "<pre color='green'>k*s \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_</pre>";
 
-
-
     // setting component in right
     imageRight = new JEditorPane();
     imageRight.setBackground(Color.BLACK);
     imageRight.setContentType("text/html");
-//    imageRight.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
     imageRight.setText(forestScene);
-
 
     //  setting component in left
     imageLeft = new JEditorPane();
@@ -89,15 +81,11 @@ public class Console extends JFrame implements ActionListener {
     imageCenter = new JEditorPane();
     imageCenter.setBackground(Color.BLACK);
     imageCenter.setContentType("text/html");
-//    imageCenter.setText(introduction);
     imageCenter.setMaximumSize(new Dimension(40,40));
-
 
     // adding component to top part of frame => main panel
     northPanel.add(imageRight, BorderLayout.EAST);
     northPanel.add(imageLeft, BorderLayout.WEST);
-//    northPanel.add(imageCenter, BorderLayout.NORTH);
-
 
     outText = new JTextArea(30, 80);
     outText.setBackground(Color.BLACK);
@@ -109,20 +97,14 @@ public class Console extends JFrame implements ActionListener {
     mapArea.setForeground(Color.YELLOW);
     mapArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
     northPanel.add(mapArea,BorderLayout.CENTER);
-
     // adding component to main panel
     mainPanel.add(northPanel, BorderLayout.NORTH);
-
-//    mapArea.setText(SceneImage.printForest());
-
 
     JScrollPane scroll =
         new JScrollPane(
             outText,
             JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-
 
     mainPanel.add(scroll, BorderLayout.CENTER);
 
@@ -151,7 +133,6 @@ public class Console extends JFrame implements ActionListener {
 
     setSize(1500, 1000);
     setVisible(true);
-//    loadImage(); // not preferred
 
     new SwingWorker<Void, String>() {
       protected Void doInBackground() throws Exception {
@@ -168,7 +149,6 @@ public class Console extends JFrame implements ActionListener {
 
   }
 
-
   //Update maps in the mapPanel with game progression
   public static void updateMap(String sceneName){
     mapArea.setText(String.valueOf(SceneImage.sceneMap.get(sceneName)));
@@ -182,7 +162,6 @@ public class Console extends JFrame implements ActionListener {
     outText.setText("");
   }
 
-
   @Override
   public void actionPerformed(ActionEvent e) {
     String text = tfIn.getText();
@@ -190,7 +169,6 @@ public class Console extends JFrame implements ActionListener {
 
     inWriter.println(text);
   }
-
 
   //TODO: ActionPerformed Event Listener is triggering second thread run; need further study to solve it
   public void loadImage() {
