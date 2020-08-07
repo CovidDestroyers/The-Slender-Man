@@ -66,19 +66,20 @@ public class House extends Scene {
     try {
       Console.updateMap(this.getSceneName());
       Console.clearScreen();
-      String house =
-        "<pre color='blue'>          /\\ "+
-          "<pre color='blue'>         / ^\\    /\\ "+
-          "<pre color='blue'>        /^   \\  / ^\\                                          *"+
-          "<pre color='blue'>       /  ^ ^ \\/^  ^\\                    ____                /|\\"+
-          "<pre color='blue'>      / ^ ^  ^ \\ ^  _\\___________________|  |_____          /||o\\"+
-          "<pre color='blue'>     / ^^  ^ ^ ^\\  /______________________________\\        /|o|||\\"+
-          "<pre color='blue'>    /  ^  ^^ ^ ^  /________________________________\\       /|||||o|\\"+
-          "<pre color='blue'>  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||         /||o||||||\\"+
-          "<pre color='blue'> / ^   ^   ^    ^  ||___|___||||||||||||___|__|||             | |"+
-          "<pre color='blue'> / ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||ooooooooooooo| |ooooooo";
+      String houseFirst =
+          "<pre color='blue'>          /\\</pre>"+
+          "<pre color='blue'>         / ^\\    /\\</pre>"+
+          "<pre color='blue'>        /^   \\  / ^\\                                            *</pre>"+
+          "<pre color='blue'>       /  ^ ^ \\/^  ^\\                    ____                  /|\\</pre>"+
+          "<pre color='blue'>      / ^ ^  ^ \\ ^  _\\___________________|  |_____            /||o\\</pre>"+
+          "<pre color='blue'>     / ^^  ^ ^ ^\\  /______________________________\\          /|o|||\\</pre>"+
+          "<pre color='blue'>    /  ^  ^^ ^ ^  /________________________________\\        /|||||o|\\</pre>"+
+          "<pre color='blue'>   /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||         /||o||||||\\</pre>"+
+          "<pre color='blue'>  / ^   ^   ^    ^  ||___|___||||||||||||___|__|||             | |</pre>"+
+          "<pre color='blue'> / ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||ooooooooooooo| |oooo</pre>";
 
-      Console.updateImage(house);
+
+      Console.updateImage(houseFirst);
       System.out.println(textPainter(bundle.getString("introToHouse_0")));
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("introToHouse_1")));
@@ -123,19 +124,19 @@ public class House extends Scene {
       Thread.sleep(1000);
 
 
-      String house =
-        "<pre color='green'>          /\\ "+
-          "<pre color='green'>         / ^\\    /\\ "+
-          "<pre color='green'>        /^   \\  / ^\\                                          *"+
-          "<pre color='green'>       /  ^ ^ \\/^  ^\\                    ____                /|\\"+
-          "<pre color='green'>      / ^ ^  ^ \\ ^  _\\___________________|  |_____          /||o\\"+
-          "<pre color='green'>     / ^^  ^ ^ ^\\  /______________________________\\        /|o|||\\"+
-          "<pre color='green'>    /  ^  ^^ ^ ^  /________________________________\\       /|||||o|\\"+
-          "<pre color='green'>  /^ ^  ^ ^^  ^    ||<em color='yellow'>___</em>|___||||||||||||___|__|||         /||o||||||\\"+
-          "<pre color='green'> / ^   ^   ^    ^  |<em color='yellow'>|___|</em>___||||||||||||___|__|||             | |"+
-          "<pre color='green'> / ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||ooooooooooooo| |ooooooo";
+      String houseSecond =
+          "<pre color='green'>          /\\</pre>"+
+          "<pre color='green'>         / ^\\    /\\</pre>"+
+          "<pre color='green'>        /^   \\  / ^\\                                            *</pre>"+
+          "<pre color='green'>       /  ^ ^ \\/^  ^\\                    ____                  /|\\</pre>"+
+          "<pre color='green'>      / ^ ^  ^ \\ ^  _\\___________________|  |_____            /||o\\</pre>"+
+          "<pre color='green'>     / ^^  ^ ^ ^\\  /______________________________\\          /|o|||\\</pre>"+
+          "<pre color='green'>    /  ^  ^^ ^ ^  /________________________________\\        /|||||o|\\</pre>"+
+          "<pre color='green'>   /^ ^  ^ ^^  ^    ||<em color='yellow'>___</em>|___||||||||||||___|__|||         /||o||||||\\</pre>"+
+          "<pre color='green'>  / ^   ^   ^    ^  |<em color='yellow'>|___|</em>___||||||||||||___|__|||             | |</pre>"+
+          "<pre color='green'> / ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||ooooooooooooo| |oooo</pre>";
 
-      Console.updateImage(house);
+      Console.updateImage(houseSecond);
 
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("houseInView_2")));

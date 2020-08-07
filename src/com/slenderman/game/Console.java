@@ -4,14 +4,10 @@ import com.slenderman.scenes.SceneImage;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Scanner;
 import javax.swing.*;
-
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -22,15 +18,6 @@ public class Console extends JFrame implements ActionListener {
   static JEditorPane imageRight, imageLeft, imageCenter;
   JTextField tfIn;
   static JTextArea mapArea,outText;
-
-  BufferedImage axe1Img;
-  BufferedImage axe2Img;
-  BufferedImage axe3Img;
-  BufferedImage axe4Img;
-  BufferedImage axe5Img;
-  BufferedImage axe6Img;
-  BufferedImage axe7Img;
-  BufferedImage axe8Img;
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
@@ -65,7 +52,10 @@ public class Console extends JFrame implements ActionListener {
         + "<pre color='red'>       |.|        | |         | |</pre>"
         + "<pre color='green'>k*s \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_</pre>";
 
-    // setting component in right
+
+
+
+      // setting component in right
     imageRight = new JEditorPane();
     imageRight.setBackground(Color.BLACK);
     imageRight.setContentType("text/html");
@@ -76,14 +66,6 @@ public class Console extends JFrame implements ActionListener {
     imageLeft.setBackground(Color.BLACK);
     imageLeft.setContentType("text/html");
     imageLeft.setText(forestScene);
-
-    // setting component in center
-    imageCenter = new JEditorPane();
-    imageCenter.setBackground(Color.BLACK);
-    imageCenter.setContentType("text/html");
-
-    imageCenter.setMaximumSize(new Dimension(40,40));
-
 
     // adding component to top part of frame => main panel
     northPanel.add(imageRight, BorderLayout.EAST);
@@ -99,6 +81,7 @@ public class Console extends JFrame implements ActionListener {
     mapArea.setForeground(Color.YELLOW);
     mapArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
     northPanel.add(mapArea,BorderLayout.CENTER);
+
     // adding component to main panel
     mainPanel.add(northPanel, BorderLayout.NORTH);
 
@@ -155,6 +138,10 @@ public class Console extends JFrame implements ActionListener {
   public static void updateMap(String sceneName){
     mapArea.setText(String.valueOf(SceneImage.sceneMap.get(sceneName)));
   }
+  public static void updateIntro(String string) {
+    mapArea.setText(string);
+  }
+
   public static void updateImage(String imageName) {
     imageRight.setText(imageName);
   }
