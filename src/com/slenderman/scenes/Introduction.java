@@ -74,10 +74,6 @@ public class Introduction extends Scene {
    * @return
    */
 
-  public long skipIntro(){
-    sleep = 0;
-    return sleep;
-  }
 
   private static String textPainter(String text) {
     return MessageFormat.format(

@@ -127,7 +127,11 @@ public abstract class Scene {
   }
 
   public long skipIntro(){
-      sleep = 500;
+      sleep = 300;
+    return 0;
+  }
+  public long returnOriginalSpeed(){
+    sleep = 3000;
     return 0;
   }
 

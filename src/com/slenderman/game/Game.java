@@ -40,7 +40,7 @@ public final class Game{
   private final Scene aCave;
   private final Scene aField;
   private final Scene LoseGameScene;
-//  private int sleep = 2000;
+  //  private int sleep = 2000;
   public static boolean isPlayerAlive;
 
   private final Player Player;
@@ -101,7 +101,7 @@ public final class Game{
       gameOptions(in);
     }
   }
-//Gives user option to dictate how long game lasts by setting gameDifficultyTimer to specific value;
+  //Gives user option to dictate how long game lasts by setting gameDifficultyTimer to specific value;
   public void gameDifficulty(Scanner in){
     System.out.println("What level of difficulty would you like?");
     System.out.println(" Easy\n Medium\n Hard");
@@ -145,7 +145,7 @@ public final class Game{
       assert userInput != null;
       userInputCommands(userInput, in);
       if(!InputCommands.getPlayerMovement().contains(userInput[0]))
-        {
+      {
         System.out.println("Unknown command '" + userText + "'.  Try movement + direction. Or Quit\n");
       }
       winCondition();
