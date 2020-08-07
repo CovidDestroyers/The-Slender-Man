@@ -230,8 +230,12 @@ public final class Game{
     return currentScene;
   }
 
-  public com.slenderman.actors.Player getPlayer() {
+  public Player getPlayer() {
     return Player;
+  }
+
+  public Scene getaHouse() {
+    return aHouse;
   }
 
   public void setDisableIntroduction(boolean disableIntroduction) {

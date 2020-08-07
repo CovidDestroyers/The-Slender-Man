@@ -3,6 +3,7 @@ package com.slenderman.game;
 import com.slenderman.actors.Player;
 import com.slenderman.scenes.House;
 import com.slenderman.scenes.Introduction;
+import com.slenderman.scenes.Scene;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -68,10 +69,13 @@ class Console extends JFrame implements ActionListener {
     instructions.add(musicOptions);
 
     //Would like to change the sleep values with the click of a button
-    JButton speed = new JButton("Speed Up");
-    speed.setBounds(0, 0, 95, 30);
+    JButton speed = new JButton("Text Speed +");
+    speed.setPreferredSize(new Dimension(110, 30));
     instructions.add(speed);
 
+    JButton speedDown = new JButton("Text Speed -");
+    speedDown.setPreferredSize(new Dimension(110, 30));
+    instructions.add(speedDown);
 
     //TODO actionPerformed uses deprecated method, ticket id 200.
 
@@ -82,16 +86,28 @@ class Console extends JFrame implements ActionListener {
       }
     });
 
-    //Speed up the intro...
+    //Speed up the intro...and all other text scenes
     speed.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         Introduction introduction = new Introduction();
-        House house = new House();
         introduction.skipIntro();
-        house.skipIntro();
       }
     });
+
+    speedDown.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Introduction introduction = new Introduction();
+        introduction.returnOriginalSpeed();
+      }
+    });
+
+
+    addKeyListener(new MKeyListener());
+
+
+
 
     //end of music panel
 
@@ -258,5 +274,25 @@ class Console extends JFrame implements ActionListener {
     tfIn.setText("");
     inWriter.println(text);
     clicked = true;
+  }
+}
+class MKeyListener extends KeyAdapter {
+
+  @Override
+  public void keyPressed(KeyEvent event) {
+
+    char ch = event.getKeyChar();
+
+    if (ch == 'a' ||ch == 'b'||ch == 'c' ) {
+
+      System.out.println(event.getKeyChar());
+
+    }
+
+    if (event.getKeyCode() == KeyEvent.VK_HOME) {
+
+      System.out.println("Key codes: " + event.getKeyCode());
+
+    }
   }
 }
