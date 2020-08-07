@@ -3,8 +3,10 @@ package com.slenderman.tools;
 import com.slenderman.actors.SlenderMan;
 import com.slenderman.game.Game;
 import com.slenderman.musicplayer.SimplePlayer;
+import javazoom.jl.decoder.JavaLayerException;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,7 +14,7 @@ public class OneMinuteTimer {
   Toolkit toolkit;
   Timer timer = new Timer();
 
-  public void oneMinuteUp() {
+  public void oneMinuteUp(){
     if(Game.isPlayerAlive) {
       SlenderMan.moveCloserToPlayer();
       scream();

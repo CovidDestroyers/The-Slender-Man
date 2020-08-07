@@ -14,8 +14,7 @@ import com.slenderman.scenes.Scene;
 import com.slenderman.scenes.Shed;
 import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
-import com.slendermand.inputcommands.InputCommands;
-
+import com.slenderman.inputcommands.InputCommands;
 import javax.swing.*;
 import java.util.Objects;
 import java.util.Scanner;
@@ -28,9 +27,6 @@ import java.util.Scanner;
  */
 public final class Game{
   String userText = "";
-  Scanner scanner = new Scanner(System.in);
-
-  // For Unit Testing Purpose //
 
   private boolean disableIntroduction = false;
 //  private boolean disableIntroduction = true;
@@ -52,7 +48,6 @@ public final class Game{
   private final Player Player;
 
   public static volatile boolean isRunning = true;
-//  public AtomicBoolean running = new AtomicBoolean(true);
 
 
 
@@ -109,7 +104,6 @@ public final class Game{
   public void start(Scanner in) throws InterruptedException {
 
     // For Unit Testing purpose
-//    gameOptions(in);
     if (!disableIntroduction) {
       Introduction.playIntro();
 
@@ -247,9 +241,8 @@ public final class Game{
   Thread thread2 = new Thread(() -> {
     try {
       Thread.sleep(1500);
-      while(!SlenderMan.isGameDone)
-      {
-        SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
+      while(!SlenderMan.isGameDone){
+          SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
       }
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
