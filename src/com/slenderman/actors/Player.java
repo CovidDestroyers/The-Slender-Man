@@ -12,7 +12,7 @@ public class Player {
   public final int TOTAL_NUM_ITEMS_TO_FINISH_GAME = 6;
 
   private String state = "alive";
-  private String currentSceneName = "forest";
+  private String currentSceneName = "introduction";
   PropertyChangeSupport pcs = new PropertyChangeSupport(this);
   private List<Item> inventory = new ArrayList<>();
 

@@ -19,9 +19,7 @@ import javax.swing.border.Border;
 
 class Console extends JFrame implements ActionListener {
   JTextField tfIn;
-  JLabel lblOut;
   JTextArea outText;
-  JButton enableMusic, disableMusic;
   Player player = new Player();
   public Game game;
 
@@ -102,12 +100,6 @@ class Console extends JFrame implements ActionListener {
         introduction.returnOriginalSpeed();
       }
     });
-
-
-    addKeyListener(new MKeyListener());
-
-
-
 
     //end of music panel
 
@@ -207,7 +199,9 @@ class Console extends JFrame implements ActionListener {
     tfIn = new JTextField();
     //trying placeholder here
     tfIn.setText("Enter Game Commands Here");
-    tfIn.addMouseListener(new MouseAdapter() {
+
+
+    tfIn.addMouseListener(new MouseAdapter(){
       @Override
       public void mousePressed(MouseEvent e) {
         if (!clicked) {
@@ -255,13 +249,22 @@ class Console extends JFrame implements ActionListener {
         outText.setForeground(Color.GREEN);
         break;
       case "house":
-        outText.setForeground(Color.YELLOW);
+        outText.setForeground(Color.RED);
         break;
       case "shed":
-        outText.setForeground(Color.ORANGE);
+        outText.setForeground(Color.PINK);
         break;
       case "cave":
         outText.setForeground(Color.GRAY);
+        break;
+      case "pond":
+        outText.setForeground(Color.CYAN);
+        break;
+      case "field":
+        outText.setForeground(Color.ORANGE);
+        break;
+      case "tree":
+        outText.setForeground(Color.YELLOW);
         break;
       default:
         outText.setForeground(Color.RED);
@@ -274,25 +277,5 @@ class Console extends JFrame implements ActionListener {
     tfIn.setText("");
     inWriter.println(text);
     clicked = true;
-  }
-}
-class MKeyListener extends KeyAdapter {
-
-  @Override
-  public void keyPressed(KeyEvent event) {
-
-    char ch = event.getKeyChar();
-
-    if (ch == 'a' ||ch == 'b'||ch == 'c' ) {
-
-      System.out.println(event.getKeyChar());
-
-    }
-
-    if (event.getKeyCode() == KeyEvent.VK_HOME) {
-
-      System.out.println("Key codes: " + event.getKeyCode());
-
-    }
   }
 }
