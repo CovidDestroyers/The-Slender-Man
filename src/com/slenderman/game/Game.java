@@ -107,14 +107,18 @@ public final class Game{
     System.out.println("What level of difficulty would you like?");
     System.out.println(" Easy\n Medium\n Hard");
     userText = in.nextLine();
-    if("easy".equalsIgnoreCase(userText)){
+    if("easy".equalsIgnoreCase(userText) || "e".equalsIgnoreCase(userText)){
+
       gameDifficultyTimer = 10;
     }
-    if("medium".equalsIgnoreCase(userText)){
+    if("medium".equalsIgnoreCase(userText) || "m".equalsIgnoreCase(userText)){
       gameDifficultyTimer = 7;
     }
-    if("hard".equalsIgnoreCase(userText)){
+    if("hard".equalsIgnoreCase(userText) || "h".equalsIgnoreCase(userText)){
       gameDifficultyTimer = 5;
+    }
+    else{
+      gameDifficulty(in);
     }
   }
 
