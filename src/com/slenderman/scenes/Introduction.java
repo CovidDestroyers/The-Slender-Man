@@ -3,7 +3,6 @@ package com.slenderman.scenes;
 import com.slenderman.music.Music;
 import com.slenderman.tools.Sound;
 import com.slenderman.game.Console;
-//import java.io.Console;
 import java.io.File;
 import java.text.MessageFormat;
 import java.util.Locale;
@@ -23,7 +22,6 @@ public class Introduction {
     long introDelaySlow = 2500;
     Thread.sleep(introDelaySlow);
     System.out.println(textPainter(bundle.getString("intro_0")));
-
     System.out.println("Please enter your name to start your journey...");
     setPlayerName(scanner.nextLine());
     System.out.println("Your name has been set to " + getPlayerName() + " ... good luck.");
