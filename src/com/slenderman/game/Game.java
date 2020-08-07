@@ -145,7 +145,7 @@ public final class Game {
       "The SlenderMan notices you're progressing...\n" +
       "You have a " + finalResult + "% chance of him attacking you.\n"+
       "---------------------------------------------------------------------------------------------------\n");
-    Sound.play(new File("Vampire-hiss.wav"));
+    Sound.play(new File("./Music/Vampire-hiss.wav"));
   }
 
   private void winCondition() throws InterruptedException {

@@ -7,6 +7,7 @@ import com.slenderman.game.Console;
 import com.slenderman.tools.Sound;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -50,7 +51,7 @@ public class Shed extends Scene {
     inFrontOfShed();
   }
 
-  private void inFrontOfShed() throws InterruptedException {
+  private void inFrontOfShed() throws InterruptedException, FileNotFoundException {
     String choice;
 
     String shed =
@@ -85,12 +86,12 @@ public class Shed extends Scene {
     displayStories("goSomewhereElse");
   }
 
-  private void stepIntoTheShed() throws InterruptedException {
+  private void stepIntoTheShed() throws InterruptedException, FileNotFoundException {
     displayStories("stepIntoTheShed");
     takeShinyThingChoice();
   }
 
-  private void takeShinyThingChoice() throws InterruptedException {
+  private void takeShinyThingChoice() throws InterruptedException, FileNotFoundException {
     displayStories("takeShinyThingChoice");
     String choice = playerChoice().toUpperCase();
     if (choice.equals("Y")) {
@@ -103,7 +104,7 @@ public class Shed extends Scene {
     }
   }
 
-  private void grabShinyThingYes() throws InterruptedException {
+  private void grabShinyThingYes() throws InterruptedException, FileNotFoundException {
     System.out.println(textPainter(bundle.getString("grabShinyThingYes_0")));
     Thread.sleep(3000);
     System.out.println(textPainter(bundle.getString("grabShinyThingYes_1")));
