@@ -10,7 +10,7 @@ public class SoundTest {
 
   @Test
   public void playPositive() {
-    File file= new File("oneMinute.wav");
+    File file= new File("onestatusMinute.wav");
     Sound.play(file);
   }
 }
