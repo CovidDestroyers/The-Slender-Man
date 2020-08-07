@@ -28,7 +28,6 @@ public final class Game{
   String userText = "";
 
   private boolean disableIntroduction = false;
-//  private boolean disableIntroduction = true;
 
   private boolean reachedTree = false;
 
@@ -48,7 +47,7 @@ public final class Game{
   private final WinGame winGame = new WinGame();
 
 
-  private int gameDifficultyTimer;
+  public static int gameDifficultyTimer;
 
 
 
@@ -108,13 +107,12 @@ public final class Game{
     System.out.println(" Easy\n Medium\n Hard");
     userText = in.nextLine();
     if("easy".equalsIgnoreCase(userText) || "e".equalsIgnoreCase(userText)){
-
       gameDifficultyTimer = 10;
     }
-    if("medium".equalsIgnoreCase(userText) || "m".equalsIgnoreCase(userText)){
+    else if("medium".equalsIgnoreCase(userText) || "m".equalsIgnoreCase(userText)){
       gameDifficultyTimer = 7;
     }
-    if("hard".equalsIgnoreCase(userText) || "h".equalsIgnoreCase(userText)){
+    else if("hard".equalsIgnoreCase(userText) || "h".equalsIgnoreCase(userText)){
       gameDifficultyTimer = 5;
     }
     else{
@@ -168,7 +166,6 @@ public final class Game{
     this.disableIntroduction = disableIntroduction;
   }
 
-
   public void userInputCommands(String[] userInput, Scanner in){
     try {
       if (InputCommands.getPlayerMovement().contains(userInput[0])) {
@@ -182,7 +179,7 @@ public final class Game{
           System.out.println("Incorrect input");
         }
       } else if (InputCommands.getQuitGameCommands().contains(userInput[0])) {
-        System.out.println("Goodbye");
+        System.out.println("Thanks for playing!");
         Thread.sleep(3000);
         System.exit(0);
       }

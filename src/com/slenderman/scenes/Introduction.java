@@ -2,6 +2,7 @@ package com.slenderman.scenes;
 
 
 import com.slenderman.actors.Player;
+import com.slenderman.game.Game;
 
 import java.text.MessageFormat;
 import java.util.Locale;
@@ -81,6 +82,7 @@ public class Introduction extends Scene {
   private static String textPainter(String text) {
     return MessageFormat.format(
       text,
+      Game.gameDifficultyTimer,
       Scene.ANSI_GREEN,
       Scene.ANSI_BLUE,
       Scene.ANSI_RED,

@@ -1,7 +1,5 @@
 package com.slenderman.musicplayer;
 
-import com.slenderman.actors.SlenderMan;
-import com.slenderman.game.Game;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
