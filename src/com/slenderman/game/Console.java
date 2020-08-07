@@ -239,16 +239,16 @@ class Console extends JFrame implements ActionListener {
         outText.setForeground(Color.GREEN);
         break;
       case "house":
-        outText.setForeground(Color.BLUE);
+        outText.setForeground(Color.YELLOW);
         break;
       case "shed":
-        outText.setForeground(Color.MAGENTA);
+        outText.setForeground(Color.ORANGE);
         break;
       case "cave":
         outText.setForeground(Color.GRAY);
         break;
       default:
-        outText.setForeground(Color.WHITE);
+        outText.setForeground(Color.RED);
     }
   }
 
