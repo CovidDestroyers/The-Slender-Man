@@ -15,7 +15,8 @@ import com.slenderman.scenes.Shed;
 import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
 import com.slenderman.inputcommands.InputCommands;
-
+import javax.swing.*;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
