@@ -22,6 +22,7 @@ class Console extends JFrame implements ActionListener {
   JTextArea outText;
   JButton enableMusic, disableMusic;
   Player player = new Player();
+  public Game game;
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
@@ -33,7 +34,7 @@ class Console extends JFrame implements ActionListener {
   public Console(Game game) {
     super("SlenderMan");
     setFocusable(true);
-
+    this.game = game;
     System.setIn(inPipe);
 
     try {
@@ -116,8 +117,7 @@ class Console extends JFrame implements ActionListener {
 
     // Property change listener for inventory updates
     game.getPlayer().addPropertyChangeListener(evt -> {
-      System.out.println(evt);
-      if (evt.getPropertyName().equals("inventory")) {
+      if(evt.getPropertyName().equals("inventory")){
         inventoryPanel.removeAll();
         inventoryPanel.add(inventory.printInventory(game.getPlayer().getInventoryList()));
         locMapPanel.add(inventoryPanel, BorderLayout.SOUTH);
@@ -143,14 +143,13 @@ class Console extends JFrame implements ActionListener {
     });
 
 //    // TODO: CHANGE COLOR
-//    game.getPlayer().addPropertyChangeListener(evt -> {
-//      if (evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())) {
-//        repaint();
-//        changeColors(outText);
-//        revalidate();
-//        repaint();
-//      }
-//    });
+    game.getPlayer().addPropertyChangeListener(evt -> {
+      if (evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())) {
+        changeColors(outText);
+        revalidate();
+        repaint();
+      }
+    });
 
     int jColumns = 80;
     int jRows = 100;
@@ -234,25 +233,24 @@ class Console extends JFrame implements ActionListener {
   }
 
   //TODO: CHANGE COLOR
-//  public static void changeColors(JTextArea outText) throws NullPointerException{
-//    Player player = new Player();
-//    switch (player.getCurrentSceneName()) {
-//      case "forest":
-//        outText.setForeground(Color.GREEN);
-//        break;
-//      case "house":
-//        outText.setForeground(Color.BLUE);
-//        break;
-//      case "shed":
-//        outText.setForeground(Color.MAGENTA);
-//        break;
-//      case "cave":
-//        outText.setForeground(Color.BLACK);
-//        break;
-//      default:
-//        outText.setForeground(Color.WHITE);
-//    }
-//  }
+  public void changeColors(JTextArea outText) throws NullPointerException{
+    switch (game.getPlayer().getCurrentSceneName()) {
+      case "forest":
+        outText.setForeground(Color.GREEN);
+        break;
+      case "house":
+        outText.setForeground(Color.BLUE);
+        break;
+      case "shed":
+        outText.setForeground(Color.MAGENTA);
+        break;
+      case "cave":
+        outText.setForeground(Color.GRAY);
+        break;
+      default:
+        outText.setForeground(Color.WHITE);
+    }
+  }
 
   @Override
   public void actionPerformed(ActionEvent e) {
