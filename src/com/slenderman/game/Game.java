@@ -47,8 +47,6 @@ public final class Game{
 
   private final Player Player;
 
-  public static volatile boolean isRunning = true;
-
 
 
 
@@ -102,26 +100,21 @@ public final class Game{
   }
 
   public void start(Scanner in) throws InterruptedException {
-
     // For Unit Testing purpose
     if (!disableIntroduction) {
       Introduction.playIntro();
-
       new LoseGameTimer().gameTimer(10);
       new OneMinuteTimer().startOneTimer();
     }
     currentScene = aForest;
     Player.setCurrentSceneName(currentScene.getSceneName());
     currentScene.enter(in, Player);
-
     while (true) {
       String[] userInput = null;
       if (!SlenderMan.isGameDone) {
         userText = in.nextLine().toLowerCase().trim();
-        //
         //Do a global search for non-word characters in a string (w3schools.com)
         userInput = userText.split("\\W");
-
       } else {
         currentScene = LoseGameScene;
         Player.setCurrentSceneName(currentScene.getSceneName());
@@ -129,46 +122,12 @@ public final class Game{
         currentScene.enter(in, Player);
       }
       assert userInput != null;
-    try {
-      if (InputCommands.getPlayerMovement().contains(userInput[0])) {
-        if (InputCommands.getPlayerDirection().contains(userInput[1])) {
-          System.out.println(userInput[1]);
-          currentScene = currentScene.changeScene(userInput[1]);
-          Player.setCurrentSceneName(currentScene.getSceneName());
-          Player.changeInvItemsLocation();
-          currentScene.enter(in, Player);
-        } else {
-          System.out.println("Incorrect input");
-        }
-      } else if (InputCommands.getQuitGameCommands().contains(userInput[0])) {
-        System.out.println("Goodbye");
-        Thread.sleep(3000);
-        System.exit(0);
-      }
-    } catch(Exception e){
-      System.out.println("Invalid input");
-    }
-
-      if(!userText.startsWith("go "))
+      userInputCommands(userInput, in);
+      if(!InputCommands.getPlayerMovement().contains(userInput[0]))
         {
         System.out.println("Unknown command '" + userText + "'.  Try movement + direction. Or Quit\n");
       }
-
-      // For Unit Testing purpose
-      if (disableIntroduction) {
-        if (reachedTree) {
-          winMessage();
-        }
-        reachedTree = (currentScene == aTree);
-      }
-      // Not unit testing mode
-      else {
-        if (currentScene == aTree) {
-          if (Player.getNumItemsPlayerHas() >= Player.TOTAL_NUM_ITEMS_TO_FINISH_GAME) {
-            winMessage();
-          }
-        }
-      }
+      winCondition();
     }
   }
 
@@ -245,6 +204,48 @@ public final class Game{
     }
 
   });
+
+
+  public void userInputCommands(String[] userInput, Scanner in){
+    try {
+      if (InputCommands.getPlayerMovement().contains(userInput[0])) {
+        if (InputCommands.getPlayerDirection().contains(userInput[1])) {
+          System.out.println(userInput[1]);
+          currentScene = currentScene.changeScene(userInput[1]);
+          Player.setCurrentSceneName(currentScene.getSceneName());
+          Player.changeInvItemsLocation();
+          currentScene.enter(in, Player);
+        } else {
+          System.out.println("Incorrect input");
+        }
+      } else if (InputCommands.getQuitGameCommands().contains(userInput[0])) {
+        System.out.println("Goodbye");
+        Thread.sleep(3000);
+        System.exit(0);
+      }
+    } catch(Exception e){
+      System.out.println("Invalid input");
+    }
+  }
+
+  public void winCondition() throws InterruptedException {
+    // For Unit Testing purpose
+    if (disableIntroduction) {
+      if (reachedTree) {
+        winMessage();
+      }
+      reachedTree = (currentScene == aTree);
+    }
+    // Not unit testing mode
+    else {
+      if (currentScene == aTree) {
+        if (Player.getNumItemsPlayerHas() >= Player.TOTAL_NUM_ITEMS_TO_FINISH_GAME) {
+          winMessage();
+        }
+      }
+    }
+  }
+
 
 
 }

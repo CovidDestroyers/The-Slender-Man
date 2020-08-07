@@ -18,10 +18,7 @@ import javax.swing.border.Border;
 
 class Console extends JFrame implements ActionListener {
   JTextField tfIn;
-
-  JLabel lblOut;
   JTextArea outText;
-  JButton enableMusic, disableMusic;
   Player player = new Player();
   public Game game;
 
@@ -190,7 +187,6 @@ class Console extends JFrame implements ActionListener {
         }));
     //beginning of text input placeholder logic
     tfIn = new JTextField();
-
     //trying placeholder here
     tfIn.setText("Enter Game Commands Here");
 
