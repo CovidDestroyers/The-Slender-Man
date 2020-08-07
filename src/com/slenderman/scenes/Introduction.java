@@ -2,7 +2,8 @@ package com.slenderman.scenes;
 
 import com.slenderman.music.Music;
 import com.slenderman.tools.Sound;
-
+import com.slenderman.game.Console;
+//import java.io.Console;
 import java.io.File;
 import java.text.MessageFormat;
 import java.util.Locale;
@@ -18,6 +19,7 @@ public class Introduction {
 
   public static void playIntro() throws Exception {
     Scanner scanner = new Scanner(System.in);
+    Console.updateIntro(SceneImage.intro());
     long introDelaySlow = 2500;
     Thread.sleep(introDelaySlow);
     System.out.println(textPainter(bundle.getString("intro_0")));

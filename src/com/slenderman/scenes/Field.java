@@ -49,6 +49,18 @@ public class Field extends Scene {
     String choice;
     Console.updateMap(this.getSceneName());
     Console.clearScreen();
+
+    String field =
+      "<pre color='green'>                                        -_   ~- </pre>"+
+        "<pre color='green'>                                   __- ~_ - ~  ~</pre>"+
+        "<pre color='green'>                              ~ ^~ - ~~  ^~ - ~ </pre>"+
+        "<pre color='lime'>                            |---|---|---|---|---|</pre>"+
+        "<pre color='green'>               ._\\//_/__/  ,\\_//__\\\\/.\\_//__/_\\\\/</pre>"+
+        "<pre color='green'>          \\/ \\\\/ ._   ,\\_//__    \\\\/.  \\_//_\\\\/</pre>"+
+        "<pre color='lime'>       |---|---|---|---|---||---|---|---|---|---|</pre>"+
+        "<pre color='lime'>       |---|---|---|---|---||---|---|---|---|---|</pre>"+
+        "<pre color='green'>    ,\\_//\\/\\/\\\\/. \\\\/ ._\\//_/__/  ,\\_//__\\\\/. \\_/</pre>";
+    Console.updateImage(field);
     displayStories("enter");
     choice = playerChoice();
 
