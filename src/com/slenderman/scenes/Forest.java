@@ -33,10 +33,43 @@ public class Forest extends Scene {
   @Override
   public void enter(Scanner in, Player player) throws Exception {
     Console.updateMap(this.getSceneName());
-    Music playbackMusic= new Music(new File("ScaryMusic.wav"));
+    Music playbackMusic= new Music(new File("./Music/ScaryMusic.wav"));
     playbackMusic.playInLoop();
     Console.clearScreen();
+
+
+
+//    System.out.println(
+//          "               ,@@@@@@@,\n"
+//        + "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n"
+//        + "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n"
+//        + "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n"
+//        + "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n"
+//        + "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n"
+//        + "   `&%\\ ` /%&'    |.|        \\ '|8'\n"
+//        + "       |o|        | |         | |\n"
+//        + "       |.|        | |         | |\n"
+//        + "jgs \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_\n"
+//        + "\n"
+//        + "------------------------------------------------\n");
+
+    String forestScene =
+      "<pre color='green'>               ,@@@@@@@,</pre>"
+        + "<pre color='green'>       ,,,.   ,@@@@@@/@@,  .oo8888o.</pre>"
+        + "<pre color='green'>    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o</pre>"
+        + "<pre color='green'>   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'</pre>"
+        + "<pre color='green'>   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'</pre>"
+        + "<pre color='green'>   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'</pre>"
+        + "<pre color='green'>   `&%\\ ` /%&'    |.|        \\ '|8'</pre>"
+        + "<pre color='red'>       |o|        | |         | |</pre>"
+        + "<pre color='red'>       |.|        | |         | |</pre>"
+        + "<pre color='green'>k*s \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_</pre>";
+
+    Console.updateImage(forestScene);
+
+
     displayStories("forest");
+
   }
 
   /**

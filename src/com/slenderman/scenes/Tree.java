@@ -22,6 +22,21 @@ public class Tree extends Scene {
     Console.updateMap(this.getSceneName());
     Console.clearScreen();
 
+    String tree =
+      "<pre color='lime'><small>              v .   ._, |_  .,            </pre>"+
+        "<pre color='lime'><small>            `-._\\/  .  \\ /    |/_     </pre>"+
+        "<pre color='lime'><small>                \\  _\\, y | \\//       </pre>"+
+        "<pre color='lime'><small>          _\\_.___\\, \\/ -.\\||        </pre>"+
+        "<pre color='lime'><small>            `7-,--.`._||  / / ,         </pre>"+
+        "<pre color='lime'><small>            /'     `-. `./ / |/_.'      </pre>"+
+        "<pre color='green'><small>                      |    |//          </pre>"+
+        "<pre color='green'><small>                      |_    /           </pre>"+
+        "<pre color='red'><small>                      |-   |            </pre>"+
+        "<pre color='red'><small>                      |   =|            </pre>"+
+        "<pre color='red'><small>                      |    |            </pre>"+
+        "<pre color='green'><small> --------------------/ ,  . \\--------._</pre>";
+
+    Console.updateImage(tree);
     if (player.getNumItemsPlayerHas() < player.TOTAL_NUM_ITEMS_TO_FINISH_GAME){
       System.out.println(bundle.getString("enter_0"));
       System.out.println(bundle.getString("enter_1") + " " + player.TOTAL_NUM_ITEMS_TO_FINISH_GAME);
