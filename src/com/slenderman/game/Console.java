@@ -17,6 +17,7 @@ import javax.swing.border.Border;
 
 class Console extends JFrame implements ActionListener {
   JTextField tfIn;
+
   JLabel lblOut;
   JTextArea outText;
   JButton enableMusic, disableMusic;
@@ -115,7 +116,6 @@ class Console extends JFrame implements ActionListener {
 
     // Property change listener for inventory updates
     game.getPlayer().addPropertyChangeListener(evt -> {
-      System.out.println(evt);
       if(evt.getPropertyName().equals("inventory")){
         inventoryPanel.removeAll();
         inventoryPanel.add(inventory.printInventory(game.getPlayer().getInventoryList()));
@@ -174,8 +174,10 @@ class Console extends JFrame implements ActionListener {
             }));
   //beginning of text input placeholder logic
     tfIn = new JTextField();
+
     //trying placeholder here
     tfIn.setText("Enter Game Commands Here");
+
     tfIn.addMouseListener(new MouseAdapter(){
       @Override
       public void mousePressed(MouseEvent e){

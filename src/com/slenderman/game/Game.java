@@ -148,14 +148,9 @@ public final class Game{
       System.out.println("Invalid input");
     }
 
-
-      if("inventory".equalsIgnoreCase(userText) || "i".equalsIgnoreCase(userText)){
-        Player.printItemsfromInventory();
-      }
-
-      if(!userText.startsWith("go ") && !userText.startsWith("i"))
+      if(!userText.startsWith("go "))
         {
-        System.out.println("Unknown command '" + userText + "'.  Try go/quit.\n");
+        System.out.println("Unknown command '" + userText + "'.  Try movement + direction. Or Quit\n");
       }
 
       // For Unit Testing purpose
