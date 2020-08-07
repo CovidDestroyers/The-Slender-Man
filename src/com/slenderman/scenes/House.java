@@ -120,8 +120,9 @@ public class House extends Scene {
 
   public void houseInView() {
     try {
-      System.out.println(textPainter(bundle.getString("houseInView_0")));
       Thread.sleep(1000);
+      System.out.println(textPainter(bundle.getString("houseInView_0")));
+
 
 
       String houseSecond =
@@ -168,51 +169,6 @@ public class House extends Scene {
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("inHouse_1")));
       Thread.sleep(1000);
-//      System.out.println(
-//          " _________________________________________________________\n"
-//              + "||-------------------------------------------------------||\n"
-//              + "||.--.    .-._                        .----.             ||\n"
-//              + "|||==|____| |H|___            .---.___|\"\"\"\"|_____.--.___ ||\n"
-//              + "|||  |====| | |xxx|_          |+++|=-=|_  _|-=+=-|==|---|||\n"
-//              + "|||==|    | | |   | \\         |   |   |_\\/_|Black|  | ^ |||\n"
-//              + "|||  |    | | |   |\\ \\   .--. |   |=-=|_/\\_|-=+=-|  | ^ |||\n"
-//              + "|||  |    | | |   |_\\ \\_( oo )|   |   |    |Magus|  | ^ |||\n"
-//              + "|||==|====| |H|xxx|  \\ \\ |''| |+++|=-=|\"\"\"\"|-=+=-|==|---|||\n"
-//              + "||`--^----'-^-^---'   `-' \"\"  '---^---^----^-----^--^---^||\n"
-//              + "||-------------------------------------------------------||\n"
-//              + "||-------------------------------------------------------||\n"
-//              + "||               ___                   .-.__.-----. .---.||\n"
-//              + "||              |===| .---.   __   .---| |XX|<(*)>|_|^^^|||\n"
-//              + "||         ,  /(|   |_|III|__|''|__|:x:|=|  |     |=| Q |||\n"
-//              + "||      _a'{ / (|===|+|   |++|  |==|   | |  |Illum| | R |||\n"
-//              + "||      '/\\\\/ _(|===|-|   |  |''|  |:x:|=|  |inati| | Y |||\n"
-//              + "||_____  -\\{___(|   |-|   |  |  |  |   | |  |     | | Z |||\n"
-//              + "||       _(____)|===|+|[I]|DK|''|==|:x:|=|XX|<(*)>|=|^^^|||\n"
-//              + "||              `---^-^---^--^--'--^---^-^--^-----^-^---^||\n"
-//              + "||-------------------------------------------------------||\n"
-//              + "||_______________________________________________________||\n"
-//              + "\n");
-
-
-
-      String bookshelf =
-        "<pre color='gray'><small>    _____                                                 </small></pre>"+
-          "<pre color='gray'><small>   / <em color='white'>ev</em>  /|_ ___________________________________________</small></pre>"+
-          "<pre color='gray'><small>  / <em color='white'>il</em>  // /                                          /|</small></pre>"+
-          "<pre color='gray'><small> (====|/ //    <em color='red'>TAKE</em>                                  / |</small></pre>"+
-          "<pre color='gray'><small>  (=====|/         <em color='red'>THIS</em>                             / .|</small></pre>"+
-          "<pre color='gray'><small> (====|/               <em color='red'>CHILD!</em>                      / /||</small></pre>"+
-          "<pre color='gray'><small>/_________________________________________________/ / ||</small></pre>"+
-          "<pre color='gray'><small>|  _______________________________________________||  ||</small></pre>"+
-          "<pre color='gray'><small>| ||                                            | ||</small></pre>"+
-          "<pre color='gray'><small>| ||                                            | ||</small></pre>"+
-          "<pre color='gray'><small>| ||                                            | ||</small></pre>";
-
-
-      // inserting a new bookshelf to fit the screen size
-      Console.updateImage(bookshelf);
-
-      Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("inHouse_3")));
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("inHouse_4")));
@@ -227,23 +183,19 @@ public class House extends Scene {
     try {
       System.out.println(textPainter(bundle.getString("atTable_0")));
       Thread.sleep(1000);
-//      System.out.println(
-//          "          _________________________________________________\n"
-//              + "        .' ____________________________________________ _.'|\n"
-//              + "      .' .'____________________________________________|_| |\n"
-//              + "    .' .'.'                                           .'.' |\n"
-//              + "  .' .'.'                                           .'.'  .'\n"
-//              + " __.'.'___________________________________________.'.'  .'|\n"
-//              + "|  |'______.-.__________________________.-.____ __.'  .'| |\n"
-//              + "|  |    o--[]--o                     o--[]--o  |  | .'  | |\n"
-//              + "|__|____[.|  |.]____ ________ _______[.|  |.]__|__|' |  | |\n"
-//              + "  |  | |  \\__/ _____|  ====  |  .'_____\\__/|  | |____|  | |\n"
-//              + "  |  | |.'          |        |.'           |  | |   . . | |\n"
-//              + "  |  | |            '--------'             |  | | .'.'__|.'\n"
-//              + "  |  | ____________________________________|  | |'.'\n"
-//              + "  |  ||____________________________________|  | |'\n"
-//              + "  |  | |                                   |  | |\n"
-//              + "  |__|.'                                   |__|.'");
+      String table =
+        "<pre color='gray'><small>    _____                                                 </small></pre>"+
+          "<pre color='gray'><small>   / <em color='white'>ev</em>  /|_ ___________________________________________</small></pre>"+
+          "<pre color='gray'><small>  / <em color='white'>il</em>  // /                                          /|</small></pre>"+
+          "<pre color='gray'><small> (====|/ //    <em color='red'>TAKE</em>                                  / |</small></pre>"+
+          "<pre color='gray'><small>  (=====|/         <em color='red'>THIS</em>                             / .|</small></pre>"+
+          "<pre color='gray'><small> (====|/               <em color='red'>CHILD!</em>                      / /||</small></pre>"+
+          "<pre color='gray'><small>/_________________________________________________/ / ||</small></pre>"+
+          "<pre color='gray'><small>|  _______________________________________________||  ||</small></pre>"+
+          "<pre color='gray'><small>| ||                                            | ||</small></pre>"+
+          "<pre color='gray'><small>| ||                                            | ||</small></pre>"+
+          "<pre color='gray'><small>| ||                                            | ||</small></pre>";
+      Console.updateImage(table);
       Thread.sleep(1500);
       System.out.println(textPainter(bundle.getString("atTable_1")));
       Thread.sleep(1000);
