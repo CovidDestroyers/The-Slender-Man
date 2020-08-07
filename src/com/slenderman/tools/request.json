@@ -1,0 +1,15 @@
+{
+  "audioConfig": {
+    "audioEncoding": "LINEAR16",
+    "pitch": -16.8,
+    "speakingRate": 0.96
+  },
+  "input": {
+    "text": "You look once more into the vast forest as you plan your next move..."
+  },
+  "voice": {
+    "languageCode": "en-GB",
+    "name": "en-GB-Wavenet-F"
+  }
+}
+

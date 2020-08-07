@@ -1,29 +1,23 @@
 package com.slenderman.game;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
+import com.slenderman.scenes.SceneImage;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
-import java.io.PrintStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
+import javax.swing.*;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 
-class Console extends JFrame implements ActionListener {
+public class Console extends JFrame implements ActionListener {
+  static JEditorPane imageRight, imageLeft, imageCenter;
   JTextField tfIn;
-  JLabel lblOut;
-  JTextArea outText;
+  static JTextArea mapArea,outText;
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
@@ -43,12 +37,53 @@ class Console extends JFrame implements ActionListener {
       return;
     }
 
-    JPanel panel = new JPanel(new BorderLayout());
+    JPanel mainPanel = new JPanel(new BorderLayout());
+    JPanel northPanel = new JPanel(new BorderLayout());
 
-    outText = new JTextArea(100, 80);
+    String forestScene =
+          "<pre color='green'>               ,@@@@@@@,</pre>"
+        + "<pre color='green'>       ,,,.   ,@@@@@@/@@,  .oo8888o.</pre>"
+        + "<pre color='green'>    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o</pre>"
+        + "<pre color='green'>   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'</pre>"
+        + "<pre color='green'>   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'</pre>"
+        + "<pre color='green'>   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'</pre>"
+        + "<pre color='green'>   `&%\\ ` /%&'    |.|        \\ '|8'</pre>"
+        + "<pre color='red'>       |o|        | |         | |</pre>"
+        + "<pre color='red'>       |.|        | |         | |</pre>"
+        + "<pre color='green'>k*s \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_</pre>";
+
+
+
+
+      // setting component in right
+    imageRight = new JEditorPane();
+    imageRight.setBackground(Color.BLACK);
+    imageRight.setContentType("text/html");
+    imageRight.setText(forestScene);
+
+    //  setting component in left
+    imageLeft = new JEditorPane();
+    imageLeft.setBackground(Color.BLACK);
+    imageLeft.setContentType("text/html");
+    imageLeft.setText(forestScene);
+
+    // adding component to top part of frame => main panel
+    northPanel.add(imageRight, BorderLayout.EAST);
+    northPanel.add(imageLeft, BorderLayout.WEST);
+
+    outText = new JTextArea(30, 80);
     outText.setBackground(Color.BLACK);
     outText.setForeground(Color.WHITE);
-    outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+    outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+
+    mapArea= new JTextArea(10,80);
+    mapArea.setBackground(Color.BLACK);
+    mapArea.setForeground(Color.YELLOW);
+    mapArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+    northPanel.add(mapArea,BorderLayout.CENTER);
+
+    // adding component to main panel
+    mainPanel.add(northPanel, BorderLayout.NORTH);
 
     JScrollPane scroll =
         new JScrollPane(
@@ -56,7 +91,7 @@ class Console extends JFrame implements ActionListener {
             JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-    panel.add(scroll, BorderLayout.CENTER);
+    mainPanel.add(scroll, BorderLayout.CENTER);
 
     System.setOut(
         new PrintStream(
@@ -74,12 +109,15 @@ class Console extends JFrame implements ActionListener {
 
     tfIn.setToolTipText("Please type your command here (such as go *direction* or quit) and then press ENTER/RETURN on your keyboard");
 
-    panel.add(tfIn, BorderLayout.SOUTH);
-    add(panel);
+    mainPanel.add(tfIn, BorderLayout.SOUTH);
+
+    // main panel is getting added to frame
+    add(mainPanel);
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    setSize(1500, 1000);
     setVisible(true);
-    setSize(800, 800);
 
     new SwingWorker<Void, String>() {
       protected Void doInBackground() throws Exception {
@@ -93,6 +131,24 @@ class Console extends JFrame implements ActionListener {
         return null;
       }
     }.execute();
+
+  }
+
+  //Update maps in the mapPanel with game progression
+  public static void updateMap(String sceneName){
+    mapArea.setText(String.valueOf(SceneImage.sceneMap.get(sceneName)));
+  }
+  public static void updateIntro(String string) {
+    mapArea.setText(string);
+  }
+
+  public static void updateImage(String imageName) {
+    imageRight.setText(imageName);
+  }
+
+  //Clear screen static method
+  public static void clearScreen(){
+    outText.setText("");
   }
 
   @Override
@@ -102,4 +158,5 @@ class Console extends JFrame implements ActionListener {
 
     inWriter.println(text);
   }
+
 }

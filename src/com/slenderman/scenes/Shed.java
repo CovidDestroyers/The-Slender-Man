@@ -3,6 +3,11 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
+import com.slenderman.tools.Sound;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -11,31 +16,19 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Shed extends Scene {
+  private boolean _max_iteration_not_reached;
+  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+  private Scanner choice;
+  private Player player;
+  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("shed");
+  private final Item Key = ItemDirector.findThisItem("key", itemsInThisScene);
 
-  // For Resource Bundle //
-  final String FILE_BASE_NAME = "storyShedNoColor";
-  final String PATH = "com.slenderman.scenes.files.";
+  public final String FILE_BASE_NAME = "storyShedNoColor";
+  public final String PATH = "com.slenderman.scenes.files.";
 
   ResourceBundle.Control rbc =
       ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-
-  // Unit testing purpose //
-  private boolean _max_iteration_not_reached;
-
-  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
-
-  private Scanner choice;
-  private Player player;
-
-  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("shed");
-  private final Item Key = ItemDirector.findThisItem("key", itemsInThisScene);
-
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
 
   public Shed() {
     setSceneName("shed");
@@ -49,23 +42,31 @@ public class Shed extends Scene {
     setItemsInScene(itemsInThisScene);
   }
 
-  /*
-   * =============================================
-   * =========== Business Methods ================
-   * =============================================
-   */
-
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter(Scanner in, Player player) throws Exception {
     this.player = player;
-
     choice = in;
-    SceneImage.printShed();
+    Console.updateMap(this.getSceneName());
+    Console.clearScreen();
     inFrontOfShed();
   }
 
-  private void inFrontOfShed() throws InterruptedException {
+  private void inFrontOfShed() throws InterruptedException, FileNotFoundException {
     String choice;
+
+    String shed =
+      "<pre color='lime'>                            +&-              </pre>"+
+        "<pre color='lime'>                          _.-^-._    .--.  </pre>"+
+        "<pre color='lime'>                       .-'   _   '-. |__|	</pre>"+
+        "<pre color='lime'>                      /     |_|     \\|  | </pre>"+
+        "<pre color='lime'>                     /               \\  |	</pre>"+
+        "<pre color='lime'>                    /|     _____     |\\ |	</pre>"+
+        "<pre color='lime'>                     |    |==|==|    |  |	</pre>"+
+        "<pre color='lime'> |---|---|---|---|---|    |--|--|    |  |	</pre>"+
+        "<pre color='lime'> |---|---|---|---|---|    |==|==|    |  |	</pre>"+
+        "<pre color='lime'>^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^	</pre>";
+
+    Console.updateImage(shed);
     displayStories("inFrontShed");
 
     choice = playerChoice();
@@ -82,20 +83,16 @@ public class Shed extends Scene {
   }
 
   private void goSomewhereElse() {
-
     displayStories("goSomewhereElse");
   }
 
-  private void stepIntoTheShed() throws InterruptedException {
+  private void stepIntoTheShed() throws InterruptedException, FileNotFoundException {
     displayStories("stepIntoTheShed");
-
     takeShinyThingChoice();
   }
 
-  private void takeShinyThingChoice() throws InterruptedException {
-
+  private void takeShinyThingChoice() throws InterruptedException, FileNotFoundException {
     displayStories("takeShinyThingChoice");
-
     String choice = playerChoice().toUpperCase();
     if (choice.equals("Y")) {
       grabShinyThingYes();
@@ -107,24 +104,24 @@ public class Shed extends Scene {
     }
   }
 
-  private void grabShinyThingYes() throws InterruptedException {
+  private void grabShinyThingYes() throws InterruptedException, FileNotFoundException {
     System.out.println(textPainter(bundle.getString("grabShinyThingYes_0")));
     Thread.sleep(3000);
     System.out.println(textPainter(bundle.getString("grabShinyThingYes_1")));
     System.out.println(textPainter(bundle.getString("grabShinyThingYes_2")));
     Thread.sleep(2000);
     displayStories("grabShinyThingYes_Note");
-
+    Sound.play(new File("./Speech/Shed/note.mp3"));
     exitShed();
   }
 
   private void exitShed() throws InterruptedException {
-
     player.addItemToInventory(Key);
     getItemsInScene().remove(Key);
 
-    Thread.sleep(10000);
+    Thread.sleep(2000);
     System.out.println(textPainter(bundle.getString("exitShed_0")));
+
     Thread.sleep(2000);
     System.out.println(textPainter(bundle.getString("exitShed_1")));
 
@@ -163,7 +160,6 @@ public class Shed extends Scene {
       }
     }
   }
-
 
   @Override
   public String toString() {

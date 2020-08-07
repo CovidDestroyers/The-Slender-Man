@@ -1,65 +1,62 @@
 package com.slenderman.scenes;
 
-
+import com.slenderman.music.Music;
+import com.slenderman.tools.Sound;
+import com.slenderman.game.Console;
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
+import java.util.Scanner;
 
 public class Introduction {
+  public static String playerName;
+  public static final String FILE_BASE_NAME = "storyIntroNoColor";
+  public static final String PATH = "com.slenderman.scenes.files.";
+  public static ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+  public static ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
 
-  // For Resource Bundle //
-  static final String FILE_BASE_NAME = "storyIntroNoColor";
-  static final String PATH = "com.slenderman.scenes.files.";
-
-  static ResourceBundle.Control rbc = ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
-  static ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-  /////////////////////////
-
-  public static void playIntro() throws InterruptedException {
-
-    System.out.println();
-    Thread.sleep(3000);
+  public static void playIntro() throws Exception {
+    Scanner scanner = new Scanner(System.in);
+    Console.updateIntro(SceneImage.intro());
+    long introDelaySlow = 2500;
+    Thread.sleep(introDelaySlow);
     System.out.println(textPainter(bundle.getString("intro_0")));
-    System.out.println(
-      "\n" +
-      "  __        __        __   __   __        __      \n" +
-        " /    /    /    /| ||/  | /    /  | /|/| /  | /| |\n" +
-        "(___ (    (___ ( | ||   |(___ (___|( / |(___|( | |\n" +
-        "    )|   )|    | | )|   )|    |\\   |   )|   )| | )\n" +
-        " __/ |__/ |__  | |/ |__/ |__  | \\  |  / |  / | |/ \n" +
-        "                                                  \n");
+    System.out.println("Please enter your name to start your journey...");
+    setPlayerName(scanner.nextLine());
+    System.out.println("Your name has been set to " + getPlayerName() + " ... good luck.");
+    Music introMusic= new Music(new File("./Music/field.wav"));
+    introMusic.play();
 
-    Thread.sleep(5000);
     System.out.println(textPainter(bundle.getString("intro_1")));
-    Thread.sleep(5000);
+    Sound.play(new File("./Speech/Introduction/I_intro1.mp3"));
+
     System.out.println(textPainter(bundle.getString("intro_2")));
-    Thread.sleep(5000);
+    Sound.play(new File("./Speech/Introduction/I_intro2.mp3"));
+
     System.out.println(textPainter(bundle.getString("intro_3")));
-    Thread.sleep(5000);
+    Sound.play(new File("./Speech/Introduction/I_intro3.mp3"));
+
     System.out.println(textPainter(bundle.getString("intro_4")));
-    Thread.sleep(5000);
+    Sound.play(new File("./Speech/Introduction/I_intro4.mp3"));
+
     System.out.println(textPainter(bundle.getString("intro_5")));
-    Thread.sleep(5000);
+    Sound.play(new File("./Speech/Introduction/I_intro5.mp3"));
+
     System.out.println(textPainter(bundle.getString("intro_6")));
-    Thread.sleep(5000);
     System.out.println(textPainter(bundle.getString("intro_7")));
-    Thread.sleep(5000);
     System.out.println(textPainter(bundle.getString("intro_8")));
-    Thread.sleep(5000);
     System.out.println(textPainter(bundle.getString("intro_9")));
-    Thread.sleep(5000);
     System.out.println(textPainter(bundle.getString("intro_10")));
-    Thread.sleep(5000);
     System.out.println(textPainter(bundle.getString("intro_11")));
-    Thread.sleep(5000);
+    Sound.play(new File("./Speech/Introduction/I_note.mp3"));
+
     System.out.println(textPainter(bundle.getString("intro_12")));
-    Thread.sleep(5000);
+    Sound.play(new File("./Speech/Introduction/I_intro12.mp3"));
+
     System.out.println(textPainter(bundle.getString("intro_13")));
-
-    Thread.sleep(5000);
-
-     }
+    Sound.play(new File("./Speech/Introduction/I_intro13.mp3"));
+  }
   /**
    * Coloring the fonts
    *
@@ -76,4 +73,11 @@ public class Introduction {
       Scene.ANSI_WHITE);
   }
 
+  public static String getPlayerName() {
+    return playerName;
+  }
+
+  public static void setPlayerName(String playerName) {
+    Introduction.playerName = playerName;
+  }
 }

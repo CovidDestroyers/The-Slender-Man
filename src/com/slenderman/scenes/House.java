@@ -3,6 +3,10 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
+import com.slenderman.tools.Sound;
+
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -11,30 +15,19 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class House extends Scene {
-  final String FILE_BASE_NAME = "storyHouseNoColor";
-  final String PATH = "com.slenderman.scenes.files.";
+  private boolean _max_iteration_not_reached;
+  private String introduction;
+  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("house");
+  private Item Lockbox = ItemDirector.findThisItem("lockbox", itemsInThisScene);
+  private Item Lighter = ItemDirector.findThisItem("lighter", itemsInThisScene);
+
+  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
+  public final String FILE_BASE_NAME = "storyHouseNoColor";
+  public final String PATH = "com.slenderman.scenes.files.";
 
   ResourceBundle.Control rbc =
       ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
-
-  // Unit testing purpose
-  private boolean _max_iteration_not_reached;
-  public final int MAX_ITERATION_DISPLAY_STORIES = 10;
-
-  private String introduction;
-
-  private final ArrayList<Item> itemsInThisScene = ItemDirector.getItemsForScene("house");
-
-  private Item Lockbox = ItemDirector.findThisItem("lockbox", itemsInThisScene);
-
-  private Item Lighter = ItemDirector.findThisItem("lighter", itemsInThisScene);
-
-  /*
-   * =============================================
-   * ============= Constructors ==================
-   * =============================================
-   */
 
   public House() {
     setItemsInScene(itemsInThisScene);
@@ -48,36 +41,45 @@ public class House extends Scene {
     setItemsInScene(itemsInThisScene);
   }
 
-  /*
-   * =============================================
-   * =========== Business Methods ================
-   * =============================================
-   */
-
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter(Scanner in, Player player) {
     try {
       introToHouse();
-      Thread.sleep(1000);
-
+      Thread.sleep(2000);
+      Console.clearScreen();
       houseInView();
-      Thread.sleep(1000);
-
+      Thread.sleep(2000);
+      Console.clearScreen();
       inHouse();
-      Thread.sleep(1000);
-
+      Thread.sleep(2000);
+      Console.clearScreen();
       atTable();
+      Console.clearScreen();
       openingLockbox(in, player);
-
       leaveHouse();
-    } catch (InterruptedException e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public void introToHouse() throws InterruptedException {
+  public void introToHouse() {
     try {
-      SceneImage.printHouse();
+      Console.updateMap(this.getSceneName());
+      Console.clearScreen();
+      String houseFirst =
+          "<pre color='blue'>          /\\</pre>"+
+          "<pre color='blue'>         / ^\\    /\\</pre>"+
+          "<pre color='blue'>        /^   \\  / ^\\                                            *</pre>"+
+          "<pre color='blue'>       /  ^ ^ \\/^  ^\\                    ____                  /|\\</pre>"+
+          "<pre color='blue'>      / ^ ^  ^ \\ ^  _\\___________________|  |_____            /||o\\</pre>"+
+          "<pre color='blue'>     / ^^  ^ ^ ^\\  /______________________________\\          /|o|||\\</pre>"+
+          "<pre color='blue'>    /  ^  ^^ ^ ^  /________________________________\\        /|||||o|\\</pre>"+
+          "<pre color='blue'>   /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||         /||o||||||\\</pre>"+
+          "<pre color='blue'>  / ^   ^   ^    ^  ||___|___||||||||||||___|__|||             | |</pre>"+
+          "<pre color='blue'> / ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||ooooooooooooo| |oooo</pre>";
+
+
+      Console.updateImage(houseFirst);
       System.out.println(textPainter(bundle.getString("introToHouse_0")));
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("introToHouse_1")));
@@ -116,27 +118,26 @@ public class House extends Scene {
     }
   }
 
-  public void houseInView() throws InterruptedException {
+  public void houseInView() {
     try {
-      System.out.println(textPainter(bundle.getString("houseInView_0")));
       Thread.sleep(1000);
-      System.out.println(
-          "\n"
-              + "                                   /\\\n"
-              + "                              /\\  //\\\\\n"
-              + "                       /\\    //\\\\///\\\\\\        /\\\n"
-              + "                      //\\\\  ///\\////\\\\\\\\  /\\  //\\\\\n"
-              + "         /\\          /  ^ \\/^ ^/^  ^  ^ \\/^ \\/  ^ \\\n"
-              + "        / ^\\    /\\  / ^   /  ^/ ^ ^ ^   ^\\ ^/  ^^  \\\n"
-              + "       /^   \\  / ^\\/ ^ ^   ^ / ^  ^    ^  \\/ ^   ^  \\       *\n"
-              + "      /  ^ ^ \\/^  ^\\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \\     /|\\\n"
-              + "     / ^ ^  ^ \\ ^  _\\___________________|  |_____^ ^  \\   /||o\\\n"
-              + "    / ^^  ^ ^ ^\\  /______________________________\\ ^ ^ \\ /|o|||\\\n"
-              + "   /  ^  ^^ ^ ^  /________________________________\\  ^  /|||||o|\\\n"
-              + "  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||\\\n"
-              + " / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |\n"
-              + "/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo\n"
-              + "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+      System.out.println(textPainter(bundle.getString("houseInView_0")));
+
+
+
+      String houseSecond =
+          "<pre color='green'>          /\\</pre>"+
+          "<pre color='green'>         / ^\\    /\\</pre>"+
+          "<pre color='green'>        /^   \\  / ^\\                                            *</pre>"+
+          "<pre color='green'>       /  ^ ^ \\/^  ^\\                    ____                  /|\\</pre>"+
+          "<pre color='green'>      / ^ ^  ^ \\ ^  _\\___________________|  |_____            /||o\\</pre>"+
+          "<pre color='green'>     / ^^  ^ ^ ^\\  /______________________________\\          /|o|||\\</pre>"+
+          "<pre color='green'>    /  ^  ^^ ^ ^  /________________________________\\        /|||||o|\\</pre>"+
+          "<pre color='green'>   /^ ^  ^ ^^  ^    ||<em color='yellow'>___</em>|___||||||||||||___|__|||         /||o||||||\\</pre>"+
+          "<pre color='green'>  / ^   ^   ^    ^  |<em color='yellow'>|___|</em>___||||||||||||___|__|||             | |</pre>"+
+          "<pre color='green'> / ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||ooooooooooooo| |oooo</pre>";
+
+      Console.updateImage(houseSecond);
 
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("houseInView_2")));
@@ -161,38 +162,12 @@ public class House extends Scene {
     }
   }
 
-  public void inHouse() throws InterruptedException {
+  public void inHouse() {
     try {
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("inHouse_0")));
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("inHouse_1")));
-      Thread.sleep(1000);
-      System.out.println(
-          " _________________________________________________________\n"
-              + "||-------------------------------------------------------||\n"
-              + "||.--.    .-._                        .----.             ||\n"
-              + "|||==|____| |H|___            .---.___|\"\"\"\"|_____.--.___ ||\n"
-              + "|||  |====| | |xxx|_          |+++|=-=|_  _|-=+=-|==|---|||\n"
-              + "|||==|    | | |   | \\         |   |   |_\\/_|Black|  | ^ |||\n"
-              + "|||  |    | | |   |\\ \\   .--. |   |=-=|_/\\_|-=+=-|  | ^ |||\n"
-              + "|||  |    | | |   |_\\ \\_( oo )|   |   |    |Magus|  | ^ |||\n"
-              + "|||==|====| |H|xxx|  \\ \\ |''| |+++|=-=|\"\"\"\"|-=+=-|==|---|||\n"
-              + "||`--^----'-^-^---'   `-' \"\"  '---^---^----^-----^--^---^||\n"
-              + "||-------------------------------------------------------||\n"
-              + "||-------------------------------------------------------||\n"
-              + "||               ___                   .-.__.-----. .---.||\n"
-              + "||              |===| .---.   __   .---| |XX|<(*)>|_|^^^|||\n"
-              + "||         ,  /(|   |_|III|__|''|__|:x:|=|  |     |=| Q |||\n"
-              + "||      _a'{ / (|===|+|   |++|  |==|   | |  |Illum| | R |||\n"
-              + "||      '/\\\\/ _(|===|-|   |  |''|  |:x:|=|  |inati| | Y |||\n"
-              + "||_____  -\\{___(|   |-|   |  |  |  |   | |  |     | | Z |||\n"
-              + "||       _(____)|===|+|[I]|DK|''|==|:x:|=|XX|<(*)>|=|^^^|||\n"
-              + "||              `---^-^---^--^--'--^---^-^--^-----^-^---^||\n"
-              + "||-------------------------------------------------------||\n"
-              + "||_______________________________________________________||\n"
-              + "\n");
-
       Thread.sleep(1000);
       System.out.println(textPainter(bundle.getString("inHouse_3")));
       Thread.sleep(1000);
@@ -204,40 +179,36 @@ public class House extends Scene {
     }
   }
 
-  public void atTable() throws InterruptedException {
+  public void atTable() {
     try {
       System.out.println(textPainter(bundle.getString("atTable_0")));
       Thread.sleep(1000);
-      System.out.println(
-          "          _________________________________________________\n"
-              + "        .' ____________________________________________ _.'|\n"
-              + "      .' .'____________________________________________|_| |\n"
-              + "    .' .'.'                                           .'.' |\n"
-              + "  .' .'.'                                           .'.'  .'\n"
-              + " __.'.'___________________________________________.'.'  .'|\n"
-              + "|  |'______.-.__________________________.-.____ __.'  .'| |\n"
-              + "|  |    o--[]--o                     o--[]--o  |  | .'  | |\n"
-              + "|__|____[.|  |.]____ ________ _______[.|  |.]__|__|' |  | |\n"
-              + "  |  | |  \\__/ _____|  ====  |  .'_____\\__/|  | |____|  | |\n"
-              + "  |  | |.'          |        |.'           |  | |   . . | |\n"
-              + "  |  | |            '--------'             |  | | .'.'__|.'\n"
-              + "  |  | ____________________________________|  | |'.'\n"
-              + "  |  ||____________________________________|  | |'\n"
-              + "  |  | |                                   |  | |\n"
-              + "  |__|.'                                   |__|.'");
+      String table =
+        "<pre color='gray'><small>    _____                                                 </small></pre>"+
+          "<pre color='gray'><small>   / <em color='white'>ev</em>  /|_ ___________________________________________</small></pre>"+
+          "<pre color='gray'><small>  / <em color='white'>il</em>  // /                                          /|</small></pre>"+
+          "<pre color='gray'><small> (====|/ //    <em color='red'>TAKE</em>                                  / |</small></pre>"+
+          "<pre color='gray'><small>  (=====|/         <em color='red'>THIS</em>                             / .|</small></pre>"+
+          "<pre color='gray'><small> (====|/               <em color='red'>CHILD!</em>                      / /||</small></pre>"+
+          "<pre color='gray'><small>/_________________________________________________/ / ||</small></pre>"+
+          "<pre color='gray'><small>|  _______________________________________________||  ||</small></pre>"+
+          "<pre color='gray'><small>| ||                                            | ||</small></pre>"+
+          "<pre color='gray'><small>| ||                                            | ||</small></pre>"+
+          "<pre color='gray'><small>| ||                                            | ||</small></pre>";
+      Console.updateImage(table);
       Thread.sleep(1500);
       System.out.println(textPainter(bundle.getString("atTable_1")));
       Thread.sleep(1000);
       displayStories("atTable_2");
+      Sound.play(new File("./Speech/House/BoxNote1.mp3"));
       displayStories("atTable_3");
-
-      Thread.sleep(6000);
+      Sound.play(new File("./Speech/House/BoxNote2.mp3"));
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  public void openingLockbox(Scanner in, Player player) throws InterruptedException {
+  public void openingLockbox(Scanner in, Player player) {
     String playerChoice = "";
 
     try {
@@ -313,27 +284,10 @@ public class House extends Scene {
     }
   }
 
-  /*
-   * =============================================
-   * =========== Accessor Methods ================
-   * =============================================
-   */
-
-  // SET METHODS
-
-  public void setIntroduction(String introduction) {
-    this.introduction = introduction;
-  }
-
-  public void setLockbox(Item lockbox) {
-    Lockbox = lockbox;
-  }
-
   public void setLighter(Item lighter) {
     Lighter = lighter;
   }
 
-  // GET METHODS
   public Item getLighter() {
     return Lighter;
   }
@@ -341,11 +295,6 @@ public class House extends Scene {
   public Item getLockbox() {
     return Lockbox;
   }
-
-  public String getIntroduction() {
-    return introduction;
-  }
-
 
   @Override
   public String toString() {
