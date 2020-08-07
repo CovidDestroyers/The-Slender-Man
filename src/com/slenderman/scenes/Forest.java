@@ -33,7 +33,7 @@ public class Forest extends Scene {
   @Override
   public void enter(Scanner in, Player player) throws Exception {
     Console.updateMap(this.getSceneName());
-    Music playbackMusic= new Music(new File("ScaryMusic.wav"));
+    Music playbackMusic= new Music(new File("./Music/ScaryMusic.wav"));
     playbackMusic.playInLoop();
     Console.clearScreen();
     displayStories("forest");

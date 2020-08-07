@@ -45,12 +45,16 @@ public class House extends Scene {
   public void enter(Scanner in, Player player) {
     try {
       introToHouse();
-      Thread.sleep(1000);
+      Thread.sleep(2000);
+      Console.clearScreen();
       houseInView();
-      Thread.sleep(1000);
+      Thread.sleep(2000);
+      Console.clearScreen();
       inHouse();
-      Thread.sleep(1000);
+      Thread.sleep(2000);
+      Console.clearScreen();
       atTable();
+      Console.clearScreen();
       openingLockbox(in, player);
       leaveHouse();
     } catch (Exception e) {
