@@ -15,8 +15,7 @@ import com.slenderman.scenes.Shed;
 import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
 import com.slenderman.inputcommands.InputCommands;
-import javax.swing.*;
-import java.util.Objects;
+
 import java.util.Scanner;
 
 /**
@@ -42,10 +41,11 @@ public final class Game{
   private final Scene aCave;
   private final Scene aField;
   private final Scene LoseGameScene;
-  private int sleep = 2000;
+//  private int sleep = 2000;
   public static boolean isPlayerAlive;
 
   private final Player Player;
+  private final WinGame winGame = new WinGame();
 
 
 
@@ -132,53 +132,6 @@ public final class Game{
   }
 
 
-  private void winMessage() throws InterruptedException {
-    Thread.sleep(sleep);
-    System.out.println("You walk slowly towards a lonely tree in the middle of a field...\n");
-    Thread.sleep(sleep);
-    System.out.println("Something tells you to carve an X on the tree...\n");
-    Thread.sleep(sleep);
-    System.out.println("You take the blade, and stab it into the tree...\n");
-    Thread.sleep(sleep);
-    System.out.println(
-        "You breathe heavily as you begin to make the shape of an X on the tree...\n");
-    Thread.sleep(sleep);
-    System.out.println("As you finish, you take a couple steps back...\n");
-    Thread.sleep(sleep);
-    System.out.println("You begin to hear an overpowering screeching sound...\n");
-    Thread.sleep(sleep);
-    System.out.println("You see something emerge from the shadows...\n");
-    Thread.sleep(sleep);
-    System.out.println("The creature cracks and shifts around as it approaches you...\n");
-    Thread.sleep(sleep);
-    System.out.println("The screeching becomes unbearable as you begin to lose your senses...\n");
-    Thread.sleep(sleep);
-    System.out.println(
-        "You reach out for the blade and hold it front of you as the creature charges...\n");
-    Thread.sleep(sleep);
-    System.out.println("...\n");
-    Thread.sleep(sleep);
-    System.out.println("...\n");
-    Thread.sleep(sleep);
-    System.out.println("You have killed SlenderMan!\n");
-    Thread.sleep(sleep);
-    System.out.println("You let out a sigh of relief as the sun rises over the thick woods.\n");
-    System.out.println(
-        "You see a possible exit in the distance, and begin your journey to freedom...\n");
-    Thread.sleep(sleep + 1000);
-    System.out.println(
-        "\n"
-            + "       __                            \n"
-            + " /  | /  | /  |      /  | / /| |  /  \n"
-            + "(___|(   |(   |     (   |( ( | | (   \n"
-            + "    )|   )|   )     | / )| | | ) |   \n"
-            + " __/ |__/ |__/      |/|/ | | |/  _   \n"
-            + "                                     \n");
-    System.out.println("Thanks for playing!");
-    Thread.sleep(9000);
-    System.exit(1);
-  }
-
   /** For Unit Testing purpose */
   public Scene getCurrentScene() {
     return currentScene;
@@ -232,7 +185,7 @@ public final class Game{
     // For Unit Testing purpose
     if (disableIntroduction) {
       if (reachedTree) {
-        winMessage();
+        winGame.printWinMessage();
       }
       reachedTree = (currentScene == aTree);
     }
@@ -240,7 +193,7 @@ public final class Game{
     else {
       if (currentScene == aTree) {
         if (Player.getNumItemsPlayerHas() >= Player.TOTAL_NUM_ITEMS_TO_FINISH_GAME) {
-          winMessage();
+          winGame.printWinMessage();
         }
       }
     }
