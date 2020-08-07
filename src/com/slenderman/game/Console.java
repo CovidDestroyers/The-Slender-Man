@@ -1,5 +1,6 @@
 package com.slenderman.game;
 
+import com.slenderman.actors.Player;
 import com.slenderman.scenes.House;
 import com.slenderman.scenes.Introduction;
 
@@ -20,6 +21,8 @@ class Console extends JFrame implements ActionListener {
   JLabel lblOut;
   JTextArea outText;
   JButton enableMusic, disableMusic;
+  Player player = new Player();
+  public Game game;
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
@@ -28,11 +31,10 @@ class Console extends JFrame implements ActionListener {
   PrintWriter inWriter;
 
 
-
   public Console(Game game) {
     super("SlenderMan");
     setFocusable(true);
-
+    this.game = game;
     System.setIn(inPipe);
 
     try {
@@ -76,7 +78,7 @@ class Console extends JFrame implements ActionListener {
     musicOptions.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-          game.thread2.stop();
+        game.thread2.stop();
       }
     });
 
@@ -98,9 +100,9 @@ class Console extends JFrame implements ActionListener {
     // Adding Side Map JPanel
     GameMap gMap = new GameMap();
     JPanel locMapPanel = new JPanel(new BorderLayout());
-    JLabel mapLabel = new JLabel("PLAYER MAP LOCATION",SwingConstants.CENTER);
+    JLabel mapLabel = new JLabel("PLAYER MAP LOCATION", SwingConstants.CENTER);
     locMapPanel.setBorder(whiteline);
-    locMapPanel.add(mapLabel,BorderLayout.NORTH);
+    locMapPanel.add(mapLabel, BorderLayout.NORTH);
 
     // Loading Initial Side Map
     locMapPanel.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
@@ -108,17 +110,17 @@ class Console extends JFrame implements ActionListener {
     Inventory inventory = new Inventory();
     JPanel inventoryPanel = new JPanel(new BorderLayout());
     JLabel inventoryLabel = new JLabel("PLAYER INVENTORY", SwingConstants.CENTER);
-    inventoryPanel.add(inventoryLabel,BorderLayout.NORTH);
+    inventoryPanel.add(inventoryLabel, BorderLayout.NORTH);
     inventoryPanel.add(inventory.printInventory(game.getPlayer().getInventoryList()));
     inventoryPanel.setBorder(whiteline);
-    locMapPanel.add(inventoryPanel,BorderLayout.SOUTH);
+    locMapPanel.add(inventoryPanel, BorderLayout.SOUTH);
 
     // Property change listener for inventory updates
     game.getPlayer().addPropertyChangeListener(evt -> {
       if(evt.getPropertyName().equals("inventory")){
         inventoryPanel.removeAll();
         inventoryPanel.add(inventory.printInventory(game.getPlayer().getInventoryList()));
-        locMapPanel.add(inventoryPanel,BorderLayout.SOUTH);
+        locMapPanel.add(inventoryPanel, BorderLayout.SOUTH);
         panel.add(locMapPanel, BorderLayout.EAST);
         revalidate();
         repaint();
@@ -130,11 +132,20 @@ class Console extends JFrame implements ActionListener {
 
     // Property change listener for scene change to update map
     game.getPlayer().addPropertyChangeListener(evt -> {
-      if(evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())){
+      if (evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())) {
         locMapPanel.removeAll();
         locMapPanel.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
-        locMapPanel.add(inventoryPanel,BorderLayout.SOUTH);
+        locMapPanel.add(inventoryPanel, BorderLayout.SOUTH);
         panel.add(locMapPanel, BorderLayout.EAST);
+        revalidate();
+        repaint();
+      }
+    });
+
+//    // TODO: CHANGE COLOR
+    game.getPlayer().addPropertyChangeListener(evt -> {
+      if (evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())) {
+        changeColors(outText);
         revalidate();
         repaint();
       }
@@ -145,7 +156,12 @@ class Console extends JFrame implements ActionListener {
 
     outText = new JTextArea(jRows, jColumns);
     outText.setBackground(Color.BLACK);
+
+//TODO : CHANGE COLOR
+//    changeColors(outText);
     outText.setForeground(Color.WHITE);
+
+
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
     outText.setLineWrap(true);
     outText.setWrapStyleWord(true);
@@ -154,31 +170,31 @@ class Console extends JFrame implements ActionListener {
     outText.setEditable(false);
 
     JScrollPane scroll =
-        new JScrollPane(
-            outText,
-            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-            JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+      new JScrollPane(
+        outText,
+        JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
     panel.add(scroll, BorderLayout.CENTER);
 
     System.setOut(
-        new PrintStream(
-            new OutputStream() {
+      new PrintStream(
+        new OutputStream() {
 
-              @Override
-              public void write(int b) throws IOException {
-                outText.append(String.valueOf((char) b));
-                outText.setCaretPosition(outText.getDocument().getLength());
-              }
-            }));
-  //beginning of text input placeholder logic
+          @Override
+          public void write(int b) throws IOException {
+            outText.append(String.valueOf((char) b));
+            outText.setCaretPosition(outText.getDocument().getLength());
+          }
+        }));
+    //beginning of text input placeholder logic
     tfIn = new JTextField();
     //trying placeholder here
     tfIn.setText("Enter Game Commands Here");
-    tfIn.addMouseListener(new MouseAdapter(){
+    tfIn.addMouseListener(new MouseAdapter() {
       @Override
-      public void mousePressed(MouseEvent e){
-        if(!clicked){
+      public void mousePressed(MouseEvent e) {
+        if (!clicked) {
           clicked = true;
           tfIn.setText("");
         }
@@ -187,7 +203,6 @@ class Console extends JFrame implements ActionListener {
     tfIn.setBackground(Color.LIGHT_GRAY);
 
     //ending placeholder logic
-
 
 
     tfIn.addActionListener(this);
@@ -215,6 +230,26 @@ class Console extends JFrame implements ActionListener {
         return null;
       }
     }.execute();
+  }
+
+  //TODO: CHANGE COLOR
+  public void changeColors(JTextArea outText) throws NullPointerException{
+    switch (game.getPlayer().getCurrentSceneName()) {
+      case "forest":
+        outText.setForeground(Color.GREEN);
+        break;
+      case "house":
+        outText.setForeground(Color.BLUE);
+        break;
+      case "shed":
+        outText.setForeground(Color.MAGENTA);
+        break;
+      case "cave":
+        outText.setForeground(Color.GRAY);
+        break;
+      default:
+        outText.setForeground(Color.WHITE);
+    }
   }
 
   @Override
