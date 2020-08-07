@@ -25,7 +25,7 @@ public class Introduction {
     System.out.println("Please enter your name to start your journey...");
     setPlayerName(scanner.nextLine());
     System.out.println("Your name has been set to " + getPlayerName() + " ... good luck.");
-    Music introMusic= new Music(new File("gameIntro.wav"));
+    Music introMusic= new Music(new File("field.wav"));
     introMusic.play();
 
     System.out.println(textPainter(bundle.getString("intro_1")));
