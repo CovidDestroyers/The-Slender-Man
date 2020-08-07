@@ -48,6 +48,9 @@ public final class Game{
   private final WinGame winGame = new WinGame();
 
 
+  private int gameDifficultyTimer;
+
+
 
 
 
@@ -85,6 +88,7 @@ public final class Game{
 //TODO find better way to enable/disable music, when enabled it doesnt let you work the game, though disabled functions correctly
 
   public void gameOptions(Scanner in) throws InterruptedException {
+    gameDifficulty(in);
     System.out.println("Would you like music enabled or disabled?");
     userText = in.nextLine();
     if("enabled".equalsIgnoreCase(userText) || "e".equalsIgnoreCase(userText)){
@@ -98,12 +102,27 @@ public final class Game{
       gameOptions(in);
     }
   }
+//Gives user option to dictate how long game lasts by setting gameDifficultyTimer to specific value;
+  public void gameDifficulty(Scanner in){
+    System.out.println("What level of difficulty would you like?");
+    System.out.println(" Easy\n Medium\n Hard");
+    userText = in.nextLine();
+    if("easy".equalsIgnoreCase(userText)){
+      gameDifficultyTimer = 10;
+    }
+    if("medium".equalsIgnoreCase(userText)){
+      gameDifficultyTimer = 7;
+    }
+    if("hard".equalsIgnoreCase(userText)){
+      gameDifficultyTimer = 5;
+    }
+  }
 
   public void start(Scanner in) throws InterruptedException {
     // For Unit Testing purpose
     if (!disableIntroduction) {
       Introduction.playIntro();
-      new LoseGameTimer().gameTimer(10);
+      new LoseGameTimer().gameTimer(gameDifficultyTimer);
       new OneMinuteTimer().startOneTimer();
     }
     currentScene = aForest;
@@ -144,19 +163,6 @@ public final class Game{
   public void setDisableIntroduction(boolean disableIntroduction) {
     this.disableIntroduction = disableIntroduction;
   }
-
-  Thread thread2 = new Thread(() -> {
-    try {
-      Thread.sleep(1500);
-      while(!SlenderMan.isGameDone){
-          SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
-      }
-    } catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      System.out.println("Thread was interrupted");
-    }
-
-  });
 
 
   public void userInputCommands(String[] userInput, Scanner in){
@@ -199,6 +205,17 @@ public final class Game{
     }
   }
 
+  Thread thread2 = new Thread(() -> {
+    try {
+      Thread.sleep(1500);
+      while(!SlenderMan.isGameDone){
+        SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
+      }
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      System.out.println("Thread was interrupted");
+    }
 
+  });
 
 }
