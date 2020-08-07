@@ -264,7 +264,7 @@ public class House extends Scene {
           playerChoice = in.nextLine().toLowerCase().trim();
 
           if (playerChoice.equals("1")) {
-            System.out.println("There is definitely something in there...");
+            System.out.println("There is definitely something in there...\n");
             lockBoxChoices();
           }
 
