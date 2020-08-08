@@ -1,6 +1,8 @@
 package com.slenderman.game;
 
 import com.slenderman.actors.Player;
+import com.slenderman.actors.SlenderMan;
+import com.slenderman.musicplayer.SimplePlayer;
 import com.slenderman.scenes.House;
 import com.slenderman.scenes.Introduction;
 import com.slenderman.scenes.Scene;
@@ -13,15 +15,19 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.util.ArrayList;
+import java.util.List;
 
 class Console extends JFrame implements ActionListener {
   JTextField tfIn;
   JTextArea outText;
   Player player = new Player();
   public Game game;
+  private Thread t;
 
   private final PipedInputStream inPipe = new PipedInputStream();
   private final PipedInputStream outPipe = new PipedInputStream();
@@ -61,7 +67,8 @@ class Console extends JFrame implements ActionListener {
     panel.add(instructions, BorderLayout.NORTH);
 
 //trying to get music button to work
-    JButton musicOptions = new JButton("Music Off");
+    JButton musicOptions = new JButton("Music On/Off");
+//    musicOptions.setText(game.isMusicOn() ? "Music On" : "Music Off");
     musicOptions.setBounds(30, 10, 95, 30);
     musicOptions.setBackground(Color.WHITE);
     instructions.add(musicOptions);
@@ -80,9 +87,28 @@ class Console extends JFrame implements ActionListener {
     musicOptions.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        game.thread2.stop();
+        if(game.isMusicOn()){
+          game.thread2.stop();
+          game.setMusicOn(false);
+          try {
+            music(false);
+          } catch (InterruptedException interruptedException) {
+            interruptedException.printStackTrace();
+          }
+//          musicOptions.setText("Music On");
+        }
+        else {
+          try {
+            music(true);
+            game.setMusicOn(true);
+          } catch (InterruptedException interruptedException) {
+            interruptedException.printStackTrace();
+          }
+//          musicOptions.setText("Music Off");
+        }
       }
     });
+
 
     //Speed up the intro...and all other text scenes
     speed.addActionListener(new ActionListener() {
@@ -149,8 +175,7 @@ class Console extends JFrame implements ActionListener {
         repaint();
       }
     });
-
-//    // TODO: CHANGE COLOR
+    // Change font color for different scenes
     game.getPlayer().addPropertyChangeListener(evt -> {
       if (evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())) {
         changeColors(outText);
@@ -164,12 +189,7 @@ class Console extends JFrame implements ActionListener {
 
     outText = new JTextArea(jRows, jColumns);
     outText.setBackground(Color.BLACK);
-
-//TODO : CHANGE COLOR
-//    changeColors(outText);
     outText.setForeground(Color.WHITE);
-
-
     outText.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
     outText.setLineWrap(true);
     outText.setWrapStyleWord(true);
@@ -242,7 +262,14 @@ class Console extends JFrame implements ActionListener {
     }.execute();
   }
 
-  //TODO: CHANGE COLOR
+  public Thread getT() {
+    return t;
+  }
+
+  public void setT(Thread t) {
+    this.t = t;
+  }
+
   public void changeColors(JTextArea outText) throws NullPointerException{
     switch (game.getPlayer().getCurrentSceneName()) {
       case "forest":
@@ -278,4 +305,24 @@ class Console extends JFrame implements ActionListener {
     inWriter.println(text);
     clicked = true;
   }
+
+  private void music(boolean isStop) throws InterruptedException {
+    if(isStop) {
+      setT(new Thread(() -> {
+        try {
+          Thread.sleep(1500);
+          while (!SlenderMan.isGameDone) {
+            SimplePlayer player = new SimplePlayer("Paranormal_Lullaby.mp3");
+          }
+        } catch (InterruptedException er) {
+          Thread.currentThread().interrupt();
+          System.out.println("Thread was interrupted");
+        }
+      }));
+      getT().start();
+    }
+    else {
+      getT().stop();
+    }
+  };
 }
