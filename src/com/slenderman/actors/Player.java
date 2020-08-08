@@ -31,7 +31,6 @@ public class Player {
    * =========== Business Methods ================
    * =============================================
    */
-//TODO add listener
   public void addItemToInventory(Item... items) {
     try {
       List<Item> oldInventory = new ArrayList<>();

@@ -45,6 +45,7 @@ public final class Game{
 
   private final Player Player;
   private final WinGame winGame = new WinGame();
+  private boolean isMusicOn;
 
 
   public static int gameDifficultyTimer;
@@ -91,6 +92,7 @@ public final class Game{
     System.out.println("Would you like music enabled or disabled?");
     userText = in.nextLine();
     if("enabled".equalsIgnoreCase(userText) || "e".equalsIgnoreCase(userText)){
+      setMusicOn(true);
       thread2.start();
       start(in);
     }
@@ -160,6 +162,14 @@ public final class Game{
 
   public com.slenderman.actors.Player getPlayer() {
     return Player;
+  }
+
+  public boolean isMusicOn() {
+    return isMusicOn;
+  }
+
+  public void setMusicOn(boolean musicOn) {
+    isMusicOn = musicOn;
   }
 
   public void setDisableIntroduction(boolean disableIntroduction) {
