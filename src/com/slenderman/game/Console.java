@@ -153,6 +153,7 @@ class Console extends JFrame implements ActionListener {
       if(evt.getPropertyName().equals("inventory")){
         inventoryPanel.removeAll();
         inventoryPanel.add(inventory.printInventory(game.getPlayer().getInventoryList()));
+        inventoryPanel.add(inventoryLabel, BorderLayout.NORTH);
         locMapPanel.add(inventoryPanel, BorderLayout.SOUTH);
         panel.add(locMapPanel, BorderLayout.EAST);
         revalidate();
@@ -168,6 +169,7 @@ class Console extends JFrame implements ActionListener {
       if (evt.getPropertyName().equals(game.getPlayer().getCurrentSceneName())) {
         locMapPanel.removeAll();
         locMapPanel.add(gMap.makeMap(game.getPlayer().getCurrentSceneName()));
+        locMapPanel.add(mapLabel, BorderLayout.NORTH);
         locMapPanel.add(inventoryPanel, BorderLayout.SOUTH);
         panel.add(locMapPanel, BorderLayout.EAST);
         revalidate();
