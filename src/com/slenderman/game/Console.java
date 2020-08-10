@@ -60,8 +60,7 @@ class Console extends JFrame implements ActionListener {
 
 
     JLabel instructionsText = new JLabel("Commands: \n\n " +
-      "Travel: go + direction, \n"
-      + " Check Inventory: I/Inventory");
+      "Travel: go + direction");
     instructionsText.setForeground(Color.white);
     instructions.add(instructionsText);
     panel.add(instructions, BorderLayout.NORTH);
