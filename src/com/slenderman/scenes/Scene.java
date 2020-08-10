@@ -75,6 +75,15 @@ public abstract class Scene {
   public Scene changeScene(String direction) {
     Scene nextScene = null;
 
+    //TODO changed to switch statement. Reduced code size. code commented out below just in case.
+//    switch (direction) {
+//      case "north" -> nextScene = sceneToTheNorth;
+//      case "south" -> nextScene = sceneToTheSouth;
+//      case "east" -> nextScene = sceneToTheEast;
+//      case "west" -> nextScene = sceneToTheWest;
+//      default -> System.out.println("Error: unknown direction " + direction);
+//    }
+
     if ("north".equals(direction)) {
       nextScene = sceneToTheNorth;
 

@@ -185,6 +185,7 @@ public class Cave extends Scene {
     if (isPlayerWithBoat) {
       displayStories("exploreCave_LookLeft_withBoat");
       String choice = playerChoice().toUpperCase();
+
       if (choice.equals("Y")) {
         displayStories("exploreCave_LookLeft_withBoat_y");
 

@@ -3,6 +3,8 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
+import jdk.jshell.spi.SPIResolutionException;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -16,8 +18,12 @@ public class Shed extends Scene {
   final String FILE_BASE_NAME = "storyShedNoColor";
   final String PATH = "com.slenderman.scenes.files.";
 
+  public int visitCount = 0;
+  public String previousChoice = "n";
+  public int sleep = 2000;
+
   ResourceBundle.Control rbc =
-      ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
+    ResourceBundle.Control.getControl(ResourceBundle.Control.FORMAT_DEFAULT);
   ResourceBundle bundle = ResourceBundle.getBundle(PATH + FILE_BASE_NAME, Locale.US, rbc);
 
   // Unit testing purpose //
@@ -43,7 +49,7 @@ public class Shed extends Scene {
   }
 
   public Shed(
-      Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
+    Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
     setSceneName("shed");
     setItemsInScene(itemsInThisScene);
@@ -64,10 +70,11 @@ public class Shed extends Scene {
     inFrontOfShed();
   }
 
+
   private void inFrontOfShed() throws InterruptedException {
     String choice;
-    displayStories("inFrontShed");
 
+    displayStories("inFrontShed");
     choice = playerChoice();
     if (choice.equals("0")) {
       stepIntoTheShed();
@@ -87,9 +94,27 @@ public class Shed extends Scene {
   }
 
   private void stepIntoTheShed() throws InterruptedException {
-    displayStories("stepIntoTheShed");
+    if (visitCount == 0) {
+      displayStories("stepIntoTheShed");
 
-    takeShinyThingChoice();
+      if (previousChoice.equals("y")) {
+        System.out.println("You have already found all there is to find here.");
+        Thread.sleep(sleep);
+        goSomewhereElse();
+      } else if (previousChoice.equals("n")) {
+        takeShinyThingChoice();
+      }
+
+    } else if (visitCount >= 1) {
+      System.out.println("You are back in the old shed... You feel a shiver run down your spine.");
+      Thread.sleep(sleep);
+      System.out.println("You check the corpse again for anything missed...");
+      Thread.sleep(sleep);
+
+      System.out.println("Nothing... Better look somewhere else to stop this nightmare...");
+      Thread.sleep(sleep);
+      goSomewhereElse();
+    }
   }
 
   private void takeShinyThingChoice() throws InterruptedException {
@@ -99,8 +124,11 @@ public class Shed extends Scene {
     String choice = playerChoice().toUpperCase();
     if (choice.equals("Y")) {
       grabShinyThingYes();
+
     } else if (choice.equals("N")) {
+      visitCount = 0;
       inFrontOfShed();
+
     } else {
       displayStories("takeShinyThingChoice_WrongInput");
       takeShinyThingChoice();
@@ -109,10 +137,10 @@ public class Shed extends Scene {
 
   private void grabShinyThingYes() throws InterruptedException {
     System.out.println(textPainter(bundle.getString("grabShinyThingYes_0")));
-    Thread.sleep(3000);
+    Thread.sleep(sleep);
     System.out.println(textPainter(bundle.getString("grabShinyThingYes_1")));
     System.out.println(textPainter(bundle.getString("grabShinyThingYes_2")));
-    Thread.sleep(2000);
+    Thread.sleep(sleep);
     displayStories("grabShinyThingYes_Note");
 
     exitShed();
@@ -125,10 +153,12 @@ public class Shed extends Scene {
 
     Thread.sleep(10000);
     System.out.println(textPainter(bundle.getString("exitShed_0")));
-    Thread.sleep(2000);
+    Thread.sleep(sleep);
     System.out.println(textPainter(bundle.getString("exitShed_1")));
 
     goSomewhereElse();
+
+    visitCount = visitCount + 1;
   }
 
   private String playerChoice() {
@@ -143,15 +173,17 @@ public class Shed extends Scene {
    */
   private String textPainter(String text) {
     return MessageFormat.format(
-        text,
-        Scene.ANSI_GREEN,
-        Scene.ANSI_BLUE,
-        Scene.ANSI_RED,
-        Scene.ANSI_BLACK,
-        Scene.ANSI_WHITE);
+      text,
+      Scene.ANSI_GREEN,
+      Scene.ANSI_BLUE,
+      Scene.ANSI_RED,
+      Scene.ANSI_BLACK,
+      Scene.ANSI_WHITE);
   }
 
-  /** For accessing and displaying stories in Resource Bundle file */
+  /**
+   * For accessing and displaying stories in Resource Bundle file
+   */
   private void displayStories(String key) {
     _max_iteration_not_reached = false;
     for (int i = 0; i < MAX_ITERATION_DISPLAY_STORIES; i++) {

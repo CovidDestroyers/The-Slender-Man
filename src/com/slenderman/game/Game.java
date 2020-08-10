@@ -2,6 +2,7 @@ package com.slenderman.game;
 
 import com.slenderman.actors.Player;
 import com.slenderman.actors.SlenderMan;
+import com.slenderman.musicplayer.SimplePlayer;
 import com.slenderman.scenes.Cave;
 import com.slenderman.scenes.Field;
 import com.slenderman.scenes.Forest;
@@ -14,7 +15,10 @@ import com.slenderman.scenes.Shed;
 import com.slenderman.scenes.Tree;
 import com.slenderman.tools.*;
 
+import java.time.temporal.Temporal;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Game is the class where we will build out the logic for the actual game. Essentially, this is the
@@ -25,7 +29,10 @@ import java.util.Scanner;
 public final class Game {
 
   // For Unit Testing Purpose //
+
   private boolean disableIntroduction = false;
+//  private boolean disableIntroduction = true;
+
   private boolean reachedTree = false;
 
   private Scene currentScene;
@@ -42,13 +49,15 @@ public final class Game {
 
   private final Player Player;
 
+
+
   /*
    * =============================================
    * ============= Constructors ==================
    * =============================================
    */
 
-  public Game() {
+  public Game(){
     Player = new Player();
     aShed = new Shed();
     aTree = new Tree();
@@ -80,16 +89,9 @@ public final class Game {
     // For Unit Testing purpose
     if (!disableIntroduction) {
       Introduction.playIntro();
-      new LoseGameTimer(10);
-      new OneMinuteTimer(1);
-      new OneMinuteTimer(2);
-      new OneMinuteTimer(3);
-      new OneMinuteTimer(4);
-      new OneMinuteTimer(5);
-      new OneMinuteTimer(6);
-      new OneMinuteTimer(7);
-      new OneMinuteTimer(8);
-      new OneMinuteTimer(9);
+
+      new LoseGameTimer().gameTimer(10);
+      new OneMinuteTimer().startOneTimer();
     }
 
     currentScene = aForest;
@@ -122,7 +124,15 @@ public final class Game {
         Player.changeInvItemsLocation();
 
         currentScene.enter(in, Player);
-      } else {
+      }
+
+      if("inventory".equalsIgnoreCase(userText) || "i".equalsIgnoreCase(userText)){
+        Player.printItemsfromInventory();
+      }
+
+//      else
+      if(!userText.startsWith("go ") && !userText.startsWith("i"))
+        {
         System.out.println("Unknown command '" + userText + "'.  Try go/quit.\n");
       }
 
