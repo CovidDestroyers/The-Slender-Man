@@ -59,8 +59,8 @@ public class Introduction extends Scene {
     System.out.println(textPainter(bundle.getString("intro_11")));
     Thread.sleep(sleep);
     System.out.println(textPainter(bundle.getString("intro_12")));
-    Thread.sleep(sleep);
-    System.out.println(textPainter(bundle.getString("intro_13")));
+//    Thread.sleep(sleep);
+//    System.out.println(textPainter(bundle.getString("intro_13")));
 
     Thread.sleep(sleep);
 
