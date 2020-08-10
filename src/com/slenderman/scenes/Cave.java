@@ -62,7 +62,6 @@ public class Cave extends Scene {
   public void enter(Scanner in, Player player) throws InterruptedException {
     thePlayer = player;
     choice = in;
-    SceneImage.printCave();
     inFrontOfCave();
   }
 
@@ -185,6 +184,7 @@ public class Cave extends Scene {
     if (isPlayerWithBoat) {
       displayStories("exploreCave_LookLeft_withBoat");
       String choice = playerChoice().toUpperCase();
+
       if (choice.equals("Y")) {
         displayStories("exploreCave_LookLeft_withBoat_y");
 

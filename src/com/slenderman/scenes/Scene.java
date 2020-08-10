@@ -17,6 +17,8 @@ public abstract class Scene {
   public static final String ANSI_BLACK = "\u001B[30m";
   public static final String ANSI_GREEN = "\u001B[32m";
 
+  public static long sleep = 3000;
+
   protected Scene sceneToTheNorth;
   protected Scene sceneToTheSouth;
   protected Scene sceneToTheEast;
@@ -124,6 +126,20 @@ public abstract class Scene {
     return playerInventory.stream().anyMatch(item -> item.getItemName().equals(itemName));
   }
 
+  public long skipIntro(){
+      sleep = 300;
+    return 0;
+  }
+  public long returnOriginalSpeed(){
+    sleep = 3000;
+    return 0;
+  }
+
+  public void fullIntro(){
+    sleep = 3000;
+  }
+
+
   /*
    * =============================================
    * =========== Accessor Methods ================
@@ -168,6 +184,10 @@ public abstract class Scene {
 
   public ArrayList<Item> getItemsInScene() {
     return itemsInScene;
+  }
+
+  public long getSleep(){
+    return sleep;
   }
 
   public String getDescription() {

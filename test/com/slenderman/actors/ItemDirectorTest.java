@@ -28,7 +28,6 @@ public void after() throws Exception {
 */
 @Test
 public void testGetItemsForScene() throws Exception {
-//TODO: Test goes here...
 }
 
 /**
@@ -38,7 +37,6 @@ public void testGetItemsForScene() throws Exception {
 */
 @Test
 public void testFindThisItem() throws Exception {
-//TODO: Test goes here...
 }
 
 /**
@@ -48,7 +46,6 @@ public void testFindThisItem() throws Exception {
 */
 @Test
 public void testToString() throws Exception {
-//TODO: Test goes here...
 }
 
 

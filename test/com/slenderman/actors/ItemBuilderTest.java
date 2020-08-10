@@ -28,7 +28,6 @@ public void after() throws Exception {
 */
 @Test
 public void testBuildAllItems() throws Exception {
-//TODO: Test goes here...
 }
 
 

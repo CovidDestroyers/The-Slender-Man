@@ -9,9 +9,20 @@ import java.util.Scanner;
 public class Starter {
 
   public static void main(String[] args) throws InterruptedException {
+
     Game game = new Game();
     new Console(game);
     Scanner scanMe = new Scanner(System.in);
-    game.start(scanMe);
+    game.gameOptions(scanMe);
+
+
+
   }
+
+
+
 }
+
+
+
+
