@@ -1,6 +1,11 @@
 package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
+import com.slenderman.music.Music;
+
+import javax.sound.sampled.Clip;
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -33,29 +38,45 @@ public class Forest extends Scene {
   public final int MAX_ITERATION_DISPLAY_STORIES = 10;
 
   public Forest(
-      Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
+    Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
   }
 
   @Override
-  public void enter(Scanner in, Player player) {
-    SceneImage.printForest();
 
-    System.out.println(
-              "               ,@@@@@@@,\n"
-            + "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n"
-            + "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n"
-            + "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n"
-            + "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n"
-            + "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n"
-            + "   `&%\\ ` /%&'    |.|        \\ '|8'\n"
-            + "       |o|        | |         | |\n"
-            + "       |.|        | |         | |\n"
-            + "jgs \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_\n"
-            + "\n"
-            + "------------------------------------------------\n");
+  public void enter(Scanner in, Player player) throws Exception {
+    Console.updateMap(this.getSceneName());
+<<<<<<< HEAD
+
+    Music music = new Music();
+    music.gameMusic(new File("ScaryMusic.wav"));
+
+=======
+//    Clip clip=Music.gameMusic(new File("ScaryMusic.wav"));
+    Music playbackMusic= new Music(new File("ScaryMusic.wav"));
+    playbackMusic.playInLoop();
+>>>>>>> 584ec907c33910e5b4ff14654f7afc0067e0de6f
+    Console.clearScreen();
+
+
+//    System.out.println(
+//      "               ,@@@@@@@,\n"
+//        + "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n"
+//        + "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n"
+//        + "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n"
+//        + "   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n"
+//        + "   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n"
+//        + "   `&%\\ ` /%&'    |.|        \\ '|8'\n"
+//        + "       |o|        | |         | |\n"
+//        + "       |.|        | |         | |\n"
+//        + "jgs \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_\n"
+//        + "\n"
+//        + "------------------------------------------------\n");
+
     displayStories("forest");
   }
+
+
   /**
    * Coloring the fonts
    *

@@ -2,6 +2,8 @@ package com.slenderman.scenes;
 
 import com.slenderman.actors.Item;
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
+import com.slenderman.music.Music;
 
 import java.text.MessageFormat;
 import java.util.*;
@@ -27,7 +29,8 @@ public class Tree extends Scene {
 
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
-    SceneImage.printTree();
+    Console.updateMap(this.getSceneName());
+    Console.clearScreen();
     //System.out.println("You have escaped Slenderman's forest.");
 
     if (player.getNumItemsPlayerHas() < player.TOTAL_NUM_ITEMS_TO_FINISH_GAME){
@@ -36,4 +39,9 @@ public class Tree extends Scene {
       System.out.println(bundle.getString("enter_2") + " " + player.getNumItemsPlayerHas() + " "+ bundle.getString("enter_3"));
     }
   }
+
+//  @Override
+//  public void enter(Scanner in, Player player, Music music) throws Exception {
+//
+//  }
 }

@@ -3,6 +3,10 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
+import com.slenderman.music.Music;
+
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -43,18 +47,20 @@ public class Field extends Scene {
       Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
 
-    setDescription("You have reached am empty field.");
+    setDescription("You have reached an empty field.");
     setSceneName("field");
     setItemsInScene(itemsInThisScene);
   }
 
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter(Scanner in, Player player) throws Exception {
     scanner = in;
     this.player = player;
     String choice;
-    SceneImage.printField();
+    Console.updateMap(this.getSceneName());
+    Console.clearScreen();
     displayStories("enter");
     choice = playerChoice();
+
 
     if (choice.equals("0")) {
       smellIt(in, player);
@@ -62,6 +68,8 @@ public class Field extends Scene {
       footCut(in, player);
     }
   }
+
+
 
   private void smellIt(Scanner in, Player player) throws InterruptedException {
     displayStories("smellIt");

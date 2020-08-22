@@ -2,6 +2,8 @@ package com.slenderman.scenes;
 
 import com.slenderman.actors.Item;
 import com.slenderman.actors.Player;
+import com.slenderman.music.Music;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
@@ -33,10 +35,11 @@ public abstract class Scene {
    * =============================================
    */
 
-  public Scene() {}
+  public Scene() {
+  }
 
   public Scene(
-      Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
+    Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
 
     setSceneToTheNorth(sceneToTheNorth);
     setSceneToTheSouth(sceneToTheSouth);
@@ -58,7 +61,8 @@ public abstract class Scene {
    * @param player
    * @throws InterruptedException
    */
-  public abstract void enter(Scanner in, Player player) throws InterruptedException;
+//  public abstract void enter(Scanner in, Player player) throws Exception;
+  public abstract void enter(Scanner in, Player player) throws Exception;
 
   /**
    * @param in -> Scanner object for console input
@@ -99,7 +103,6 @@ public abstract class Scene {
   }
 
 
-
   public void connectEast(Scene otherScene) {
     sceneToTheEast = otherScene;
     otherScene.sceneToTheWest = this;
@@ -114,7 +117,7 @@ public abstract class Scene {
   /**
    * Searches Player's inventory for an Item based on the Item's name
    *
-   * @param player -> Player object
+   * @param player   -> Player object
    * @param itemName -> string representation of the Item's name
    * @return boolean
    */
@@ -193,22 +196,25 @@ public abstract class Scene {
   @Override
   public String toString() {
     return "Scene{"
-        + "sceneToTheNorth="
-        + sceneToTheNorth
-        + ", sceneToTheSouth="
-        + sceneToTheSouth
-        + ", sceneToTheEast="
-        + sceneToTheEast
-        + ", sceneToTheWest="
-        + sceneToTheWest
-        + ", description='"
-        + description
-        + '\''
-        + ", sceneName='"
-        + sceneName
-        + '\''
-        + ", itemsInScene="
-        + itemsInScene
-        + '}';
+      + "sceneToTheNorth="
+      + sceneToTheNorth
+      + ", sceneToTheSouth="
+      + sceneToTheSouth
+      + ", sceneToTheEast="
+      + sceneToTheEast
+      + ", sceneToTheWest="
+      + sceneToTheWest
+      + ", description='"
+      + description
+      + '\''
+      + ", sceneName='"
+      + sceneName
+      + '\''
+      + ", itemsInScene="
+      + itemsInScene
+      + '}';
   }
 }
+
+//  public abstract void enter(Scanner in, Player player,Music music);
+//}

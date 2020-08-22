@@ -3,6 +3,11 @@ package com.slenderman.scenes;
 import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
+import com.slenderman.music.Music;
+import com.slenderman.tools.Sound;
+
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.*;
 
@@ -48,10 +53,16 @@ public class Cave extends Scene {
   }
 
   public Cave(
-      Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) {
+      Scene sceneToTheNorth, Scene sceneToTheSouth, Scene sceneToTheEast, Scene sceneToTheWest) throws Exception {
     super(sceneToTheNorth, sceneToTheSouth, sceneToTheEast, sceneToTheWest);
     setSceneName("cave");
+
   }
+
+//  @Override
+//  public void enter(Scanner in, Player player) throws Exception {
+//
+//  }
 
   /*
    * =============================================
@@ -59,11 +70,14 @@ public class Cave extends Scene {
    * =============================================
    */
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter(Scanner in, Player player) throws Exception {
     thePlayer = player;
     choice = in;
-    SceneImage.printCave();
+    Console.updateMap(this.getSceneName());
+    Console.clearScreen();
+
     inFrontOfCave();
+
   }
 
   private void inFrontOfCave() throws InterruptedException {
@@ -87,6 +101,7 @@ public class Cave extends Scene {
         quizChoosingRightItems();
       } else {
         System.out.println(textPainter(bundle.getString("stepIntoTheCave_notEnoughItem")));
+        Sound.play(new File("./Speech/Cave/Run.mp3"));
         inFrontOfCave();
       }
     }

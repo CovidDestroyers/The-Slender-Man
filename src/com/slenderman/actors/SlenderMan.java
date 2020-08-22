@@ -5,8 +5,8 @@ import com.slenderman.game.Game;
 import com.slenderman.scenes.Scene;
 
 public class SlenderMan {
-
   public static boolean isGameDone = false;
+  public static int completions = 0;
 
   public static void killPlayer() throws InterruptedException {
     Game.isPlayerAlive = false;
@@ -29,5 +29,15 @@ public class SlenderMan {
         "---------------------------------------------------------------------------------------------------\n");
   }
 
+  public static void increaseCompletions() {
+    setCompletions(getCompletions() + 1);
+  }
 
+  public static void setCompletions(int completions) {
+    SlenderMan.completions = completions;
+  }
+
+  public static int getCompletions() {
+    return completions;
+  }
 }
