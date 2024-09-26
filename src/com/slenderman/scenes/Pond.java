@@ -1,6 +1,8 @@
 package com.slenderman.scenes;
 
 import com.slenderman.actors.Player;
+import com.slenderman.game.Console;
+import com.slenderman.music.Music;
 
 import java.text.MessageFormat;
 import java.util.*;
@@ -56,9 +58,20 @@ public class Pond extends Scene {
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
     this.player = player;
-    SceneImage.printPond();
+    Console.updateMap(this.getSceneName());
+    Console.clearScreen();
     inFrontOfPond(in);
   }
+
+//  @Override
+//  public void enter(Scanner in, Player player, Music music) throws Exception {
+//    this.player = player;
+//    Console.updateMap(this.getSceneName());
+//    Console.clearScreen();
+//    inFrontOfPond(in);
+//    this.Music= music;
+//
+//  }
 
   private void inFrontOfPond(Scanner in) throws InterruptedException {
     displayStories("inFront");

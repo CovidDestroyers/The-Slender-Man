@@ -4,7 +4,9 @@ import com.slenderman.actors.Item;
 import com.slenderman.actors.ItemDirector;
 import com.slenderman.actors.Player;
 import com.slenderman.actors.SlenderMan;
+import com.slenderman.music.Music;
 
+import java.io.File;
 import java.text.MessageFormat;
 import java.util.*;
 import java.util.Scanner;
@@ -22,9 +24,10 @@ public class LoseGameScene extends Scene {
 
 
   @Override
-  public void enter(Scanner in, Player player) throws InterruptedException {
+  public void enter(Scanner in, Player player) throws Exception {
     player.setCurrentSceneName(this.getSceneName());
     choice = in;
+
     loseGame();
   }
 
@@ -44,7 +47,7 @@ public class LoseGameScene extends Scene {
 
   public void restartOrQuit() throws InterruptedException {
     Thread.sleep(2000);
-    System.out.println("Thanks for playing");
+    System.out.println("Thanks for playing, " + Introduction.getPlayerName());
     System.out.println("- Type \"Q\": to quit.");
     String choice = playerChoice().toUpperCase();
    if(choice.equals("Q")){

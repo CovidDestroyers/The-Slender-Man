@@ -1,6 +1,7 @@
 package com.slenderman.scenes;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 public class FieldTest {
     @Test
