@@ -56,7 +56,6 @@ public class Pond extends Scene {
   @Override
   public void enter(Scanner in, Player player) throws InterruptedException {
     this.player = player;
-    SceneImage.printPond();
     inFrontOfPond(in);
   }
 
@@ -66,13 +65,13 @@ public class Pond extends Scene {
   }
 
   private void inFrontOfPondChoice(Scanner in) throws InterruptedException {
-
     if (isFogClear) {
       displayStories("inFrontChoice_FogClear");
     } else {
       displayStories("inFrontChoice");
     }
     String choice = playerChoice(in);
+
     if (choice.equals("0")) {
       // Walk around
       inFrontOfPondChoice_WalkAround(in);

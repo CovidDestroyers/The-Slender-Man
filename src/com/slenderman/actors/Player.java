@@ -1,5 +1,7 @@
 package com.slenderman.actors;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -10,8 +12,8 @@ public class Player {
   public final int TOTAL_NUM_ITEMS_TO_FINISH_GAME = 6;
 
   private String state = "alive";
-  private String currentSceneName = "forest";
-
+  private String currentSceneName = "introduction";
+  PropertyChangeSupport pcs = new PropertyChangeSupport(this);
   private List<Item> inventory = new ArrayList<>();
 
   /*
@@ -29,10 +31,12 @@ public class Player {
    * =========== Business Methods ================
    * =============================================
    */
-
   public void addItemToInventory(Item... items) {
     try {
+      List<Item> oldInventory = new ArrayList<>();
       inventory.addAll(Arrays.asList(items));
+      List<Item> newInventory = this.inventory;
+      setInventory(oldInventory,newInventory);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -40,7 +44,10 @@ public class Player {
 
   public void addItemToInventory(ArrayList<Item> items) {
     try {
+      List<Item> oldInventory = new ArrayList<>();
       inventory.addAll(items);
+      List<Item> newInventory = this.inventory;
+      setInventory(oldInventory,newInventory);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -61,6 +68,23 @@ public class Player {
                         returnableItem.getItemName());
     } else {
       System.out.println("It doesn't look like you have that item in your inventory.\n");
+    }
+  }
+
+  @Override
+  public String toString() {
+    return "Item" + inventory.get(0);
+  }
+
+  public void printItemsfromInventory(){
+    System.out.println("\nCurrent Inventory:");
+    for(Item items : inventory){
+      if(inventory.size() == 0){
+        System.out.println("You have nothing in your inventory");
+      }
+      else{
+        System.out.println(items.getItemName());
+      }
     }
   }
 
@@ -91,12 +115,18 @@ public class Player {
     this.state = state;
   }
 
-  public void setInventory(List<Item> inventory) {
-    this.inventory = inventory;
+  public void setInventory(List<Item> oldInventory, List<Item> newInventory) {
+    this.pcs.firePropertyChange("inventory",oldInventory,newInventory);
   }
 
-  public void setCurrentSceneName(String currentSceneName) {
-    this.currentSceneName = currentSceneName;
+  public void setCurrentSceneName(String newCurrentSceneName) {
+    String oldSceneName = this.currentSceneName;
+    this.currentSceneName = newCurrentSceneName;
+    this.pcs.firePropertyChange(currentSceneName,oldSceneName,newCurrentSceneName);
+  }
+
+  public void addPropertyChangeListener(PropertyChangeListener listener) {
+    this.pcs.addPropertyChangeListener(listener);
   }
 
   // GET METHODS
@@ -104,6 +134,9 @@ public class Player {
     return state;
   }
 
+  public List<Item> getInventoryList(){
+    return inventory;
+  }
   public Collection<Item> getInventory() {
     return Collections.unmodifiableCollection(inventory);
   }

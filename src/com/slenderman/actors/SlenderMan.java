@@ -2,6 +2,7 @@ package com.slenderman.actors;
 
 //import com.slenderman.scenes.LoseGameScene;
 import com.slenderman.game.Game;
+import com.slenderman.scenes.LoseGameScene;
 import com.slenderman.scenes.Scene;
 
 public class SlenderMan {

@@ -28,7 +28,6 @@ public void after() throws Exception {
 */
 @Test
 public void testAddItemToInventoryItems() throws Exception {
-//TODO: Test goes here...
 }
 
 /**
@@ -38,7 +37,6 @@ public void testAddItemToInventoryItems() throws Exception {
 */
 @Test
 public void testDropItemFromInventory() throws Exception {
-//TODO: Test goes here...
 }
 
 /**
@@ -48,7 +46,6 @@ public void testDropItemFromInventory() throws Exception {
 */
 @Test
 public void testChangeInvItemsLocation() throws Exception {
-//TODO: Test goes here...
 }
 
 /**
@@ -58,7 +55,6 @@ public void testChangeInvItemsLocation() throws Exception {
 */
 @Test
 public void testChangeInvItemsLocationSceneName() throws Exception {
-//TODO: Test goes here...
 }
 
 /**
@@ -68,7 +64,6 @@ public void testChangeInvItemsLocationSceneName() throws Exception {
 */
 @Test
 public void testGetSetState() throws Exception {
-//TODO: Test goes here...
 }
 
 /**
@@ -78,7 +73,6 @@ public void testGetSetState() throws Exception {
 */
 @Test
 public void testGetSetInventory() throws Exception {
-//TODO: Test goes here...
 }
 
 /**
@@ -88,7 +82,6 @@ public void testGetSetInventory() throws Exception {
 */
 @Test
 public void testGetSetCurrentSceneName() throws Exception {
-//TODO: Test goes here...
 }
 
 

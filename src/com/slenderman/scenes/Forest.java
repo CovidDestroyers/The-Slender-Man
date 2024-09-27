@@ -39,7 +39,6 @@ public class Forest extends Scene {
 
   @Override
   public void enter(Scanner in, Player player) {
-    SceneImage.printForest();
 
     System.out.println(
               "               ,@@@@@@@,\n"

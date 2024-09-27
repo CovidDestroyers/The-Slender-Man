@@ -8,18 +8,19 @@ import java.util.TimerTask;
 
 public class LoseGameTimer {
   Toolkit toolkit;
-  Timer loseGameTimer;
+  Timer timer = new Timer();
 
-  public LoseGameTimer(int minutes) {
-    toolkit = Toolkit.getDefaultToolkit();
-    loseGameTimer = new Timer();
+  public void gameTimer(int minutes) {
     Game.isPlayerAlive = true;
-    loseGameTimer.schedule(new KillPlayerTask(), minutes * 60000);
+        timer.schedule(new TimerTask() {
+      public void run() {
+        killPlayerTask();
+      }
+    },minutes * 60000);
   }
 
-
-  class KillPlayerTask extends TimerTask {
-    public void run() {
+  private void killPlayerTask() {
+      toolkit = Toolkit.getDefaultToolkit();
       toolkit.beep();
       try {
         SlenderMan.killPlayer();
@@ -27,7 +28,5 @@ public class LoseGameTimer {
         e.printStackTrace();
       }
     }
-  }
-
-
 }
+
